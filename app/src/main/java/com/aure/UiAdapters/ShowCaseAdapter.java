@@ -63,10 +63,9 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class ShowcaseMainItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private ChipGroup mainChipGroup;
+
         public ShowcaseMainItemViewHolder(View ItemView){
             super(ItemView);
-            mainChipGroup = ItemView.findViewById(R.id.showcase_type_main_chipgroup);
             ItemView.setOnClickListener(this);
         }
 
