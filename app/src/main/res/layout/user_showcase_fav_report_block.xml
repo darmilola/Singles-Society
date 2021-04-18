@@ -17,4 +17,6 @@
         android:text="Favourite, Report or Block Fatiah"
         android:textColor="#E2295C"
         android:textSize="18dp"/>
+
+
 </LinearLayout>

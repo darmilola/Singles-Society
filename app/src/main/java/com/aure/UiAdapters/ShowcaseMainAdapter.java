@@ -9,6 +9,10 @@ import com.aure.MainActivity;
 import com.aure.R;
 import com.aure.UiModels.ShowCaseMainModel;
 import com.aure.UiModels.ShowCaseModel;
+import com.example.jean.jcplayer.model.JcAudio;
+import com.example.jean.jcplayer.view.JcPlayerView;
+
+
 
 import java.util.ArrayList;
 
@@ -29,12 +33,14 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
     }
 
 
+
     @NonNull
     @Override
     public ShowcaseMainGeneralItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.showcase_layout, parent, false);
         return new ShowcaseMainGeneralItemViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ShowcaseMainGeneralItemViewHolder holder, int position) {
@@ -43,7 +49,11 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         holder.showcaseRecyclerview.setLayoutManager(layoutManager);
         holder.showcaseRecyclerview.setAdapter(showCaseAdapter);
 
+
     }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -56,6 +66,7 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         public ShowcaseMainGeneralItemViewHolder(View ItemView){
             super(ItemView);
             showcaseRecyclerview = ItemView.findViewById(R.id.showcase_recyclerview);
+
             ItemView.setOnClickListener(this);
         }
 

@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 
 import com.aure.R;
 import com.aure.UiModels.ShowCaseModel;
-
+import com.example.jean.jcplayer.model.JcAudio;
+import com.example.jean.jcplayer.view.JcPlayerView;
 
 import java.util.ArrayList;
 
@@ -77,9 +78,17 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return null;
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
+        if (position == SHOWCASE_TYPE_MAIN) {
+            ShowcaseMainItemViewHolder mHolder = (ShowcaseMainItemViewHolder)holder;
+            //ArrayList<JcAudio> jcAudios = new ArrayList<>();
+           // jcAudios.add(JcAudio.createFromURL("user audio", ));jkjk
+            //mHolder.userPlayerView.initPlaylist(jcAudios, null);
+            mHolder.userPlayerView.playAudio(JcAudio.createFromURL("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"));
+        }
     }
 
     @Override
@@ -122,9 +131,10 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class ShowcaseMainItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-
+       JcPlayerView userPlayerView;
         public ShowcaseMainItemViewHolder(View ItemView){
             super(ItemView);
+            userPlayerView = ItemView.findViewById(R.id.user_info_player);
             ItemView.setOnClickListener(this);
         }
 
@@ -136,6 +146,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class ShowcaseTakeActionItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
 
 
         public ShowcaseTakeActionItemViewHolder(View ItemView){
