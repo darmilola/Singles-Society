@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
+        app:cardElevation="0dp"
         android:layout_marginTop="20dp"
         app:cardCornerRadius="20dp">
         <FrameLayout
@@ -72,13 +73,20 @@
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
-                            android:text="Physiotherapist"
+                            android:text="Physiotherapist Engineer"
                             android:padding="10dp"
                             app:iconStartPadding="10dp"
                             android:textColor="@color/White"
                             android:textSize="15dp"
                             app:chipSurfaceColor="@color/transparent"
                             android:fontFamily="@font/airsemi"
+                            app:closeIconEnabled="false"
+                            app:chipIconVisible="true"
+                            app:chipIconSize="16dp"
+                            android:layout_marginLeft="5dp"
+                            app:chipIconTint="@color/pinkypinky"
+                            android:layout_marginRight="10dp"
+                            app:chipIcon="@drawable/ic_iconfinder_business"
                             app:chipBackgroundColor="@color/grey"/>
 
                         <com.google.android.material.chip.Chip
@@ -88,6 +96,7 @@
                             android:padding="10dp"
                             android:textColor="@color/White"
                             android:textSize="15dp"
+                            app:chipIconSize="16dp"
                             android:fontFamily="@font/airsemi"
                             app:closeIconEnabled="false"
                             app:chipIconVisible="true"
@@ -100,16 +109,18 @@
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
-                            android:text="Indian"
+                            android:text="USA"
                             android:padding="10dp"
+                            android:layout_marginRight="5dp"
                             app:chipIconVisible="true"
                             android:layout_marginLeft="5dp"
                             app:chipSurfaceColor="@color/transparent"
                             app:iconStartPadding="10dp"
                             android:textColor="@color/White"
+                            app:chipIconSize="16dp"
                             android:textSize="15dp"
                             android:fontFamily="@font/airsemi"
-                            app:chipIcon="@drawable/iconfinder_india_flag"
+                            app:chipIcon="@drawable/iconfinder_usa"
                             app:chipBackgroundColor="@color/grey"/>
                     </com.google.android.flexbox.FlexboxLayout>
                 </LinearLayout>

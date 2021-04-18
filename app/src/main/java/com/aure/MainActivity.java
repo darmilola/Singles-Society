@@ -31,8 +31,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.show_case_recyclerview);
 
         ShowCaseModel showCaseModel = new ShowCaseModel(1);
-        for(int i = 0; i < 5; i++){
+        ShowCaseModel showCaseModel2 = new ShowCaseModel(2);
+        ShowCaseModel showCaseModel3 = new ShowCaseModel(3);
+        ShowCaseModel showCaseModel4 = new ShowCaseModel(4);
+        ShowCaseModel showCaseModel5 = new ShowCaseModel(5);
+        ShowCaseModel showCaseModel6 = new ShowCaseModel(6);
+        ShowCaseModel showCaseModel7 = new ShowCaseModel(7);
+        ShowCaseModel showCaseModel8 = new ShowCaseModel(8);
+        for(int i = 0; i < 1; i++){
             showCaseModelArrayList.add(showCaseModel);
+            showCaseModelArrayList.add(showCaseModel3);
+            showCaseModelArrayList.add(showCaseModel2);
+            showCaseModelArrayList.add(showCaseModel5);
+            showCaseModelArrayList.add(showCaseModel4);
+            showCaseModelArrayList.add(showCaseModel6);
+            showCaseModelArrayList.add(showCaseModel7);
+            showCaseModelArrayList.add(showCaseModel8);
         }
         showCaseAdapter = new ShowCaseAdapter(MainActivity.this,showCaseModelArrayList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);

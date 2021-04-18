@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/transparent"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="15dp"
+        app:cardBackgroundColor="@color/White"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Religion"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:textSize="16dp"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/airsemi"/>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:flexWrap="wrap"
+                android:layout_marginTop="5dp"
+                app:justifyContent="center">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/airsemi"
+                    android:padding="10dp"
+                    android:text="Christian"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    app:chipBackgroundColor="@color/transparent"
+                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+                    app:chipIconSize="16dp"
+                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconVisible="true"
+                    app:chipSurfaceColor="#DBE4E9"
+                    app:closeIconEnabled="false"
+                    app:iconStartPadding="10dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/airsemi"
+                    android:padding="10dp"
+                    android:text="Muslim"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    app:chipBackgroundColor="@color/transparent"
+                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+                    app:chipIconSize="16dp"
+                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconVisible="true"
+                    app:chipSurfaceColor="#DBE4E9"
+                    app:closeIconEnabled="false"
+                    app:iconStartPadding="10dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/airsemi"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="Traditional"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    app:chipBackgroundColor="@color/transparent"
+                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+                    app:chipIconSize="16dp"
+                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconVisible="true"
+                    app:chipSurfaceColor="#DBE4E9"
+                    app:closeIconEnabled="false"
+                    app:iconStartPadding="10dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/airsemi"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="Always prays"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    app:chipBackgroundColor="@color/transparent"
+                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+                    app:chipIconSize="16dp"
+                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconVisible="true"
+                    app:chipSurfaceColor="#DBE4E9"
+                    app:closeIconEnabled="false"
+                    app:iconStartPadding="10dp" />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/airsemi"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="Modest Dress"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    app:chipBackgroundColor="@color/transparent"
+                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+                    app:chipIconSize="16dp"
+                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconVisible="true"
+                    app:chipSurfaceColor="#DBE4E9"
+                    app:closeIconEnabled="false"
+                    app:iconStartPadding="10dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/airsemi"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="Doesn't drink alcohol"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    app:chipBackgroundColor="@color/transparent"
+                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+                    app:chipIconSize="16dp"
+                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconVisible="true"
+                    app:chipSurfaceColor="#DBE4E9"
+                    app:closeIconEnabled="false"
+                    app:iconStartPadding="10dp" />
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/airsemi"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="Doesn't smoke"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    app:chipBackgroundColor="@color/transparent"
+                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+                    app:chipIconSize="16dp"
+                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconVisible="true"
+                    app:chipSurfaceColor="#DBE4E9"
+                    app:closeIconEnabled="false"
+                    app:iconStartPadding="10dp" />
+            </com.google.android.flexbox.FlexboxLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
