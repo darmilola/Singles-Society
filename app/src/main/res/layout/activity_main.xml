@@ -62,11 +62,11 @@
         </LinearLayout>
 
     </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
+     <com.yuyakaido.android.cardstackview.CardStackView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/show_case_recyclerview"
-        tools:listitem="@layout/user_showcase_type_main"/>
+         android:background="@color/special_activity_background"
+        android:id="@+id/showcase_main_recyclerview"/>
     </LinearLayout>
     <ProgressBar
         android:id="@+id/vertical_progressbar"
@@ -91,9 +91,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:id="@+id/user_swipe_left"
             android:layout_gravity="center|left"
             android:layout_marginLeft="30dp"
-            app:cardElevation="1dp"
+            app:cardElevation="2dp"
             android:layout_alignParentLeft="true"
             app:cardCornerRadius="30dp">
 
@@ -111,8 +112,9 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center|right"
+            android:id="@+id/user_swipe_right"
             android:layout_marginRight="30dp"
-            app:cardElevation="1dp"
+            app:cardElevation="2dp"
             android:layout_alignParentRight="true"
             app:cardCornerRadius="30dp">
 
