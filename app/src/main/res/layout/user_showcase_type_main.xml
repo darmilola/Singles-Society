@@ -125,11 +125,6 @@
                             app:chipBackgroundColor="@color/grey"/>
                     </com.google.android.flexbox.FlexboxLayout>
                 </LinearLayout>
-
-            <com.example.jean.jcplayer.view.JcPlayerView
-                android:id="@+id/user_info_player"
-                android:layout_width="1dp"
-                android:layout_height="1dp"/>
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 

@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/transparent"
-    android:layout_height="wrap_content">
+    android:layout_height="160dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="140dp"
@@ -88,7 +88,6 @@
             app:chipBackgroundColor="@color/transparent"
             app:chipIcon="@drawable/iconfinder_usa"
             app:chipIconSize="16dp"
-            app:chipIconTint="@color/pinkypinky"
             app:chipIconVisible="true"
             app:chipSurfaceColor="#DBE4E9"
             app:closeIconEnabled="false"
@@ -107,13 +106,12 @@
             app:chipBackgroundColor="@color/transparent"
             app:chipIcon="@drawable/iconfinder_usa"
             app:chipIconSize="16dp"
-            app:chipIconTint="@color/pinkypinky"
             app:chipIconVisible="true"
             app:chipSurfaceColor="#DBE4E9"
             app:closeIconEnabled="false"
             app:iconStartPadding="10dp" />
     </com.google.android.flexbox.FlexboxLayout>
 </LinearLayout>
-    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
 
 </LinearLayout>
