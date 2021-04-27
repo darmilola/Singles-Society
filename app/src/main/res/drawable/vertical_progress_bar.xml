@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@android:id/background"
-        android:gravity="center_vertical|fill_horizontal">
-        <shape android:shape="rectangle"
-            android:tint="@color/light_text_color">
-            <corners android:radius="8dp"/>
-            <size android:height="30dp" />
-            <solid android:color="@color/light_text_color" />
+    <item android:id="@android:id/background" android:height="2dp" android:top="8.5dp">
+        <shape>
+            <solid android:color="#D5E6FF"/>
+            <corners android:radius="1dp"/>
         </shape>
     </item>
-    <item android:id="@android:id/progress"
-        android:gravity="center_vertical|fill_horizontal">
-        <scale android:scaleWidth="100%">
-            <selector>
-                <item android:state_enabled="false"
-                    android:drawable="@android:color/transparent" />
-                <item>
-                    <shape android:shape="rectangle"
-                        android:tint="#f50057">
-                        <corners android:radius="8dp"/>
-                        <size android:height="30dp" />
-                        <solid android:color="#f50057" />
-                    </shape>
-                </item>
-            </selector>
-        </scale>
+    <item android:id="@android:id/progress" android:height="2dp" android:top="8.5dp">
+        <clip>
+            <shape>
+                <corners android:radius="1.5dp"/>
+                <solid android:color="@color/colorPrimary"/>
+            </shape>
+        </clip>
+    </item>
+    <item android:id="@android:id/secondaryProgress" android:height="2dp" android:top="8.5dp">
+        <clip>
+            <shape>
+                <corners android:radius="1dp"/>
+                <solid android:color="@color/toolbar_light_primary"/>
+            </shape>
+        </clip>
     </item>
 </layer-list>

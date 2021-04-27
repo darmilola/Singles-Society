@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import com.aure.R;
+import com.aure.UiModels.RecyclerViewPagerIndicator;
 import com.aure.UiModels.ShowCaseMainModel;
 
 
@@ -16,6 +17,7 @@ import com.aure.UiModels.ShowCaseMainModel;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -127,6 +129,8 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         public ShowcaseMainGeneralItemViewHolder(View ItemView){
             super(ItemView);
             showcaseRecyclerview = ItemView.findViewById(R.id.showcase_recyclerview);
+            RecyclerViewPagerIndicator recyclerViewPagerIndicator = new RecyclerViewPagerIndicator(8,8,30, ContextCompat.getColor(context,R.color.light_text_color),ContextCompat.getColor(context,R.color.pinkypinky));
+            showcaseRecyclerview.addItemDecoration(new RecyclerViewPagerIndicator(8,8,30, ContextCompat.getColor(context,R.color.light_text_color),ContextCompat.getColor(context,R.color.pinkypinky)));
             ItemView.setOnClickListener(this);
         }
 

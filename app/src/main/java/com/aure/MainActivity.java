@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     ArrayList<ShowCaseMainModel> showCaseMainModelArrayList = new ArrayList<>();
     ArrayList<ShowCaseModel> showCaseModelArrayList = new ArrayList<>();
     CardView leftSwipeCard,rightSwipeCard;
-    int recyclerviewProgress = 0;
+   // int recyclerviewProgress = 0;
     int recyclerviewOldProgress = 0;
     int recyclerviewNewProgress = 0;
-    SeekBar showcaseMovementProgress;
+   // SeekBar showcaseMovementProgress;
     ShowcaseMetadata showcaseMetadata = new ShowcaseMetadata(6200);
 
 
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         leftSwipeCard = findViewById(R.id.user_swipe_left);
         rightSwipeCard = findViewById(R.id.user_swipe_right);
         userShowcaseStack = findViewById(R.id.showcase_main_recyclerview);
-        showcaseMovementProgress = findViewById(R.id.main_progressbar);
-        showcaseMovementProgress.setProgress(5);
+      //  showcaseMovementProgress = findViewById(R.id.main_progressbar);
+     //   showcaseMovementProgress.setProgress(5);
 
         leftSwipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,10 +108,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             public void onProgressChange(int progress) {
 
 
-                recyclerviewProgress = recyclerviewProgress + progress;
+             //   recyclerviewProgress = recyclerviewProgress + progress;
 
-                showcaseMovementProgress.setProgress(recyclerviewProgress);
-                Log.e(TAG, "onProgressChange: "+recyclerviewProgress );
+             //   showcaseMovementProgress.setProgress(recyclerviewProgress);
+               // Log.e(TAG, "onProgressChange: "+recyclerviewProgress );
                 //showcaseMovementProgress.setProgress(progress);
 
             }
@@ -120,15 +120,15 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             @Override
             public void onInitialize(int initialValue) {
 
-                showcaseMovementProgress.setMax(initialValue);
+             //   showcaseMovementProgress.setMax(initialValue);
 
             }
 
             @Override
             public void onNegativeProgress(int nProgress) {
-                recyclerviewProgress = recyclerviewProgress - nProgress;
-                showcaseMovementProgress.setProgress(recyclerviewProgress);
-                Log.e(TAG, "onProgressChange: "+recyclerviewProgress );
+              //  recyclerviewProgress = recyclerviewProgress - nProgress;
+              //  showcaseMovementProgress.setProgress(recyclerviewProgress);
+             //   Log.e(TAG, "onProgressChange: "+recyclerviewProgress );
 
             }
         });
@@ -207,8 +207,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     @Override
     public void onCardSwiped(Direction direction) {
 
-        showcaseMovementProgress.setProgress(10);
-        recyclerviewProgress = 0;
+       // showcaseMovementProgress.setProgress(10);
+     //   recyclerviewProgress = 0;
 
     }
 
