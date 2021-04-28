@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/activity_main_main_view"
     android:background="@color/special_activity_background"
     tools:context=".MainActivity">
     <LinearLayout
@@ -12,7 +13,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <LinearLayout
+       <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetLeft="0dp"
+            android:id="@+id/activity_main_toolbar">
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:weightSum="4"
@@ -22,6 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:id="@+id/main_info_toggle_layout"
             android:gravity="center|left">
             <ImageView
                 android:layout_width="30dp"
@@ -62,9 +73,11 @@
         </LinearLayout>
 
     </LinearLayout>
+</androidx.appcompat.widget.Toolbar>
      <com.yuyakaido.android.cardstackview.CardStackView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+         android:layout_marginBottom="50dp"
          android:background="@color/special_activity_background"
         android:id="@+id/showcase_main_recyclerview"/>
     </LinearLayout>
@@ -77,7 +90,7 @@
         android:layout_height="100dp"
         android:gravity="bottom"
         android:paddingBottom="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="50dp"
         android:layout_gravity="bottom">
 
         <androidx.cardview.widget.CardView

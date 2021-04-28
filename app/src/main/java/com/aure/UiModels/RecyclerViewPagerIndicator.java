@@ -61,7 +61,7 @@ public class RecyclerViewPagerIndicator extends RecyclerView.ItemDecoration {
         float totalHeight = this.radius * 2 * itemCount;
         float paddingBetweenItemsI= Math.max(0, itemCount - 1) * indicatorItemPadding;
         float totalIndicatorHeight = totalHeight + paddingBetweenItemsI;
-        float indicatorStartYI = (parent.getHeight() - totalIndicatorHeight) / 8f;
+        float indicatorStartYI = (parent.getHeight() - totalIndicatorHeight) / 9f;
         float indicatorStartXI = parent.getWidth() - indicatorHeight / 0.6f;
 
         drawInactiveDots(c,indicatorStartXI,indicatorStartYI,itemCount);
