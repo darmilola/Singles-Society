@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     FrameLayout mainView;
     LinearLayout mainInfoToggleLayout;
 
+    LinearLayout matchesMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,17 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void initView(){
 
+
+        matchesMenu = findViewById(R.id.matches_menu);
+
+        matchesMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MatchesActivity.class));
+            }
+        });
+
+
         drawerLayout = findViewById(R.id.activity_main_drawer_layout);
         leftSwipeCard = findViewById(R.id.user_swipe_left);
         rightSwipeCard = findViewById(R.id.user_swipe_right);
@@ -71,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         mainView = findViewById(R.id.activity_main_main_view);
         mainInfoToggleLayout = findViewById(R.id.main_info_toggle_layout);
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout,toolbar,R.string.app_name,R.string.app_name){
+
+
 
             @Override
             public void onDrawerSlide(View drawerView,float slideOffset){

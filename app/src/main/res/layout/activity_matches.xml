@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/special_activity_background"
+    tools:context=".MatchesActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:weightSum="5"
+        android:gravity="center|left">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentLeft="true"
+                android:rotation="180"
+                android:layout_marginLeft="20sp"
+                android:tint="@color/colorPrimary"
+                android:layout_marginTop="5dp"
+                android:id="@+id/matches_back_button"
+                android:src="@drawable/ic_iconfinder_chevron_right_4781843"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Your Matches"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:fontFamily="@font/airsemi"
+                android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:tint="@color/colorPrimary"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_iconfinder___magnifier_search_zoom__3844467"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="5"
+        tools:itemCount="5"
+        android:id="@+id/matches_recyclerview"
+        tools:listitem="@layout/matches_item"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:text="Messages"
+        android:textSize="18dp"
+        android:fontFamily="@font/airsemi"
+        android:textColor="@color/colorPrimary"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:id="@+id/messages_recyclerview"
+        tools:listitem="@layout/direct_message_item"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

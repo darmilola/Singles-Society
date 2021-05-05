@@ -75,6 +75,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="10dp"
                         android:gravity="center|left"
+                        android:id="@+id/matches_menu"
                         android:orientation="horizontal">
 
                         <ImageView

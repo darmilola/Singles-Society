@@ -114,9 +114,6 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         });
     }
 
-
-
-
     @Override
     public int getItemCount() {
         return showCaseMainModelArrayList.size();
@@ -129,8 +126,8 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         public ShowcaseMainGeneralItemViewHolder(View ItemView){
             super(ItemView);
             showcaseRecyclerview = ItemView.findViewById(R.id.showcase_recyclerview);
-            RecyclerViewPagerIndicator recyclerViewPagerIndicator = new RecyclerViewPagerIndicator(6,6,25, ContextCompat.getColor(context,R.color.light_text_color),ContextCompat.getColor(context,R.color.pinkypinky));
-            showcaseRecyclerview.addItemDecoration(new RecyclerViewPagerIndicator(8,8,30, ContextCompat.getColor(context,R.color.light_text_color),ContextCompat.getColor(context,R.color.pinkypinky)));
+           // RecyclerViewPagerIndicator recyclerViewPagerIndicator = new RecyclerViewPagerIndicator(6,6,25, ContextCompat.getColor(context,R.color.light_text_color),ContextCompat.getColor(context,R.color.pinkypinky));
+            showcaseRecyclerview.addItemDecoration(new RecyclerViewPagerIndicator(context));
             ItemView.setOnClickListener(this);
         }
 
