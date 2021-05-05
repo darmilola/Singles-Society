@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="80dp"
-    android:layout_height="120dp"
+    android:layout_height="110dp"
     android:layout_marginLeft="10dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         fresco:roundingBorderWidth="0.5dp"
         android:src="@drawable/lady2"
-        fresco:roundingBorderColor="@color/pinkypinky"
+        fresco:roundingBorderColor="@color/green"
         fresco:roundAsCircle="true"
         android:id="@+id/direct_message_sender_profile_image"
         fresco:placeholderImage="@drawable/lady1"
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sinita"
+        android:text="Sintel"
         android:gravity="center"
         android:maxLines="1"
         android:ellipsize="end"
