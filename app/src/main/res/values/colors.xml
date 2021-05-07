@@ -29,5 +29,6 @@
     <color name="white_transparency">#D9FFFFFF</color>
     <color name="blue">#465ED3</color>
     <color name="special_activity_background">#f4f4f4</color>
+    <color name="xspecial">#f1f1f1</color>
 </resources>
 
