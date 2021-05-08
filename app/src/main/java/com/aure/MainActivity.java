@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 import com.aure.UiAdapters.ShowcaseMainAdapter;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     Toolbar toolbar;
     FrameLayout mainView;
     LinearLayout mainInfoToggleLayout;
-
+    LinearLayout mainMarketPlace;
     LinearLayout matchesMenu;
 
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
 
         matchesMenu = findViewById(R.id.matches_menu);
-
+        mainMarketPlace = findViewById(R.id.main_marketplace);
         matchesMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
+        mainMarketPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Marketplace.class));
+            }
+        });
 
         drawerLayout = findViewById(R.id.activity_main_drawer_layout);
         leftSwipeCard = findViewById(R.id.user_swipe_left);

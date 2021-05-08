@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="170dp"
     android:background="@color/transparent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_margin="20dp"
+        android:layout_margin="15dp"
         app:cardCornerRadius="10dp"
         app:cardBackgroundColor="@color/White"
         app:cardElevation="0dp">

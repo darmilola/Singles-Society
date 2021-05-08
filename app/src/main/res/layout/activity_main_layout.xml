@@ -130,6 +130,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center|left"
+                        android:id="@+id/main_marketplace"
                         android:orientation="horizontal">
 
                         <ImageView
