@@ -186,6 +186,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center|left"
+                        android:id="@+id/filter_layout"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -202,7 +203,7 @@
                             android:layout_marginLeft="20dp"
                             android:fontFamily="@font/clannews"
                             android:gravity="center|left"
-                            android:text="Settings"
+                            android:text="Complete Profile"
                             android:textColor="#201D1D"
                             android:textSize="16dp" />
                     </LinearLayout>

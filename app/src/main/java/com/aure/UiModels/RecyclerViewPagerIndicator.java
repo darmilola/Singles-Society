@@ -81,7 +81,8 @@ public class RecyclerViewPagerIndicator extends RecyclerView.ItemDecoration {
 
         // find active page (which should be highlighted)
         LinearLayoutManager layoutManager = (LinearLayoutManager) parent.getLayoutManager();
-        int activePosition = layoutManager.findLastCompletelyVisibleItemPosition();
+        assert layoutManager != null;
+        int activePosition = layoutManager.findLastVisibleItemPosition();
         if (activePosition == RecyclerView.NO_POSITION) {
             return;
         }

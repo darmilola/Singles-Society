@@ -18,7 +18,6 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
 import com.aure.UiAdapters.ShowcaseMainAdapter;
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout mainInfoToggleLayout;
     LinearLayout mainMarketPlace;
     LinearLayout matchesMenu;
+    LinearLayout filterLayout;
 
 
     @Override
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
         matchesMenu = findViewById(R.id.matches_menu);
         mainMarketPlace = findViewById(R.id.main_marketplace);
+        filterLayout = findViewById(R.id.filter_layout);
         matchesMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +82,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,Marketplace.class));
+            }
+        });
+
+        filterLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Filter.class));
             }
         });
 
@@ -186,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             @Override
             public void onInitialize(int initialValue) {
 
-             //   showcaseMovementProgress.setMax(initialValue);
+                //showcaseMovementProgress.setMax(initialValue);
 
             }
 

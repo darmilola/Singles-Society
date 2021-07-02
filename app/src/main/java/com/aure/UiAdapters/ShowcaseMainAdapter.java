@@ -27,9 +27,7 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
     private Context context;
     private ArrayList<ShowCaseMainModel> showCaseMainModelArrayList;
     private ShowCaseAdapter showCaseAdapter;
-    private int cummulative = 0;
-    private boolean isUserSwiped = false;
-    private boolean isBottomReached = false;
+
 
     private ShowcaseViewProgressStateChange showcaseViewProgressStateChange;
 
@@ -65,22 +63,7 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
 
         showcaseViewProgressStateChange.onInitialize(showCaseMainModelArrayList.get(position).getShowcaseMetadata().getTotalShowcaseHeight());
         showcaseViewProgressStateChange.onProgressChange(10);
-        showCaseAdapter.setListener(new ShowCaseAdapter.ViewAddedListener() {
-            @Override
 
-            public void onViewAdded(int size) {
-            }
-
-            @Override
-            public void onUserSwiped() {
-                isUserSwiped = true;
-            }
-
-            @Override
-            public void onBottomReached() {
-               isBottomReached = true;
-            }
-        });
 
         holder.showcaseRecyclerview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -107,9 +90,7 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
                 if(!holder.showcaseRecyclerview.canScrollVertically(1)){
                     showcaseViewProgressStateChange.onInitialize(10);
                 }
-                else if(!holder.showcaseRecyclerview.canScrollVertically(-1)){
-                    isBottomReached = true;
-                }
+
             }
         });
     }
