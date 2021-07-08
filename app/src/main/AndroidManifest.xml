@@ -10,19 +10,28 @@
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".PreviewProfile"></activity>
-        <activity android:name=".Filter" />
-        <activity android:name=".MarketPlaceDetailView" />
-        <activity android:name=".ProductDetails" />
-        <activity android:name=".Marketplace" />
-        <activity android:name=".MatchesActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".TakeActionOnProfile"></activity>
+        <activity android:name=".CompleteProfileActivity" />
+        <activity android:name=".MetMatchPage" />
+        <activity android:name=".AddListing" />
+        <activity android:name=".MyListings" />
+        <activity android:name=".MyAccountActivity" />
+        <activity android:name=".SignUpWithEmail" />
+        <activity android:name=".ConnectWithEmail" />
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PreviewProfile" />
+        <activity android:name=".Filter" />
+        <activity android:name=".MarketPlaceDetailView" />
+        <activity android:name=".ProductDetails" />
+        <activity android:name=".Marketplace" />
+        <activity android:name=".MatchesActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

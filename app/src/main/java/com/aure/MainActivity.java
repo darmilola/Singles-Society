@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout mainMarketPlace;
     LinearLayout matchesMenu;
     LinearLayout filterLayout;
+    LinearLayout myAccount;
+    LinearLayout inviteAFriend;
+    LinearLayout helpDesk;
+    LinearLayout logOut;
 
 
     @Override
@@ -67,14 +71,45 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void initView(){
 
-
+        inviteAFriend = findViewById(R.id.invite_a_friend_layout);
+        helpDesk = findViewById(R.id.help_desk_layout);
+        logOut = findViewById(R.id.log_out_layout);
+        myAccount = findViewById(R.id.activity_main_my_account);
         matchesMenu = findViewById(R.id.matches_menu);
         mainMarketPlace = findViewById(R.id.main_marketplace);
         filterLayout = findViewById(R.id.filter_layout);
+
+        inviteAFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CompleteProfileActivity.class));
+            }
+        });
+        helpDesk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,TakeActionOnProfile.class));
+            }
+        });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MetMatchPage.class));
+            }
+        });
+
         matchesMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,MatchesActivity.class));
+            }
+        });
+
+        myAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MyAccountActivity.class));
             }
         });
 

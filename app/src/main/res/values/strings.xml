@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Auretayya</string>
+    <string name="already_have_account"><u>Already have account</u></string>
+    <string name="dont_have_account"><u>Do not have account?</u></string>
+    <string name="forgot_password"><u>Forgot Password</u></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

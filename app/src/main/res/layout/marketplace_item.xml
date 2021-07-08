@@ -63,15 +63,6 @@
                         android:textSize="16dp"
                         android:layout_alignParentLeft="true"
                         android:text="Way Fair trench Chair 25.4 inches"/>
-
-                    <TextView
-                        android:layout_width="70dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/light_text_color"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="13dp"
-                        android:text="3hrs ago"/>
                 </RelativeLayout>
 
              <TextView

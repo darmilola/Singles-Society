@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/special_activity_background"
+    tools:context=".Marketplace">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/marketplace_gradient">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="60dp"
+            android:text="What are you looking for today?"
+            android:textColor="@color/White"
+            android:textSize="25dp"
+            android:fontFamily="@font/clannews"/>
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:focusableInTouchMode="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:weightSum="5"
+            android:orientation="horizontal"
+            android:background="@drawable/search_background">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:layout_marginLeft="10dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:tint="@color/light_text_color"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/iconfinder_magnifier_search"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.3">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/search_edit_background"
+                    android:hint="Search anything..."
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
+                    android:textColorHint="@color/light_text_color"
+                    android:fontFamily="@font/clannews"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="20dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="4"
+        android:id="@+id/category_recyclerview"
+        tools:itemCount="4"
+        tools:listitem="@layout/marketplace_category_item"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F1F1F1"
+        android:paddingTop="20dp"
+        android:paddingBottom="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/clanbold"
+            android:text="Best Sellers"
+            android:textColor="#858585"
+            android:textSize="15dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:id="@+id/best_seller_recylerview"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/marketplace_item"/>
+        <me.relex.circleindicator.CircleIndicator2
+            android:id="@+id/bestseller_indicator"
+            android:layout_width="match_parent"
+            app:ci_drawable="@drawable/pink_radius"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Products"
+                android:textSize="15dp"
+                android:fontFamily="@font/clanbold"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentLeft="true"
+                android:textColor="#858585"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:textSize="13dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/market_place_view_all"
+                    android:fontFamily="@font/clannews"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/dark_text_color"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:tint="@color/dark_text_color"
+                    android:src="@drawable/ic_iconfinder_chevron_right_4781843"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:id="@+id/market_place_newproduct_recyclerview"
+            tools:listitem="@layout/marketplace_item"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
