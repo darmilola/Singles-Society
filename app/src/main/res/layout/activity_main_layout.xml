@@ -186,6 +186,35 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="5dp"
                         android:gravity="center|left"
+                        android:id="@+id/complete_profile"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_iconfinder_cross"
+                            android:tint="#201D1D"
+                            android:padding="1dp"/>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:fontFamily="@font/clannews"
+                            android:gravity="center|left"
+                            android:text="Complete Profile"
+                            android:textColor="#201D1D"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center|left"
                         android:id="@+id/filter_layout"
                         android:orientation="horizontal">
 

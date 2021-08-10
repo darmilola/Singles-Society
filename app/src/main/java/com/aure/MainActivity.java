@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout mainInfoToggleLayout;
     LinearLayout mainMarketPlace;
     LinearLayout matchesMenu;
-    LinearLayout filterLayout;
+    LinearLayout completeProfile;
+    LinearLayout filterProfile;
     LinearLayout myAccount;
     LinearLayout inviteAFriend;
     LinearLayout helpDesk;
@@ -77,14 +78,23 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         myAccount = findViewById(R.id.activity_main_my_account);
         matchesMenu = findViewById(R.id.matches_menu);
         mainMarketPlace = findViewById(R.id.main_marketplace);
-        filterLayout = findViewById(R.id.filter_layout);
+        completeProfile = findViewById(R.id.complete_profile);
+        filterProfile = findViewById(R.id.filter_layout);
 
         inviteAFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,CompleteProfileActivity.class));
+                startActivity(new Intent(MainActivity.this, CompleteProfilePrompt.class));
             }
         });
+
+        filterProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,PreferenceFilter.class));
+            }
+        });
+
         helpDesk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,10 +130,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
-        filterLayout.setOnClickListener(new View.OnClickListener() {
+        completeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Filter.class));
+                startActivity(new Intent(MainActivity.this, CompleteProfile.class));
             }
         });
 
@@ -297,10 +307,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     public void onResume() {
 
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.full_transparency));
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS );
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }

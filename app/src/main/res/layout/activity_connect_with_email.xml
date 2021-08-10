@@ -58,8 +58,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:hint="Email"
+        android:id="@+id/login_email"
         android:paddingLeft="20dp"
-        android:background="@drawable/edittext_background"/>
+        android:background="@drawable/edit_profile_edittext_background"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -68,8 +69,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:hint="Password"
+        android:id="@+id/login_password"
         android:paddingLeft="20dp"
-        android:background="@drawable/edittext_background"/>
+        android:background="@drawable/edit_profile_edittext_background"/>
 
 
     <com.google.android.material.button.MaterialButton
@@ -79,7 +81,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="20dp"
         android:text="Login"
-        android:id="@+id/login_with_email"
+        android:id="@+id/login_with_email_button"
         android:textAllCaps="false"
         android:textSize="15dp"/>
     <RelativeLayout
@@ -91,6 +93,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/forgot_password"
             android:gravity="right"
+            android:padding="7dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
             android:textColor="@color/colorPrimary"/>

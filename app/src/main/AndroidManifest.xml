@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".TakeActionOnProfile"></activity>
-        <activity android:name=".CompleteProfileActivity" />
+        <activity android:name=".PreferenceFilter"></activity>
+        <activity android:name=".ProfileImageCrop" />
+        <activity android:name=".TakeActionOnProfile" />
+        <activity android:name=".CompleteProfilePrompt" />
         <activity android:name=".MetMatchPage" />
         <activity android:name=".AddListing" />
         <activity android:name=".MyListings" />
@@ -26,13 +28,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".PreviewProfile" />
-        <activity android:name=".Filter" />
+        <activity android:name=".CompleteProfile" />
         <activity android:name=".MarketPlaceDetailView" />
         <activity android:name=".ProductDetails" />
         <activity android:name=".Marketplace" />
         <activity android:name=".MatchesActivity" />
         <activity android:name=".MainActivity" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

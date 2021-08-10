@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
-public class CompleteProfileActivity extends AppCompatActivity {
+public class CompleteProfilePrompt extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);
-        setContentView(R.layout.activity_complete_profile);
+        setContentView(R.layout.activity_complete_profile_prompt);
     }
 }

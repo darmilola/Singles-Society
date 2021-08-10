@@ -7,21 +7,20 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-public class Filter extends AppCompatActivity {
+public class CompleteProfile extends AppCompatActivity {
 
     LinearLayout previewProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter);
+        setContentView(R.layout.activity_complete_profile);
         previewProfile = findViewById(R.id.profile_preview);
         previewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Filter.this,PreviewProfile.class));
+                startActivity(new Intent(CompleteProfile.this,PreviewProfile.class));
             }
         });
     }
