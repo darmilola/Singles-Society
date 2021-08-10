@@ -25,10 +25,11 @@
                android:layout_weight="1"
                android:gravity="center">
                <ImageView
-                   android:layout_width="30dp"
-                   android:layout_height="30dp"
+                   android:layout_width="24dp"
+                   android:layout_height="24dp"
                    android:src="@drawable/ic_iconfinder_cross"/>
            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -38,7 +39,9 @@
                     android:layout_height="match_parent"
                     android:text="Complete Profile"
                     android:gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@color/colorPrimary"/>
             </LinearLayout>
             <LinearLayout
@@ -53,7 +56,9 @@
                     android:layout_height="match_parent"
                     android:text="Preview"
                     android:gravity="center"
-                    android:textSize="18dp"
+                    android:textSize="14dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@color/light_text_color"/>
             </LinearLayout>
 
@@ -98,13 +103,14 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
@@ -119,10 +125,25 @@
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="I am a very gentle person and love playing games"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/about_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
+
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/profile_about_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -145,13 +166,75 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:src="@drawable/ic_iconfinder_business"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Status"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Married"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/status_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/status_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="15dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="100px">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
@@ -166,10 +249,23 @@
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="English and hausa"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/language_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/profile_language_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -192,13 +288,14 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
@@ -208,15 +305,28 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Interests"
+                       android:text="Ineterest"
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Football,reading,games,halal"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/interest_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/profile_interest_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -239,13 +349,14 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
@@ -260,10 +371,23 @@
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Ready to marry in 6 months"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/marriage_goals_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/profile_marriage_goals_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -284,32 +408,48 @@
                </LinearLayout>
            </RelativeLayout>
 
+
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
                        android:layout_height="24dp"
                        android:src="@drawable/ic_iconfinder_business"/>
+
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Education level"
+                       android:text="Education Levels"
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Bachelors"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/education_level_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/profile_education_level_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -329,15 +469,17 @@
                        android:src="@drawable/iconfinder_chevron_left"/>
                </LinearLayout>
            </RelativeLayout>
+
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
@@ -352,10 +494,23 @@
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Nasdaq listed Multi-Billion Dollar"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/workplace_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/profile_workplace_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -375,15 +530,18 @@
                        android:src="@drawable/iconfinder_chevron_left"/>
                </LinearLayout>
            </RelativeLayout>
+
+
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
@@ -393,15 +551,28 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Occupation"
+                       android:text="Language"
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Engineering Manager"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/occupation_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/occupation_language_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -421,15 +592,18 @@
                        android:src="@drawable/iconfinder_chevron_left"/>
                </LinearLayout>
            </RelativeLayout>
+
+
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="150px">
+               android:layout_height="100px">
 
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_alignParentLeft="true"
-                   android:gravity="center|left">
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
 
                    <ImageView
                        android:layout_width="24dp"
@@ -439,15 +613,28 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Favourite Quote"
+                       android:text="Quote"
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="If it works d'ont touch it."
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/quote_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
                </LinearLayout>
+
                <LinearLayout
-                   android:layout_width="200dp"
+                   android:layout_width="wrap_content"
                    android:layout_height="match_parent"
+                   android:id="@+id/quote_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -468,7 +655,6 @@
                </LinearLayout>
            </RelativeLayout>
 
-
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="50dp"
@@ -477,14 +663,14 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:text="Profile Image"
+                   android:text="*Display Image"
                    android:gravity="center"
-                   android:textSize="16dp"
+                   android:textSize="14dp"
                    android:textColor="@color/dark_text_color"/>
 
                <com.google.android.material.button.MaterialButton
                    android:layout_width="100dp"
-                   android:layout_height="45dp"
+                   android:layout_height="40dp"
                    android:layout_marginLeft="20dp"
                    android:text="Upload"
                    android:textAllCaps="false"
@@ -494,15 +680,12 @@
            </LinearLayout>
 
 
-           <LinearLayout
+           <ImageView
                android:layout_width="280dp"
                android:layout_height="320dp"
                android:layout_marginTop="10dp"
-               android:background="@drawable/lady3">
-
-
-           </LinearLayout>
-
+               android:src="@drawable/profileplaceholder"
+               android:scaleType="centerCrop"/>
 
            <LinearLayout
                android:layout_width="match_parent"
@@ -512,14 +695,14 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:text="Profile Image"
+                   android:text="*Display Image"
                    android:gravity="center"
-                   android:textSize="16dp"
+                   android:textSize="14dp"
                    android:textColor="@color/dark_text_color"/>
 
                <com.google.android.material.button.MaterialButton
                    android:layout_width="100dp"
-                   android:layout_height="45dp"
+                   android:layout_height="40dp"
                    android:layout_marginLeft="20dp"
                    android:text="Upload"
                    android:textAllCaps="false"
@@ -529,14 +712,12 @@
            </LinearLayout>
 
 
-           <LinearLayout
+           <ImageView
                android:layout_width="280dp"
                android:layout_height="320dp"
                android:layout_marginTop="10dp"
-               android:background="@drawable/profileplaceholder">
-
-
-           </LinearLayout>
+               android:src="@drawable/profileplaceholder"
+               android:scaleType="centerCrop"/>
 
            <LinearLayout
                android:layout_width="match_parent"
@@ -546,14 +727,14 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:text="Profile Image"
+                   android:text="*Display Image"
                    android:gravity="center"
-                   android:textSize="16dp"
+                   android:textSize="14dp"
                    android:textColor="@color/dark_text_color"/>
 
                <com.google.android.material.button.MaterialButton
                    android:layout_width="100dp"
-                   android:layout_height="45dp"
+                   android:layout_height="40dp"
                    android:layout_marginLeft="20dp"
                    android:text="Upload"
                    android:textAllCaps="false"
@@ -563,48 +744,13 @@
            </LinearLayout>
 
 
-           <LinearLayout
+           <ImageView
                android:layout_width="280dp"
                android:layout_height="320dp"
                android:layout_marginTop="10dp"
-               android:background="@drawable/profileplaceholder">
+               android:src="@drawable/profileplaceholder"
+               android:scaleType="centerCrop"/>
 
-
-           </LinearLayout>
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="50dp"
-               android:orientation="horizontal">
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:text="Profile Image"
-                   android:gravity="center"
-                   android:textSize="16dp"
-                   android:textColor="@color/dark_text_color"/>
-
-               <com.google.android.material.button.MaterialButton
-                   android:layout_width="100dp"
-                   android:layout_height="45dp"
-                   android:layout_marginLeft="20dp"
-                   android:text="Upload"
-                   android:textAllCaps="false"
-                   app:cornerRadius="3dp"
-                   app:backgroundTint="@color/colorPrimary"/>
-
-           </LinearLayout>
-
-
-           <LinearLayout
-               android:layout_width="280dp"
-               android:layout_height="320dp"
-               android:layout_marginTop="10dp"
-               android:background="@drawable/profileplaceholder">
-
-
-           </LinearLayout>
 
 
        </LinearLayout>

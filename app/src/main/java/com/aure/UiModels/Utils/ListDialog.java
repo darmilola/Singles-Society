@@ -19,10 +19,10 @@ public class ListDialog {
     private Context mContext;
     private ArrayList<String> itemString;
     private RecyclerView recyclerView;
-    private OnCityClickedListener cityClickedListener;
+    private OnItemClickedListener itemClickedListener;
 
-    public interface OnCityClickedListener{
-        void onCityClicked(String city);
+    public interface OnItemClickedListener {
+        void onItemClicked(String city);
     }
 
     public ListDialog(ArrayList<String> itemString, Context context){
@@ -33,8 +33,8 @@ public class ListDialog {
         recyclerView = listDialog.findViewById(R.id.list_dialog_recyclerview);
     }
 
-    public void setCityClickedListener(OnCityClickedListener cityClickedListener) {
-        this.cityClickedListener = cityClickedListener;
+    public void setItemClickedListener(OnItemClickedListener cityClickedListener) {
+        this.itemClickedListener = cityClickedListener;
     }
 
     public void showListDialog(){
@@ -42,8 +42,8 @@ public class ListDialog {
         ListDialogAdapter dialogAdapter = new ListDialogAdapter(itemString,mContext);
         dialogAdapter.setListItemClickListener(new ListDialogAdapter.ListItemClickListener() {
             @Override
-            public void onItemClick(String city) {
-                cityClickedListener.onCityClicked(city);
+            public void onItemClick(String item) {
+                itemClickedListener.onItemClicked(item);
                 listDialog.dismiss();
             }
         });

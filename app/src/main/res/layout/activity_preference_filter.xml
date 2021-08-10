@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/special_activity_background"
     android:orientation="vertical"
-    tools:context=".CompleteProfile">
+    tools:context=".PreferenceFilter">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -70,16 +70,16 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp">
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -94,10 +94,23 @@
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="English and hausa dhdgd dhd ddhj "
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/language_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/language_filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -118,15 +131,17 @@
                 </LinearLayout>
             </RelativeLayout>
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -141,10 +156,23 @@
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Single"
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/status_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/status__filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -168,13 +196,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -189,10 +218,23 @@
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Muslim(Suni)"
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/religion_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/religion_filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -217,9 +259,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Age"
+                android:text="Age Range"
                 android:layout_marginLeft="20dp"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/colorPrimary"/>
             <com.mohammedalaa.seekbar.DoubleValueSeekBarView
@@ -243,13 +285,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -264,10 +307,23 @@
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Masters"
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/education_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/education_filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -290,13 +346,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -306,15 +363,28 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Marriage Goals"
+                        android:text="Marriage Goal"
                         android:gravity="center"
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Marry in 12 months"
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/marriage_goal_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/marriage_goals_filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -337,13 +407,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -353,15 +424,28 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Occupation"
+                        android:text="Employment"
                         android:gravity="center"
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Unemployed"
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/employment_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/employment_filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -384,18 +468,20 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_iconfinder_business"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -404,10 +490,23 @@
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="d'ont drink"
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/drinking_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/drinking_filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -430,13 +529,14 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150px">
+                android:layout_height="100px">
 
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:gravity="center|left">
+                    android:gravity="center|left"
+                    android:layout_marginRight="70dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -451,10 +551,23 @@
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="d'ont smoke"
+                        android:gravity="left|center"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/smoking_filter_select_textview"
+                        android:textSize="14dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#07A03A"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:id="@+id/smoking_filter_select"
                     android:layout_alignParentRight="true"
                     android:gravity="center|right">
 
@@ -477,7 +590,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-
-
 </LinearLayout>
