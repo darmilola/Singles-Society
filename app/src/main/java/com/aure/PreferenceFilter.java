@@ -51,6 +51,7 @@ public class PreferenceFilter extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                listDialog = new ListDialog(languageItems,PreferenceFilter.this);
+               listDialog.showListDialog();
                listDialog.setItemClickedListener(new ListDialog.OnItemClickedListener() {
                    @Override
                    public void onItemClicked(String item) {
@@ -64,6 +65,7 @@ public class PreferenceFilter extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listDialog = new ListDialog(statusItems,PreferenceFilter.this);
+                listDialog.showListDialog();
                 listDialog.setItemClickedListener(new ListDialog.OnItemClickedListener() {
                     @Override
                     public void onItemClicked(String item) {
@@ -73,12 +75,7 @@ public class PreferenceFilter extends AppCompatActivity {
             }
         });
 
-        statusSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
     private void populateDialogListView(){

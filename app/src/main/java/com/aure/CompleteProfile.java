@@ -8,14 +8,47 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.aure.UiModels.Utils.InputDialog;
 
 public class CompleteProfile extends AppCompatActivity {
 
     LinearLayout previewProfile;
+    LinearLayout aboutSelect;
+    TextView aboutTextView;
+    InputDialog inputDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
+        initView();
+
+    }
+
+    private void initView(){
+        aboutSelect = findViewById(R.id.profile_about_select);
+        aboutTextView = findViewById(R.id.about_select_textview);
+
+        aboutSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputDialog = new InputDialog(CompleteProfile.this,"About Me",aboutTextView.getText().toString());
+                inputDialog.showInputDialog();
+                inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
+                    @Override
+                    public void saveClicked(String text) {
+                        aboutTextView.setText(text);
+                    }
+
+                    @Override
+                    public void cancelClicked() {
+
+                    }
+                });
+            }
+        });
+
         previewProfile = findViewById(R.id.profile_preview);
         previewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
