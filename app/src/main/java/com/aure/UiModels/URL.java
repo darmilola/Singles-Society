@@ -2,6 +2,6 @@ package com.aure.UiModels;
 
  public class URL {
     public String getBaseUrl(){
-         return "https://38d5f925e435.ngrok.io/api/";
+         return "https://fast-atoll-68106.herokuapp.com/public/api/";
      }
 }

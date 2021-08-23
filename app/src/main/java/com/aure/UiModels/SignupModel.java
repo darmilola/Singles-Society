@@ -102,7 +102,8 @@ public class SignupModel {
         public void handleMessage(@NotNull Message msg) {
             Bundle bundle = msg.getData();
             String response = bundle.getString("response");
-            try {
+            signupListener.isFailed(response);
+           try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
                 if(status.equalsIgnoreCase("success")){

@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.aure.UiModels.Utils.InputDialog;
@@ -16,8 +17,9 @@ public class CompleteProfile extends AppCompatActivity {
 
     LinearLayout previewProfile;
     LinearLayout aboutSelect;
-    TextView aboutTextView;
+    TextView aboutTextView,ageTextview;
     InputDialog inputDialog;
+    SeekBar ageSelect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,25 @@ public class CompleteProfile extends AppCompatActivity {
     private void initView(){
         aboutSelect = findViewById(R.id.profile_about_select);
         aboutTextView = findViewById(R.id.about_select_textview);
+        ageSelect = findViewById(R.id.age_seek_bar);
+        ageTextview = findViewById(R.id.complete_profile_age);
+
+        ageSelect.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                ageTextview.setText("Age("+Integer.toString(progress)+")");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         aboutSelect.setOnClickListener(new View.OnClickListener() {
             @Override

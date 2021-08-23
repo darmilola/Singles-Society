@@ -61,9 +61,7 @@
                     android:ellipsize="end"
                     android:textColor="@color/light_text_color"/>
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.appcompat.widget.Toolbar>
    <ScrollView
        android:layout_width="match_parent"
@@ -78,28 +76,23 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Age"
+               android:text="Age(18)"
                android:layout_marginLeft="20dp"
-               android:textSize="22dp"
+               android:textSize="18dp"
+               android:id="@+id/complete_profile_age"
                android:layout_marginTop="30dp"
+               android:layout_marginBottom="10dp"
                android:textColor="@color/colorPrimary"/>
-           <com.mohammedalaa.seekbar.DoubleValueSeekBarView
-               android:id="@+id/double_range_seekbar"
-               android:layout_width="match_parent"
+
+           <SeekBar
+               android:id="@+id/age_seek_bar"
+               android:layout_width="fill_parent"
                android:layout_height="wrap_content"
-               app:r2barHeight="2dp"
-               app:r2baseColor="@color/light_text_color"
-               app:r2circleFillColor="@color/colorPrimary"
-               app:r2circleRadius="18dp"
-               app:r2circleTextColor="@color/white"
-               app:r2circleTextSize="@dimen/value_bar_circleTextSize"
-               app:r2fillColor="@color/colorPrimary"
-               app:r2maxValue="80"
-               app:r2maxValueStep="1"
-               app:r2minValue="18"
-               app:r2CurrentMaxValue="40"
-               app:r2CurrentMinValue="28"
-               app:r2minValueStep="1"/>
+               android:max="80"
+               android:min="18"
+               android:layout_marginBottom="10dp"
+               android:thumbTint="@color/colorPrimary"
+               android:progress="18"/>
 
            <RelativeLayout
                android:layout_width="match_parent"
@@ -366,7 +359,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Ineterest"
+                       android:text="Occupation"
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
@@ -374,7 +367,7 @@
                    <TextView
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
-                       android:text="Football,reading,games,halal"
+                       android:text="Civil Servant"
                        android:gravity="left|center"
                        android:maxLines="1"
                        android:ellipsize="end"
@@ -592,7 +585,6 @@
                </LinearLayout>
            </RelativeLayout>
 
-
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="100px">
@@ -612,7 +604,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Language"
+                       android:text="drinking"
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
@@ -624,7 +616,7 @@
                        android:gravity="left|center"
                        android:maxLines="1"
                        android:ellipsize="end"
-                       android:id="@+id/occupation_select_textview"
+                       android:id="@+id/drinking_select_textview"
                        android:textSize="14dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="#07A03A"/>
@@ -633,7 +625,127 @@
                <LinearLayout
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:id="@+id/occupation_language_select"
+                   android:id="@+id/drinking_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="15dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="100px">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:src="@drawable/ic_iconfinder_business"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Smoking"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Engineering Manager"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/smoking_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/smoking_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="15dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="100px">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:src="@drawable/ic_iconfinder_business"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Gender"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Engineering Manager"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/gender_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/gender_select"
                    android:layout_alignParentRight="true"
                    android:gravity="center|right">
 
@@ -724,7 +836,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:text="*Display Image"
+                   android:text="Image"
                    android:gravity="center"
                    android:textSize="14dp"
                    android:textColor="@color/dark_text_color"/>
@@ -736,6 +848,7 @@
                    android:text="Upload"
                    android:textAllCaps="false"
                    app:cornerRadius="3dp"
+                   android:id="@+id/first_image_upload"
                    app:backgroundTint="@color/colorPrimary"/>
 
            </LinearLayout>
@@ -743,8 +856,43 @@
 
            <ImageView
                android:layout_width="280dp"
-               android:layout_height="320dp"
+               android:layout_height="350dp"
                android:layout_marginTop="10dp"
+               android:id="@+id/first_image_view"
+               android:src="@drawable/profileplaceholder"
+               android:scaleType="centerCrop"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:text="Image"
+                   android:gravity="center"
+                   android:textSize="14dp"
+                   android:textColor="@color/dark_text_color"/>
+
+               <com.google.android.material.button.MaterialButton
+                   android:layout_width="100dp"
+                   android:layout_height="40dp"
+                   android:layout_marginLeft="20dp"
+                   android:text="Upload"
+                   android:textAllCaps="false"
+                   app:cornerRadius="3dp"
+                   android:id="@+id/second_image_upload"
+                   app:backgroundTint="@color/colorPrimary"/>
+
+           </LinearLayout>
+
+
+           <ImageView
+               android:layout_width="280dp"
+               android:layout_height="350dp"
+               android:layout_marginTop="10dp"
+               android:id="@+id/second_image_view"
                android:src="@drawable/profileplaceholder"
                android:scaleType="centerCrop"/>
 
@@ -768,6 +916,7 @@
                    android:text="Upload"
                    android:textAllCaps="false"
                    app:cornerRadius="3dp"
+                   android:id="@+id/third_image_upload"
                    app:backgroundTint="@color/colorPrimary"/>
 
            </LinearLayout>
@@ -777,46 +926,10 @@
                android:layout_width="280dp"
                android:layout_height="320dp"
                android:layout_marginTop="10dp"
+               android:id="@+id/third_image_view"
                android:src="@drawable/profileplaceholder"
                android:scaleType="centerCrop"/>
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="50dp"
-               android:orientation="horizontal">
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:text="*Display Image"
-                   android:gravity="center"
-                   android:textSize="14dp"
-                   android:textColor="@color/dark_text_color"/>
-
-               <com.google.android.material.button.MaterialButton
-                   android:layout_width="100dp"
-                   android:layout_height="40dp"
-                   android:layout_marginLeft="20dp"
-                   android:text="Upload"
-                   android:textAllCaps="false"
-                   app:cornerRadius="3dp"
-                   app:backgroundTint="@color/colorPrimary"/>
-
-           </LinearLayout>
-
-
-           <ImageView
-               android:layout_width="280dp"
-               android:layout_height="320dp"
-               android:layout_marginTop="10dp"
-               android:src="@drawable/profileplaceholder"
-               android:scaleType="centerCrop"/>
-
-
 
        </LinearLayout>
    </ScrollView>
-
-
-
 </LinearLayout>

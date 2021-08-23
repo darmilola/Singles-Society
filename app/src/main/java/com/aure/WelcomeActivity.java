@@ -35,8 +35,8 @@ public class WelcomeActivity extends AppCompatActivity {
         googleSignInLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
-                //startGoogleSignIn();
+                // startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                startGoogleSignIn();
             }
         });
         emailSigninLayout.setOnClickListener(new View.OnClickListener() {
