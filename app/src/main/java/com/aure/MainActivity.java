@@ -8,9 +8,11 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.preference.PreferenceManager;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -72,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void initView(){
 
+        String userEmail = getIntent().getStringExtra("email");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        preferences.edit().putString("userEmail",userEmail).apply();
         inviteAFriend = findViewById(R.id.invite_a_friend_layout);
         helpDesk = findViewById(R.id.help_desk_layout);
         logOut = findViewById(R.id.log_out_layout);
