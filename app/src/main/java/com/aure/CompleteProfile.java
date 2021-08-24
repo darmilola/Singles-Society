@@ -13,11 +13,15 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.aure.UiModels.CompleteProfileModel;
 import com.aure.UiModels.Utils.InputDialog;
 import com.aure.UiModels.Utils.ListDialog;
+import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.ByteArrayOutputStream;
@@ -27,14 +31,17 @@ import java.util.ArrayList;
 public class CompleteProfile extends AppCompatActivity {
 
     private static final int PICK_IMAGE_1 = 1;
-    private static final int PICK_IMAGE_2 = 1;
-    private static final int PICK_IMAGE_3 = 1;
+    private static final int PICK_IMAGE_2 = 2;
+    private static final int PICK_IMAGE_3 = 3;
     LinearLayout previewProfile;
     LinearLayout aboutSelect,statusSelect,languageSelect,citySelect,occupationSelect,goalSelect,educationSelect,workplaceSelect,drinkingSelect,smokingSelect,genderSelect,quoteSelect,religionSelect;
     TextView aboutTextView,ageTextview,statusTextview,languageTextview,cityTextview,occupationTextview,goalTextview,educationTextview,workplaceTextview,drinkingTextview,smokingTextview,genderTextview,quoteTextview,religionTextview;
     InputDialog inputDialog;
     ListDialog listDialog;
     SeekBar ageSelect;
+    LinearLayout rootLayout;
+    ProgressBar progressBar;
+    CompleteProfileModel completeProfileModel;
     ImageView image1,image2,image3;
     MaterialButton upload1,upload2,upload3;
     ArrayList<String> maritalItems = new ArrayList<>();
@@ -51,10 +58,11 @@ public class CompleteProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
         initView();
-
     }
 
     private void initView(){
+        rootLayout = findViewById(R.id.complete_profile_root_layout);
+        progressBar = findViewById(R.id.complete_profile_progress);
         religionSelect = findViewById(R.id.profile_religion_select);
         religionTextview = findViewById(R.id.religion_select_textview);
         aboutSelect = findViewById(R.id.profile_about_select);
@@ -91,6 +99,148 @@ public class CompleteProfile extends AppCompatActivity {
         upload3 = findViewById(R.id.third_image_upload);
         populateItems();
 
+        completeProfileModel = new CompleteProfileModel(CompleteProfile.this);
+        completeProfileModel.GetUserInfo();
+        completeProfileModel.setInfoReadyListener(new CompleteProfileModel.InfoReadyListener() {
+            @Override
+            public void onReady(CompleteProfileModel completeProfileModel) {
+                CompleteProfile.this.completeProfileModel = completeProfileModel;
+                rootLayout.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(CompleteProfile.this, Integer.toString(completeProfileModel.getAge()), Toast.LENGTH_SHORT).show();
+                ageTextview.setText("Age("+Integer.toString(completeProfileModel.getAge())+")");
+                progressBar.setProgress(completeProfileModel.getAge());
+                if(completeProfileModel.getAbout().equalsIgnoreCase("null")){
+                    aboutTextView.setText("");
+                }
+                else{
+                    aboutTextView.setText(completeProfileModel.getAbout());
+                }
+
+                if(completeProfileModel.getStatus().equalsIgnoreCase("null")){
+                    statusTextview.setText("");
+                }
+                else{
+                    statusTextview.setText(completeProfileModel.getStatus());
+                }
+                if(completeProfileModel.getLanguage().equalsIgnoreCase("null")){
+                    languageTextview.setText("");
+                }
+                else{
+                    languageTextview.setText(completeProfileModel.getLanguage());
+                }
+                if(completeProfileModel.getReligion().equalsIgnoreCase("null")){
+                    religionTextview.setText("");
+                }
+                else{
+                    religionTextview.setText(completeProfileModel.getReligion());
+                }
+
+                if(completeProfileModel.getCity().equalsIgnoreCase("null")){
+                    cityTextview.setText("");
+                }
+                else{
+                    cityTextview.setText(completeProfileModel.getCity());
+                }
+
+                if(completeProfileModel.getOccupation().equalsIgnoreCase("null")){
+                    occupationTextview.setText("");
+                }
+                else{
+                    occupationTextview.setText(completeProfileModel.getOccupation());
+                }
+
+                if(completeProfileModel.getMarriageGoals().equalsIgnoreCase("null")){
+                    goalTextview.setText("");
+                }
+                else{
+                    goalTextview.setText(completeProfileModel.getMarriageGoals());
+                }
+
+                if(completeProfileModel.getEducationLevel().equalsIgnoreCase("null")){
+                    educationTextview.setText("");
+                }
+                else{
+                    educationTextview.setText(completeProfileModel.getEducationLevel());
+                }
+
+                if(completeProfileModel.getWorkplace().equalsIgnoreCase("null")){
+                    workplaceTextview.setText("");
+                }
+                else{
+                    workplaceTextview.setText(completeProfileModel.getWorkplace());
+                }
+
+                if(completeProfileModel.getDrinking().equalsIgnoreCase("false")){
+                    drinkingTextview.setText("");
+                }
+                else{
+                    drinkingTextview.setText(completeProfileModel.getDrinking());
+                }
+
+                if(completeProfileModel.getSmoking().equalsIgnoreCase("false")){
+                    smokingTextview.setText("");
+                }
+                else{
+                    smokingTextview.setText(completeProfileModel.getSmoking());
+                }
+
+                if(completeProfileModel.getGender().equalsIgnoreCase("null")){
+                    genderTextview.setText("");
+                }
+                else{
+                    genderTextview.setText(completeProfileModel.getGender());
+                }
+
+                if(completeProfileModel.getQuote().equalsIgnoreCase("null")){
+                    quoteTextview.setText("");
+                }
+                else{
+                    quoteTextview.setText(completeProfileModel.getQuote());
+                }
+
+                if(completeProfileModel.getImage1Url().equalsIgnoreCase("null")){
+
+                }
+                else{
+                    Glide.with(CompleteProfile.this)
+                            .load(completeProfileModel.getImage1Url())
+                            .placeholder(R.drawable.profileplaceholder)
+                            .error(R.drawable.profileplaceholder)
+                            .into(image1);
+                }
+
+                if(completeProfileModel.getImage2Url().equalsIgnoreCase("null")){
+
+                }
+                else{
+                    Glide.with(CompleteProfile.this)
+                            .load(completeProfileModel.getImage2Url())
+                            .placeholder(R.drawable.profileplaceholder)
+                            .error(R.drawable.profileplaceholder)
+                            .into(image2);
+                }
+
+                if(completeProfileModel.getImage3Url().equalsIgnoreCase("null")){
+
+                }
+                else{
+                     Glide.with(CompleteProfile.this)
+                            .load(completeProfileModel.getImage3Url())
+                            .placeholder(R.drawable.profileplaceholder)
+                            .error(R.drawable.profileplaceholder)
+                            .into(image3);
+                }
+            }
+
+            @Override
+            public void onError(String message) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(CompleteProfile.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         ageSelect.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -104,7 +254,19 @@ public class CompleteProfile extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                CompleteProfileModel mModel = new CompleteProfileModel("age",seekBar.getProgress(),CompleteProfile.this);
+                mModel.SaveUserAgeInfo();
+                mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                    @Override
+                    public void onSuccess() {
+                        completeProfileModel.setAge(seekBar.getProgress());
+                    }
 
+                    @Override
+                    public void onImageUploaded(String imaeUrl) {
+
+                    }
+                });
             }
         });
 
@@ -117,6 +279,20 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void saveClicked(String text) {
                         aboutTextView.setText(text);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("about",text,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setAbout(text);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -135,6 +311,19 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         statusTextview.setText(item);
+                        CompleteProfileModel mModel = new CompleteProfileModel("status",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setStatus(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -148,6 +337,20 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         languageTextview.setText(item);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("language",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setAbout(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -160,7 +363,22 @@ public class CompleteProfile extends AppCompatActivity {
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
                     public void saveClicked(String text) {
+
                         cityTextview.setText(text);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("city",text,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setCity(text);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -179,7 +397,22 @@ public class CompleteProfile extends AppCompatActivity {
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
                     public void saveClicked(String text) {
+
                         occupationTextview.setText(text);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("occupation",text,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setOccupation(text);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -199,6 +432,20 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         goalTextview.setText(item);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("marriageGoals",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setMarriageGoals(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -213,6 +460,20 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         educationTextview.setText(item);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("education",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setEducationLevel(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -225,8 +486,23 @@ public class CompleteProfile extends AppCompatActivity {
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
-                    public void saveClicked(String text) {
+                    public void saveClicked(String text)
+                    {
                         workplaceTextview.setText(text);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("workplace",text,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setWorkplace(text);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -246,6 +522,20 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         drinkingTextview.setText(item);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("drinking",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setDrinking(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
 
@@ -261,6 +551,20 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         smokingTextview.setText(item);
+
+                        CompleteProfileModel mModel = new CompleteProfileModel("smoking",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setSmoking(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -275,6 +579,19 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         genderTextview.setText(item);
+                        CompleteProfileModel mModel = new CompleteProfileModel("gender",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setGender(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -288,7 +605,20 @@ public class CompleteProfile extends AppCompatActivity {
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
                     public void saveClicked(String text) {
-                        cityTextview.setText(text);
+                        quoteTextview.setText(text);
+                        CompleteProfileModel mModel = new CompleteProfileModel("quote",text,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setQuote(text);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                     @Override
                     public void cancelClicked() {
@@ -308,6 +638,19 @@ public class CompleteProfile extends AppCompatActivity {
                     @Override
                     public void onItemClicked(String item) {
                         religionTextview.setText(item);
+                        CompleteProfileModel mModel = new CompleteProfileModel("religion",item,CompleteProfile.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                completeProfileModel.setReligion(item);
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -346,8 +689,13 @@ public class CompleteProfile extends AppCompatActivity {
         previewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CompleteProfile.this,PreviewProfile.class));
-            }
+                if(isProfileCompleted()) {
+                    startActivity(new Intent(CompleteProfile.this, PreviewProfile.class));
+                }
+                else{
+                    Toast.makeText(CompleteProfile.this, "Please Complete Your Profile", Toast.LENGTH_SHORT).show();
+                }
+                }
         });
     }
 
@@ -360,7 +708,25 @@ public class CompleteProfile extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                 String imageString = BitmapToString(bitmap);
-                //startImageUpload(imageString);
+                CompleteProfileModel mModel = new CompleteProfileModel(imageString,"type1",CompleteProfile.this,1);
+                mModel.uploadImage();
+                mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onImageUploaded(String imageUrl) {
+                      completeProfileModel.setImage1Url(imageUrl);
+                        completeProfileModel.setImage1Url(imageUrl);
+                        Glide.with(CompleteProfile.this)
+                                .load(completeProfileModel.getImage1Url())
+                                .placeholder(R.drawable.profileplaceholder)
+                                .error(R.drawable.profileplaceholder)
+                                .into(image1);
+                    }
+                });
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -372,7 +738,23 @@ public class CompleteProfile extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                 String imageString = BitmapToString(bitmap);
-                //startImageUpload(imageString);
+                CompleteProfileModel mModel = new CompleteProfileModel(imageString,"type2",CompleteProfile.this,1);
+                mModel.uploadImage();
+                mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+                    @Override
+                    public void onImageUploaded(String imageUrl) {
+                        completeProfileModel.setImage2Url(imageUrl);
+                        Glide.with(CompleteProfile.this)
+                                .load(completeProfileModel.getImage2Url())
+                                .placeholder(R.drawable.profileplaceholder)
+                                .error(R.drawable.profileplaceholder)
+                                .into(image2);
+                    }
+                });
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -384,7 +766,24 @@ public class CompleteProfile extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                 String imageString = BitmapToString(bitmap);
-                //startImageUpload(imageString);
+                CompleteProfileModel mModel = new CompleteProfileModel(imageString,"type3",CompleteProfile.this,1);
+                mModel.uploadImage();
+                mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onImageUploaded(String imageUrl) {
+                        completeProfileModel.setImage3Url(imageUrl);
+                        Glide.with(CompleteProfile.this)
+                                .load(completeProfileModel.getImage3Url())
+                                .placeholder(R.drawable.profileplaceholder)
+                                .error(R.drawable.profileplaceholder)
+                                .into(image3);
+                    }
+                });
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -448,5 +847,88 @@ public class CompleteProfile extends AppCompatActivity {
         religionItem.add("Muslim");
         religionItem.add("Christian");
         religionItem.add("Traditional");
+    }
+
+    private boolean isProfileCompleted(){
+        boolean isCompleted = true;
+
+        if(completeProfileModel.getAbout().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+
+        if(completeProfileModel.getStatus().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getLanguage().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getCity().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getOccupation().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getMarriageGoals().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getEducationLevel().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getWorkplace().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getDrinking().equalsIgnoreCase("false")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getSmoking().equalsIgnoreCase("false")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getGender().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getQuote().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+
+        if(completeProfileModel.getImage1Url().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+        if(completeProfileModel.getImage2Url().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+
+
+        if(completeProfileModel.getImage3Url().equalsIgnoreCase("null")){
+            isCompleted = false;
+            return isCompleted;
+        }
+        return  isCompleted;
     }
 }

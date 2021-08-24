@@ -6,7 +6,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/special_activity_background"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".CompleteProfile">
+
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:indeterminateTint="@color/colorPrimary"
+        android:id="@+id/complete_profile_progress"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/complete_profile_root_layout"
+        android:visibility="gone">
+
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -92,6 +108,7 @@
                android:min="18"
                android:layout_marginBottom="10dp"
                android:thumbTint="@color/colorPrimary"
+               android:progressTint="@color/colorPrimary"
                android:progress="18"/>
 
            <RelativeLayout
@@ -237,7 +254,7 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Language"
+                       android:text="Religion"
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
@@ -897,7 +914,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:text="Image"
+                   android:text="Upload Image"
                    android:gravity="center"
                    android:textSize="14dp"
                    android:textColor="@color/dark_text_color"/>
@@ -931,7 +948,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:text="Image"
+                   android:text="Upload Image"
                    android:gravity="center"
                    android:textSize="14dp"
                    android:textColor="@color/dark_text_color"/>
@@ -965,7 +982,7 @@
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:text="*Display Image"
+                   android:text="Upload Image"
                    android:gravity="center"
                    android:textSize="14dp"
                    android:textColor="@color/dark_text_color"/>
@@ -993,4 +1010,5 @@
 
        </LinearLayout>
    </ScrollView>
+    </LinearLayout>
 </LinearLayout>

@@ -34,9 +34,9 @@ public class CompleteProfileModel {
     private String about,status,language,city,occupation,marriageGoals,educationLevel,workplace,drinking,smoking,gender,quote,religion;
     private int age;
     private String baseUrl = new URL().getBaseUrl();
-    private String completeProfileUrl = baseUrl+"users";
-    private String uploadImageUrl = baseUrl+"users/upload/image";
-    private String getProfileUrl = "users/search";
+    private String completeProfileUrl = baseUrl+"users/create";
+    private String uploadImageUrl = baseUrl+"users/upload/profile/image";
+    private String getProfileUrl = baseUrl+"users/search";
     private Context context;
     private String jsonKey,value,userEmail;
     private String image1Url,image2Url,image3Url;
@@ -46,6 +46,7 @@ public class CompleteProfileModel {
     private ImageUploadDialog imageUploadDialog;
     private String encodedImage;
     private String imageType;
+    private int ageValue;
 
     public interface SaveInfoListener{
         void onSuccess();
@@ -55,12 +56,23 @@ public class CompleteProfileModel {
         void onReady(CompleteProfileModel completeProfileModel);
         void onError(String message);
     }
-    public CompleteProfileModel(String jsonKey, String value){
+    public CompleteProfileModel(String jsonKey, String value, Context context){
            this.jsonKey = jsonKey;
            this.value = value;
+           this.context = context;
+           SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+           userEmail = preferences.getString("userEmail","");
     }
 
-    public CompleteProfileModel(String encodedImage,String imageType,Context context){
+    public CompleteProfileModel(String jsonKey, int value, Context context){
+        this.jsonKey = jsonKey;
+        this.ageValue = value;
+        this.context = context;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        userEmail = preferences.getString("userEmail","");
+    }
+
+    public CompleteProfileModel(String encodedImage,String imageType,Context context,int typeImage){
         this.context = context;
         this.encodedImage = encodedImage;
         imageUploadDialog = new ImageUploadDialog(context);
@@ -92,6 +104,7 @@ public class CompleteProfileModel {
            this.image2Url = image2Url;
            this.image3Url = image3Url;
            this.religion = religion;
+           this.age = age;
     }
 
     public void setSaveInfoListener(SaveInfoListener saveInfoListener) {
@@ -100,6 +113,10 @@ public class CompleteProfileModel {
 
     public void setInfoReadyListener(InfoReadyListener infoReadyListener) {
         this.infoReadyListener = infoReadyListener;
+    }
+
+    public void setQuote(String quote) {
+        this.quote = quote;
     }
 
     public void setReligion(String religion) {
@@ -269,7 +286,7 @@ public class CompleteProfileModel {
         public void handleMessage(@NotNull Message msg) {
             Bundle bundle = msg.getData();
             String response = bundle.getString("response");
-            try {
+               try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
                 if(status.equalsIgnoreCase("success")){
@@ -298,10 +315,10 @@ public class CompleteProfileModel {
                     infoReadyListener.onError("Error Occurred");
                 }
                 else{
-
+                    infoReadyListener.onError("Error Occurred");
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                infoReadyListener.onError(e.getMessage());
             }
 
         }
@@ -325,11 +342,11 @@ public class CompleteProfileModel {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Message msg = saveInfoHandler.obtainMessage();
+            Message msg = getInfoHandler.obtainMessage();
             Bundle bundle = new Bundle();
             bundle.putString("response", mResponse);
             msg.setData(bundle);
-            saveInfoHandler.sendMessage(msg);
+            getInfoHandler.sendMessage(msg);
         };
         Thread myThread = new Thread(runnable);
         myThread.start();
@@ -438,17 +455,57 @@ public class CompleteProfileModel {
         myThread.start();
     }
 
+    public void SaveUserAgeInfo(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildSaveUserAgeInfo());
+            Request request = new Request.Builder()
+                    .url(completeProfileUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = saveInfoHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            saveInfoHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
 
 
     private String buildSaveUserInfo(){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put(jsonKey,value);
+            jsonObject.put("email",userEmail);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return jsonObject.toString();
     }
+
+    private String buildSaveUserAgeInfo(){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(jsonKey,ageValue);
+            jsonObject.put("email",userEmail);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
     private String buildGetUserInfo(String email){
         JSONObject jsonObject = new JSONObject();
         try {
