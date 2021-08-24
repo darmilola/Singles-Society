@@ -7,9 +7,10 @@
     android:layout_height="160dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
+        android:minHeight="100dp"
         android:layout_marginTop="15dp"
         app:cardBackgroundColor="@color/White"
         app:cardCornerRadius="20dp"
@@ -20,9 +21,7 @@
             android:gravity="center"
             android:layout_margin="20dp"
             android:lineSpacingExtra="3dp"
-            android:maxLines="3"
             android:ellipsize="end"
-            android:maxLength="80"
             android:textSize="20dp"
             android:fontFamily="@font/kumelian"
             android:textColor="@color/black"

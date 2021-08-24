@@ -17,16 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static int SHOWCASE_TYPE_MAIN = 1;
-    private static int SHOWCASE_TYPE_CAREER = 2;
-    private static int SHOWCASE_TYPE_QUOTE = 3;
-    private static int SHOWCASE_TYPE_PICTURE = 4;
-    private static int SHOWCASE_TYPE_ABOUT_ME = 5;
-    private static int SHOWCASE_TYPE_MY_RELIGION = 6;
+    private static int SHOWCASE_TYPE_QUOTE = 2;
+    private static int SHOWCASE_TYPE_ABOUT_ME = 3;
+    private static int SHOWCASE_TYPE_CAREER = 4;
+    private static int SHOWCASE_TYPE_ABOUT_TEXT = 5;
+    private static int SHOWCASE_TYPE_PICTURE = 6;
     private static int SHOWCASE_TYPE_MARRIAGE_GOALS = 7;
     private static int SHOWCASE_TYPE_TAKE_ACTION = 8;
-    private static int SHOWCASE_TYPE_ABOUT_TEXT = 9;
-    private static int SHOWCASE_TYPE_TYPE = 10;
-    private static int SHOWCASE_TYPE_ADDITIONAL_INFO = 11;
     Context context;
     ArrayList<ShowCaseModel> showcaseList = new ArrayList<>();
 
@@ -67,10 +64,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new ShowcaseMarriageGoalsItemViewHolder(view);
         }
 
-        if (viewType == SHOWCASE_TYPE_MY_RELIGION) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_religion, parent, false);
-            return new ShowcaseMyReligionItemViewHolder(view);
-        }
         if (viewType == SHOWCASE_TYPE_TAKE_ACTION) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_fav_report_block, parent, false);
             return new ShowcaseTakeActionItemViewHolder(view);
@@ -80,73 +73,13 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_text, parent, false);
             return new ShowcaseAboutTextViewholder(view);
         }
-        if (viewType == SHOWCASE_TYPE_TYPE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_type, parent, false);
-            return new ShowcaseTypeTypeViewholder(view);
-        }
-        if (viewType == SHOWCASE_TYPE_ADDITIONAL_INFO) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_additional_info, parent, false);
-            return new ShowcaseAdditionalInfoViewholder(view);
-        }
-              return null;
+
+        return null;
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-        if(holder.getItemViewType() == SHOWCASE_TYPE_MAIN){
-            ShowcaseMainItemViewHolder showcaseMainItemViewHolder = (ShowcaseMainItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_ADDITIONAL_INFO){
-            ShowcaseAdditionalInfoViewholder showcaseMainItemViewHolder = (ShowcaseAdditionalInfoViewholder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_ABOUT_ME){
-            ShowcaseAboutMeItemViewHolder showcaseMainItemViewHolder = (ShowcaseAboutMeItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_TYPE){
-            ShowcaseTypeTypeViewholder showcaseMainItemViewHolder = (ShowcaseTypeTypeViewholder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_TAKE_ACTION){
-            ShowcaseTakeActionItemViewHolder showcaseMainItemViewHolder = (ShowcaseTakeActionItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_MARRIAGE_GOALS){
-            ShowcaseMarriageGoalsItemViewHolder showcaseMainItemViewHolder = (ShowcaseMarriageGoalsItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_MY_RELIGION){
-            ShowcaseMyReligionItemViewHolder showcaseMainItemViewHolder = (ShowcaseMyReligionItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_PICTURE){
-            ShowcasePictureItemViewHolder showcaseMainItemViewHolder = (ShowcasePictureItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_QUOTE){
-            ShowcaseQuoteItemViewHolder showcaseMainItemViewHolder = (ShowcaseQuoteItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-        if(holder.getItemViewType() == SHOWCASE_TYPE_CAREER){
-            ShowcaseCareerItemViewHolder showcaseMainItemViewHolder = (ShowcaseCareerItemViewHolder) holder;
-            showcaseMainItemViewHolder.itemView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-
-        }
-
-    }
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) { }
 
     @Override
     public int getItemCount() {
@@ -171,23 +104,14 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ABOUT_ME){
             return SHOWCASE_TYPE_ABOUT_ME;
         }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_MY_RELIGION){
-            return SHOWCASE_TYPE_MY_RELIGION;
-        }
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_MARRIAGE_GOALS){
             return SHOWCASE_TYPE_MARRIAGE_GOALS;
         }
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_TAKE_ACTION){
             return SHOWCASE_TYPE_TAKE_ACTION;
         }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_TYPE){
-            return SHOWCASE_TYPE_TYPE;
-        }
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ABOUT_TEXT){
             return SHOWCASE_TYPE_ABOUT_TEXT;
-        }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ADDITIONAL_INFO){
-            return SHOWCASE_TYPE_ADDITIONAL_INFO;
         }
         else{
             return SHOWCASE_TYPE_MAIN;
@@ -214,34 +138,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
         public ShowcaseAboutTextViewholder(View ItemView){
-            super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-
-    }
-    public class ShowcaseTypeTypeViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
-        public ShowcaseTypeTypeViewholder(View ItemView){
-            super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-
-    }
-    public class ShowcaseAdditionalInfoViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
-        public ShowcaseAdditionalInfoViewholder(View ItemView){
             super(ItemView);
             ItemView.setOnClickListener(this);
         }
@@ -286,20 +182,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-    public class ShowcaseMyReligionItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
-        public ShowcaseMyReligionItemViewHolder(View ItemView){
-            super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-
-    }
 
 
     public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

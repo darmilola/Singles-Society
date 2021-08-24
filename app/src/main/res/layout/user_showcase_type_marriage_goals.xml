@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/transparent"
-    android:layout_height="170dp">
+    android:layout_height="130dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,25 +56,6 @@
                     app:chipSurfaceColor="#DBE4E9"
                     app:closeIconEnabled="false"
                     app:iconStartPadding="10dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/airsemi"
-                    android:padding="10dp"
-                    android:text="Will move Abroad"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="15dp"
-                    app:chipBackgroundColor="@color/transparent"
-                    app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
-                    app:chipIconSize="16dp"
-                    app:chipIconTint="@color/pinkypinky"
-                    app:chipIconVisible="true"
-                    app:chipSurfaceColor="#DBE4E9"
-                    app:closeIconEnabled="false"
-                    app:iconStartPadding="10dp" />
-
             </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

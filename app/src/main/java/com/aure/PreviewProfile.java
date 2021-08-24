@@ -34,25 +34,19 @@ public class PreviewProfile extends AppCompatActivity {
         ShowCaseModel showCaseModel3 = new ShowCaseModel(3);
         ShowCaseModel showCaseModel4 = new ShowCaseModel(4);
         ShowCaseModel showCaseModel5 = new ShowCaseModel(5);
-        ShowCaseModel showCaseModel7 = new ShowCaseModel(7);
         ShowCaseModel showCaseModel6 = new ShowCaseModel(6);
-        ShowCaseModel showCaseModel9 = new ShowCaseModel(9);
-        ShowCaseModel showCaseModel10 = new ShowCaseModel(10);
-        ShowCaseModel showCaseModel11 = new ShowCaseModel(11);
+        ShowCaseModel showCaseModel7 = new ShowCaseModel(7);
         ShowCaseModel showCaseModel8 = new ShowCaseModel(8);
 
 
         for(int i = 0; i < 1; i++){
             showCaseModelArrayList.add(showCaseModel);
-            showCaseModelArrayList.add(showCaseModel3);
-            showCaseModelArrayList.add(showCaseModel5);
             showCaseModelArrayList.add(showCaseModel2);
-            showCaseModelArrayList.add(showCaseModel9);
+            showCaseModelArrayList.add(showCaseModel3);
             showCaseModelArrayList.add(showCaseModel4);
+            showCaseModelArrayList.add(showCaseModel5);
             showCaseModelArrayList.add(showCaseModel6);
             showCaseModelArrayList.add(showCaseModel7);
-            showCaseModelArrayList.add(showCaseModel10);
-            showCaseModelArrayList.add(showCaseModel11);
             showCaseModelArrayList.add(showCaseModel8);
         }
 

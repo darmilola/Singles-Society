@@ -4,14 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/transparent"
-    android:layout_height="200dp">
+    android:layout_height="wrap_content"
+    android:minHeight="150dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
         android:layout_marginTop="15dp"
-        android:minHeight="100dp"
         app:cardBackgroundColor="@color/White"
         app:cardCornerRadius="20dp"
         app:cardElevation="0dp">
