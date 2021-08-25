@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.aure.R;
 import com.aure.UiModels.ShowCaseModel;
+import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
 
 
@@ -82,7 +83,67 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) { }
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
+        ShowCaseModel showCaseModel = showcaseList.get(position);
+        if(showCaseModel.getShowcaseType() == 1){
+            ShowcaseMainItemViewHolder showcaseMainItemViewHolder = (ShowcaseMainItemViewHolder) holder;
+            showcaseMainItemViewHolder.nameAge.setText(showCaseModel.getModelInfoList().get(0)+", "+showCaseModel.getModelInfoList().get(1));
+            showcaseMainItemViewHolder.city.setText(showCaseModel.getModelInfoList().get(2));
+            showcaseMainItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(3));
+            Glide.with(context)
+                    .load(showCaseModel.getModelInfoList().get(4))
+                    .placeholder(R.drawable.profileplaceholder)
+                    .error(R.drawable.profileplaceholder)
+                    .into(showcaseMainItemViewHolder.imageView);
+
+        }
+
+        if(showCaseModel.getShowcaseType() == 2){
+            ShowcaseQuoteItemViewHolder showcaseQuoteItemViewHolder = (ShowcaseQuoteItemViewHolder) holder;
+            showcaseQuoteItemViewHolder.textView.setText(showCaseModel.getModelInfoList().get(0));
+        }
+
+        if(showCaseModel.getShowcaseType() == 3){
+            ShowcaseAboutMeItemViewHolder showcaseAboutMeItemViewHolder = (ShowcaseAboutMeItemViewHolder) holder;
+            showcaseAboutMeItemViewHolder.status.setText(showCaseModel.getModelInfoList().get(0));
+            showcaseAboutMeItemViewHolder.smoking.setText(showCaseModel.getModelInfoList().get(1));
+            showcaseAboutMeItemViewHolder.drinking.setText(showCaseModel.getModelInfoList().get(2));
+            showcaseAboutMeItemViewHolder.language.setText(showCaseModel.getModelInfoList().get(3));
+            showcaseAboutMeItemViewHolder.religion.setText(showCaseModel.getModelInfoList().get(4));
+        }
+
+        if(showCaseModel.getShowcaseType() == 4){
+            ShowcaseCareerItemViewHolder showcaseCareerItemViewHolder  = (ShowcaseCareerItemViewHolder) holder;
+            showcaseCareerItemViewHolder.degree.setText(showCaseModel.getModelInfoList().get(0));
+            showcaseCareerItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(1));
+            showcaseCareerItemViewHolder.workplace.setText(showCaseModel.getModelInfoList().get(2));
+            Glide.with(context)
+                    .load(showCaseModel.getModelInfoList().get(3))
+                    .placeholder(R.drawable.profileplaceholder)
+                    .error(R.drawable.profileplaceholder)
+                    .into(showcaseCareerItemViewHolder.imageView);
+        }
+
+        if(showCaseModel.getShowcaseType() == 5){
+            ShowcaseAboutTextViewholder showcaseAboutTextViewholder = (ShowcaseAboutTextViewholder) holder;
+            showcaseAboutTextViewholder.textView.setText(showCaseModel.getModelInfoList().get(0));
+        }
+
+        if(showCaseModel.getShowcaseType() == 6){
+            ShowcasePictureItemViewHolder showcasePictureItemViewHolder = (ShowcasePictureItemViewHolder) holder;
+            Glide.with(context)
+                    .load(showCaseModel.getModelInfoList().get(0))
+                    .placeholder(R.drawable.profileplaceholder)
+                    .error(R.drawable.profileplaceholder)
+                    .into(showcasePictureItemViewHolder.imageView);
+        }
+
+        if(showCaseModel.getShowcaseType() == 7){
+            ShowcaseMarriageGoalsItemViewHolder showcaseMarriageGoalsItemViewHolder = (ShowcaseMarriageGoalsItemViewHolder) holder;
+            showcaseMarriageGoalsItemViewHolder.goal.setText(showCaseModel.getModelInfoList().get(0));
+        }
+    }
 
     @Override
     public int getItemCount() {

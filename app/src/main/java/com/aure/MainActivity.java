@@ -20,9 +20,13 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import com.aure.UiAdapters.ShowcaseMainAdapter;
+import com.aure.UiModels.MainActivityModel;
+import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.ShowCaseMainModel;
 import com.aure.UiModels.ShowCaseModel;
 import com.aure.UiModels.ShowcaseMetadata;
@@ -41,18 +45,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
-    private static final String TAG = "MainAct";
     CardStackView userShowcaseStack;
     CardStackLayoutManager manager;
     ShowcaseMainAdapter showcaseMainAdapter;
     ArrayList<ShowCaseMainModel> showCaseMainModelArrayList = new ArrayList<>();
-    ArrayList<ShowCaseModel> showCaseModelArrayList = new ArrayList<>();
     CardView leftSwipeCard,rightSwipeCard;
-    ShowcaseMetadata showcaseMetadata = new ShowcaseMetadata(6200);
     ActionBarDrawerToggle drawerToggle;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     FrameLayout mainView;
+    ProgressBar progressBar;
     LinearLayout mainInfoToggleLayout;
     LinearLayout mainMarketPlace;
     LinearLayout matchesMenu;
@@ -148,16 +150,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         userShowcaseStack = findViewById(R.id.showcase_main_recyclerview);
         toolbar = findViewById(R.id.activity_main_toolbar);
         mainView = findViewById(R.id.activity_main_main_view);
+        progressBar = findViewById(R.id.activity_main_progressbar);
         mainInfoToggleLayout = findViewById(R.id.main_info_toggle_layout);
+
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout,toolbar,R.string.app_name,R.string.app_name){
-
-
-
             @Override
             public void onDrawerSlide(View drawerView,float slideOffset){
                 super.onDrawerSlide(drawerView,slideOffset);
-                //setTransluscentNavFlag(true);
-                //getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 mainView.setTranslationX(slideOffset * drawerView.getWidth());
                 drawerLayout.bringChildToFront(drawerView);
                 drawerLayout.requestLayout();
@@ -216,47 +215,93 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
-        initIndividualUserToShowcase();
-
-        for(int i = 0; i < 20; i++){
-
-            ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList,showcaseMetadata);
-            showCaseMainModelArrayList.add(showCaseMainModel);
-
-        }
-
-        showcaseMainAdapter = new ShowcaseMainAdapter(this,showCaseMainModelArrayList);
-
-        showcaseMainAdapter.setShowcaseViewProgressStateChange(new ShowcaseMainAdapter.ShowcaseViewProgressStateChange() {
+        MainActivityModel mainActivityModel = new MainActivityModel(MainActivity.this);
+        mainActivityModel.GetUserInfo();
+        mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
             @Override
-            public void onProgressChange(int progress) {
+            public void onReady(MainActivityModel mainActivityModel) {
+                if(mainActivityModel.getIsProfileCompleted().equalsIgnoreCase("false")){
+                    Intent intent = new Intent(MainActivity.this,CompleteProfilePrompt.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else{
+                    MainActivityModel mainActivityModel2 = new MainActivityModel(MainActivity.this);
+                    mainActivityModel2.GetShowUserInfo();
+                    mainActivityModel2.setShowcaseInfoReadyListener(new MainActivityModel.ShowcaseInfoReadyListener() {
+                        @Override
+                        public void onReady(ArrayList<PreviewProfileModel> previewProfileModels) {
+                            for (PreviewProfileModel previewProfileModel: previewProfileModels) {
 
+                                ArrayList<ShowCaseModel> showCaseModelArrayList = new ArrayList<>();
+                                ArrayList<String> mainStrings = new ArrayList<>();
+                                ArrayList<String> quoteStrings = new ArrayList<>();
+                                ArrayList<String> aboutStrings = new ArrayList<>();
+                                ArrayList<String> careerStrings = new ArrayList<>();
+                                ArrayList<String> aboutTextStrings = new ArrayList<>();
+                                ArrayList<String> imageStrings = new ArrayList<>();
+                                ArrayList<String> goalStrings = new ArrayList<>();
 
-             //   recyclerviewProgress = recyclerviewProgress + progress;
+                                mainStrings.add(previewProfileModel.getFirstname());
+                                mainStrings.add(String.valueOf(previewProfileModel.getAge()));
+                                mainStrings.add(previewProfileModel.getCity());
+                                mainStrings.add(previewProfileModel.getOccupation());
+                                mainStrings.add(previewProfileModel.getImage1Url());
+                                ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1);
+                                showCaseModelArrayList.add(showCaseModel);
 
-             //   showcaseMovementProgress.setProgress(recyclerviewProgress);
-               // Log.e(TAG, "onProgressChange: "+recyclerviewProgress );
-                //showcaseMovementProgress.setProgress(progress);
+                                quoteStrings.add(previewProfileModel.getQuote());
+                                ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2);
+                                showCaseModelArrayList.add(showCaseModel1);
+
+                                aboutStrings.add(previewProfileModel.getStatus());
+                                aboutStrings.add(previewProfileModel.getSmoking());
+                                aboutStrings.add(previewProfileModel.getDrinking());
+                                aboutStrings.add(previewProfileModel.getLanguage());
+                                aboutStrings.add(previewProfileModel.getReligion());
+                                ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3);
+                                showCaseModelArrayList.add(showCaseModel2);
+
+                                careerStrings.add(previewProfileModel.getEducationLevel());
+                                careerStrings.add(previewProfileModel.getOccupation());
+                                careerStrings.add(previewProfileModel.getWorkplace());
+                                careerStrings.add(previewProfileModel.getImage2Url());
+                                ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4);
+                                showCaseModelArrayList.add(showCaseModel3);
+
+                                aboutTextStrings.add(previewProfileModel.getAbout());
+                                ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5);
+                                showCaseModelArrayList.add(showCaseModel4);
+
+                                imageStrings.add(previewProfileModel.getImage3Url());
+                                ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6);
+                                showCaseModelArrayList.add(showCaseModel5);
+
+                                goalStrings.add(previewProfileModel.getMarriageGoals());
+                                ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7);
+                                showCaseModelArrayList.add(showCaseModel6);
+                                ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList);
+                                showCaseMainModelArrayList.add(showCaseMainModel);
+                            }
+                            showcaseMainAdapter = new ShowcaseMainAdapter(MainActivity.this,showCaseMainModelArrayList);
+                            initializeCardStack();
+                            progressBar.setVisibility(View.GONE);
+                            mainView.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
             }
-
-
             @Override
-            public void onInitialize(int initialValue) {
-
-                //showcaseMovementProgress.setMax(initialValue);
-
-            }
-
-            @Override
-            public void onNegativeProgress(int nProgress) {
-              //  recyclerviewProgress = recyclerviewProgress - nProgress;
-              //  showcaseMovementProgress.setProgress(recyclerviewProgress);
-             //   Log.e(TAG, "onProgressChange: "+recyclerviewProgress );
-
+            public void onError(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
-        initializeCardStack();
 
     }
 
@@ -278,29 +323,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     }
 
-    private void initIndividualUserToShowcase(){
 
-        ShowCaseModel showCaseModel = new ShowCaseModel(1);
-        ShowCaseModel showCaseModel2 = new ShowCaseModel(2);
-        ShowCaseModel showCaseModel3 = new ShowCaseModel(3);
-        ShowCaseModel showCaseModel4 = new ShowCaseModel(4);
-        ShowCaseModel showCaseModel5 = new ShowCaseModel(5);
-        ShowCaseModel showCaseModel6 = new ShowCaseModel(6);
-        ShowCaseModel showCaseModel7 = new ShowCaseModel(7);
-        ShowCaseModel showCaseModel8 = new ShowCaseModel(8);
-
-        for(int i = 0; i < 1; i++){
-            showCaseModelArrayList.add(showCaseModel);
-            showCaseModelArrayList.add(showCaseModel2);
-            showCaseModelArrayList.add(showCaseModel3);
-            showCaseModelArrayList.add(showCaseModel4);
-            showCaseModelArrayList.add(showCaseModel5);
-            showCaseModelArrayList.add(showCaseModel6);
-            showCaseModelArrayList.add(showCaseModel7);
-            showCaseModelArrayList.add(showCaseModel8);
-        }
-
-    }
 
 
     @Override
@@ -318,15 +341,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     @Override
     public void onCardDragging(Direction direction, float ratio) {
 
-
     }
 
     @Override
     public void onCardSwiped(Direction direction) {
-
-       // showcaseMovementProgress.setProgress(10);
-     //   recyclerviewProgress = 0;
-
+      //showcaseMovementProgress.setProgress(10);
+      //recyclerviewProgress = 0;
     }
 
     @Override
@@ -346,6 +366,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     @Override
     public void onCardDisappeared(View view, int position) {
-
+        if(position == showCaseMainModelArrayList.size()-1){
+            //At the last position of the card
+           Intent intent = new Intent(MainActivity.this,CaughtUpActivity.class);
+           startActivity(intent);
+           finish();
+        }
     }
 }

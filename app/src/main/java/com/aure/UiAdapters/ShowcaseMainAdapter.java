@@ -28,23 +28,10 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
     private ArrayList<ShowCaseMainModel> showCaseMainModelArrayList;
     private ShowCaseAdapter showCaseAdapter;
 
-
-    private ShowcaseViewProgressStateChange showcaseViewProgressStateChange;
-
-    public interface ShowcaseViewProgressStateChange{
-       void onProgressChange(int progress);
-       void onInitialize(int initialValue);
-       void onNegativeProgress(int nProgress);
-    }
-
-    public void setShowcaseViewProgressStateChange(ShowcaseViewProgressStateChange showcaseViewProgressStateChange) {
-        this.showcaseViewProgressStateChange = showcaseViewProgressStateChange;
-    }
     public ShowcaseMainAdapter(Context context, ArrayList<ShowCaseMainModel> showCaseMainModelArrayList){
         this.context = context;
         this.showCaseMainModelArrayList = showCaseMainModelArrayList;
     }
-
 
     @NonNull
     @Override
@@ -60,39 +47,6 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
         holder.showcaseRecyclerview.setLayoutManager(layoutManager);
         holder.showcaseRecyclerview.setAdapter(showCaseAdapter);
-
-        showcaseViewProgressStateChange.onInitialize(showCaseMainModelArrayList.get(position).getShowcaseMetadata().getTotalShowcaseHeight());
-        showcaseViewProgressStateChange.onProgressChange(10);
-
-
-        holder.showcaseRecyclerview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-
-            }
-        });
-
-
-        holder.showcaseRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-
-                if (dy > 0) {
-                     showcaseViewProgressStateChange.onProgressChange(dy);
-
-                } else if (dy < 0) {
-
-                      showcaseViewProgressStateChange.onNegativeProgress(dy);
-                }
-
-                if(!holder.showcaseRecyclerview.canScrollVertically(1)){
-                    showcaseViewProgressStateChange.onInitialize(10);
-                }
-
-            }
-        });
     }
 
     @Override
@@ -107,7 +61,6 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         public ShowcaseMainGeneralItemViewHolder(View ItemView){
             super(ItemView);
             showcaseRecyclerview = ItemView.findViewById(R.id.showcase_recyclerview);
-           // RecyclerViewPagerIndicator recyclerViewPagerIndicator = new RecyclerViewPagerIndicator(6,6,25, ContextCompat.getColor(context,R.color.light_text_color),ContextCompat.getColor(context,R.color.pinkypinky));
             showcaseRecyclerview.addItemDecoration(new RecyclerViewPagerIndicator(context));
             ItemView.setOnClickListener(this);
         }
