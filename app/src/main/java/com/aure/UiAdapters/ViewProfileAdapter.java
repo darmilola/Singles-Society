@@ -4,9 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.aure.CompleteProfile;
 import com.aure.R;
 import com.aure.UiModels.ShowCaseModel;
+import com.bumptech.glide.Glide;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 
@@ -22,20 +27,8 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private static int SHOWCASE_TYPE_ABOUT_TEXT = 5;
     private static int SHOWCASE_TYPE_PICTURE = 6;
     private static int SHOWCASE_TYPE_MARRIAGE_GOALS = 7;
-    private static int SHOWCASE_TYPE_TAKE_ACTION = 8;
     Context context;
     ArrayList<ShowCaseModel> showcaseList = new ArrayList<>();
-    private ViewAddedListener listener;
-
-    public interface ViewAddedListener{
-        void onViewAdded(int size);
-        void onUserSwiped();
-        void onBottomReached();
-    }
-
-    public void setListener(ViewAddedListener listener) {
-        this.listener = listener;
-    }
 
     public ViewProfileAdapter(Context context, ArrayList<ShowCaseModel> showCaseList){
         this.context = context;
@@ -72,11 +65,6 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             return new ShowcaseMarriageGoalsItemViewHolder(view);
         }
 
-        if (viewType == SHOWCASE_TYPE_TAKE_ACTION) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_fav_report_block, parent, false);
-            return new ShowcaseTakeActionItemViewHolder(view);
-        }
-
         if (viewType == SHOWCASE_TYPE_ABOUT_TEXT) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_text, parent, false);
             return new ShowcaseAboutTextViewholder(view);
@@ -88,7 +76,64 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ShowCaseModel showCaseModel = showcaseList.get(position);
+        if(showCaseModel.getShowcaseType() == 1){
+            ShowcaseMainItemViewHolder showcaseMainItemViewHolder = (ShowcaseMainItemViewHolder) holder;
+            showcaseMainItemViewHolder.nameAge.setText(showCaseModel.getModelInfoList().get(0)+", "+showCaseModel.getModelInfoList().get(1));
+            showcaseMainItemViewHolder.city.setText(showCaseModel.getModelInfoList().get(2));
+            showcaseMainItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(3));
+            Glide.with(context)
+                    .load(showCaseModel.getModelInfoList().get(4))
+                    .placeholder(R.drawable.profileplaceholder)
+                    .error(R.drawable.profileplaceholder)
+                    .into(showcaseMainItemViewHolder.imageView);
 
+        }
+
+        if(showCaseModel.getShowcaseType() == 2){
+            ShowcaseQuoteItemViewHolder showcaseQuoteItemViewHolder = (ShowcaseQuoteItemViewHolder) holder;
+            showcaseQuoteItemViewHolder.textView.setText(showCaseModel.getModelInfoList().get(0));
+        }
+
+        if(showCaseModel.getShowcaseType() == 3){
+            ShowcaseAboutMeItemViewHolder showcaseAboutMeItemViewHolder = (ShowcaseAboutMeItemViewHolder) holder;
+            showcaseAboutMeItemViewHolder.status.setText(showCaseModel.getModelInfoList().get(0));
+            showcaseAboutMeItemViewHolder.smoking.setText(showCaseModel.getModelInfoList().get(1));
+            showcaseAboutMeItemViewHolder.drinking.setText(showCaseModel.getModelInfoList().get(2));
+            showcaseAboutMeItemViewHolder.language.setText(showCaseModel.getModelInfoList().get(3));
+            showcaseAboutMeItemViewHolder.religion.setText(showCaseModel.getModelInfoList().get(4));
+        }
+
+        if(showCaseModel.getShowcaseType() == 4){
+            ShowcaseCareerItemViewHolder showcaseCareerItemViewHolder  = (ShowcaseCareerItemViewHolder) holder;
+            showcaseCareerItemViewHolder.degree.setText(showCaseModel.getModelInfoList().get(0));
+            showcaseCareerItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(1));
+            showcaseCareerItemViewHolder.workplace.setText(showCaseModel.getModelInfoList().get(2));
+            Glide.with(context)
+                    .load(showCaseModel.getModelInfoList().get(3))
+                    .placeholder(R.drawable.profileplaceholder)
+                    .error(R.drawable.profileplaceholder)
+                    .into(showcaseCareerItemViewHolder.imageView);
+        }
+
+        if(showCaseModel.getShowcaseType() == 5){
+            ShowcaseAboutTextViewholder showcaseAboutTextViewholder = (ShowcaseAboutTextViewholder) holder;
+            showcaseAboutTextViewholder.textView.setText(showCaseModel.getModelInfoList().get(0));
+        }
+
+        if(showCaseModel.getShowcaseType() == 6){
+            ShowcasePictureItemViewHolder showcasePictureItemViewHolder = (ShowcasePictureItemViewHolder) holder;
+            Glide.with(context)
+                    .load(showCaseModel.getModelInfoList().get(0))
+                    .placeholder(R.drawable.profileplaceholder)
+                    .error(R.drawable.profileplaceholder)
+                    .into(showcasePictureItemViewHolder.imageView);
+        }
+
+        if(showCaseModel.getShowcaseType() == 7){
+             ShowcaseMarriageGoalsItemViewHolder showcaseMarriageGoalsItemViewHolder = (ShowcaseMarriageGoalsItemViewHolder) holder;
+             showcaseMarriageGoalsItemViewHolder.goal.setText(showCaseModel.getModelInfoList().get(0));
+        }
 
 
     }
@@ -119,9 +164,6 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_MARRIAGE_GOALS){
             return SHOWCASE_TYPE_MARRIAGE_GOALS;
         }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_TAKE_ACTION){
-            return SHOWCASE_TYPE_TAKE_ACTION;
-        }
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ABOUT_TEXT){
             return SHOWCASE_TYPE_ABOUT_TEXT;
         }
@@ -130,37 +172,31 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
+    public class ShowcaseMainItemViewHolder extends RecyclerView.ViewHolder{
 
-    public class ShowcaseMainItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-
+        ImageView imageView;
+        TextView city,nameAge;
+        Chip occupation;
         public ShowcaseMainItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            imageView = ItemView.findViewById(R.id.type_main_image);
+            city = ItemView.findViewById(R.id.type_main_city);
+            nameAge = ItemView.findViewById(R.id.type_main_name_age);
+            occupation = ItemView.findViewById(R.id.type_main_occupation);
         }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-
     }
 
-    public class ShowcaseAboutTextViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseAboutTextViewholder extends RecyclerView.ViewHolder{
 
-
+        TextView textView;
         public ShowcaseAboutTextViewholder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
-
-        }
-
-        @Override
-        public void onClick(View view) {
-
+            textView = ItemView.findViewById(R.id.type_about_text_text);
         }
 
     }
+
+
 
     public class ShowcaseTakeActionItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -178,85 +214,75 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     }
 
-    public class ShowcaseMarriageGoalsItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseMarriageGoalsItemViewHolder extends RecyclerView.ViewHolder{
 
 
+        Chip goal;
         public ShowcaseMarriageGoalsItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            goal = ItemView.findViewById(R.id.type_goals_year);
         }
 
-        @Override
-        public void onClick(View view) {
-
-        }
 
     }
 
 
 
+    public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder{
 
-    public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+        Chip status,smoking,drinking,language,religion;
 
         public ShowcaseAboutMeItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
+            status = ItemView.findViewById(R.id.type_about_status);
+            smoking = ItemView.findViewById(R.id.type_about_smoking);
+            drinking = ItemView.findViewById(R.id.type_about_drinking);
+            language = ItemView.findViewById(R.id.type_about_language);
+            religion = ItemView.findViewById(R.id.type_about_religion);
         }
 
     }
 
-    public class ShowcasePictureItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcasePictureItemViewHolder extends RecyclerView.ViewHolder{
 
-
+        ImageView imageView;
         public ShowcasePictureItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            imageView = ItemView.findViewById(R.id.type_picture_image);
         }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-
     }
 
 
 
-    public class ShowcaseQuoteItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseQuoteItemViewHolder extends RecyclerView.ViewHolder{
 
-
+        TextView textView;
         public ShowcaseQuoteItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
+            textView = ItemView.findViewById(R.id.type_quote_text);
 
         }
+
+
 
     }
 
-    public class ShowcaseCareerItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseCareerItemViewHolder extends RecyclerView.ViewHolder {
 
-
+        Chip degree,occupation,workplace;
+        ImageView imageView;
         public ShowcaseCareerItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            degree = ItemView.findViewById(R.id.type_career_education);
+            occupation = ItemView.findViewById(R.id.type_career_occupation);
+            workplace = ItemView.findViewById(R.id.type_career_workplace);
+            imageView = ItemView.findViewById(R.id.type_career_image);
         }
 
-        @Override
-        public void onClick(View view) {
 
-        }
 
     }
+
 
 
 }

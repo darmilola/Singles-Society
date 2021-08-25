@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/transparent"
-    android:layout_height="wrap_content"
-    android:minHeight="150dp">
+    android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,10 +24,11 @@
             android:layout_marginBottom="20dp"
             android:lineSpacingExtra="3dp"
             android:ellipsize="end"
+            android:id="@+id/type_about_text_text"
             android:lineSpacingMultiplier="1.3"
             android:textSize="17dp"
             android:fontFamily="@font/airreg"
-            android:textColor="@color/black"
-            android:text="Whether you think you can or you think you can't, you're right. Whether you think you can or you think you can't, you're right. Whether you think you can or you think you can't, you're right. Whether you think you can or you think you can't, you're right."/>
+            android:textColor="@color/dark_text_color"/>
+
     </androidx.cardview.widget.CardView>
 </LinearLayout>

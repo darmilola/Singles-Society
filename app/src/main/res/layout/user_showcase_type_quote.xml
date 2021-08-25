@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/transparent"
-    android:layout_height="160dp">
+    android:layout_height="wrap_content"
+    android:minHeight="100dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +23,7 @@
             android:layout_margin="20dp"
             android:lineSpacingExtra="3dp"
             android:ellipsize="end"
+            android:id="@+id/type_quote_text"
             android:textSize="20dp"
             android:fontFamily="@font/kumelian"
             android:textColor="@color/black"

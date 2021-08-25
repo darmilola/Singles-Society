@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.aure.R;
 import com.aure.UiModels.ShowCaseModel;
+import com.google.android.material.chip.Chip;
 
 
 import java.util.ArrayList;
@@ -119,32 +122,26 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
-    public class ShowcaseMainItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseMainItemViewHolder extends RecyclerView.ViewHolder{
 
-
+        ImageView imageView;
+        TextView city,nameAge;
+        Chip occupation;
         public ShowcaseMainItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            imageView = ItemView.findViewById(R.id.type_main_image);
+            city = ItemView.findViewById(R.id.type_main_city);
+            nameAge = ItemView.findViewById(R.id.type_main_name_age);
+            occupation = ItemView.findViewById(R.id.type_main_occupation);
         }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-
     }
 
-    public class ShowcaseAboutTextViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseAboutTextViewholder extends RecyclerView.ViewHolder{
 
-
+        TextView textView;
         public ShowcaseAboutTextViewholder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
+            textView = ItemView.findViewById(R.id.type_about_text_text);
         }
 
     }
@@ -167,82 +164,72 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-    public class ShowcaseMarriageGoalsItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseMarriageGoalsItemViewHolder extends RecyclerView.ViewHolder{
 
 
+        Chip goal;
         public ShowcaseMarriageGoalsItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            goal = ItemView.findViewById(R.id.type_goals_year);
         }
 
-        @Override
-        public void onClick(View view) {
-
-        }
 
     }
 
 
 
-    public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder{
 
+        Chip status,smoking,drinking,language,religion;
 
         public ShowcaseAboutMeItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
+            status = ItemView.findViewById(R.id.type_about_status);
+            smoking = ItemView.findViewById(R.id.type_about_smoking);
+            drinking = ItemView.findViewById(R.id.type_about_drinking);
+            language = ItemView.findViewById(R.id.type_about_language);
+            religion = ItemView.findViewById(R.id.type_about_religion);
         }
 
     }
 
-    public class ShowcasePictureItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcasePictureItemViewHolder extends RecyclerView.ViewHolder{
 
-
+        ImageView imageView;
         public ShowcasePictureItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            imageView = ItemView.findViewById(R.id.type_picture_image);
         }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-
     }
 
 
 
-    public class ShowcaseQuoteItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseQuoteItemViewHolder extends RecyclerView.ViewHolder{
 
-
+        TextView textView;
         public ShowcaseQuoteItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
+            textView = ItemView.findViewById(R.id.type_quote_text);
 
         }
+
+
 
     }
 
-    public class ShowcaseCareerItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseCareerItemViewHolder extends RecyclerView.ViewHolder {
 
-
+        Chip degree,occupation,workplace;
+        ImageView imageView;
         public ShowcaseCareerItemViewHolder(View ItemView){
             super(ItemView);
-            ItemView.setOnClickListener(this);
+            degree = ItemView.findViewById(R.id.type_career_education);
+            occupation = ItemView.findViewById(R.id.type_career_occupation);
+            workplace = ItemView.findViewById(R.id.type_career_workplace);
+            imageView = ItemView.findViewById(R.id.type_career_image);
         }
 
-        @Override
-        public void onClick(View view) {
 
-        }
 
     }
 

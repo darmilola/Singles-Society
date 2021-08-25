@@ -48,6 +48,7 @@
                     android:text="Seeking marriage within 1-2 years"
                     android:textColor="@color/colorPrimary"
                     android:textSize="15dp"
+                    android:id="@+id/type_goals_year"
                     app:chipBackgroundColor="@color/transparent"
                     app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
                     app:chipIconSize="16dp"

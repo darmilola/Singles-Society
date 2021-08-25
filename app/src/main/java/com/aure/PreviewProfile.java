@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.aure.UiAdapters.ViewProfileAdapter;
+import com.aure.UiModels.CompleteProfileModel;
+import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.RecyclerViewPagerIndicator;
 import com.aure.UiModels.ShowCaseModel;
 
@@ -20,6 +24,15 @@ public class PreviewProfile extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<ShowCaseModel> showCaseModelArrayList = new ArrayList<>();
     ViewProfileAdapter adapter;
+    ProgressBar progressBar;
+    ArrayList<String> mainStrings = new ArrayList<>();
+    ArrayList<String> quoteStrings = new ArrayList<>();
+    ArrayList<String> aboutStrings = new ArrayList<>();
+    ArrayList<String> careerStrings = new ArrayList<>();
+    ArrayList<String> aboutTextStrings = new ArrayList<>();
+    ArrayList<String> imageStrings = new ArrayList<>();
+    ArrayList<String> goalStrings = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,33 +41,72 @@ public class PreviewProfile extends AppCompatActivity {
     }
 
     private void initView(){
+
+        progressBar = findViewById(R.id.preview_profile_progress);
         recyclerView = findViewById(R.id.preview_recycerview);
-        ShowCaseModel showCaseModel = new ShowCaseModel(1);
-        ShowCaseModel showCaseModel2 = new ShowCaseModel(2);
-        ShowCaseModel showCaseModel3 = new ShowCaseModel(3);
-        ShowCaseModel showCaseModel4 = new ShowCaseModel(4);
-        ShowCaseModel showCaseModel5 = new ShowCaseModel(5);
-        ShowCaseModel showCaseModel6 = new ShowCaseModel(6);
-        ShowCaseModel showCaseModel7 = new ShowCaseModel(7);
-        ShowCaseModel showCaseModel8 = new ShowCaseModel(8);
-
-
-        for(int i = 0; i < 1; i++){
-            showCaseModelArrayList.add(showCaseModel);
-            showCaseModelArrayList.add(showCaseModel2);
-            showCaseModelArrayList.add(showCaseModel3);
-            showCaseModelArrayList.add(showCaseModel4);
-            showCaseModelArrayList.add(showCaseModel5);
-            showCaseModelArrayList.add(showCaseModel6);
-            showCaseModelArrayList.add(showCaseModel7);
-            showCaseModelArrayList.add(showCaseModel8);
-        }
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new RecyclerViewPagerIndicator(this));
-        adapter = new ViewProfileAdapter(this,showCaseModelArrayList);
-        recyclerView.setAdapter(adapter);
+
+        PreviewProfileModel previewProfileModel = new PreviewProfileModel(PreviewProfile.this);
+        previewProfileModel.GetUserInfo();
+        previewProfileModel.setInfoReadyListener(new PreviewProfileModel.InfoReadyListener() {
+            @Override
+            public void onReady(PreviewProfileModel previewProfileModel) {
+              progressBar.setVisibility(View.GONE);
+              recyclerView.setVisibility(View.VISIBLE);
+
+              mainStrings.add(previewProfileModel.getFirstname());
+              mainStrings.add(String.valueOf(previewProfileModel.getAge()));
+              mainStrings.add(previewProfileModel.getCity());
+              mainStrings.add(previewProfileModel.getOccupation());
+              mainStrings.add(previewProfileModel.getImage1Url());
+              ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1);
+              showCaseModelArrayList.add(showCaseModel);
+
+              quoteStrings.add(previewProfileModel.getQuote());
+              ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2);
+              showCaseModelArrayList.add(showCaseModel1);
+
+              aboutStrings.add(previewProfileModel.getStatus());
+              aboutStrings.add(previewProfileModel.getSmoking());
+              aboutStrings.add(previewProfileModel.getDrinking());
+              aboutStrings.add(previewProfileModel.getLanguage());
+              aboutStrings.add(previewProfileModel.getReligion());
+              ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3);
+              showCaseModelArrayList.add(showCaseModel2);
+
+              careerStrings.add(previewProfileModel.getEducationLevel());
+              careerStrings.add(previewProfileModel.getOccupation());
+              careerStrings.add(previewProfileModel.getWorkplace());
+              careerStrings.add(previewProfileModel.getImage2Url());
+              ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4);
+              showCaseModelArrayList.add(showCaseModel3);
+
+              aboutTextStrings.add(previewProfileModel.getAbout());
+              ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5);
+              showCaseModelArrayList.add(showCaseModel4);
+
+              imageStrings.add(previewProfileModel.getImage3Url());
+              ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6);
+              showCaseModelArrayList.add(showCaseModel5);
+
+              goalStrings.add(previewProfileModel.getMarriageGoals());
+              ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7);
+              showCaseModelArrayList.add(showCaseModel6);
+
+              adapter = new ViewProfileAdapter(PreviewProfile.this,showCaseModelArrayList);
+              recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onError(String message) {
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                Toast.makeText(PreviewProfile.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

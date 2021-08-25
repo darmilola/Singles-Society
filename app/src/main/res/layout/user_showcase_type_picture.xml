@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/lady3"/>
+                android:id="@+id/type_picture_image"/>
 
         </FrameLayout>
     </androidx.cardview.widget.CardView>

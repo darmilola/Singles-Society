@@ -7,8 +7,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.aure.CompleteProfile;
-import com.aure.MainActivity;
 import com.aure.UiModels.Utils.ImageUploadDialog;
 
 import org.jetbrains.annotations.NotNull;
