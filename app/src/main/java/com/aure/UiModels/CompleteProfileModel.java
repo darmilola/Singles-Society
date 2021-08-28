@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 
 import com.aure.UiModels.Utils.ImageUploadDialog;
 
@@ -16,7 +17,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import androidx.preference.PreferenceManager;
+
 import io.github.lizhangqu.coreprogress.ProgressHelper;
 import io.github.lizhangqu.coreprogress.ProgressUIListener;
 import okhttp3.Call;

@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="90dp"
     android:gravity="center"
-    android:background="@color/special_activity_background">
+    android:background="@color/white">
 
 
     <LinearLayout
@@ -23,19 +23,13 @@
             android:layout_weight="0.2">
 
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/message_connection_sender_profile_image"
+                android:src="@drawable/profileplaceholder"/>
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                xmlns:fresco = "http://schemas.android.com/apk/res-auto"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                fresco:actualImageScaleType="centerCrop"
-                android:layout_gravity="center"
-                fresco:roundAsCircle="true"
-                fresco:roundingBorderColor="@color/pinkypinky"
-                fresco:roundingBorderWidth="0.5dp"
-                android:id="@+id/direct_message_sender_profile_image"
-                fresco:placeholderImage="@drawable/lady2"
-                fresco:placeholderImageScaleType="centerCrop"/>
+
 
         </LinearLayout>
 
@@ -52,25 +46,24 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/airsemi"
-                android:id="@+id/direct_message_sender_name"
-                android:text="Liza Williams"
-                android:textColor="@color/black"
-                android:textSize="18dp"
+                android:id="@+id/message_connection_sender_name"
+                android:text="John Doe"
+                android:textColor="@color/dark_text_color"
+                android:textSize="17dp"
                 android:layout_marginBottom="1dp"/>
 
             <TextView
-                android:id="@+id/direct_message_sender_last_message"
+                android:id="@+id/message_connection_last_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/airreg"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:lineSpacingExtra="4dp"
                 android:text="Also send files to yourself just select your own name from the owner fo the file then"
                 android:textColor="@color/light_text_color"
-                android:textSize="18dp" />
-
+                android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,18 +79,18 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:text="Aug 29"
-                android:id="@+id/direct_message_timestamp"
+                android:id="@+id/message_connection_timestamp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:fontFamily="@font/airreg"
                 android:textColor="#969595"
-                android:textSize="16dp"/>
+                android:textSize="14dp"/>
 
             <LinearLayout
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginTop="6dp"
-                android:id="@+id/direct_message_unread_count"
+                android:id="@+id/message_connection_unread_count_layout"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
@@ -110,9 +103,10 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:text="9+"
+                    android:id="@+id/message_connection_unread_count"
                     android:fontFamily="@font/airreg"
                     android:textColor="@color/White"
-                    android:textSize="15dp"/>
+                    android:textSize="12dp"/>
             </LinearLayout>
 
 
@@ -124,5 +118,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="7dp"
         android:background="#DDDCDC" />
 </LinearLayout>

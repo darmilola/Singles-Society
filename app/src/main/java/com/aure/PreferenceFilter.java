@@ -2,11 +2,12 @@ package com.aure;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
+
 
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Range;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ public class PreferenceFilter extends AppCompatActivity {
     ArrayList<String> drinkingItems = new ArrayList<>();
     ArrayList<String> smokingItems = new ArrayList<>();
     DoubleValueSeekBarView ageSeekbar;
+    TextView preferenceSearch;
 
 
     @Override
@@ -44,6 +46,7 @@ public class PreferenceFilter extends AppCompatActivity {
 
     private void initView(){
         populateDialogListView();
+        preferenceSearch = findViewById(R.id.preference_search);
         ageSeekbar = findViewById(R.id.age_range_seekbar);
         statusSelect = findViewById(R.id.status__filter_select);
         religionSelect = findViewById(R.id.religion_filter_select);
@@ -63,6 +66,13 @@ public class PreferenceFilter extends AppCompatActivity {
             //ageSeekbar.setMaxValue(preferences.getInt("min_age",18));
 
 
+        preferenceSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
 
             ageSeekbar.setOnRangeSeekBarViewChangeListener(new OnDoubleValueSeekBarChangeListener() {
                 @Override

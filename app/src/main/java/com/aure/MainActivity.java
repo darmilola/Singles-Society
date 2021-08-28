@@ -8,19 +8,22 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.preference.PreferenceManager;
 
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -31,6 +34,7 @@ import com.aure.UiModels.ShowCaseMainModel;
 import com.aure.UiModels.ShowCaseModel;
 import com.aure.UiModels.ShowcaseMetadata;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.google.android.material.button.MaterialButton;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -45,6 +49,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
+    private static int PREFERENCE_INT = 1;
     CardStackView userShowcaseStack;
     CardStackLayoutManager manager;
     ShowcaseMainAdapter showcaseMainAdapter;
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     Toolbar toolbar;
     FrameLayout mainView;
     ProgressBar progressBar;
+    LinearLayout emptyLayoutRoot,activityCaughtUpRoot,takeAction;
     LinearLayout mainInfoToggleLayout;
     LinearLayout mainMarketPlace;
     LinearLayout matchesMenu;
@@ -64,6 +70,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout inviteAFriend;
     LinearLayout helpDesk;
     LinearLayout logOut;
+    MaterialButton changePreference,visitMarketplace;
+    RelativeLayout swipeToolRoot;
+    ArrayList<String> likedUserId = new ArrayList<>();
+    ArrayList<PreviewProfileModel> previewProfileModels = new ArrayList<>();
+    String currentlyDisplayedUserId;
+    boolean isRightSwipe = false;
+    LinearLayout metMatchRoot;
 
 
     @Override
@@ -75,7 +88,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     }
 
     private void initView(){
-
+        swipeToolRoot = findViewById(R.id.showcase_swipe_layout);
+        changePreference = findViewById(R.id.empty_search_change_preference);
+        visitMarketplace = findViewById(R.id.caught_up_visit_marketplace);
+        emptyLayoutRoot = findViewById(R.id.empty_layout_root);
+        activityCaughtUpRoot = findViewById(R.id.caught_up_root);
+        metMatchRoot = findViewById(R.id.met_match_root);
         String userEmail = getIntent().getStringExtra("email");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         preferences.edit().putString("userEmail",userEmail).apply();
@@ -87,6 +105,25 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         mainMarketPlace = findViewById(R.id.main_marketplace);
         completeProfile = findViewById(R.id.complete_profile);
         filterProfile = findViewById(R.id.filter_layout);
+        takeAction = findViewById(R.id.showcase_take_action);
+
+        visitMarketplace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Marketplace.class));
+            }
+        });
+
+        changePreference.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                Intent intent = new Intent(MainActivity.this,PreferenceFilter.class);
+                startActivityForResult(intent,PREFERENCE_INT);
+            }
+        });
 
         inviteAFriend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,23 +135,21 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         filterProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,PreferenceFilter.class));
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                Intent intent = new Intent(MainActivity.this,PreferenceFilter.class);
+                startActivityForResult(intent,PREFERENCE_INT);
             }
         });
 
-        helpDesk.setOnClickListener(new View.OnClickListener() {
+        takeAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,TakeActionOnProfile.class));
             }
         });
 
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MetMatchPage.class));
-            }
-        });
 
         matchesMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,82 +255,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
             @Override
             public void onReady(MainActivityModel mainActivityModel) {
-                if(mainActivityModel.getIsProfileCompleted().equalsIgnoreCase("false")){
-                    Intent intent = new Intent(MainActivity.this,CompleteProfilePrompt.class);
-                    startActivity(intent);
-                    finish();
-                }
-                else{
-                    MainActivityModel mainActivityModel2 = new MainActivityModel(MainActivity.this);
-                    mainActivityModel2.GetShowUserInfo();
-                    mainActivityModel2.setShowcaseInfoReadyListener(new MainActivityModel.ShowcaseInfoReadyListener() {
-                        @Override
-                        public void onReady(ArrayList<PreviewProfileModel> previewProfileModels) {
-                            for (PreviewProfileModel previewProfileModel: previewProfileModels) {
-
-                                ArrayList<ShowCaseModel> showCaseModelArrayList = new ArrayList<>();
-                                ArrayList<String> mainStrings = new ArrayList<>();
-                                ArrayList<String> quoteStrings = new ArrayList<>();
-                                ArrayList<String> aboutStrings = new ArrayList<>();
-                                ArrayList<String> careerStrings = new ArrayList<>();
-                                ArrayList<String> aboutTextStrings = new ArrayList<>();
-                                ArrayList<String> imageStrings = new ArrayList<>();
-                                ArrayList<String> goalStrings = new ArrayList<>();
-
-                                mainStrings.add(previewProfileModel.getFirstname());
-                                mainStrings.add(String.valueOf(previewProfileModel.getAge()));
-                                mainStrings.add(previewProfileModel.getCity());
-                                mainStrings.add(previewProfileModel.getOccupation());
-                                mainStrings.add(previewProfileModel.getImage1Url());
-                                ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1);
-                                showCaseModelArrayList.add(showCaseModel);
-
-                                quoteStrings.add(previewProfileModel.getQuote());
-                                ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2);
-                                showCaseModelArrayList.add(showCaseModel1);
-
-                                aboutStrings.add(previewProfileModel.getStatus());
-                                aboutStrings.add(previewProfileModel.getSmoking());
-                                aboutStrings.add(previewProfileModel.getDrinking());
-                                aboutStrings.add(previewProfileModel.getLanguage());
-                                aboutStrings.add(previewProfileModel.getReligion());
-                                ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3);
-                                showCaseModelArrayList.add(showCaseModel2);
-
-                                careerStrings.add(previewProfileModel.getEducationLevel());
-                                careerStrings.add(previewProfileModel.getOccupation());
-                                careerStrings.add(previewProfileModel.getWorkplace());
-                                careerStrings.add(previewProfileModel.getImage2Url());
-                                ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4);
-                                showCaseModelArrayList.add(showCaseModel3);
-
-                                aboutTextStrings.add(previewProfileModel.getAbout());
-                                ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5);
-                                showCaseModelArrayList.add(showCaseModel4);
-
-                                imageStrings.add(previewProfileModel.getImage3Url());
-                                ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6);
-                                showCaseModelArrayList.add(showCaseModel5);
-
-                                goalStrings.add(previewProfileModel.getMarriageGoals());
-                                ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7);
-                                showCaseModelArrayList.add(showCaseModel6);
-                                ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList);
-                                showCaseMainModelArrayList.add(showCaseMainModel);
-                            }
-                            showcaseMainAdapter = new ShowcaseMainAdapter(MainActivity.this,showCaseMainModelArrayList);
-                            initializeCardStack();
-                            progressBar.setVisibility(View.GONE);
-                            mainView.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onError(String message) {
-                            Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
+               ParseUserResponse(mainActivityModel);
             }
             @Override
             public void onError(String message) {
@@ -303,6 +263,101 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
+    }
+    private void ParseUserResponse(MainActivityModel mainActivityModel){
+        if(mainActivityModel.getIsProfileCompleted().equalsIgnoreCase("false")){
+            Intent intent = new Intent(MainActivity.this,CompleteProfilePrompt.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            MainActivityModel mainActivityModel2 = new MainActivityModel(MainActivity.this);
+            mainActivityModel2.GetShowUserInfo();
+            mainActivityModel2.setShowcaseInfoReadyListener(new MainActivityModel.ShowcaseInfoReadyListener() {
+                @Override
+                public void onReady(ArrayList<PreviewProfileModel> previewProfileModels,ArrayList<String> likeIds) {
+                    MainActivity.this.likedUserId = likeIds;
+                    MainActivity.this.previewProfileModels = previewProfileModels;
+                    for (PreviewProfileModel previewProfileModel: previewProfileModels) {
+                        ArrayList<ShowCaseModel> showCaseModelArrayList = new ArrayList<>();
+                        ArrayList<String> mainStrings = new ArrayList<>();
+                        ArrayList<String> quoteStrings = new ArrayList<>();
+                        ArrayList<String> aboutStrings = new ArrayList<>();
+                        ArrayList<String> careerStrings = new ArrayList<>();
+                        ArrayList<String> aboutTextStrings = new ArrayList<>();
+                        ArrayList<String> imageStrings = new ArrayList<>();
+                        ArrayList<String> goalStrings = new ArrayList<>();
+
+                        mainStrings.add(previewProfileModel.getFirstname());
+                        mainStrings.add(String.valueOf(previewProfileModel.getAge()));
+                        mainStrings.add(previewProfileModel.getCity());
+                        mainStrings.add(previewProfileModel.getOccupation());
+                        mainStrings.add(previewProfileModel.getImage1Url());
+                        ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1);
+                        showCaseModelArrayList.add(showCaseModel);
+
+                        quoteStrings.add(previewProfileModel.getQuote());
+                        ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2);
+                        showCaseModelArrayList.add(showCaseModel1);
+
+                        aboutStrings.add(previewProfileModel.getStatus());
+                        aboutStrings.add(previewProfileModel.getSmoking());
+                        aboutStrings.add(previewProfileModel.getDrinking());
+                        aboutStrings.add(previewProfileModel.getLanguage());
+                        aboutStrings.add(previewProfileModel.getReligion());
+                        ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3);
+                        showCaseModelArrayList.add(showCaseModel2);
+
+                        careerStrings.add(previewProfileModel.getEducationLevel());
+                        careerStrings.add(previewProfileModel.getOccupation());
+                        careerStrings.add(previewProfileModel.getWorkplace());
+                        careerStrings.add(previewProfileModel.getImage2Url());
+                        ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4);
+                        showCaseModelArrayList.add(showCaseModel3);
+
+                        aboutTextStrings.add(previewProfileModel.getAbout());
+                        ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5);
+                        showCaseModelArrayList.add(showCaseModel4);
+
+                        imageStrings.add(previewProfileModel.getImage3Url());
+                        ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6);
+                        showCaseModelArrayList.add(showCaseModel5);
+
+                        goalStrings.add(previewProfileModel.getMarriageGoals());
+                        ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7);
+                        showCaseModelArrayList.add(showCaseModel6);
+                        ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList);
+                        showCaseMainModelArrayList.add(showCaseMainModel);
+                    }
+                    showcaseMainAdapter = new ShowcaseMainAdapter(MainActivity.this,showCaseMainModelArrayList);
+                    initializeCardStack();
+                    progressBar.setVisibility(View.GONE);
+                    mainView.setVisibility(View.VISIBLE);
+                    emptyLayoutRoot.setVisibility(View.GONE);
+                    activityCaughtUpRoot.setVisibility(View.GONE);
+                    userShowcaseStack.setVisibility(View.VISIBLE);
+                    swipeToolRoot.setVisibility(View.VISIBLE);
+                    takeAction.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onError(String message) {
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onEmptyResponse() {
+                    emptyLayoutRoot.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    activityCaughtUpRoot.setVisibility(View.GONE);
+                    mainView.setVisibility(View.VISIBLE);
+                    activityCaughtUpRoot.setVisibility(View.GONE);
+                    userShowcaseStack.setVisibility(View.GONE);
+                    swipeToolRoot.setVisibility(View.GONE);
+                    takeAction.setVisibility(View.GONE);
+                }
+            });
+        }
     }
 
     private void initializeCardStack() {
@@ -340,13 +395,23 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     @Override
     public void onCardDragging(Direction direction, float ratio) {
+        if(direction == Direction.Right){
+            isRightSwipe = true;
+        }
+        else if(direction == Direction.Left){
+            isRightSwipe = false;
+        }
+        else{
 
+        }
     }
 
     @Override
     public void onCardSwiped(Direction direction) {
       //showcaseMovementProgress.setProgress(10);
       //recyclerviewProgress = 0;
+
+
     }
 
     @Override
@@ -366,11 +431,75 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     @Override
     public void onCardDisappeared(View view, int position) {
-        if(position == showCaseMainModelArrayList.size()-1){
+        boolean isMatched = false;
+        currentlyDisplayedUserId = previewProfileModels.get(position).getUserId();
+        MainActivityModel mainActivityModel = new MainActivityModel(currentlyDisplayedUserId,MainActivity.this);
+             if(isRightSwipe){
+                    //set like to db
+                    mainActivityModel.setLiked();
+                    for(int i = 0; i < likedUserId.size(); i++) {
+                        if (currentlyDisplayedUserId.equalsIgnoreCase(likedUserId.get(i))) {
+                            //There is a Match set match break
+                            mainActivityModel.setMatched();
+                            isMatched = true;
+                            emptyLayoutRoot.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE);
+                            activityCaughtUpRoot.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.GONE);
+                            mainView.setVisibility(View.VISIBLE);
+                            userShowcaseStack.setVisibility(View.GONE);
+                            swipeToolRoot.setVisibility(View.GONE);
+                            takeAction.setVisibility(View.GONE);
+                            metMatchRoot.setVisibility(View.VISIBLE);
+                            break;
+                        }
+                    }
+                    if(!isMatched && position == showCaseMainModelArrayList.size()-1){
+                        emptyLayoutRoot.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
+                        activityCaughtUpRoot.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        mainView.setVisibility(View.VISIBLE);
+                        userShowcaseStack.setVisibility(View.GONE);
+                        swipeToolRoot.setVisibility(View.GONE);
+                        takeAction.setVisibility(View.GONE);
+                    }
+             }
+
+          else if(position == showCaseMainModelArrayList.size()-1 && !isRightSwipe){
             //At the last position of the card
-           Intent intent = new Intent(MainActivity.this,CaughtUpActivity.class);
-           startActivity(intent);
-           finish();
+            emptyLayoutRoot.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            activityCaughtUpRoot.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+            mainView.setVisibility(View.VISIBLE);
+            userShowcaseStack.setVisibility(View.GONE);
+            swipeToolRoot.setVisibility(View.GONE);
+            takeAction.setVisibility(View.GONE);
         }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PREFERENCE_INT && resultCode == RESULT_OK) {
+            progressBar.setVisibility(View.VISIBLE);
+            mainView.setVisibility(View.GONE);
+            MainActivityModel mainActivityModel = new MainActivityModel(MainActivity.this);
+            mainActivityModel.GetUserInfo();
+            mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
+                @Override
+                public void onReady(MainActivityModel mainActivityModel) {
+                    ParseUserResponse(mainActivityModel);
+                }
+                @Override
+                public void onError(String message) {
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
 }
+

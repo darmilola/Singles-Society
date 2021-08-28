@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -14,7 +15,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import androidx.preference.PreferenceManager;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,9 +31,9 @@ public class PreviewProfileModel {
     private Context context;
     private String image1Url,image2Url,image3Url;
     private InfoReadyListener infoReadyListener;
-    private String userEmail;
+    private String userEmail,userId;
 
-    public PreviewProfileModel(String firstname,String about, String status, String language, String city, String occupation, String marriageGoals, String educationLevel, String workplace, String drinking, String smoking, String gender, String quote, int age, String image1Url, String image2Url, String image3Url,String religion){
+    public PreviewProfileModel(String userId,String firstname,String about, String status, String language, String city, String occupation, String marriageGoals, String educationLevel, String workplace, String drinking, String smoking, String gender, String quote, int age, String image1Url, String image2Url, String image3Url,String religion){
         this.about = about;
         this.status = status;
         this.language = language;
@@ -51,6 +52,7 @@ public class PreviewProfileModel {
         this.religion = religion;
         this.age = age;
         this.firstname = firstname;
+        this.userId = userId;
     }
 
     public PreviewProfileModel(Context context){
@@ -90,6 +92,10 @@ public class PreviewProfileModel {
 
     public String getCity() {
         return city;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getEducationLevel() {
@@ -228,6 +234,7 @@ public class PreviewProfileModel {
                 if(status.equalsIgnoreCase("success")){
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     int age = jsonArray.getJSONObject(0).getInt("age");
+                    String userId = jsonArray.getJSONObject(0).getString("email");
                     String city = jsonArray.getJSONObject(0).getString("city");
                     String mStatus = jsonArray.getJSONObject(0).getString("status");
                     String language = jsonArray.getJSONObject(0).getString("language");
@@ -245,7 +252,7 @@ public class PreviewProfileModel {
                     String gender = jsonArray.getJSONObject(0).getString("gender");
                     String mReligion = jsonArray.getJSONObject(0).getString("religion");
                     String firstname = jsonArray.getJSONObject(0).getString("firstname");
-                    PreviewProfileModel previewProfileModel = new PreviewProfileModel(firstname,about,mStatus,language,city,occupation,marriageGoals,education,workplace,drinking,smoking,gender,quote,age,firstImage,secondImage,thirdImage,mReligion);
+                    PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname,about,mStatus,language,city,occupation,marriageGoals,education,workplace,drinking,smoking,gender,quote,age,firstImage,secondImage,thirdImage,mReligion);
                     infoReadyListener.onReady(previewProfileModel);
                 }
                 else if(status.equalsIgnoreCase("failure")){

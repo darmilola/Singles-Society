@@ -39,6 +39,7 @@
                     android:text="Filter"
                     android:gravity="center"
                     android:textSize="20dp"
+                    android:fontFamily="@font/clannews"
                     android:textColor="@color/colorPrimary"/>
             </LinearLayout>
             <LinearLayout
@@ -54,6 +55,8 @@
                     android:text="Search"
                     android:gravity="center"
                     android:textSize="18dp"
+                    android:fontFamily="@font/clannews"
+                    android:id="@+id/preference_search"
                     android:textColor="@color/light_text_color"/>
             </LinearLayout>
 
@@ -90,6 +93,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:fontFamily="@font/clannews"
                         android:text="Status"
                         android:gravity="center"
                         android:textSize="16dp"
@@ -102,6 +106,7 @@
                         android:gravity="left|center"
                         android:maxLines="1"
                         android:ellipsize="end"
+                        android:fontFamily="@font/clannews"
                         android:id="@+id/status_filter_select_textview"
                         android:textSize="14dp"
                         android:layout_marginLeft="10dp"
@@ -122,6 +127,7 @@
                         android:gravity="center"
                         android:textSize="15dp"
                         android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/clannews"
                         android:textColor="@color/light_text_color"/>
                     <ImageView
                         android:layout_width="24dp"
@@ -154,6 +160,7 @@
                         android:layout_height="match_parent"
                         android:text="Religion"
                         android:gravity="center"
+                        android:fontFamily="@font/clannews"
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
@@ -164,6 +171,7 @@
                         android:gravity="left|center"
                         android:maxLines="1"
                         android:ellipsize="end"
+                        android:fontFamily="@font/clannews"
                         android:id="@+id/religion_filter_select_textview"
                         android:textSize="14dp"
                         android:layout_marginLeft="10dp"
@@ -183,6 +191,7 @@
                         android:text="Select"
                         android:gravity="center"
                         android:textSize="15dp"
+                        android:fontFamily="@font/clannews"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/light_text_color"/>
                     <ImageView
@@ -199,6 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Age Range"
+                android:fontFamily="@font/clannews"
                 android:layout_marginLeft="20dp"
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
@@ -244,6 +254,7 @@
                         android:text="Drinking"
                         android:gravity="center"
                         android:textSize="16dp"
+                        android:fontFamily="@font/clannews"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorPrimary"/>
                     <TextView
@@ -253,6 +264,7 @@
                         android:gravity="left|center"
                         android:maxLines="1"
                         android:ellipsize="end"
+                        android:fontFamily="@font/clannews"
                         android:id="@+id/drinking_filter_select_textview"
                         android:textSize="14dp"
                         android:layout_marginLeft="10dp"
@@ -272,6 +284,7 @@
                         android:text="Select"
                         android:gravity="center"
                         android:textSize="15dp"
+                        android:fontFamily="@font/clannews"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/light_text_color"/>
                     <ImageView
@@ -303,6 +316,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Smoking"
+                        android:fontFamily="@font/clannews"
                         android:gravity="center"
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
@@ -313,6 +327,7 @@
                         android:text="d'ont smoke"
                         android:gravity="left|center"
                         android:maxLines="1"
+                        android:fontFamily="@font/clannews"
                         android:ellipsize="end"
                         android:id="@+id/smoking_filter_select_textview"
                         android:textSize="14dp"
@@ -332,6 +347,7 @@
                         android:layout_height="match_parent"
                         android:text="Select"
                         android:gravity="center"
+                        android:fontFamily="@font/clannews"
                         android:textSize="15dp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/light_text_color"/>

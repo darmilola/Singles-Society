@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 
-import com.aure.PreferenceFilter;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -17,7 +17,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import androidx.preference.PreferenceManager;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -29,24 +29,34 @@ public class MainActivityModel {
     private String baseUrl = new URL().getBaseUrl();
     private String getProfileUrl = baseUrl+"users/search";
     private String getShowProfileUrl = baseUrl+"users/show";
+    private String setMatchUrl = baseUrl+"matches";
+    private String setLikeUrl = baseUrl+"like/user";
     private String userEmail;
     private InfoReadyListener infoReadyListener;
     private ShowcaseInfoReadyListener showcaseInfoReadyListener;
     private ArrayList<PreviewProfileModel> previewProfileModels = new ArrayList<>();
+    private ArrayList<String> likedUserId = new ArrayList<>();
     private Context context;
+    private String userId;
 
     public interface InfoReadyListener{
         void onReady(MainActivityModel mainActivityModel);
         void onError(String message);
     }
     public interface ShowcaseInfoReadyListener{
-        void onReady(ArrayList<PreviewProfileModel> previewProfileModels);
+        void onReady(ArrayList<PreviewProfileModel> previewProfileModels,ArrayList<String> likedUserId);
         void onError(String message);
+        void onEmptyResponse();
     }
 
     public MainActivityModel(Context context){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         userEmail = preferences.getString("userEmail","");
+        this.context = context;
+    }
+
+    public MainActivityModel(String userId,Context context){
+        this.userId = userId;
         this.context = context;
     }
 
@@ -75,10 +85,20 @@ public class MainActivityModel {
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
+
                 if(status.equalsIgnoreCase("success")){
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
+                    JSONArray jsonArray1 = jsonObject.getJSONArray("likes");
+                    if(jsonArray1.length() >= 1) {
+                        for (int j = 0; j < jsonArray1.length(); j++) {
+                            String userId = jsonArray1.getJSONObject(j).getString("userId");
+                            likedUserId.add(userId);
+                        }
+                    }
+
                     for(int i = 0; i < jsonArray.length(); i++) {
                         int age = jsonArray.getJSONObject(i).getInt("age");
+                        String userId = jsonArray.getJSONObject(i).getString("email");
                         String city = jsonArray.getJSONObject(i).getString("city");
                         String mStatus = jsonArray.getJSONObject(i).getString("status");
                         String language = jsonArray.getJSONObject(i).getString("language");
@@ -96,14 +116,14 @@ public class MainActivityModel {
                         String gender = jsonArray.getJSONObject(i).getString("gender");
                         String mReligion = jsonArray.getJSONObject(i).getString("religion");
                         String firstname = jsonArray.getJSONObject(i).getString("firstname");
-                        PreviewProfileModel previewProfileModel = new PreviewProfileModel(firstname, about, mStatus, language, city, occupation, marriageGoals, education, workplace, drinking, smoking, gender, quote, age, firstImage, secondImage, thirdImage, mReligion);
+                        PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname, about, mStatus, language, city, occupation, marriageGoals, education, workplace, drinking, smoking, gender, quote, age, firstImage, secondImage, thirdImage, mReligion);
                         previewProfileModels.add(previewProfileModel);
                     }
-                    showcaseInfoReadyListener.onReady(previewProfileModels);
+                    showcaseInfoReadyListener.onReady(previewProfileModels,likedUserId);
 
                     }
                 else if(status.equalsIgnoreCase("failure")){
-                    showcaseInfoReadyListener.onError("Error Occurred");
+                    showcaseInfoReadyListener.onEmptyResponse();
                 }
                 else{
                     showcaseInfoReadyListener.onError("Error Occurred");
@@ -155,6 +175,7 @@ public class MainActivityModel {
     public void setInfoReadyListener(InfoReadyListener infoReadyListener) {
         this.infoReadyListener = infoReadyListener;
     }
+
 
     public void GetUserInfo(){
         Runnable runnable = () -> {
@@ -239,4 +260,114 @@ public class MainActivityModel {
         }
         return jsonObject.toString();
     }
+
+
+
+    private Handler matchHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(@NotNull Message msg) {
+            Bundle bundle = msg.getData();
+            String response = bundle.getString("response");
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.getString("status");
+                if(status.equalsIgnoreCase("success")){
+
+                }
+                else if(status.equalsIgnoreCase("failure")){
+
+                }
+                else{
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+
+    public void setLiked(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildSetLikeInfo(this.userId));
+            Request request = new Request.Builder()
+                    .url(setLikeUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = matchHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            matchHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+
+    }
+
+    public void setMatched(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildSetMatchInfo(this.userId));
+            Request request = new Request.Builder()
+                    .url(setMatchUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = matchHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            matchHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+
+    }
+
+
+    private String buildSetLikeInfo(String likedUserId){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("userId",preferences.getString("userEmail",""));
+            jsonObject.put("likedUserId",likedUserId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+
+    private String buildSetMatchInfo(String likedUserId){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("userId",preferences.getString("userEmail",""));
+            jsonObject.put("matchId",likedUserId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+
 }

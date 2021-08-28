@@ -16,7 +16,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
         android:weightSum="5"
         android:gravity="center|left">
         <LinearLayout
@@ -28,9 +27,10 @@
                 android:layout_height="35dp"
                 android:layout_alignParentLeft="true"
                 android:rotation="180"
-                android:layout_marginLeft="20sp"
+                android:layout_marginLeft="10dp"
                 android:tint="@color/colorPrimary"
                 android:layout_marginTop="5dp"
+                android:layout_gravity="center|left"
                 android:id="@+id/matches_back_button"
                 android:src="@drawable/ic_iconfinder_chevron_right_4781843"/>
 
@@ -39,16 +39,17 @@
 
         <LinearLayout
             android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="match_parent"
             android:layout_weight="3">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="Your Matches"
                 android:textSize="18dp"
                 android:gravity="center"
-                android:fontFamily="@font/airsemi"
+                android:layout_gravity="center"
+                android:fontFamily="@font/airreg"
                 android:textColor="@color/colorPrimary"/>
         </LinearLayout>
 
@@ -57,15 +58,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="right">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:tint="@color/colorPrimary"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_iconfinder___magnifier_search_zoom__3844467"/>
 
         </LinearLayout>
 

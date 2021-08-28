@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MetMatchPage"
+    android:id="@+id/met_match_root"
     android:background="@color/special_activity_background"
     android:orientation="vertical"
     android:gravity="center">
@@ -24,9 +25,12 @@
          android:layout_height="wrap_content"
          android:layout_marginLeft="30dp"
          android:layout_marginRight="30dp"
+         android:id="@+id/met_match_text"
          android:text="You and Jacques have matched each other"
          android:textSize="16dp"
-         android:textColor="@color/colorPrimary"
+         android:maxLines="1"
+         android:ellipsize="end"
+         android:textColor="@color/dark_text_color"
          android:fontFamily="@font/clannews"/>
 
     <FrameLayout
@@ -47,18 +51,23 @@
             fresco:placeholderImageScaleType="fitXY"
             fresco:roundedCornerRadius="3dp"
             fresco:roundAsCircle="true"
+            fresco:roundingBorderWidth="2dp"
+            fresco:roundingBorderColor="@color/special_activity_background"
             fresco:placeholderImage="@drawable/profileplaceholder" />
 
         <com.facebook.drawee.view.SimpleDraweeView
             xmlns:fresco = "http://schemas.android.com/apk/res-auto"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:layout_marginLeft="45dp"
+            android:layout_marginLeft="25dp"
             android:layout_gravity="center"
             fresco:placeholderImageScaleType="fitXY"
             fresco:roundedCornerRadius="3dp"
             fresco:roundAsCircle="true"
-            fresco:placeholderImage="@drawable/profileplaceholder" />
+            fresco:roundingBorderWidth="2dp"
+            fresco:roundingBorderColor="@color/special_activity_background"
+            fresco:placeholderImage="@drawable/profileplaceholder"/>
+
     </FrameLayout>
 
 
@@ -71,7 +80,7 @@
         android:text="Send Message"
         app:backgroundTint="@color/pinkypinky"
         app:cornerRadius="23dp"
-        android:id="@+id/signup_with_email_button"
+        android:id="@+id/met_match_send_message"
         android:textAllCaps="false"
         android:textSize="17dp"/>
 </LinearLayout>

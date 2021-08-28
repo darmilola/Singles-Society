@@ -5,20 +5,11 @@
     android:layout_height="110dp"
     android:layout_marginLeft="10dp">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        xmlns:fresco = "http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="5dp"
-        fresco:actualImageScaleType="centerCrop"
-        android:layout_gravity="center"
-        fresco:roundingBorderWidth="0.5dp"
-        android:src="@drawable/lady2"
-        fresco:roundingBorderColor="@color/green"
-        fresco:roundAsCircle="true"
-        android:id="@+id/direct_message_sender_profile_image"
-        fresco:placeholderImage="@drawable/lady1"
-        fresco:placeholderImageScaleType="centerCrop"/>
+        android:id="@+id/message_connection_sender_profile_image"
+        android:src="@drawable/profileplaceholder"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,6 +20,6 @@
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:textSize="16dp"
-        android:fontFamily="@font/airsemi"
-        android:textColor="@color/colorPrimary"/>
+        android:fontFamily="@font/airreg"
+        android:textColor="@color/dark_text_color"/>
 </LinearLayout>
