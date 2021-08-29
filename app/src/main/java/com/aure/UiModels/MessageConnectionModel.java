@@ -36,9 +36,10 @@ public class MessageConnectionModel {
     private String userEmail;
     private ConnectionListener connectionListener;
     private ArrayList<MessageConnectionModel> messageConnectionModelArrayList = new ArrayList<>();
+    private ArrayList<MatchesModel> matchesModelArrayList = new ArrayList<>();
 
     public interface ConnectionListener{
-        void onConnectionReady(ArrayList<MessageConnectionModel> messageConnectionModels);
+        void onConnectionReady(ArrayList<MessageConnectionModel> messageConnectionModels,ArrayList<MatchesModel> matchesModelArrayList);
         void onConnectionEmpty(String message);
     }
 
@@ -112,43 +113,55 @@ public class MessageConnectionModel {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
                 if(status.equalsIgnoreCase("success")){
-                    JSONArray data = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < data.length(); i++){
-                        String senderId = data.getJSONObject(i).getString("senderId");
-                        String receiverId = data.getJSONObject(i).getString("receiverId");
-                        String lastMessage = data.getJSONObject(i).getString("lastMessage");
-                        int unreadCount = data.getJSONObject(i).getInt("unreadCount");
-                        String senderFirstname = data.getJSONObject(i).getString("senderFirstname");
-                        String senderLastname = data.getJSONObject(i).getString("senderLastname");
-                        String receiverFirstname = data.getJSONObject(i).getString("receiverFirstname");
-                        String receiverLastname = data.getJSONObject(i).getString("receiverLastname");
-                        String senderPicture = data.getJSONObject(i).getString("senderPicture");
-                        String receiverPicture = data.getJSONObject(i).getString("receiverPicture");
-                        String timestamp = data.getJSONObject(i).getString("timestamp");
-                        String mReceiverFirstname,mReceiverLastname,mReceiverPicture,mReceiverId;
-                        if(MessageConnectionModel.this.userEmail.equalsIgnoreCase(senderId)){
-                               mReceiverFirstname = receiverFirstname;
-                               mReceiverLastname = receiverLastname;
-                               mReceiverPicture = receiverPicture;
-                               mReceiverId = receiverId;
+                    JSONArray data = jsonObject.getJSONArray("connections");
+                    JSONArray jsonArray1 = jsonObject.getJSONArray("likes");
+                    if(jsonArray1.length() >= 1) {
+                        for (int j = 0; j < jsonArray1.length(); j++) {
+                            String userId = jsonArray1.getJSONObject(j).getString("matchId");
+                            String userFirstname = jsonArray1.getJSONObject(j).getString("firstname");
+                            String userLastname = jsonArray1.getJSONObject(j).getString("lastname");
+                            String userProfileImage = jsonArray1.getJSONObject(j).getString("profileImage");
+                            MatchesModel matchesModel = new MatchesModel(userId, userFirstname, userLastname, userProfileImage);
+                            matchesModelArrayList.add(matchesModel);
                         }
-                        else{
-                               mReceiverFirstname = senderFirstname;
-                               mReceiverLastname = senderLastname;
-                               mReceiverPicture = senderPicture;
-                               mReceiverId = senderId;
-                        }
-                        MessageConnectionModel messageConnectionModel = new MessageConnectionModel(mReceiverFirstname,mReceiverLastname,mReceiverPicture,mReceiverId,lastMessage,timestamp,unreadCount,senderId,receiverId);
-                        messageConnectionModelArrayList.add(messageConnectionModel);
                     }
-                    connectionListener.onConnectionReady(messageConnectionModelArrayList);
+                    if(data.length() >= 1) {
+                        for (int i = 0; i < data.length(); i++) {
+                            String senderId = data.getJSONObject(i).getString("senderId");
+                            String receiverId = data.getJSONObject(i).getString("receiverId");
+                            String lastMessage = data.getJSONObject(i).getString("lastMessage");
+                            int unreadCount = data.getJSONObject(i).getInt("unreadCount");
+                            String senderFirstname = data.getJSONObject(i).getString("senderFirstname");
+                            String senderLastname = data.getJSONObject(i).getString("senderLastname");
+                            String receiverFirstname = data.getJSONObject(i).getString("receiverFirstname");
+                            String receiverLastname = data.getJSONObject(i).getString("receiverLastname");
+                            String senderPicture = data.getJSONObject(i).getString("senderPicture");
+                            String receiverPicture = data.getJSONObject(i).getString("receiverPicture");
+                            String timestamp = data.getJSONObject(i).getString("timestamp");
+                            String mReceiverFirstname, mReceiverLastname, mReceiverPicture, mReceiverId;
+                            if (MessageConnectionModel.this.userEmail.equalsIgnoreCase(senderId)) {
+                                mReceiverFirstname = receiverFirstname;
+                                mReceiverLastname = receiverLastname;
+                                mReceiverPicture = receiverPicture;
+                                mReceiverId = receiverId;
+                            } else {
+                                mReceiverFirstname = senderFirstname;
+                                mReceiverLastname = senderLastname;
+                                mReceiverPicture = senderPicture;
+                                mReceiverId = senderId;
+                            }
+                            MessageConnectionModel messageConnectionModel = new MessageConnectionModel(mReceiverFirstname, mReceiverLastname, mReceiverPicture, mReceiverId, lastMessage, timestamp, unreadCount, senderId, receiverId);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                        }
+                    }
+                    connectionListener.onConnectionReady(messageConnectionModelArrayList,matchesModelArrayList);
                 }
                 else{
                     connectionListener.onConnectionEmpty("No Messages");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                connectionListener.onConnectionEmpty("Error Occurred please try again");
+                connectionListener.onConnectionEmpty(e.getLocalizedMessage());
             }
         }
     };

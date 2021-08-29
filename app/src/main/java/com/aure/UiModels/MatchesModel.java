@@ -2,17 +2,32 @@ package com.aure.UiModels;
 
 public class MatchesModel {
 
-    private int type;
+    private String userId;
+    private String userFirstname;
+    private String userLastname;
+    private String userImageUrl;
 
-    public MatchesModel(int type){
-        this.type = type;
+    public MatchesModel(String userId, String userFirstname, String userLastname, String userImageUrl){
+        this.userId = userId;
+        this.userFirstname = userFirstname;
+        this.userLastname = userLastname;
+        this.userImageUrl = userImageUrl;
     }
 
-    public int getType() {
-        return type;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public String getUserImageUrl() {
+        return userImageUrl;
     }
+
+    public String getUserLastname() {
+        return userLastname;
+    }
+
+    public String getUserFirstname() {
+        return userFirstname;
+    }
+
 }

@@ -18,7 +18,7 @@
         <clip>
             <shape>
                 <corners android:radius="1dp"/>
-                <solid android:color="@color/toolbar_light_primary"/>
+                <solid android:color="@color/light_primary"/>
             </shape>
         </clip>
     </item>
