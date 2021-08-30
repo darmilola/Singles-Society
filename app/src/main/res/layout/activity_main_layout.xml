@@ -42,14 +42,12 @@
                         android:layout_marginTop="40dp"
                         android:orientation="horizontal">
 
-                        <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="90dp"
                             android:layout_height="90dp"
-                            android:layout_gravity="center|bottom"
-                            fresco:actualImageScaleType="fitXY"
-                            fresco:placeholderImage="@drawable/lady2"
-                            fresco:placeholderImageScaleType="centerCrop"
-                            fresco:roundAsCircle="true"/>
+                            android:id="@+id/main_profile_imageview"
+                            android:src="@drawable/profileplaceholder"/>
+
                     </LinearLayout>
 
 
@@ -217,7 +215,7 @@
                             android:layout_marginLeft="20dp"
                             android:fontFamily="@font/clannews"
                             android:gravity="center|left"
-                            android:text="Complete Profile"
+                            android:text="Preferences"
                             android:textColor="#201D1D"
                             android:textSize="16dp" />
                     </LinearLayout>

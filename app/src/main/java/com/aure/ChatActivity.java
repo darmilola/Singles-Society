@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ChatActivity  extends AppCompatActivity   implements MessageInput.InputListener,
+public class ChatActivity  extends AppCompatActivity  implements MessageInput.InputListener,
         MessageInput.AttachmentsListener,
         MessageInput.TypingListener,
         MessagesListAdapter.OnLoadMoreListener {
@@ -97,9 +98,9 @@ public class ChatActivity  extends AppCompatActivity   implements MessageInput.I
     }
 
     private void performHttpRequest() {
+
         chatModel = new ChatModel(senderId, receiverId);
         chatModel.updateCaughtUp();
-
         ChatModel chatModel1 = new ChatModel(senderId, receiverId, senderId, receiverImageUrl);
         chatModel1.getDirectMessages();
         chatModel1.setChatGetMessageListener(new ChatModel.ChatGetMessageListener() {
@@ -108,8 +109,8 @@ public class ChatActivity  extends AppCompatActivity   implements MessageInput.I
                 messagesAdapter.addToEnd(messageArrayList, true);
                 totalMessageCount = total;
                 mNextPageUrl = nextPageUrl;
+                Log.e( "onMessageReady: ",mNextPageUrl);
             }
-
             @Override
             public void onError(String message) {
                 Toast.makeText(ChatActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -170,7 +171,7 @@ public class ChatActivity  extends AppCompatActivity   implements MessageInput.I
 
     @Override
     public void onLoadMore(int page, int totalItemsCount) {
-        if (totalItemsCount < totalMessageCount) {
+        if (totalMessageCount > messagesAdapter.getMessagesCount()) {
             ChatModel chatModel1 = new ChatModel(senderId, receiverId, senderId, receiverImageUrl);
             chatModel1.getDirectMessagesNextPage(mNextPageUrl);
             chatModel1.setChatGetMessageListener(new ChatModel.ChatGetMessageListener() {
@@ -179,13 +180,16 @@ public class ChatActivity  extends AppCompatActivity   implements MessageInput.I
                     messagesAdapter.addToEnd(messageArrayList, true);
                     totalMessageCount = total;
                     mNextPageUrl = nextPageUrl;
-                }
 
+                }
                 @Override
                 public void onError(String message) {
                     Toast.makeText(ChatActivity.this, message, Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+        else{
+
         }
     }
 

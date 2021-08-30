@@ -1,6 +1,7 @@
 package com.aure;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +9,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 import android.content.Intent;
@@ -33,7 +35,13 @@ import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.ShowCaseMainModel;
 import com.aure.UiModels.ShowCaseModel;
 import com.aure.UiModels.ShowcaseMetadata;
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
@@ -57,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     CardView leftSwipeCard,rightSwipeCard;
     ActionBarDrawerToggle drawerToggle;
     DrawerLayout drawerLayout;
+    CircleImageView profileImageView;
     Toolbar toolbar;
     FrameLayout mainView;
     ProgressBar progressBar;
@@ -70,13 +79,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout inviteAFriend;
     LinearLayout helpDesk;
     LinearLayout logOut;
-    MaterialButton changePreference,visitMarketplace;
+    MaterialButton changePreference,visitMarketplace,completeProfileStartChatting;
     RelativeLayout swipeToolRoot;
     ArrayList<String> likedUserId = new ArrayList<>();
     ArrayList<PreviewProfileModel> previewProfileModels = new ArrayList<>();
     String currentlyDisplayedUserId;
     boolean isRightSwipe = false;
-    LinearLayout metMatchRoot;
+    LinearLayout metMatchRoot,completeProfileRoot;
 
 
     @Override
@@ -88,12 +97,15 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     }
 
     private void initView(){
+        profileImageView = findViewById(R.id.main_profile_imageview);
         swipeToolRoot = findViewById(R.id.showcase_swipe_layout);
         changePreference = findViewById(R.id.empty_search_change_preference);
         visitMarketplace = findViewById(R.id.caught_up_visit_marketplace);
         emptyLayoutRoot = findViewById(R.id.empty_layout_root);
         activityCaughtUpRoot = findViewById(R.id.caught_up_root);
         metMatchRoot = findViewById(R.id.met_match_root);
+        completeProfileRoot = findViewById(R.id.complete_profile_prompt_root);
+        completeProfileStartChatting = findViewById(R.id.main_complete_profile_start_chatting);
         String userEmail = getIntent().getStringExtra("email");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         preferences.edit().putString("userEmail",userEmail).apply();
@@ -106,6 +118,23 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         completeProfile = findViewById(R.id.complete_profile);
         filterProfile = findViewById(R.id.filter_layout);
         takeAction = findViewById(R.id.showcase_take_action);
+
+
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logOut();
+            }
+        });
+
+
+        completeProfileStartChatting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CompleteProfile.class));
+            }
+        });
 
         visitMarketplace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         inviteAFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CompleteProfilePrompt.class));
+
             }
         });
 
@@ -255,7 +284,18 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
             @Override
             public void onReady(MainActivityModel mainActivityModel) {
-               ParseUserResponse(mainActivityModel);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                preferences.edit().putString("firstname",mainActivityModel.getFirstname()).apply();
+                preferences.edit().putString("lastname",mainActivityModel.getLastname()).apply();
+                preferences.edit().putString("imageUrl",mainActivityModel.getImageUrl()).apply();
+
+                Glide.with(MainActivity.this)
+                        .load(mainActivityModel.getImageUrl())
+                        .placeholder(R.drawable.profileplaceholder)
+                        .error(R.drawable.profileplaceholder)
+                        .into(profileImageView);
+
+                ParseUserResponse(mainActivityModel);
             }
             @Override
             public void onError(String message) {
@@ -266,9 +306,16 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     }
     private void ParseUserResponse(MainActivityModel mainActivityModel){
         if(mainActivityModel.getIsProfileCompleted().equalsIgnoreCase("false")){
-            Intent intent = new Intent(MainActivity.this,CompleteProfilePrompt.class);
-            startActivity(intent);
-            finish();
+            emptyLayoutRoot.setVisibility(View.GONE);
+            completeProfileRoot.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+            activityCaughtUpRoot.setVisibility(View.GONE);
+            mainView.setVisibility(View.VISIBLE);
+            activityCaughtUpRoot.setVisibility(View.GONE);
+            userShowcaseStack.setVisibility(View.GONE);
+            swipeToolRoot.setVisibility(View.GONE);
+            takeAction.setVisibility(View.GONE);
+            metMatchRoot.setVisibility(View.GONE);
         }
         else{
             MainActivityModel mainActivityModel2 = new MainActivityModel(MainActivity.this);
@@ -379,7 +426,28 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     }
 
 
+    private void logOut(){
+        GoogleSignInClient mSignInClient;
+        GoogleSignInOptions options =
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().requestProfile()
+                        .build();
+        mSignInClient = GoogleSignIn.getClient(this, options);
+        mSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
+                        finish();
+                    }
+                });
 
+    }
+
+
+    @Override
+    public void onBackPressed(){
+
+    }
 
     @Override
     public void onResume() {

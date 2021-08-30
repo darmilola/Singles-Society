@@ -60,26 +60,25 @@ public class MatchesActivity extends AppCompatActivity {
         matchesRecyclerview = findViewById(R.id.matches_recyclerview);
         matchesView = findViewById(R.id.matches_messages_view);
 
-        LinearLayoutManager matchesManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        LinearLayoutManager messagesManger = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-
-        messagesRecyclerview.setLayoutManager(messagesManger);
-        matchesRecyclerview.setLayoutManager(matchesManager);
-
         MessageConnectionModel messageConnectionModel = new MessageConnectionModel(userEmail,MatchesActivity.this);
 
         messageConnectionModel.getConnection();
         messageConnectionModel.setConnectionListener(new MessageConnectionModel.ConnectionListener() {
             @Override
             public void onConnectionReady(ArrayList<MessageConnectionModel> messageConnectionModels, ArrayList<MatchesModel> matchesModelArrayList) {
-                messagesAdapter = new MessagesAdapter(MatchesActivity.this,messagesList);
-                matchesAdapter = new MatchesAdapter(MatchesActivity.this,matchesList);
+                messagesAdapter = new MessagesAdapter(MatchesActivity.this,messageConnectionModels);
+                matchesAdapter = new MatchesAdapter(MatchesActivity.this,matchesModelArrayList);
                 messagesRecyclerview.setAdapter(messagesAdapter);
                 matchesRecyclerview.setAdapter(matchesAdapter);
+                LinearLayoutManager matchesManager = new LinearLayoutManager(MatchesActivity.this,LinearLayoutManager.HORIZONTAL,false);
+                LinearLayoutManager messagesManger = new LinearLayoutManager(MatchesActivity.this,LinearLayoutManager.VERTICAL,false);
+                messagesRecyclerview.setLayoutManager(messagesManger);
+                matchesRecyclerview.setLayoutManager(matchesManager);
                 progressBar.setVisibility(View.GONE);
                 matchesRoot.setVisibility(View.VISIBLE);
                 matchesRecyclerview.setVisibility(View.VISIBLE);
                 messagesRecyclerview.setVisibility(View.VISIBLE);
+                noMessages.setVisibility(View.GONE);
                 Toast.makeText(MatchesActivity.this, "here", Toast.LENGTH_SHORT).show();
 
                 if(matchesModelArrayList.size() < 1){
@@ -100,6 +99,7 @@ public class MatchesActivity extends AppCompatActivity {
                     matchesView.setVisibility(View.VISIBLE);
                     noMessages.setVisibility(View.VISIBLE);
                     messagesRecyclerview.setVisibility(View.GONE);
+                    matchesRecyclerview.setVisibility(View.VISIBLE);
                 }
             }
 

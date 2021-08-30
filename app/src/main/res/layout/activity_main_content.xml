@@ -98,6 +98,7 @@
         <include layout="@layout/emptyfilter_layout"/>
         <include layout="@layout/activity_caught_up"/>
         <include layout="@layout/activity_met_match_page"/>
+        <include layout="@layout/activity_complete_profile_prompt"/>
     </LinearLayout>
 
 

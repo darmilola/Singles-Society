@@ -107,6 +107,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
                 intent.putExtra("email",userEmail);
                 startActivity(intent);
+                finish();
             }
 
             @Override

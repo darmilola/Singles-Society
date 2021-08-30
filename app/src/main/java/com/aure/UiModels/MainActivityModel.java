@@ -25,7 +25,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivityModel {
-    private String isProfileCompleted,isSubscribed;
+    private String isProfileCompleted,isSubscribed,firstname,lastname,imageUrl;
     private String baseUrl = new URL().getBaseUrl();
     private String getProfileUrl = baseUrl+"users/search";
     private String getShowProfileUrl = baseUrl+"users/show";
@@ -60,9 +60,12 @@ public class MainActivityModel {
         this.context = context;
     }
 
-    public MainActivityModel(String isProfileCompleted, String isSubscribed){
+    public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl){
            this.isProfileCompleted = isProfileCompleted;
            this.isSubscribed = isSubscribed;
+           this.firstname = firstname;
+           this.lastname = lastname;
+           this.imageUrl = imageUrl;
     }
 
     public String getIsProfileCompleted() {
@@ -71,6 +74,18 @@ public class MainActivityModel {
 
     public String getIsSubscribed() {
         return isSubscribed;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getLastname() {
+        return lastname;
     }
 
     public void setShowcaseInfoReadyListener(ShowcaseInfoReadyListener showcaseInfoReadyListener) {
@@ -151,11 +166,13 @@ public class MainActivityModel {
                     String isSubscribed = jsonArray.getJSONObject(0).getString("isSubscribed");
                     String isProfileCompleted = jsonArray.getJSONObject(0).getString("isProfileCompleted");
                     String gender = jsonArray.getJSONObject(0).getString("gender");
-
+                    String firstname = jsonArray.getJSONObject(0).getString("firstname");
+                    String lastname = jsonArray.getJSONObject(0).getString("lastname");
+                    String imageUrl = jsonArray.getJSONObject(0).getString("profileImage");
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
                     preferences.edit().putString("gender",gender).apply();
 
-                    MainActivityModel mainActivityModel = new MainActivityModel(isProfileCompleted,isSubscribed);
+                    MainActivityModel mainActivityModel = new MainActivityModel(isProfileCompleted,isSubscribed,firstname,lastname,imageUrl);
                     infoReadyListener.onReady(mainActivityModel);
                 }
                 else if(status.equalsIgnoreCase("failure")){

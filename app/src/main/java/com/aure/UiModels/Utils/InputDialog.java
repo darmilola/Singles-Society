@@ -2,6 +2,7 @@ package com.aure.UiModels.Utils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -29,7 +30,7 @@ public class InputDialog {
         this.dialogActionClickListener = dialogActionClickListener;
     }
 
-    public InputDialog(Context context, String title,String oldText){
+    public InputDialog(Context context, String title,String oldText,int maxLength){
         inputDialog = new Dialog(context);
         inputDialog.setCancelable(false);
         this.mContext = context;
@@ -40,6 +41,7 @@ public class InputDialog {
         save = inputDialog.findViewById(R.id.input_dialog_save);
         dialogTitle.setText(title);
         typeHere.setText(oldText);
+        typeHere.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

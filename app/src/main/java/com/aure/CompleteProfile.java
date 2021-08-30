@@ -43,7 +43,6 @@ public class CompleteProfile extends AppCompatActivity {
     ProgressBar progressBar;
     CompleteProfileModel completeProfileModel;
     ImageView image1,image2,image3;
-    MaterialButton upload1,upload2,upload3;
     ArrayList<String> maritalItems = new ArrayList<>();
     ArrayList<String> languageItems = new ArrayList<>();
     ArrayList<String> goalsItems = new ArrayList<>();
@@ -52,7 +51,7 @@ public class CompleteProfile extends AppCompatActivity {
     ArrayList<String> smokingItems = new ArrayList<>();
     ArrayList<String> genderItems = new ArrayList<>();
     ArrayList<String> religionItem = new ArrayList<>();
-
+    LinearLayout image1Select,image2Select,image3Select;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +60,9 @@ public class CompleteProfile extends AppCompatActivity {
     }
 
     private void initView(){
+        image1Select = findViewById(R.id.first_display_image_select);
+        image2Select = findViewById(R.id.second_display_image_select);
+        image3Select = findViewById(R.id.third_display_image_select);
         rootLayout = findViewById(R.id.complete_profile_root_layout);
         progressBar = findViewById(R.id.complete_profile_progress);
         religionSelect = findViewById(R.id.profile_religion_select);
@@ -94,9 +96,6 @@ public class CompleteProfile extends AppCompatActivity {
         image1 = findViewById(R.id.first_image_view);
         image2 = findViewById(R.id.second_image_view);
         image3 = findViewById(R.id.third_image_view);
-        upload1 = findViewById(R.id.first_image_upload);
-        upload2 = findViewById(R.id.second_image_upload);
-        upload3 = findViewById(R.id.third_image_upload);
         populateItems();
 
         completeProfileModel = new CompleteProfileModel(CompleteProfile.this);
@@ -273,7 +272,7 @@ public class CompleteProfile extends AppCompatActivity {
         aboutSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"About Me",aboutTextView.getText().toString());
+                inputDialog = new InputDialog(CompleteProfile.this,"About Me",aboutTextView.getText().toString(),300);
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -358,7 +357,7 @@ public class CompleteProfile extends AppCompatActivity {
         citySelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"City",aboutTextView.getText().toString());
+                inputDialog = new InputDialog(CompleteProfile.this,"City",cityTextview.getText().toString(),20);
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -392,7 +391,7 @@ public class CompleteProfile extends AppCompatActivity {
         occupationSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"Occupation",aboutTextView.getText().toString());
+                inputDialog = new InputDialog(CompleteProfile.this,"Occupation",occupationTextview.getText().toString(),70);
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -482,7 +481,7 @@ public class CompleteProfile extends AppCompatActivity {
         workplaceSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"Workplace",aboutTextView.getText().toString());
+                inputDialog = new InputDialog(CompleteProfile.this,"Workplace",workplaceTextview.getText().toString(),60);
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -600,7 +599,7 @@ public class CompleteProfile extends AppCompatActivity {
         quoteSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"Quote",aboutTextView.getText().toString());
+                inputDialog = new InputDialog(CompleteProfile.this,"Quote",quoteTextview.getText().toString(),200);
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -656,7 +655,7 @@ public class CompleteProfile extends AppCompatActivity {
             }
         });
 
-        upload1.setOnClickListener(new View.OnClickListener() {
+        image1Select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -665,7 +664,7 @@ public class CompleteProfile extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_1);
             }
         });
-        upload2.setOnClickListener(new View.OnClickListener() {
+        image2Select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -674,7 +673,7 @@ public class CompleteProfile extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_2);
             }
         });
-        upload3.setOnClickListener(new View.OnClickListener() {
+        image3Select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();

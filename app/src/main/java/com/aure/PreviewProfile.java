@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aure.UiAdapters.ViewProfileAdapter;
@@ -32,6 +33,7 @@ public class PreviewProfile extends AppCompatActivity {
     ArrayList<String> aboutTextStrings = new ArrayList<>();
     ArrayList<String> imageStrings = new ArrayList<>();
     ArrayList<String> goalStrings = new ArrayList<>();
+    TextView search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +44,21 @@ public class PreviewProfile extends AppCompatActivity {
 
     private void initView(){
 
+        search = findViewById(R.id.preview_profile_search);
         progressBar = findViewById(R.id.preview_profile_progress);
         recyclerView = findViewById(R.id.preview_recycerview);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new RecyclerViewPagerIndicator(this));
+
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
 
         PreviewProfileModel previewProfileModel = new PreviewProfileModel(PreviewProfile.this);
         previewProfileModel.GetUserInfo();

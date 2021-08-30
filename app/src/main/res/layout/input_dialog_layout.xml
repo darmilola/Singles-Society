@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="270dp"
         app:cardCornerRadius="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardElevation="1dp">
@@ -33,12 +33,11 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center|left"
+            android:layout_height="100dp"
             android:hint="Type here..."
             android:paddingLeft="10dp"
             android:layout_marginTop="10dp"
-            android:maxLines="1"
+            android:maxLines="2"
             android:inputType="text"
             android:maxLength="300"
             android:id="@+id/input_dialog_type_here"

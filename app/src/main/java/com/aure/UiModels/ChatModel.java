@@ -249,13 +249,12 @@ public class ChatModel {
                     }
                     chatGetMessageListener.onMessageReady(messageArrayList,mNextPageUrl,total);
                 }
-
                 else if(status.equalsIgnoreCase("failure")){
                      chatGetMessageListener.onError("No Message Available");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                    chatGetMessageListener.onError("Error occurred please try again");
+                    chatGetMessageListener.onError(e.getMessage());
             }
         }
     };

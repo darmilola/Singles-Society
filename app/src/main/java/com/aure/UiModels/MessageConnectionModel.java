@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -114,13 +115,13 @@ public class MessageConnectionModel {
                 String status = jsonObject.getString("status");
                 if(status.equalsIgnoreCase("success")){
                     JSONArray data = jsonObject.getJSONArray("connections");
-                    JSONArray jsonArray1 = jsonObject.getJSONArray("likes");
-                    if(jsonArray1.length() >= 1) {
-                        for (int j = 0; j < jsonArray1.length(); j++) {
-                            String userId = jsonArray1.getJSONObject(j).getString("matchId");
-                            String userFirstname = jsonArray1.getJSONObject(j).getString("firstname");
-                            String userLastname = jsonArray1.getJSONObject(j).getString("lastname");
-                            String userProfileImage = jsonArray1.getJSONObject(j).getString("profileImage");
+                    JSONArray likes = jsonObject.getJSONArray("likes");
+                    if(likes.length() >= 1) {
+                        for (int j = 0; j < likes.length(); j++) {
+                            String userId = likes.getJSONObject(j).getString("matchId");
+                            String userFirstname = likes.getJSONObject(j).getString("firstname");
+                            String userLastname = likes.getJSONObject(j).getString("lastname");
+                            String userProfileImage = likes.getJSONObject(j).getString("profileImage");
                             MatchesModel matchesModel = new MatchesModel(userId, userFirstname, userLastname, userProfileImage);
                             matchesModelArrayList.add(matchesModel);
                         }
@@ -154,6 +155,7 @@ public class MessageConnectionModel {
                             messageConnectionModelArrayList.add(messageConnectionModel);
                         }
                     }
+                    Log.e(String.valueOf(messageConnectionModelArrayList.size()), " handleMessage: ");
                     connectionListener.onConnectionReady(messageConnectionModelArrayList,matchesModelArrayList);
                 }
                 else{
