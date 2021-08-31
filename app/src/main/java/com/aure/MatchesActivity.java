@@ -38,8 +38,7 @@ public class MatchesActivity extends AppCompatActivity {
     MatchesAdapter matchesAdapter;
     LinearLayout matchesRoot;
     ProgressBar progressBar;
-    TextView noMessages,messagesText;
-    View matchesView;
+    TextView noMessages;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +54,8 @@ public class MatchesActivity extends AppCompatActivity {
         matchesRoot = findViewById(R.id.matches_root);
         progressBar = findViewById(R.id.matches_progressbar);
         noMessages = findViewById(R.id.matches_no_messages);
-        messagesText = findViewById(R.id.matches_messsges_text);
         messagesRecyclerview = findViewById(R.id.messages_recyclerview);
         matchesRecyclerview = findViewById(R.id.matches_recyclerview);
-        matchesView = findViewById(R.id.matches_messages_view);
 
         MessageConnectionModel messageConnectionModel = new MessageConnectionModel(userEmail,MatchesActivity.this);
 
@@ -84,8 +81,6 @@ public class MatchesActivity extends AppCompatActivity {
                 if(matchesModelArrayList.size() < 1){
                     matchesRoot.setVisibility(View.GONE);
                     progressBar.setVisibility(View.GONE);
-                    messagesText.setVisibility(View.GONE);
-                    matchesView.setVisibility(View.GONE);
                     noMessages.setVisibility(View.VISIBLE);
                     matchesRecyclerview.setVisibility(View.GONE);
                     messagesRecyclerview.setVisibility(View.GONE);
@@ -95,8 +90,6 @@ public class MatchesActivity extends AppCompatActivity {
                else if(messageConnectionModels.size() < 1){
                     matchesRoot.setVisibility(View.GONE);
                     progressBar.setVisibility(View.GONE);
-                    messagesText.setVisibility(View.GONE);
-                    matchesView.setVisibility(View.VISIBLE);
                     noMessages.setVisibility(View.VISIBLE);
                     messagesRecyclerview.setVisibility(View.GONE);
                     matchesRecyclerview.setVisibility(View.VISIBLE);
@@ -107,8 +100,6 @@ public class MatchesActivity extends AppCompatActivity {
             public void onConnectionEmpty(String message) {
                  matchesRoot.setVisibility(View.VISIBLE);
                  progressBar.setVisibility(View.GONE);
-                 messagesText.setVisibility(View.GONE);
-                 matchesView.setVisibility(View.GONE);
                  noMessages.setVisibility(View.VISIBLE);
                  messagesRecyclerview.setVisibility(View.GONE);
                  matchesRecyclerview.setVisibility(View.GONE);
@@ -123,14 +114,11 @@ public class MatchesActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
-            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.special_activity_background));
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS );
-            //getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.white));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        }
+          }
     }
 
 }

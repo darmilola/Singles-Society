@@ -119,5 +119,5 @@
         android:layout_height="0.8dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="7dp"
-        android:background="#DDDCDC" />
+        android:background="#F1F1F1" />
 </LinearLayout>

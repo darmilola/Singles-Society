@@ -1,8 +1,8 @@
 <resources>
     <dimen name="input_button_width">36dp</dimen>
     <dimen name="input_button_height">36dp</dimen>
-    <dimen name="input_attach_button_width">27dp</dimen>
-    <dimen name="input_attach_button_height">27dp</dimen>
+    <dimen name="input_attach_button_width">32dp</dimen>
+    <dimen name="input_attach_button_height">32dp</dimen>
     <dimen name="input_button_margin">16dp</dimen>
     <dimen name="input_text_size">17sp</dimen>
     <dimen name="input_padding_left">16sp</dimen>

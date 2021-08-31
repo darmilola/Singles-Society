@@ -9,6 +9,7 @@ import io.socket.emitter.Emitter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.aure.ChatKit.messages.MessagesListAdapter;
 import com.aure.UiModels.ChatModel;
 import com.aure.UiModels.Message;
 import com.aure.UiModels.User;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.text.StringEscapeUtils;
@@ -62,9 +64,11 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
     protected MessagesListAdapter<Message> messagesAdapter;
     private Socket mSocket;
     private MessagesList messagesList;
-    private TextView chatActivityHeader;
     private ChatModel chatModel;
     private String imageString;
+    private TextView receiverDisplayName;
+    ImageView receiverImageView;
+    TextView chatStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         senderFirstname = preferences.getString("firstname", "");
         senderLastname = preferences.getString("lastname", "");
         senderImageUrl = preferences.getString("imageUrl", "");
+        chatStatus = findViewById(R.id.chat_receiver_status);
         Intent intent = getIntent();
         this.messagesList = (MessagesList) findViewById(R.id.messagesList);
         MessageInput input = (MessageInput) findViewById(R.id.input);
@@ -89,8 +94,16 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         receiverLastname = intent.getStringExtra("receiverLastname");
         receiverImageUrl = intent.getStringExtra("receiverImageUrl");
         senderId = preferences.getString("userEmail", "");
-        chatActivityHeader = findViewById(R.id.chat_activity_header);
-        chatActivityHeader.setText(receiverFirstname + " " + receiverLastname);
+        receiverDisplayName = findViewById(R.id.chat_receiver_name);
+        receiverImageView = findViewById(R.id.chat_receiver_imageview);
+        receiverDisplayName.setText(receiverFirstname + " " + receiverLastname);
+
+        Glide.with(ChatActivity.this)
+                .load(receiverImageUrl)
+                .placeholder(R.drawable.profileplaceholder)
+                .error(R.drawable.profileplaceholder)
+                .into(receiverImageView);
+
         initAdapter();
         initSocket();
         performHttpRequest();
@@ -153,12 +166,12 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
 
     @Override
     public void onStartTyping() {
-
+        mSocket.emit("typing",receiverId);
     }
 
     @Override
     public void onStopTyping() {
-
+        mSocket.emit("stoptyping",receiverId);
     }
 
 
@@ -255,9 +268,9 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
     private void initSocket() {
         try {
             mSocket = IO.socket("https://glacial-springs-30545.herokuapp.com");
-            //create connection
             mSocket.connect();
             mSocket.emit("join", senderId);
+            mSocket.emit("online",receiverId);
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -296,15 +309,72 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         });
 
 
+
+        mSocket.on("onOffline", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatStatus.setText("Offline");
+                        chatStatus.setTextColor(Color.parseColor("#F8ED8D"));
+
+                    }
+                });
+            }
+        });
+
+        mSocket.on("onTyping", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatStatus.setText("Typing...");
+                        chatStatus.setTextColor(Color.parseColor("#5AECA8"));
+                    }
+                });
+            }
+        });
+
+        mSocket.on("onStopTyping", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatStatus.setText("Online");
+                        chatStatus.setTextColor(Color.parseColor("#5AECA8"));
+
+                    }
+                });
+            }
+        });
+
+        mSocket.on("onOnline", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatStatus.setText("Online");
+                        chatStatus.setTextColor(Color.parseColor("#5AECA8"));
+
+                    }
+                });
+            }
+        });
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pinkypinky));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
     }
 
@@ -355,6 +425,13 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
                 Toast.makeText(ChatActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        mSocket.emit("disconnected",receiverId);
+        super.onDestroy();
+
     }
 
 }

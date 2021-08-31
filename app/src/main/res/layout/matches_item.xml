@@ -2,25 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="80dp"
-    android:layout_height="110dp"
-    android:layout_marginLeft="10dp">
+    android:layout_height="100dp"
+    android:gravity="center">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/matches_imageview"
         android:src="@drawable/profileplaceholder"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sintel"
+        android:text="Ellenas"
         android:gravity="center"
         android:maxLines="1"
         android:ellipsize="end"
         android:id="@+id/matches_firstname"
         android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:textSize="16dp"
-        android:fontFamily="@font/airreg"
-        android:textColor="@color/dark_text_color"/>
+        android:textSize="14dp"
+        android:fontFamily="@font/airsemi"
+        android:textColor="@color/light_text_color"/>
 </LinearLayout>

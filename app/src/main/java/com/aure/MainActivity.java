@@ -97,6 +97,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     }
 
     private void initView(){
+
+        Intent intent = new Intent(this, NotificationService.class);
+        startService(intent);
         profileImageView = findViewById(R.id.main_profile_imageview);
         swipeToolRoot = findViewById(R.id.showcase_swipe_layout);
         changePreference = findViewById(R.id.empty_search_change_preference);

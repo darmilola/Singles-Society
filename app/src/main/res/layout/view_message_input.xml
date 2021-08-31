@@ -9,7 +9,7 @@
         android:layout_width="27dp"
         android:layout_height="27dp"
         android:src="@drawable/select_image"
-        android:tint="@color/proposed_color"
+        android:tint="@color/pinkypinky"
         android:layout_centerVertical="true"/>
 
 
