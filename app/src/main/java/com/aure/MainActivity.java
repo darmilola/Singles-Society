@@ -6,12 +6,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -96,10 +101,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         initView();
     }
 
-    private void initView(){
 
-        Intent intent = new Intent(this, NotificationService.class);
-        startService(intent);
+    private void initView(){
         profileImageView = findViewById(R.id.main_profile_imageview);
         swipeToolRoot = findViewById(R.id.showcase_swipe_layout);
         changePreference = findViewById(R.id.empty_search_change_preference);
@@ -110,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         completeProfileRoot = findViewById(R.id.complete_profile_prompt_root);
         completeProfileStartChatting = findViewById(R.id.main_complete_profile_start_chatting);
         String userEmail = getIntent().getStringExtra("email");
+        Intent intent = new Intent(this, NotificationService.class);
+        intent.putExtra("userId",userEmail);
+        startService(intent);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         preferences.edit().putString("userEmail",userEmail).apply();
         inviteAFriend = findViewById(R.id.invite_a_friend_layout);

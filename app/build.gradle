@@ -56,4 +56,5 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
     implementation 'org.apache.commons:commons-text:1.6'
+    implementation "androidx.core:core:1.6.0"
 }
