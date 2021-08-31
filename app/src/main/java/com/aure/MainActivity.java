@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.socket.client.IO;
+import io.socket.client.Socket;
 
 
 import android.app.NotificationChannel;
@@ -58,6 +60,7 @@ import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
@@ -518,6 +521,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         if (currentlyDisplayedUserId.equalsIgnoreCase(likedUserId.get(i))) {
                             //There is a Match set match break
                             mainActivityModel.setMatched();
+                            publishMatchNotification(currentlyDisplayedUserId,previewProfileModels.get(position).getFirstname(),previewProfileModels.get(position).getImage1Url());
                             isMatched = true;
                             emptyLayoutRoot.setVisibility(View.GONE);
                             progressBar.setVisibility(View.GONE);
@@ -576,6 +580,17 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 }
             });
         }
+    }
+
+    private void publishMatchNotification(String receiverId,String matchFirstname,String matchImageUrl){
+        try {
+            Socket mSocket = IO.socket("https://quiet-dusk-08267.herokuapp.com/");
+            mSocket.connect();
+            mSocket.emit("match",receiverId,matchFirstname,matchImageUrl);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

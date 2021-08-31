@@ -250,6 +250,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         Message message1 = new Message(user, input.toString());
         messagesAdapter.addToStart(message1, true);
         performHttpSubmission(input.toString());
+        publishNotification(StringEscapeUtils.escapeJava(input.toString()));
         mSocket.emit("messagedetection", receiverId, StringEscapeUtils.escapeJava(input.toString()), 1);
         return true;
         //Server tables should contain utf8mb4 instead of utf8, because unicode character needs 4bytes per character. Therefore unicode will not be represented in 3bytes.
@@ -263,6 +264,17 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
     private void performImageHttpSubmission(String imageUrl) {
         ChatModel chatModel = new ChatModel(senderId, receiverId, "Image", senderFirstname, senderLastname, receiverFirstname, receiverLastname, senderImageUrl, receiverImageUrl, "image", 1, imageUrl);
         chatModel.verifyConnection();
+    }
+
+    private void publishNotification(String message){
+        try {
+            Socket mSocket = IO.socket("https://quiet-dusk-08267.herokuapp.com/");
+            mSocket.connect();
+            mSocket.emit("notificationdetection",receiverId,message,senderFirstname+" "+senderLastname,senderImageUrl);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            Toast.makeText(this, e.getReason(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initSocket() {
@@ -429,7 +441,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
 
     @Override
     public void onDestroy() {
-        mSocket.emit("disconnected",receiverId);
+        mSocket.emit("disconnected",senderId,receiverId);
         super.onDestroy();
 
     }
