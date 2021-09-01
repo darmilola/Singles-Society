@@ -24,6 +24,7 @@ import com.aure.UiAdapters.MessagesAdapter;
 import com.aure.UiModels.MatchesModel;
 import com.aure.UiModels.MessageConnectionModel;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,9 @@ public class MatchesActivity extends AppCompatActivity {
     LinearLayout matchesRoot;
     ProgressBar progressBar;
     TextView noMessages;
+    LinearLayout errorLayout;
+    MaterialButton errorRetry;
+    MessageConnectionModel messageConnectionModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +52,8 @@ public class MatchesActivity extends AppCompatActivity {
     }
 
     private void initView(){
-
+        errorRetry = findViewById(R.id.error_page_retry);
+        errorLayout = findViewById(R.id.error_layout_root);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MatchesActivity.this);
         String userEmail = preferences.getString("userEmail","");
         matchesRoot = findViewById(R.id.matches_root);
@@ -57,7 +62,7 @@ public class MatchesActivity extends AppCompatActivity {
         messagesRecyclerview = findViewById(R.id.messages_recyclerview);
         matchesRecyclerview = findViewById(R.id.matches_recyclerview);
 
-        MessageConnectionModel messageConnectionModel = new MessageConnectionModel(userEmail,MatchesActivity.this);
+        messageConnectionModel = new MessageConnectionModel(userEmail,MatchesActivity.this);
 
         messageConnectionModel.getConnection();
         messageConnectionModel.setConnectionListener(new MessageConnectionModel.ConnectionListener() {
@@ -104,7 +109,29 @@ public class MatchesActivity extends AppCompatActivity {
                  messagesRecyclerview.setVisibility(View.GONE);
                  matchesRecyclerview.setVisibility(View.GONE);
                  noMessages.setText("No Matches");
-                 Toast.makeText(MatchesActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError() {
+                matchesRoot.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
+                noMessages.setVisibility(View.GONE);
+                messagesRecyclerview.setVisibility(View.GONE);
+                matchesRecyclerview.setVisibility(View.GONE);
+                errorLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        errorRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                matchesRoot.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                noMessages.setVisibility(View.GONE);
+                messagesRecyclerview.setVisibility(View.GONE);
+                matchesRecyclerview.setVisibility(View.GONE);
+                errorLayout.setVisibility(View.GONE);
+                messageConnectionModel.getConnection();
             }
         });
     }

@@ -122,11 +122,9 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
                 messagesAdapter.addToEnd(messageArrayList, true);
                 totalMessageCount = total;
                 mNextPageUrl = nextPageUrl;
-                Log.e( "onMessageReady: ",mNextPageUrl);
             }
             @Override
             public void onError(String message) {
-                Toast.makeText(ChatActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }

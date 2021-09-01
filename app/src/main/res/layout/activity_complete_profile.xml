@@ -13,9 +13,11 @@
     <ProgressBar
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTint="@color/pinkypinky"
         android:id="@+id/complete_profile_progress"
         android:layout_gravity="center"/>
+
+    <include layout="@layout/error_page"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,24 +41,25 @@
            <LinearLayout
                android:layout_width="0dp"
                android:layout_height="match_parent"
-               android:layout_weight="1"
+               android:layout_weight="0.7"
                android:gravity="center">
                <ImageView
                    android:layout_width="24dp"
                    android:layout_height="24dp"
-                   android:src="@drawable/ic_iconfinder_cross"/>
+                   android:src="@drawable/iconfinder_chevron_left"/>
            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3">
+                android:layout_weight="3.3">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Complete Profile"
                     android:gravity="center"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/clannews"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/colorPrimary"/>
@@ -66,7 +69,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/profile_preview"
-                android:layout_marginRight="15dp"
                 android:gravity="center">
                 <TextView
                     android:layout_width="match_parent"
@@ -74,6 +76,7 @@
                     android:text="Preview"
                     android:gravity="center"
                     android:textSize="14dp"
+                    android:fontFamily="@font/airreg"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textColor="@color/light_text_color"/>
@@ -94,27 +97,28 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="Age(18)"
-               android:layout_marginLeft="20dp"
-               android:textSize="18dp"
+               android:layout_marginLeft="10dp"
+               android:textSize="15dp"
+               android:fontFamily="@font/airreg"
                android:id="@+id/complete_profile_age"
-               android:layout_marginTop="30dp"
+               android:layout_marginTop="10dp"
                android:layout_marginBottom="10dp"
                android:textColor="@color/colorPrimary"/>
 
            <SeekBar
                android:id="@+id/age_seek_bar"
-               android:layout_width="fill_parent"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:max="80"
                android:min="18"
                android:layout_marginBottom="10dp"
-               android:thumbTint="@color/colorPrimary"
-               android:progressTint="@color/colorPrimary"
+               android:thumbTint="@color/pinkypinky"
+               android:progressTint="@color/pinkypinky"
                android:progress="18"/>
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -124,9 +128,10 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/about"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -134,6 +139,7 @@
                        android:text="About"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -145,6 +151,7 @@
                        android:ellipsize="end"
                        android:id="@+id/about_select_textview"
                        android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="#07A03A"/>
                </LinearLayout>
@@ -163,12 +170,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -177,7 +185,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -187,16 +195,17 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
-
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/status"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
                        android:text="Status"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -208,6 +217,7 @@
                        android:ellipsize="end"
                        android:id="@+id/status_select_textview"
                        android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="#07A03A"/>
                </LinearLayout>
@@ -224,12 +234,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -238,7 +249,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -248,9 +259,10 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/prayer"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -258,6 +270,7 @@
                        android:text="Religion"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -267,6 +280,7 @@
                        android:gravity="left|center"
                        android:maxLines="1"
                        android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
                        android:id="@+id/religion_select_textview"
                        android:textSize="14dp"
                        android:layout_marginLeft="10dp"
@@ -285,12 +299,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -299,7 +314,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -309,10 +324,10 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
-
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/language"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
@@ -320,6 +335,7 @@
                        android:gravity="center"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
+                       android:fontFamily="@font/airreg"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
                        android:layout_width="match_parent"
@@ -328,6 +344,7 @@
                        android:gravity="left|center"
                        android:maxLines="1"
                        android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
                        android:id="@+id/language_select_textview"
                        android:textSize="14dp"
                        android:layout_marginLeft="10dp"
@@ -346,12 +363,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -360,7 +378,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -372,7 +390,8 @@
                    <ImageView
                        android:layout_width="24dp"
                        android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/city"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -380,6 +399,7 @@
                        android:text="City"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -391,6 +411,7 @@
                        android:ellipsize="end"
                        android:id="@+id/city_select_textview"
                        android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="#07A03A"/>
                </LinearLayout>
@@ -407,12 +428,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -421,7 +443,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -433,7 +455,8 @@
                    <ImageView
                        android:layout_width="24dp"
                        android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/occupation"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -441,6 +464,7 @@
                        android:text="Occupation"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -449,6 +473,7 @@
                        android:text="Civil Servant"
                        android:gravity="left|center"
                        android:maxLines="1"
+                       android:fontFamily="@font/airreg"
                        android:ellipsize="end"
                        android:id="@+id/occupation_textview"
                        android:textSize="14dp"
@@ -468,12 +493,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -482,7 +508,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -492,15 +518,17 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/marriage_goals"/>
 
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
                        android:text="Marriage Goals"
                        android:gravity="center"
+                       android:fontFamily="@font/airreg"
                        android:textSize="16dp"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
@@ -511,6 +539,7 @@
                        android:gravity="left|center"
                        android:maxLines="1"
                        android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
                        android:id="@+id/marriage_goals_select_textview"
                        android:textSize="14dp"
                        android:layout_marginLeft="10dp"
@@ -529,12 +558,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -544,7 +574,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -554,9 +584,10 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/education_level"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -564,6 +595,7 @@
                        android:text="Education Levels"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -573,6 +605,7 @@
                        android:gravity="left|center"
                        android:maxLines="1"
                        android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
                        android:id="@+id/education_level_select_textview"
                        android:textSize="14dp"
                        android:layout_marginLeft="10dp"
@@ -591,12 +624,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -605,7 +639,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -614,10 +648,12 @@
                    android:gravity="center|left"
                    android:layout_marginRight="70dp">
 
+
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/workplace"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -625,6 +661,7 @@
                        android:text="Workplace"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -633,6 +670,7 @@
                        android:text="Nasdaq listed Multi-Billion Dollar"
                        android:gravity="left|center"
                        android:maxLines="1"
+                       android:fontFamily="@font/airreg"
                        android:ellipsize="end"
                        android:id="@+id/workplace_select_textview"
                        android:textSize="14dp"
@@ -652,12 +690,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -666,7 +705,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -675,10 +714,12 @@
                    android:gravity="center|left"
                    android:layout_marginRight="70dp">
 
+
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/drink"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -686,6 +727,7 @@
                        android:text="drinking"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -697,6 +739,7 @@
                        android:ellipsize="end"
                        android:id="@+id/drinking_select_textview"
                        android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="#07A03A"/>
                </LinearLayout>
@@ -713,12 +756,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -726,7 +770,7 @@
            </RelativeLayout>
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -736,9 +780,10 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/smoking"/>
 
                    <TextView
                        android:layout_width="wrap_content"
@@ -746,6 +791,7 @@
                        android:text="Smoking"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -755,6 +801,7 @@
                        android:gravity="left|center"
                        android:maxLines="1"
                        android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
                        android:id="@+id/smoking_select_textview"
                        android:textSize="14dp"
                        android:layout_marginLeft="10dp"
@@ -773,12 +820,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -786,7 +834,7 @@
            </RelativeLayout>
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -796,16 +844,17 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
-
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/gender"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
                        android:text="Gender"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -817,6 +866,7 @@
                        android:ellipsize="end"
                        android:id="@+id/gender_select_textview"
                        android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="#07A03A"/>
                </LinearLayout>
@@ -833,12 +883,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -848,7 +899,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -858,16 +909,17 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
-
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/quote"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
                        android:text="Quote"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                    <TextView
@@ -879,6 +931,7 @@
                        android:ellipsize="end"
                        android:id="@+id/quote_select_textview"
                        android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="#07A03A"/>
                </LinearLayout>
@@ -898,12 +951,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -913,7 +967,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -923,16 +977,17 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
-
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/display_picture"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Display Image"
+                       android:text="Display Picture"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                </LinearLayout>
@@ -949,12 +1004,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -970,7 +1026,7 @@
 
            <RelativeLayout
                android:layout_width="match_parent"
-               android:layout_height="100px">
+               android:layout_height="45dp">
 
                <LinearLayout
                    android:layout_width="match_parent"
@@ -980,16 +1036,17 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
-
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/display_picture"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Display Image"
+                       android:text="Display Picture"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                </LinearLayout>
@@ -1006,12 +1063,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>
@@ -1037,16 +1095,17 @@
                    android:layout_marginRight="70dp">
 
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:src="@drawable/ic_iconfinder_business"/>
-
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/display_picture"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"
-                       android:text="Display Image"
+                       android:text="Display Picture"
                        android:gravity="center"
                        android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
                </LinearLayout>
@@ -1063,12 +1122,13 @@
                        android:layout_height="match_parent"
                        android:text="Select"
                        android:gravity="center"
-                       android:textSize="15dp"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/light_text_color"/>
                    <ImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
                        android:tint="@color/light_text_color"
                        android:rotation="180"
                        android:src="@drawable/iconfinder_chevron_left"/>

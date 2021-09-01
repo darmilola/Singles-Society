@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout inviteAFriend;
     LinearLayout helpDesk;
     LinearLayout logOut;
-    MaterialButton changePreference,visitMarketplace,completeProfileStartChatting;
+    MaterialButton changePreference,visitMarketplace,completeProfileStartChatting,erroRetryButton;
     RelativeLayout swipeToolRoot;
     ArrayList<String> likedUserId = new ArrayList<>();
     ArrayList<PreviewProfileModel> previewProfileModels = new ArrayList<>();
     String currentlyDisplayedUserId;
     boolean isRightSwipe = false;
-    LinearLayout metMatchRoot,completeProfileRoot;
-
+    LinearLayout metMatchRoot,completeProfileRoot,errorLayoutRoot;
+    MainActivityModel mainActivityModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         visitMarketplace = findViewById(R.id.caught_up_visit_marketplace);
         emptyLayoutRoot = findViewById(R.id.empty_layout_root);
         activityCaughtUpRoot = findViewById(R.id.caught_up_root);
+        erroRetryButton = findViewById(R.id.error_page_retry);
         metMatchRoot = findViewById(R.id.met_match_root);
+        errorLayoutRoot = findViewById(R.id.error_layout_root);
         completeProfileRoot = findViewById(R.id.complete_profile_prompt_root);
         completeProfileStartChatting = findViewById(R.id.main_complete_profile_start_chatting);
         String userEmail = getIntent().getStringExtra("email");
@@ -131,6 +133,24 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         filterProfile = findViewById(R.id.filter_layout);
         takeAction = findViewById(R.id.showcase_take_action);
 
+
+        erroRetryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emptyLayoutRoot.setVisibility(View.GONE);
+                completeProfileRoot.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                activityCaughtUpRoot.setVisibility(View.GONE);
+                mainView.setVisibility(View.GONE);
+                activityCaughtUpRoot.setVisibility(View.GONE);
+                userShowcaseStack.setVisibility(View.GONE);
+                swipeToolRoot.setVisibility(View.GONE);
+                takeAction.setVisibility(View.GONE);
+                metMatchRoot.setVisibility(View.GONE);
+                errorLayoutRoot.setVisibility(View.GONE);
+                mainActivityModel.GetUserInfo();
+            }
+        });
 
 
         logOut.setOnClickListener(new View.OnClickListener() {
@@ -278,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         });
         rightSwipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+             public void onClick(View v) {
 
                 SwipeAnimationSetting setting = new SwipeAnimationSetting.Builder()
                         .setDirection(Direction.Right)
@@ -291,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
-        MainActivityModel mainActivityModel = new MainActivityModel(MainActivity.this);
+        mainActivityModel = new MainActivityModel(MainActivity.this);
         mainActivityModel.GetUserInfo();
         mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
             @Override
@@ -311,7 +331,19 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
             @Override
             public void onError(String message) {
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                emptyLayoutRoot.setVisibility(View.GONE);
+                completeProfileRoot.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
+                activityCaughtUpRoot.setVisibility(View.GONE);
+                mainView.setVisibility(View.VISIBLE);
+                activityCaughtUpRoot.setVisibility(View.GONE);
+                userShowcaseStack.setVisibility(View.GONE);
+                swipeToolRoot.setVisibility(View.GONE);
+                takeAction.setVisibility(View.GONE);
+                metMatchRoot.setVisibility(View.GONE);
+                errorLayoutRoot.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -401,7 +433,17 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
                 @Override
                 public void onError(String message) {
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                    emptyLayoutRoot.setVisibility(View.GONE);
+                    completeProfileRoot.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
+                    activityCaughtUpRoot.setVisibility(View.GONE);
+                    mainView.setVisibility(View.VISIBLE);
+                    activityCaughtUpRoot.setVisibility(View.GONE);
+                    userShowcaseStack.setVisibility(View.GONE);
+                    swipeToolRoot.setVisibility(View.GONE);
+                    takeAction.setVisibility(View.GONE);
+                    metMatchRoot.setVisibility(View.GONE);
+                    errorLayoutRoot.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -448,6 +490,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                        preferences.edit().remove("userEmail").apply();
                         startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
                         finish();
                     }
@@ -567,18 +611,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         if (requestCode == PREFERENCE_INT && resultCode == RESULT_OK) {
             progressBar.setVisibility(View.VISIBLE);
             mainView.setVisibility(View.GONE);
-            MainActivityModel mainActivityModel = new MainActivityModel(MainActivity.this);
+            mainActivityModel = new MainActivityModel(MainActivity.this);
             mainActivityModel.GetUserInfo();
-            mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
-                @Override
-                public void onReady(MainActivityModel mainActivityModel) {
-                    ParseUserResponse(mainActivityModel);
-                }
-                @Override
-                public void onError(String message) {
-                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                }
-            });
+
         }
     }
 

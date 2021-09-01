@@ -51,7 +51,8 @@ public class CompleteProfile extends AppCompatActivity {
     ArrayList<String> smokingItems = new ArrayList<>();
     ArrayList<String> genderItems = new ArrayList<>();
     ArrayList<String> religionItem = new ArrayList<>();
-    LinearLayout image1Select,image2Select,image3Select;
+    LinearLayout image1Select,image2Select,image3Select,errorLayout;
+    MaterialButton errorRetry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,8 @@ public class CompleteProfile extends AppCompatActivity {
     }
 
     private void initView(){
+        errorLayout = findViewById(R.id.error_layout_root);
+        errorRetry = findViewById(R.id.error_page_retry);
         image1Select = findViewById(R.id.first_display_image_select);
         image2Select = findViewById(R.id.second_display_image_select);
         image3Select = findViewById(R.id.third_display_image_select);
@@ -234,8 +237,19 @@ public class CompleteProfile extends AppCompatActivity {
 
             @Override
             public void onError(String message) {
+                rootLayout.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(CompleteProfile.this, message, Toast.LENGTH_SHORT).show();
+                errorLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        errorRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rootLayout.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                errorLayout.setVisibility(View.GONE);
+                completeProfileModel.GetUserInfo();
             }
         });
 

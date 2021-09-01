@@ -175,7 +175,7 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:src="@drawable/ic_iconfinder_cross"
+                            android:src="@drawable/complete_profile"
                             android:tint="#201D1D"
                             android:padding="1dp"/>
 

@@ -42,6 +42,7 @@ public class MessageConnectionModel {
     public interface ConnectionListener{
         void onConnectionReady(ArrayList<MessageConnectionModel> messageConnectionModels,ArrayList<MatchesModel> matchesModelArrayList);
         void onConnectionEmpty(String message);
+        void onError();
     }
 
     public MessageConnectionModel(String userEmail, Context context){
@@ -163,7 +164,7 @@ public class MessageConnectionModel {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                connectionListener.onConnectionEmpty(e.getLocalizedMessage());
+                connectionListener.onError();
             }
         }
     };

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import com.aure.UiModels.CompleteProfileModel;
 import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.RecyclerViewPagerIndicator;
 import com.aure.UiModels.ShowCaseModel;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,9 @@ public class PreviewProfile extends AppCompatActivity {
     ArrayList<String> imageStrings = new ArrayList<>();
     ArrayList<String> goalStrings = new ArrayList<>();
     TextView search;
+    LinearLayout errorLayout;
+    MaterialButton errorRetry;
+    PreviewProfileModel previewProfileModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class PreviewProfile extends AppCompatActivity {
 
     private void initView(){
 
+        errorLayout = findViewById(R.id.error_layout_root);
+        errorRetry = findViewById(R.id.error_page_retry);
         search = findViewById(R.id.preview_profile_search);
         progressBar = findViewById(R.id.preview_profile_progress);
         recyclerView = findViewById(R.id.preview_recycerview);
@@ -60,7 +67,7 @@ public class PreviewProfile extends AppCompatActivity {
             }
         });
 
-        PreviewProfileModel previewProfileModel = new PreviewProfileModel(PreviewProfile.this);
+        previewProfileModel = new PreviewProfileModel(PreviewProfile.this);
         previewProfileModel.GetUserInfo();
         previewProfileModel.setInfoReadyListener(new PreviewProfileModel.InfoReadyListener() {
             @Override
@@ -116,7 +123,17 @@ public class PreviewProfile extends AppCompatActivity {
             public void onError(String message) {
                 progressBar.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.GONE);
-                Toast.makeText(PreviewProfile.this, message, Toast.LENGTH_SHORT).show();
+                errorLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        errorRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+                errorLayout.setVisibility(View.GONE);
+                previewProfileModel.GetUserInfo();
             }
         });
 
@@ -126,12 +143,11 @@ public class PreviewProfile extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.ixpecial));
             getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.ixpecial));
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS );
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
         }
     }
 }
