@@ -7,13 +7,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aure.UiModels.SignupModel;
@@ -21,6 +26,8 @@ import com.aure.UiModels.Utils.LoadingDialogUtils;
 import com.aure.UiModels.Utils.NetworkUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.ByteArrayOutputStream;
 
@@ -32,8 +39,10 @@ public class SignUpWithEmail extends AppCompatActivity {
     ImageView selectProfileImageButton;
     CircleImageView circleImageView;
     LoadingDialogUtils loadingDialogUtils;
-    EditText firstname,lastname,emailAddress,password,retypePassword;
-    String mFirstname, mLastname, mEmailaddress, mPassword,mPasswordRetype,mProfileImage;
+    TextInputEditText firstname,lastname,emailAddress,password;
+    TextInputLayout firstnameLayout,lastnameLayout,emailLayout,passwordLayout;
+    String mFirstname, mLastname, mEmailaddress, mPassword,mProfileImage;
+    TextView alreadyHaveAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +52,24 @@ public class SignUpWithEmail extends AppCompatActivity {
     }
 
     private void initView(){
+        alreadyHaveAccount = findViewById(R.id.sign_up_have_account);
         signupWithEmail = findViewById(R.id.signup_with_email_button);
         selectProfileImageButton = findViewById(R.id.select_profile_image_button);
         circleImageView = findViewById(R.id.signup_profile_image);
         loadingDialogUtils = new LoadingDialogUtils(SignUpWithEmail.this);
+        firstnameLayout = findViewById(R.id.sign_up_firstname_layout);
+        lastnameLayout = findViewById(R.id.sign_up_lastname_layout);
+        emailLayout = findViewById(R.id.sign_up_email_layout);
+        passwordLayout = findViewById(R.id.sign_up_password_layout);
 
         firstname = findViewById(R.id.sign_up_firstname);
         lastname = findViewById(R.id.sign_up_lastname);
         emailAddress = findViewById(R.id.sign_up_email);
         password = findViewById(R.id.sign_up_password);
-        retypePassword = findViewById(R.id.sign_up_retypepassword);
+
+        Spannable alreadyHaveAccountSpan = new SpannableString("Already have account? Log In");
+        alreadyHaveAccountSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#fa2d65")), 22, 28, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        alreadyHaveAccount.setText(alreadyHaveAccountSpan);
 
         selectProfileImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +89,6 @@ public class SignUpWithEmail extends AppCompatActivity {
                 mLastname = lastname.getText().toString().trim();
                 mEmailaddress = emailAddress.getText().toString().trim();
                 mPassword = password.getText().toString().trim();
-                mPasswordRetype = retypePassword.getText().toString().trim();
                 if(isValidForm()){
                     SignupModel signupModel = new SignupModel(mFirstname,mLastname,mEmailaddress,mPassword,mProfileImage,SignUpWithEmail.this);
                     if(!new NetworkUtils(SignUpWithEmail.this).isNetworkAvailable()) {
@@ -159,27 +175,22 @@ public class SignUpWithEmail extends AppCompatActivity {
         boolean valid = true;
 
         if (TextUtils.isEmpty(mFirstname)) {
-            firstname.setError("Required");
+            firstnameLayout.setError("Required");
             valid = false;
             return valid;
         }
         if (TextUtils.isEmpty(mLastname)) {
-            lastname.setError("Required");
+            lastnameLayout.setError("Required");
             valid = false;
             return valid;
         }
         if (TextUtils.isEmpty(mEmailaddress)) {
-            emailAddress.setError("Required");
+            emailLayout.setError("Required");
             valid = false;
             return valid;
         }
         if (TextUtils.isEmpty(mPassword)) {
-            password.setError("Required");
-            valid = false;
-            return valid;
-        }
-        if (TextUtils.isEmpty(mPasswordRetype)) {
-            retypePassword.setError("Required");
+            passwordLayout.setError("Required");
             valid = false;
             return valid;
         }
@@ -187,13 +198,6 @@ public class SignUpWithEmail extends AppCompatActivity {
             Toast.makeText(this, "Upload profile image", Toast.LENGTH_LONG).show();
             valid = false;
             return valid;
-        }
-        if(!(TextUtils.isEmpty(mPasswordRetype) && !(TextUtils.isEmpty(mPassword)))){
-            if(!mPasswordRetype.equals(mPassword)){
-                Toast.makeText(this, "Password does not match", Toast.LENGTH_LONG).show();
-                valid = false;
-                return valid;
-            }
         }
         return valid;
     }

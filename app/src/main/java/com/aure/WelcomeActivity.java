@@ -6,8 +6,13 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aure.UiModels.SignupModel;
@@ -21,6 +26,7 @@ import com.google.android.gms.tasks.Task;
 public class WelcomeActivity extends AppCompatActivity {
 
     LinearLayout googleSignInLayout,emailSigninLayout;
+    TextView privacyTerms;
     private static final int GC_SIGN_IN = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +36,23 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void initView(){
+        privacyTerms = findViewById(R.id.welcome_privacy_policy);
         googleSignInLayout = findViewById(R.id.signin_with_google_layout);
         emailSigninLayout = findViewById(R.id.signin_with_email_layout);
+
+
+        // set up spanned string with url
+        SpannableString termsOfUseString = new SpannableString("By Creating your Auretayya account you agree to our  Terms of Use and Privacy Policy");
+        String privacyUrl = "https://developer.android.com";
+        termsOfUseString.setSpan(new URLSpan(privacyUrl), 53, 61, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        termsOfUseString.setSpan(new URLSpan(privacyUrl), 70, 84, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        privacyTerms.setText(termsOfUseString);
+        privacyTerms.setMovementMethod(LinkMovementMethod.getInstance());
+
         googleSignInLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
                 startGoogleSignIn();
             }
         });
@@ -52,9 +69,8 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.black));
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pinkypinky));
         }
     }
 

@@ -611,7 +611,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         if (requestCode == PREFERENCE_INT && resultCode == RESULT_OK) {
             progressBar.setVisibility(View.VISIBLE);
             mainView.setVisibility(View.GONE);
-            mainActivityModel = new MainActivityModel(MainActivity.this);
             mainActivityModel.GetUserInfo();
 
         }

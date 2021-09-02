@@ -20,6 +20,7 @@
     <color name="light_blue">#D9F4FD</color>
     <color name="dark_text_color">#3C3A3A</color>
     <color name="light_text_color">#7A7A7A</color>
+    <color name="lighter_text_color">#B9B9B9</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">#c8c8c8</color>
     <color name="hashtag_color">#FF2196F3</color>
     <color name="mention_color">#fa2d65</color>

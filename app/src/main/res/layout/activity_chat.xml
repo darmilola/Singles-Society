@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@color/pinkypinky"
+        android:background="@color/colorPrimary"
         android:weightSum="5">
         <LinearLayout
             android:layout_width="0dp"

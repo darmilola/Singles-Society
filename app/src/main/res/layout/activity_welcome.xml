@@ -103,7 +103,7 @@
                     android:fontFamily="@font/airreg"
                     android:text="Continue with Google"
                     android:layout_weight="3"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/materialBlue"
                     android:textSize="17dp" />
             </LinearLayout>
             <LinearLayout
@@ -154,6 +154,7 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/airreg"
                 android:lineSpacingExtra="5dp"
+                android:id="@+id/welcome_privacy_policy"
                 android:gravity="center"
                 android:textSize="13dp"
                 android:text="By Creating your Auretayya account you agree to our Terms of Use and Privacy Policy"/>
