@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout inviteAFriend;
     LinearLayout helpDesk;
     LinearLayout logOut;
+    LinearLayout counselling;
     MaterialButton changePreference,visitMarketplace,completeProfileStartChatting,erroRetryButton;
     RelativeLayout swipeToolRoot;
     ArrayList<String> likedUserId = new ArrayList<>();
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
 
     private void initView(){
+        counselling = findViewById(R.id.main_counselling_layout);
         profileImageView = findViewById(R.id.main_profile_imageview);
         swipeToolRoot = findViewById(R.id.showcase_swipe_layout);
         changePreference = findViewById(R.id.empty_search_change_preference);
@@ -133,6 +135,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         filterProfile = findViewById(R.id.filter_layout);
         takeAction = findViewById(R.id.showcase_take_action);
 
+
+        counselling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Counselling.class));
+            }
+        });
 
         erroRetryButton.setOnClickListener(new View.OnClickListener() {
             @Override

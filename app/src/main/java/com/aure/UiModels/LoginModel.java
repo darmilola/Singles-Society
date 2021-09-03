@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.os.Message;
 
 import com.aure.UiModels.Utils.LoadingDialogUtils;
+import com.aure.UiModels.Utils.LottieLoadingDialog;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -25,7 +26,7 @@ public class LoginModel {
     private String mPassword;
     private Context mContext;
     private LoginListener loginListener;
-    private LoadingDialogUtils loadingDialogUtils;
+    private LottieLoadingDialog loadingDialogUtils;
     private String baseUrl = new URL().getBaseUrl();
     private String loginUrl = baseUrl+"users/auth";
     private String gmailLoginUrl = baseUrl+"users/auth/gmail/login/credential";
@@ -39,13 +40,13 @@ public class LoginModel {
            this.mEmail = email;
            this.mPassword = password;
            this.mContext = context;
-           loadingDialogUtils = new LoadingDialogUtils(mContext);
+           loadingDialogUtils = new LottieLoadingDialog(mContext);
     }
 
     public LoginModel(String email,Context context){
         this.mEmail = email;
         this.mContext = context;
-        loadingDialogUtils = new LoadingDialogUtils(mContext);
+        loadingDialogUtils = new LottieLoadingDialog(mContext);
     }
 
     public void LoginUser(){
@@ -119,7 +120,7 @@ public class LoginModel {
 
 
     private void LoginWithCredentials(){
-        loadingDialogUtils.showLoadingDialog("Login In...");
+        loadingDialogUtils.showLoadingDialog();
         Runnable runnable = () -> {
             String mResponse = "";
             OkHttpClient client = new OkHttpClient();
@@ -147,7 +148,7 @@ public class LoginModel {
     }
 
     private void LoginWithGmailCredentials(){
-        loadingDialogUtils.showLoadingDialog("Login In...");
+        loadingDialogUtils.showLoadingDialog();
         Runnable runnable = () -> {
             String mResponse = "";
             OkHttpClient client = new OkHttpClient();

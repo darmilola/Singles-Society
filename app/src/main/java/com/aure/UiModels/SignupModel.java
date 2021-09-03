@@ -9,6 +9,7 @@ import android.os.Looper;
 
 import com.aure.MainActivity;
 import com.aure.UiModels.Utils.LoadingDialogUtils;
+import com.aure.UiModels.Utils.LottieLoadingDialog;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -29,7 +30,7 @@ public class SignupModel {
 
     private String firstname, lastname, emailAddress, password, encodedImage;
     private SignupListener signupListener;
-    LoadingDialogUtils loadingDialogUtils;
+    private LottieLoadingDialog loadingDialogUtils;
     Context context;
     private String baseUrl = new URL().getBaseUrl();
     private String mailCheckUrl = baseUrl+"users/check/email";
@@ -154,7 +155,7 @@ public class SignupModel {
     }
 
     public SignupModel(String firstname, String lastname, String emailAddress, String imageUrl, Context context) {
-        loadingDialogUtils = new LoadingDialogUtils(context);
+        loadingDialogUtils = new LottieLoadingDialog(context);
         this.context = context;
         this.emailAddress = emailAddress;
         this.firstname = firstname;
@@ -168,7 +169,7 @@ public class SignupModel {
         this.emailAddress = emailAddress;
         this.password = password;
         this.encodedImage = encodedImage;
-        loadingDialogUtils = new LoadingDialogUtils(context);
+        loadingDialogUtils = new LottieLoadingDialog(context);
         this.context = context;
     }
 
@@ -188,7 +189,7 @@ public class SignupModel {
 
     private void CheckMailExist() {
 
-        loadingDialogUtils.showLoadingDialog("Creating Account");
+        loadingDialogUtils.showLoadingDialog();
         Runnable runnable = () -> {
             String mResponse = "";
             OkHttpClient client = new OkHttpClient.Builder()
@@ -223,7 +224,7 @@ public class SignupModel {
 
     private void CheckGmailExist() {
 
-        loadingDialogUtils.showLoadingDialog("Authenticating");
+        loadingDialogUtils.showLoadingDialog();
         Runnable runnable = () -> {
             String mResponse = "";
             OkHttpClient client = new OkHttpClient.Builder()

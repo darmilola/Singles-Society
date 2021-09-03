@@ -12,6 +12,7 @@
         android:testOnly="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Counselling"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +33,7 @@
         <activity android:name=".MyAccountActivity" />
         <activity android:name=".SignUpWithEmail" />
         <activity android:name=".ConnectWithEmail" />
-        <activity android:name=".WelcomeActivity">
-        </activity>
+        <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".PreviewProfile" />
         <activity android:name=".CompleteProfile" />
         <activity android:name=".MarketPlaceDetailView" />
@@ -47,8 +47,8 @@
             android:enabled="true"
             android:exported="true" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

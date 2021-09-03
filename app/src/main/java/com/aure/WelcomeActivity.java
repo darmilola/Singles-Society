@@ -44,7 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // set up spanned string with url
         SpannableString termsOfUseString = new SpannableString("By Creating your Auretayya account you agree to our  Terms of Use and Privacy Policy");
         String privacyUrl = "https://developer.android.com";
-        termsOfUseString.setSpan(new URLSpan(privacyUrl), 53, 61, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        termsOfUseString.setSpan(new URLSpan(privacyUrl), 53, 65, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         termsOfUseString.setSpan(new URLSpan(privacyUrl), 70, 84, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         privacyTerms.setText(termsOfUseString);
@@ -70,7 +70,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pinkypinky));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.White));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
 

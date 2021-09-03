@@ -121,7 +121,7 @@ public class SignUpWithEmail extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
