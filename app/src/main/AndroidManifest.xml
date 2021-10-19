@@ -12,7 +12,7 @@
         android:testOnly="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Counselling"></activity>
+        <activity android:name=".Counselling" android:theme="@style/Light_Status_Bar"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,6 @@
         <activity android:name=".Marketplace" />
         <activity android:name=".MatchesActivity" />
         <activity android:name=".MainActivity" />
-
         <service
             android:name=".NotificationService"
             android:enabled="true"

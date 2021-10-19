@@ -15,8 +15,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0.7">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
                 android:layout_alignParentLeft="true"
                 android:rotation="180"
                 android:layout_marginLeft="10dp"
@@ -36,10 +36,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Book Counselling"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:fontFamily="@font/airreg"
+                android:fontFamily="@font/clanbold"
                 android:textColor="@color/colorPrimary"/>
         </LinearLayout>
 
