@@ -1,6 +1,7 @@
 package com.aure;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aure.UiAdapters.MarketplaceViewAllAdapter;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class MyListingProducts extends Fragment {
     RecyclerView recyclerView;
     ArrayList<String> deatailList = new ArrayList<>();
     MarketplaceViewAllAdapter viewAllAdapter;
+    MaterialButton addProduct;
     public MyListingProducts() {
         // Required empty public constructor
     }
@@ -49,7 +52,15 @@ public class MyListingProducts extends Fragment {
         }
         viewAllAdapter = new MarketplaceViewAllAdapter(getContext(),deatailList);
         recyclerView.setAdapter(viewAllAdapter);
+        addProduct = view.findViewById(R.id.dashboard_add_product);
         recyclerView.setLayoutManager(manager);
+
+        addProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),AddListing.class));
+            }
+        });
 
     }
 
