@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:gravity="center"
     android:background="@color/special_activity_background"
     tools:context=".Marketplace">
+
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:id="@+id/marketplace_progressbar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/marketplace_root"
+        android:visibility="gone">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,6 +87,10 @@
                     android:hint="Search anything..."
                     android:textColor="@color/colorPrimary"
                     android:textSize="15dp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionSearch"
+                    android:id="@+id/marketplace_search_bar"
                     android:textColorHint="@color/light_text_color"
                     android:fontFamily="@font/clannews"/>
             </LinearLayout>
@@ -83,15 +103,186 @@
         </LinearLayout>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="20dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="4"
-        android:id="@+id/category_recyclerview"
-        tools:itemCount="4"
-        tools:listitem="@layout/marketplace_category_item"/>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/category1_layout"
+                    android:gravity="center">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center|bottom"
+                        android:src="@drawable/shopping_bag"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Grocery"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:id="@+id/marketplace_category_type1_name"
+                        android:textSize="13dp"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:text="1,250 items"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:id="@+id/marketplace_category_type1_count"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/light_text_color"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/category2_layout"
+                    android:gravity="center">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center|bottom"
+                        android:src="@drawable/shopping_bag"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Dresses"
+                        android:gravity="center"
+                        android:id="@+id/marketplace_category_type2_name"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/marketplace_category_type2_count"
+                        android:layout_marginTop="2dp"
+                        android:text="1,250 items"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/light_text_color"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/category3_layout"
+                    android:gravity="center">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center|bottom"
+                        android:src="@drawable/shopping_bag"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Shoes"
+                        android:id="@+id/marketplace_category_type3_name"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:text="1,250 items"
+                        android:id="@+id/marketplace_category_type3_count"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/light_text_color"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/category4_layout"
+                    android:gravity="center">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center|bottom"
+                        android:src="@drawable/shopping_bag"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Dresses"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:id="@+id/marketplace_category_type4_name"
+                        android:ellipsize="end"
+                        android:textSize="15dp"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/colorPrimary"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:text="1,250 items"
+                        android:gravity="center"
+                        android:textSize="12dp"
+                        android:id="@+id/marketplace_category_type4_count"
+                        android:fontFamily="@font/clannews"
+                        android:textColor="@color/light_text_color"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -112,7 +303,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:id="@+id/best_seller_recylerview"
+            android:id="@+id/marketplace_best_seller_recylerview"
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/marketplace_item"/>
@@ -138,6 +329,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_alignParentRight="true">
                 <TextView
                     android:layout_width="wrap_content"
@@ -163,8 +355,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
+            tools:itemCount="2"
             android:id="@+id/market_place_newproduct_recyclerview"
             tools:listitem="@layout/marketplace_item"/>
 
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

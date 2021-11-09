@@ -5,10 +5,15 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.aure.MarketPlaceDetailView;
+import com.aure.MyListingDetails;
 import com.aure.ProductDetails;
 import com.aure.R;
+import com.aure.UiModels.ListingModel;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -19,9 +24,9 @@ public class MarketplaceNewProductAdapter  extends RecyclerView.Adapter<Marketpl
 
 
     private Context context;
-    private ArrayList<String> newProductList = new ArrayList<>();
+    private ArrayList<ListingModel> newProductList = new ArrayList<>();
 
-    public MarketplaceNewProductAdapter(Context context,ArrayList<String> newProductList){
+    public MarketplaceNewProductAdapter(Context context,ArrayList<ListingModel> newProductList){
         this.context = context;
         this.newProductList = newProductList;
     }
@@ -35,7 +40,20 @@ public class MarketplaceNewProductAdapter  extends RecyclerView.Adapter<Marketpl
 
     @Override
     public void onBindViewHolder(@NonNull MarketplaceNewProductViewHolder holder, int position) {
+        ListingModel listingModel = newProductList.get(position);
+        holder.price.setText(listingModel.getPrice());
+        holder.description.setText(listingModel.getDescription());
+        holder.name.setText(listingModel.getName());
+        Glide.with(context)
+                .load(listingModel.getDisplayImage())
+                .placeholder(R.drawable.profileplaceholder)
+                .error(R.drawable.profileplaceholder)
+                .into(holder.imageView);
+    }
 
+    public void addItems(ArrayList<ListingModel> listingModelArrayList){
+           listingModelArrayList.addAll(listingModelArrayList);
+           notifyDataSetChanged();
     }
 
     @Override
@@ -44,14 +62,22 @@ public class MarketplaceNewProductAdapter  extends RecyclerView.Adapter<Marketpl
     }
 
     public class MarketplaceNewProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        ImageView imageView;
+        TextView name,description,price;
         public MarketplaceNewProductViewHolder(View ItemView){
             super(ItemView);
+            imageView = ItemView.findViewById(R.id.listing_item_image);
+            name = ItemView.findViewById(R.id.listing_item_name);
+            description = ItemView.findViewById(R.id.list_item_description);
+            price = ItemView.findViewById(R.id.listing_item_price);
             ItemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            context.startActivity(new Intent(context, MarketPlaceDetailView.class));
+            Intent intent = new Intent(context, ProductDetails.class);
+            intent.putExtra("info",newProductList.get(getAdapterPosition()));
+            context.startActivity(intent);
         }
 
     }

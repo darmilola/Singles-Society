@@ -62,7 +62,7 @@ public class MarketplaceViewAllAdapter extends RecyclerView.Adapter<MarketplaceV
 
         public MarketplaceViewViewAllHolder(View ItemView){
             super(ItemView);
-            imageView = ItemView.findViewById(R.id.listing_item_image);
+             imageView = ItemView.findViewById(R.id.listing_item_image);
             name = ItemView.findViewById(R.id.listing_item_name);
             description = ItemView.findViewById(R.id.list_item_description);
             price = ItemView.findViewById(R.id.listing_item_price);
@@ -71,8 +71,8 @@ public class MarketplaceViewAllAdapter extends RecyclerView.Adapter<MarketplaceV
 
         @Override
         public void onClick(View view) {
-             Intent intent = new Intent(context, MyListingDetails.class);
-             intent.putExtra("info",listingModels.get(getAdapterPosition()));
+            Intent intent = new Intent(context, ProductDetails.class);
+            intent.putExtra("info",listingModels.get(getAdapterPosition()));
             context.startActivity(intent);
         }
 

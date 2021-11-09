@@ -40,6 +40,9 @@ public class ListingModel implements Parcelable {
     private String createProductUrl = baseUrl+"products";
     private String pendingUrl = baseUrl+"products/retailer/pending";
     private String detailsUrl = baseUrl+"products/details";
+    private String marketplaceDisplayUrl = baseUrl+"products/display";
+    private String searchUrl = baseUrl+"products/search";
+    private String searchCatgoryUrl = baseUrl+"products/category";
     private String name,price,displayImage,category,retailerId,description,isSponsored;
     private ImageUploadDialog imageUploadDialog;
     private String encodedImage, productId;
@@ -51,6 +54,12 @@ public class ListingModel implements Parcelable {
     private ArrayList<String> imagesList = new ArrayList<>();
     private String sellersPhone = "";
     private DetailsReadyListener detailsReadyListener;
+    private MarketplaceReadyListsner marketplaceReadyListsner;
+    private String searchQuery;
+    private int firstCategoryCount, secondCategoryCount, thirdCategoryCount, fourthCategoryCount;
+    private ArrayList<ListingModel> bestSellers = new ArrayList<>();
+    private ArrayList<ListingModel> newListings = new ArrayList<>();
+
 
     protected ListingModel(Parcel in) {
         baseUrl = in.readString();
@@ -110,6 +119,12 @@ public class ListingModel implements Parcelable {
         parcel.writeString(sellersPhone);
     }
 
+    public interface MarketplaceReadyListsner{
+        void onReady(ArrayList<ListingModel> bestSellers, ArrayList<ListingModel> newListing, int cat1, int cat2, int cat3, int cat4);
+        void onNextpageReady(ArrayList<ListingModel> listingModelArrayList);
+        void onError(String message);
+    }
+
     public interface DetailsReadyListener{
         void onDetailsReady(ArrayList<String> imagesList, String phone);
         void onError(String message);
@@ -148,6 +163,10 @@ public class ListingModel implements Parcelable {
         this.createProductListener = createProductListener;
     }
 
+    public void setMarketplaceReadyListsner(MarketplaceReadyListsner marketplaceReadyListsner) {
+        this.marketplaceReadyListsner = marketplaceReadyListsner;
+    }
+
     public ListingModel(String productId, String retailerId){
            this.productId = productId;
            this.retailerId = retailerId;
@@ -161,6 +180,14 @@ public class ListingModel implements Parcelable {
         this.displayImage = displayImage;
         this.productId = productId;
         this.isSponsored = isSponsored;
+    }
+
+    public ListingModel(){
+
+    }
+
+    public ListingModel(String query){
+           this.searchQuery = query;
     }
 
     public ListingModel(Context context, String productId, String retailerId, String name, String price, String category, String description, String isSponsored, String displayImage){
@@ -210,6 +237,16 @@ public class ListingModel implements Parcelable {
         return jsonObject.toString();
     }
 
+    private String buildSearch(String query){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("query",query);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
 
     public void createProduct(){
         loadingDialogUtils.showLoadingDialog("Creating Listing...");
@@ -234,6 +271,61 @@ public class ListingModel implements Parcelable {
             bundle.putString("response", mResponse);
             msg.setData(bundle);
             createProductHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
+
+    public void searchProduct(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildSearch(searchQuery));
+            Request request = new Request.Builder()
+                    .url(searchUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = listingHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            listingHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
+    public void searchCategory(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildSearch(searchQuery));
+            Request request = new Request.Builder()
+                    .url(searchCatgoryUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = listingHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            listingHandler.sendMessage(msg);
         };
         Thread myThread = new Thread(runnable);
         myThread.start();
@@ -267,6 +359,60 @@ public class ListingModel implements Parcelable {
         myThread.start();
     }
 
+    public void getMarketplace(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildMarketplaceDisplay("Grocery","Grocery","Grocery","Grocery"));
+            Request request = new Request.Builder()
+                    .url(marketplaceDisplayUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = marketplaceHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            marketplaceHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
+
+    public void getMarketplaceNextpage(String url){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildMarketplaceDisplay("Grocery","Grocery","Grocery","Grocery"));
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = marketplaceHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            marketplaceHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
 
 
     public void getProductDetail(){
@@ -406,6 +552,68 @@ public class ListingModel implements Parcelable {
     };
 
 
+    private Handler marketplaceHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(@NotNull Message msg) {
+            Bundle bundle = msg.getData();
+            String response = bundle.getString("response");
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.getString("status");
+                if(status.equalsIgnoreCase("success")){
+                    JSONArray products = jsonObject.getJSONArray("products");
+                    JSONArray sponsored = jsonObject.getJSONArray("sponsored");
+                    JSONArray firstCat = jsonObject.getJSONArray("firstCategory");
+                    JSONArray secondCat = jsonObject.getJSONArray("secondCategory");
+                    JSONArray thirdCat = jsonObject.getJSONArray("thirdCategory");
+                    JSONArray fourthCat = jsonObject.getJSONArray("fourthCategory");
+
+                    for(int i = 0; i < products.length(); i++){
+                        String productId = products.getJSONObject(i).getString("id");
+                        String name = products.getJSONObject(i).getString("name");
+                        String price = products.getJSONObject(i).getString("price");
+                        String displayImg = products.getJSONObject(i).getString("displayImg");
+                        String retailerId = products.getJSONObject(i).getString("retailerId");
+                        String description = products.getJSONObject(i).getString("description");
+                        String isSponsored = products.getJSONObject(i).getString("isSponsored");
+
+                        ListingModel listingModel = new ListingModel(productId,retailerId,name,price,description,isSponsored,displayImg);
+                        newListings.add(listingModel);
+                    }
+
+                    for(int i = 0; i < sponsored.length(); i++){
+                        String productId = sponsored.getJSONObject(i).getString("id");
+                        String name = sponsored.getJSONObject(i).getString("name");
+                        String price = sponsored.getJSONObject(i).getString("price");
+                        String displayImg = sponsored.getJSONObject(i).getString("displayImg");
+                        String retailerId = sponsored.getJSONObject(i).getString("retailerId");
+                        String description = sponsored.getJSONObject(i).getString("description");
+                        String isSponsored = sponsored.getJSONObject(i).getString("isSponsored");
+
+                        ListingModel listingModel = new ListingModel(productId,retailerId,name,price,description,isSponsored,displayImg);
+                        bestSellers.add(listingModel);
+                    }
+                    marketplaceReadyListsner.onReady(bestSellers,newListings,firstCat.length(),secondCat.length(),thirdCat.length(),fourthCat.length());
+
+
+
+                }
+                else if(status.equalsIgnoreCase("failure")){
+                    marketplaceReadyListsner.onError("Error Occurred");
+                }
+                else{
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                marketplaceReadyListsner.onError(e.getLocalizedMessage());
+
+            }
+
+        }
+    };
+
+
 
     public void uploadImage(){
         imageUploadDialog.showDialog();
@@ -503,6 +711,20 @@ public class ListingModel implements Parcelable {
             jsonObject.put("description",description);
             jsonObject.put("displayImg",displayImage);
             jsonObject.put("id",productId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+
+    private String buildMarketplaceDisplay(String category1, String category2, String category3, String category4){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("category1",category1);
+            jsonObject.put("category2",category2);
+            jsonObject.put("category3",category3);
+            jsonObject.put("category4",category4);
         } catch (JSONException e) {
             e.printStackTrace();
         }
