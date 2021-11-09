@@ -7,10 +7,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.aure.UiModels.CompleteProfileModel;
+import com.aure.UiModels.Utils.InputDialog;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -21,6 +28,9 @@ public class MyListings extends AppCompatActivity {
     ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
     ViewPager viewPager;
     TabLayout tabLayout;
+    TextView  mPhone;
+    String mPhoneText;
+    ImageView phoneSelect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +39,56 @@ public class MyListings extends AppCompatActivity {
     }
 
     private void initView(){
+        mPhone = findViewById(R.id.my_listing_phone);
+        phoneSelect = findViewById(R.id.my_listing_phone_select);
         viewPager = findViewById(R.id.listings_viewpager);
         tabLayout = findViewById(R.id.mylistings_tabs);
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mPhoneText = preferences.getString("phonenumber","");
+
+        if(mPhoneText.equalsIgnoreCase("null")){
+            mPhone.setText("Not Available");
+        }
+        else{
+            mPhone.setText(mPhoneText);
+        }
+
+        phoneSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputDialog inputDialog = new InputDialog(MyListings.this,"Phonenumber","");
+                inputDialog.showInputDialog();
+                inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
+                    @Override
+                    public void saveClicked(String text) {
+                        mPhone.setText(text);
+                        CompleteProfileModel mModel = new CompleteProfileModel("phonenumber",text,MyListings.this);
+                        mModel.SaveUserInfo();
+                        mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
+                            @Override
+                            public void onSuccess() {
+                                preferences.edit().putString("phonenumber",text).apply();
+                                Toast.makeText(MyListings.this, "Phone saved successfully", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onImageUploaded(String imaeUrl) {
+
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void cancelClicked() {
+
+                    }
+                });
+            }
+        });
     }
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -58,6 +114,8 @@ public class MyListings extends AppCompatActivity {
                     return new SponsoredListings();
                 case 2:
                     return new UnderReviewAds();
+                case 3:
+                    return new UnderReviewAds();
             }
             return null;
         }
@@ -65,7 +123,7 @@ public class MyListings extends AppCompatActivity {
         @Override
         public int getCount() {
 
-            return 3;
+            return 4;
         }
 
 
@@ -82,17 +140,17 @@ public class MyListings extends AppCompatActivity {
         }
 
     }
-    void setupViewPager(ViewPager viewPager) {
 
-        adapter.addFragment(new MyListingProducts(), "Products");
+    void setupViewPager(ViewPager viewPager) {
+        adapter.addFragment(new MyListingProducts(), "All");
         adapter.addFragment(new SponsoredListings(), "Sponsored");
         adapter.addFragment(new UnderReviewAds(), "Pending Approval");
+        adapter.addFragment(new UnderReviewAds(), "Rejected");
         viewPager.setAdapter(adapter);
     }
 
     @Override
     public void onResume() {
-
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.special_activity_background));

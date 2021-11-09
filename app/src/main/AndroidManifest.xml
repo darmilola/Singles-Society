@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aure">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -12,7 +15,15 @@
         android:testOnly="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Counselling" android:theme="@style/Light_Status_Bar"></activity>
+        <activity
+            android:name=".MyListingDetails"
+            android:exported="false" />
+        <activity
+            android:name=".UserListingDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Counselling"
+            android:theme="@style/Light_Status_Bar" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +44,7 @@
         <activity android:name=".MyAccountActivity" />
         <activity android:name=".SignUpWithEmail" />
         <activity android:name=".ConnectWithEmail" />
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".WelcomeActivity" />
         <activity android:name=".PreviewProfile" />
         <activity android:name=".CompleteProfile" />
         <activity android:name=".MarketPlaceDetailView" />
@@ -41,13 +52,11 @@
         <activity android:name=".Marketplace" />
         <activity android:name=".MatchesActivity" />
         <activity android:name=".MainActivity" />
+
         <service
             android:name=".NotificationService"
             android:enabled="true"
             android:exported="true" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

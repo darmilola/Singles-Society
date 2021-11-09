@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.aure.UiAdapters.MarketplaceViewAllAdapter;
+import com.aure.UiModels.ListingModel;
 
 import java.util.ArrayList;
 
@@ -25,6 +28,7 @@ public class UnderReviewAds extends Fragment {
     RecyclerView recyclerView;
     ArrayList<String> deatailList = new ArrayList<>();
     MarketplaceViewAllAdapter viewAllAdapter;
+    ProgressBar progressBar;
 
     public UnderReviewAds() {
         // Required empty public constructor
@@ -42,12 +46,31 @@ public class UnderReviewAds extends Fragment {
 
     private void initView(){
         recyclerView = view.findViewById(R.id.under_review_recyclerview);
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        for(int i = 0; i < 20; i++){
-            deatailList.add("");
-        }
-        viewAllAdapter = new MarketplaceViewAllAdapter(getContext(),deatailList);
-        recyclerView.setAdapter(viewAllAdapter);
-        recyclerView.setLayoutManager(manager);
+        progressBar = view.findViewById(R.id.pending_progressbar);
+        ListingModel listingModel = new ListingModel(getContext());
+        listingModel.getPendingListing();
+        listingModel.setListingListener(new ListingModel.ListingListener() {
+            @Override
+            public void onListingReady(ArrayList<ListingModel> modelArrayList) {
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+                viewAllAdapter = new MarketplaceViewAllAdapter(getContext(),modelArrayList);
+                recyclerView.setAdapter(viewAllAdapter);
+                recyclerView.setLayoutManager(manager);
+            }
+
+            @Override
+            public void onEmpty() {
+                  progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError(String message) {
+                 progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

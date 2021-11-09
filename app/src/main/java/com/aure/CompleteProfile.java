@@ -286,7 +286,7 @@ public class CompleteProfile extends AppCompatActivity {
         aboutSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"About Me",aboutTextView.getText().toString(),300);
+                inputDialog = new InputDialog(CompleteProfile.this,"About Me",aboutTextView.getText().toString());
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -371,7 +371,7 @@ public class CompleteProfile extends AppCompatActivity {
         citySelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"City",cityTextview.getText().toString(),20);
+                inputDialog = new InputDialog(CompleteProfile.this,"City",cityTextview.getText().toString());
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -405,7 +405,7 @@ public class CompleteProfile extends AppCompatActivity {
         occupationSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"Occupation",occupationTextview.getText().toString(),70);
+                inputDialog = new InputDialog(CompleteProfile.this,"Occupation",occupationTextview.getText().toString());
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -495,7 +495,7 @@ public class CompleteProfile extends AppCompatActivity {
         workplaceSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"Workplace",workplaceTextview.getText().toString(),60);
+                inputDialog = new InputDialog(CompleteProfile.this,"Workplace",workplaceTextview.getText().toString());
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override
@@ -613,7 +613,7 @@ public class CompleteProfile extends AppCompatActivity {
         quoteSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDialog = new InputDialog(CompleteProfile.this,"Quote",quoteTextview.getText().toString(),200);
+                inputDialog = new InputDialog(CompleteProfile.this,"Quote",quoteTextview.getText().toString());
                 inputDialog.showInputDialog();
                 inputDialog.setDialogActionClickListener(new InputDialog.OnDialogActionClickListener() {
                     @Override

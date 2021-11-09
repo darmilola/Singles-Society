@@ -25,7 +25,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivityModel {
-    private String isProfileCompleted,isSubscribed,firstname,lastname,imageUrl;
+    private String isProfileCompleted,isSubscribed,firstname,lastname,imageUrl,phonenumber;
     private String baseUrl = new URL().getBaseUrl();
     private String getProfileUrl = baseUrl+"users/search";
     private String getShowProfileUrl = baseUrl+"users/show";
@@ -60,12 +60,13 @@ public class MainActivityModel {
         this.context = context;
     }
 
-    public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl){
+    public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl, String phonenumber){
            this.isProfileCompleted = isProfileCompleted;
            this.isSubscribed = isSubscribed;
            this.firstname = firstname;
            this.lastname = lastname;
            this.imageUrl = imageUrl;
+           this.phonenumber   = phonenumber;
     }
 
     public String getIsProfileCompleted() {
@@ -86,6 +87,10 @@ public class MainActivityModel {
 
     public String getLastname() {
         return lastname;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
     public void setShowcaseInfoReadyListener(ShowcaseInfoReadyListener showcaseInfoReadyListener) {
@@ -169,10 +174,11 @@ public class MainActivityModel {
                     String firstname = jsonArray.getJSONObject(0).getString("firstname");
                     String lastname = jsonArray.getJSONObject(0).getString("lastname");
                     String imageUrl = jsonArray.getJSONObject(0).getString("profileImage");
+                    String phonenumber = jsonArray.getJSONObject(0).getString("phonenumber");
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
                     preferences.edit().putString("gender",gender).apply();
 
-                    MainActivityModel mainActivityModel = new MainActivityModel(isProfileCompleted,isSubscribed,firstname,lastname,imageUrl);
+                    MainActivityModel mainActivityModel = new MainActivityModel(isProfileCompleted,isSubscribed,firstname,lastname,imageUrl,phonenumber);
                     infoReadyListener.onReady(mainActivityModel);
                 }
                 else if(status.equalsIgnoreCase("failure")){

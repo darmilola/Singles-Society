@@ -329,6 +329,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 preferences.edit().putString("firstname",mainActivityModel.getFirstname()).apply();
                 preferences.edit().putString("lastname",mainActivityModel.getLastname()).apply();
                 preferences.edit().putString("imageUrl",mainActivityModel.getImageUrl()).apply();
+                preferences.edit().putString("phonenumber",mainActivityModel.getPhonenumber()).apply();
 
                 Glide.with(MainActivity.this)
                         .load(mainActivityModel.getImageUrl())

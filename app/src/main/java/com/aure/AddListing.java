@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -80,6 +82,10 @@ public class AddListing extends AppCompatActivity {
         pagerSnapHelper.attachToRecyclerView(imagesRecyclerview);
         imagesIndicator.attachToRecyclerView(imagesRecyclerview, pagerSnapHelper);
         adapter.registerAdapterDataObserver(imagesIndicator.getAdapterDataObserver());
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        retailerId = preferences.getString("userEmail","");
+
+
 
         category.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +125,7 @@ public class AddListing extends AppCompatActivity {
                     mAvailability = "false";
                 }
                 if (isValidInput()) {
-                    ListingModel listingModel = new ListingModel(productId, retailerId, mTitle, mPrice, mCategory, mDescription, mAvailability, displayImage);
+                    ListingModel listingModel = new ListingModel(AddListing.this, productId, retailerId, mTitle, mPrice, mCategory, mDescription, mAvailability, displayImage);
                     listingModel.createProduct();
                     listingModel.setCreateProductListener(new ListingModel.CreateProductListener() {
                         @Override

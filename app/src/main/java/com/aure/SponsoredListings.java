@@ -49,9 +49,9 @@ public class SponsoredListings extends Fragment {
         for(int i = 0; i < 20; i++){
             deatailList.add("");
         }
-        viewAllAdapter = new MarketplaceViewAllAdapter(getContext(),deatailList);
-        recyclerView.setAdapter(viewAllAdapter);
-        recyclerView.setLayoutManager(manager);
+        //viewAllAdapter = new MarketplaceViewAllAdapter(getContext(),deatailList);
+        //recyclerView.setAdapter(viewAllAdapter);
+        //recyclerView.setLayoutManager(manager);
 
     }
 

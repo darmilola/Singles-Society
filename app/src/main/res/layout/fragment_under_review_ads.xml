@@ -6,10 +6,17 @@
     tools:context=".UnderReviewAds"
     android:background="@color/special_activity_background">
 
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:id="@+id/pending_progressbar"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
+        android:visibility="gone"
         android:layout_marginRight="10dp"
         android:id="@+id/under_review_recyclerview"
         tools:listitem="@layout/marketplace_item"/>

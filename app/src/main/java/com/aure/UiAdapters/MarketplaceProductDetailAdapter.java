@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.aure.R;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ public class MarketplaceProductDetailAdapter extends RecyclerView.Adapter<Market
     private Context context;
     private ArrayList<String> productDetailList = new ArrayList<>();
 
-    public MarketplaceProductDetailAdapter(Context context,ArrayList<String> productDetailList){
+    public MarketplaceProductDetailAdapter(Context context, ArrayList<String> productDetailList){
         this.context = context;
         this.productDetailList = productDetailList;
     }
@@ -32,7 +34,11 @@ public class MarketplaceProductDetailAdapter extends RecyclerView.Adapter<Market
 
     @Override
     public void onBindViewHolder(@NonNull MarketplaceProductDetailViewholder holder, int position) {
-
+        Glide.with(context)
+                .load(productDetailList.get(position))
+                .placeholder(R.drawable.profileplaceholder)
+                .error(R.drawable.profileplaceholder)
+                .into(holder.imageView);
     }
 
     @Override
@@ -41,8 +47,10 @@ public class MarketplaceProductDetailAdapter extends RecyclerView.Adapter<Market
     }
 
     public class MarketplaceProductDetailViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        ImageView imageView;
         public MarketplaceProductDetailViewholder(View ItemView){
             super(ItemView);
+            imageView = ItemView.findViewById(R.id.product_details_image);
             ItemView.setOnClickListener(this);
         }
 
