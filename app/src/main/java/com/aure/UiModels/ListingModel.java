@@ -39,6 +39,9 @@ public class ListingModel implements Parcelable {
     private String uploadImageUrl = baseUrl+"products/image/upload";
     private String createProductUrl = baseUrl+"products";
     private String pendingUrl = baseUrl+"products/retailer/pending";
+    private String allProductsUrl = baseUrl+"products/retailer/show";
+    private String sponsoredUrl = baseUrl+"products/retailer/sponsored";
+    private String rejectedUrl = baseUrl+"products/retailer/rejected";
     private String detailsUrl = baseUrl+"products/details";
     private String marketplaceDisplayUrl = baseUrl+"products/display";
     private String searchUrl = baseUrl+"products/search";
@@ -340,6 +343,87 @@ public class ListingModel implements Parcelable {
             RequestBody requestBody = RequestBody.create(JSON,buildDisplay(this.retailerId));
             Request request = new Request.Builder()
                     .url(pendingUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = listingHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            listingHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
+    public void getSponsoredListing(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildDisplay(this.retailerId));
+            Request request = new Request.Builder()
+                    .url(sponsoredUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = listingHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            listingHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
+    public void getAllListing(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildDisplay(this.retailerId));
+            Request request = new Request.Builder()
+                    .url(allProductsUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = listingHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            listingHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
+    public void getRejectedListing(){
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildDisplay(this.retailerId));
+            Request request = new Request.Builder()
+                    .url(rejectedUrl)
                     .post(requestBody)
                     .build();
             try (Response response = client.newCall(request).execute()) {

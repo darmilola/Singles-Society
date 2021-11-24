@@ -115,18 +115,15 @@ public class MyListings extends AppCompatActivity {
                 case 2:
                     return new UnderReviewAds();
                 case 3:
-                    return new UnderReviewAds();
+                    return new RejectedAds();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-
             return 4;
         }
-
-
 
 
         public void addFragment(Fragment fragment, String title) {

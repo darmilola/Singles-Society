@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:weightSum="5"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="10dp">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -41,15 +41,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:orientation="vertical"
             android:id="@+id/settings_layout"
             android:gravity="right|center">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/ic_action_name"
-                android:tint="@color/colorPrimary"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -66,25 +61,11 @@
 
 
 
-            <FrameLayout
-                android:layout_width="150dp"
-                android:layout_height="150dp">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="5dp"
-                    app:cardElevation="0dp"
-                    android:focusableInTouchMode="true"
-                    app:cardCornerRadius="10dp">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/lady3"
-                        android:scaleType="centerCrop"/>
-                </androidx.cardview.widget.CardView>
-            </FrameLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/signup_profile_image"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/profileplaceholder"/>
 
 
 
@@ -101,13 +82,17 @@
                     android:textSize="23dp"
                     android:layout_marginLeft="20dp"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/colorPrimary"
                     android:text="llham Maulana"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:fontFamily="@font/clanbook"/>
             </LinearLayout>
+
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,11 +109,11 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="23dp"
+                        android:layout_width="19dp"
                         android:layout_height="19dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/ic_iconfinder_cross"
-                        android:tint="#454647" />
+                        android:src="@drawable/my_listings"
+                        app:tint="#454647" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -138,9 +123,9 @@
                     android:gravity="center|left">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center|left"
@@ -162,7 +147,7 @@
                         android:layout_marginRight="5dp"
                         android:rotation="180"
                         android:src="@drawable/iconfinder_chevron_left_4781844"
-                        android:tint="@color/colorPrimary"/>
+                        app:tint="@color/colorPrimary"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -173,7 +158,6 @@
                 android:weightSum="5"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:id="@+id/account_about_us"
                 android:layout_marginTop="15dp">
                 <LinearLayout
                     android:layout_width="0dp"
@@ -182,36 +166,37 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="23dp"
+                        android:layout_width="19dp"
                         android:layout_height="19dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/ic_iconfinder_cross"
-                        android:tint="#454647"/>
+                        android:src="@drawable/ic_help"
+                        app:tint="#454647" />
 
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="3.3"
                     android:gravity="center|left">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center|left"
                         android:textColor="@color/colorPrimary"
-                        android:text="About us"
+                        android:text="About Us"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:fontFamily="@font/clanbook"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="0.9"
                     android:orientation="vertical"
                     android:gravity="right|center">
                     <ImageView
@@ -220,10 +205,10 @@
                         android:layout_marginRight="5dp"
                         android:rotation="180"
                         android:src="@drawable/iconfinder_chevron_left_4781844"
-                        android:tint="@color/colorPrimary"/>
+                        app:tint="@color/colorPrimary"/>
                 </LinearLayout>
-
             </LinearLayout>
+
 
 
             <LinearLayout
@@ -243,20 +228,20 @@
                         android:layout_width="23dp"
                         android:layout_height="19dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/ic_iconfinder_cross"
-                        android:tint="#454647"/>
+                        android:src="@drawable/about"
+                        app:tint="#454647" />
 
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="3.3"
                     android:gravity="center|left">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center|left"
@@ -269,7 +254,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="0.9"
                     android:orientation="vertical"
                     android:gravity="right|center">
                     <ImageView
@@ -278,9 +263,10 @@
                         android:layout_marginRight="5dp"
                         android:rotation="180"
                         android:src="@drawable/iconfinder_chevron_left_4781844"
-                        android:tint="@color/colorPrimary"/>
+                        app:tint="@color/colorPrimary"/>
                 </LinearLayout>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -299,20 +285,20 @@
                         android:layout_width="23dp"
                         android:layout_height="19dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/ic_iconfinder_cross"
-                        android:tint="#454647"/>
+                        android:src="@drawable/rate_us"
+                        app:tint="#454647" />
 
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="3.3"
                     android:gravity="center|left">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center|left"
@@ -325,7 +311,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="0.9"
                     android:orientation="vertical"
                     android:gravity="right|center">
                     <ImageView
@@ -334,10 +320,10 @@
                         android:layout_marginRight="5dp"
                         android:rotation="180"
                         android:src="@drawable/iconfinder_chevron_left_4781844"
-                        android:tint="@color/colorPrimary"/>
+                        app:tint="@color/colorPrimary"/>
                 </LinearLayout>
-
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -356,28 +342,25 @@
                         android:layout_width="23dp"
                         android:layout_height="19dp"
                         android:layout_marginRight="5dp"
-                        android:src="@drawable/ic_iconfinder_cross"
-                        android:tint="#454647"/>
+                        android:src="@drawable/delete_account"
+                        app:tint="#454647" />
 
                 </LinearLayout>
-
-
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="3.3"
                     android:gravity="center|left">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center|left"
                         android:textColor="@color/colorPrimary"
-                        android:text="Delete My Account"
+                        android:text="Delete my Account"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:fontFamily="@font/clanbook"/>
@@ -385,7 +368,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.2"
+                    android:layout_weight="0.9"
                     android:orientation="vertical"
                     android:gravity="right|center">
                     <ImageView
@@ -394,12 +377,9 @@
                         android:layout_marginRight="5dp"
                         android:rotation="180"
                         android:src="@drawable/iconfinder_chevron_left_4781844"
-                        android:tint="@color/colorPrimary"/>
+                        app:tint="@color/colorPrimary"/>
                 </LinearLayout>
-
             </LinearLayout>
-
-
 
             <View
                 android:layout_width="match_parent"
@@ -435,7 +415,7 @@
                     android:rotation="180"
                     android:layout_marginTop="1dp"
                     android:src="@drawable/iconfinder_chevron_left_4781844"
-                    android:tint="@color/colorPrimary"/>
+                    app:tint="@color/colorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -456,7 +436,7 @@
                     android:rotation="180"
                     android:layout_marginTop="1dp"
                     android:src="@drawable/iconfinder_chevron_left_4781844"
-                    android:tint="@color/colorPrimary"/>
+                    app:tint="@color/colorPrimary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -477,7 +457,7 @@
                     android:rotation="180"
                     android:layout_marginTop="1dp"
                     android:src="@drawable/iconfinder_chevron_left_4781844"
-                    android:tint="@color/colorPrimary"/>
+                    app:tint="@color/colorPrimary"/>
             </LinearLayout>
 
             <TextView

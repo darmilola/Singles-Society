@@ -1,6 +1,5 @@
 package com.aure;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,10 +18,7 @@ import com.aure.UiModels.ListingModel;
 import java.util.ArrayList;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class SponsoredListings extends Fragment {
+public class RejectedAds extends Fragment {
 
 
     View view;
@@ -30,28 +26,25 @@ public class SponsoredListings extends Fragment {
     MarketplaceViewAllAdapter viewAllAdapter;
     ProgressBar progressBar;
 
-    public SponsoredListings() {
+    public RejectedAds() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_sponsored_listings, container, false);
+        view =  inflater.inflate(R.layout.fragment_rejected_ads, container, false);
         initView();
         return view;
-
     }
 
-
     private void initView(){
-        progressBar = view.findViewById(R.id.sponsored_listing_progress);
-        recyclerView = view.findViewById(R.id.sponsored_products_recyclerview);
+        progressBar = view.findViewById(R.id.rejected_listing_progress);
+        recyclerView = view.findViewById(R.id.rejected_products_recyclerview);
 
         ListingModel listingModel = new ListingModel(getContext());
-        listingModel.getSponsoredListing();
+        listingModel.getRejectedListing();
         listingModel.setListingListener(new ListingModel.ListingListener() {
             @Override
             public void onListingReady(ArrayList<ListingModel> modelArrayList) {
@@ -77,6 +70,4 @@ public class SponsoredListings extends Fragment {
 
 
     }
-
-
 }
