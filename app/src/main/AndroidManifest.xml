@@ -16,6 +16,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AdminProductDetails"
+            android:exported="false" />
+        <activity
             android:name=".MyListingDetails"
             android:exported="false" />
         <activity

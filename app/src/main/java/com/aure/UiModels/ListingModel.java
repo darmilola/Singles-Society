@@ -582,7 +582,7 @@ public class ListingModel implements Parcelable {
 
                 }
                 else if(status.equalsIgnoreCase("failure")){
-                    listingListener.onError("Error Occurred");
+                    listingListener.onEmpty();
                 }
                 else{
 

@@ -1,6 +1,7 @@
 package com.aure;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,9 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aure.UiAdapters.MarketplaceViewAllAdapter;
+import com.aure.UiAdapters.AdminDetailsAdapter;
 import com.aure.UiModels.ListingModel;
 
 import java.util.ArrayList;
@@ -27,8 +29,9 @@ public class UnderReviewAds extends Fragment {
     View view;
     RecyclerView recyclerView;
     ArrayList<String> deatailList = new ArrayList<>();
-    MarketplaceViewAllAdapter viewAllAdapter;
+    AdminDetailsAdapter viewAllAdapter;
     ProgressBar progressBar;
+    TextView nothingToShow;
 
     public UnderReviewAds() {
         // Required empty public constructor
@@ -45,6 +48,7 @@ public class UnderReviewAds extends Fragment {
     }
 
     private void initView(){
+        nothingToShow = view.findViewById(R.id.empty_listing);
         recyclerView = view.findViewById(R.id.under_review_recyclerview);
         progressBar = view.findViewById(R.id.pending_progressbar);
         ListingModel listingModel = new ListingModel(getContext());
@@ -54,20 +58,35 @@ public class UnderReviewAds extends Fragment {
             public void onListingReady(ArrayList<ListingModel> modelArrayList) {
                 progressBar.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
+                nothingToShow.setVisibility(View.GONE);
                 LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-                viewAllAdapter = new MarketplaceViewAllAdapter(getContext(),modelArrayList);
+                viewAllAdapter = new AdminDetailsAdapter(getContext(),modelArrayList);
                 recyclerView.setAdapter(viewAllAdapter);
                 recyclerView.setLayoutManager(manager);
+
+
+                viewAllAdapter.setItemClickedListener(new AdminDetailsAdapter.ItemClickedListener() {
+                    @Override
+                    public void onItemClicked(int position) {
+                        Intent intent = new Intent(getContext(), AdminProductDetails.class);
+                        intent.putExtra("ignore","ignore");
+                        intent.putExtra("info",modelArrayList.get(position));
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
             public void onEmpty() {
-                  progressBar.setVisibility(View.GONE);
+                nothingToShow.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
             }
 
             @Override
             public void onError(String message) {
                  progressBar.setVisibility(View.GONE);
+                nothingToShow.setVisibility(View.GONE);
                 Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
