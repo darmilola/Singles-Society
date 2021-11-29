@@ -3,14 +3,22 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\user\\Desktop\\Keys\\aurekeys2.jks')
+            storePassword 'auratayya'
+            keyAlias 'auratayya'
+            keyPassword 'auratayya'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
     defaultConfig {
-        applicationId "com.aure"
+        applicationId "com.aure.testing"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "1.03"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -57,5 +65,9 @@ dependencies {
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.billingclient:billing:3.0.0'
+    implementation 'com.anjlab.android.iab.v3:library:2.0.3'
+    def billing_version = "4.0.0"
+
+    implementation "com.android.billingclient:billing:$billing_version"
+    implementation 'com.github.akshaaatt:Google-IAP:1.2.1'
 }

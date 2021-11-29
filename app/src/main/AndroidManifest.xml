@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:name=".MyApplication"
@@ -15,9 +16,6 @@
         android:testOnly="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".AdminProductDetails"
-            android:exported="false" />
         <activity
             android:name=".MyListingDetails"
             android:exported="false" />
@@ -55,6 +53,7 @@
         <activity android:name=".Marketplace" />
         <activity android:name=".MatchesActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".AdminProductDetails" />
 
         <service
             android:name=".NotificationService"
