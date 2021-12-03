@@ -96,7 +96,6 @@ public class LoginModel {
             loadingDialogUtils.cancelLoadingDialog();
             Bundle bundle = msg.getData();
             String response = bundle.getString("response");
-            loginListener.isLoginFailed(response);
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");

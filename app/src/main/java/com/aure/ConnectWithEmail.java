@@ -24,7 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class ConnectWithEmail extends AppCompatActivity {
 
-    TextView dontHaveAccount,forgotPassoword;
+    TextView dontHaveAccount,forgotPassword;
     MaterialButton loginButton;
     TextInputLayout emailLayout,passwordLayout;
     TextInputEditText emailEdit,passwordEdit;
@@ -41,7 +41,7 @@ public class ConnectWithEmail extends AppCompatActivity {
         loginButton = findViewById(R.id.login_with_email_button);
         emailEdit = findViewById(R.id.login_email);
         passwordEdit = findViewById(R.id.login_password);
-        forgotPassoword = findViewById(R.id.login_forgot_password);
+        forgotPassword = findViewById(R.id.login_forgot_password);
         emailLayout = findViewById(R.id.login_email_layout);
         passwordLayout = findViewById(R.id.login_password_layout);
 
@@ -52,7 +52,16 @@ public class ConnectWithEmail extends AppCompatActivity {
         dontHaveAccountSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#fa2d65")), 23, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         dontHaveAccount.setText(dontHaveAccountSpan);
 
-        forgotPassoword.setText(forgotPasswordSpan);
+        forgotPassword.setText(forgotPasswordSpan);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(ConnectWithEmail.this,VerificationEmail.class));
+
+            }
+        });
 
         dontHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
