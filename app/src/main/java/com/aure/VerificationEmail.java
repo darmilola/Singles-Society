@@ -34,9 +34,9 @@ public class VerificationEmail extends AppCompatActivity {
                     emailText.setError("Required");
                 }
                 else{
-                    ForgotPasswordModel forgotPasswordModel = new ForgotPasswordModel(emailText.getText().toString().trim(),VerificationEmail.this);
+                    ForgotPasswordModel forgotPasswordModel = new ForgotPasswordModel(emailText.getText().toString().trim(),generateRandomId(),VerificationEmail.this);
                     forgotPasswordModel.getResetLink();
-                    forgotPasswordModel.setGetLinkListener(new ForgotPasswordModel.getLinkListener() {
+                    forgotPasswordModel.setListener(new ForgotPasswordModel.getLinkListener() {
                         @Override
                         public void isSuccess() {
                              showAlert();
@@ -52,6 +52,34 @@ public class VerificationEmail extends AppCompatActivity {
             }
         });
     }
+
+    // function to generate a random string of length n
+    static String generateRandomId()
+    {
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(50);
+
+        for (int i = 0; i < 50; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
+    }
+
 
     private void showAlert(){
         new AlertDialog.Builder(VerificationEmail.this)

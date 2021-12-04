@@ -27,13 +27,24 @@ public class ForgotPasswordModel {
     private LottieLoadingDialog loadingDialogUtils;
     private String baseUrl = new URL().getBaseUrl();
     private String getLink = baseUrl+"resetpassword";
+    private String resetPassword = baseUrl+"users/password/reset";
     private String gmailLoginUrl = baseUrl+"users/auth/gmail/login/credential";
     private getLinkListener LinkListener;
+    private String userIdHash;
+    private String newPassword;
 
-    public ForgotPasswordModel(String mEmail, Context context){
+    public ForgotPasswordModel(String mEmail,String userIdHash, Context context){
            this.context = context;
            this.mEmail = mEmail;
+           this.userIdHash = userIdHash;
            loadingDialogUtils = new LottieLoadingDialog(context);
+    }
+
+    public ForgotPasswordModel(String newPassword,String userIdHash, Context context, int type){
+        this.context = context;
+        this.newPassword = newPassword;
+        this.userIdHash = userIdHash;
+        loadingDialogUtils = new LottieLoadingDialog(context);
     }
 
     public interface getLinkListener{
@@ -41,7 +52,7 @@ public class ForgotPasswordModel {
         void isFailure();
     }
 
-    public void setGetLinkListener(ForgotPasswordModel.getLinkListener getLinkListener) {
+    public void setListener(ForgotPasswordModel.getLinkListener getLinkListener) {
         this.LinkListener = getLinkListener;
     }
 
@@ -51,9 +62,38 @@ public class ForgotPasswordModel {
             String mResponse = "";
             OkHttpClient client = new OkHttpClient();
             MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-            RequestBody requestBody = RequestBody.create(JSON,buildGetLink(this.mEmail));
+            RequestBody requestBody = RequestBody.create(JSON,buildGetLink(this.mEmail,this.userIdHash));
             Request request = new Request.Builder()
                     .url(getLink)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = gmailLoginHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            gmailLoginHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
+
+    public void ResetPassword(){
+        loadingDialogUtils.showLoadingDialog();
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildResetLink(this.newPassword,this.userIdHash));
+            Request request = new Request.Builder()
+                    .url(resetPassword)
                     .post(requestBody)
                     .build();
             try (Response response = client.newCall(request).execute()) {
@@ -101,10 +141,22 @@ public class ForgotPasswordModel {
         }
     };
 
-    private String buildGetLink(String email){
+    private String buildGetLink(String email, String userIdHash){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("to",email);
+            jsonObject.put("userIdHash",userIdHash);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+    private String buildResetLink(String newPassword, String userIdHash){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("newPassword",newPassword);
+            jsonObject.put("userIdHash",userIdHash);
         } catch (JSONException e) {
             e.printStackTrace();
         }

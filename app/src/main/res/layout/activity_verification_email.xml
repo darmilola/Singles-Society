@@ -9,12 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:background="@drawable/new_black_gradient"
         android:weightSum="5">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:layout_marginTop="70dp"
             android:layout_marginBottom="70dp"
             android:layout_marginLeft="20dp"
