@@ -41,8 +41,6 @@ public class Marketplace extends AppCompatActivity {
     ProgressBar loadingBar;
     NestedScrollView root;
     String nextPageUrl;
-    TextView cat1Text, cat2Text, cat3Text, cat4Text;
-    LinearLayout cat1Layout, cat2Layout, cat3Layout, cat4Layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +50,6 @@ public class Marketplace extends AppCompatActivity {
     }
 
     private void initView(){
-        cat1Layout = findViewById(R.id.category1_layout);
-        cat2Layout = findViewById(R.id.category2_layout);
-        cat3Layout = findViewById(R.id.category3_layout);
-        cat4Layout = findViewById(R.id.category4_layout);
         searchBar = findViewById(R.id.marketplace_search_bar);
         loadingBar = findViewById(R.id.marketplace_progressbar);
         root = findViewById(R.id.marketplace_root);
@@ -63,10 +57,6 @@ public class Marketplace extends AppCompatActivity {
         newProductRecyclerview = findViewById(R.id.market_place_newproduct_recyclerview);
         viewAllNewProduct = findViewById(R.id.market_place_view_all);
         bestSellerIndicator = findViewById(R.id.bestseller_indicator);
-        cat1Text = findViewById(R.id.marketplace_category_type1_count);
-        cat2Text = findViewById(R.id.marketplace_category_type2_count);
-        cat3Text = findViewById(R.id.marketplace_category_type3_count);
-        cat4Text = findViewById(R.id.marketplace_category_type4_count);
         bestSellers = new ArrayList<>();
         categorys = new ArrayList<>();
         newProducts = new ArrayList<>();
@@ -74,53 +64,11 @@ public class Marketplace extends AppCompatActivity {
         listingModel = new ListingModel();
         listingModel.getMarketplace();
 
-        cat1Layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Marketplace.this,MarketPlaceDetailView.class);
-                intent.putExtra("query","Grocery");
-                intent.putExtra("type","2");
-                startActivity(intent);
-            }
-        });
 
-        cat2Layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Marketplace.this,MarketPlaceDetailView.class);
-                intent.putExtra("query","Grocery");
-                intent.putExtra("type","2");
-                startActivity(intent);
-            }
-        });
-
-        cat3Layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Marketplace.this,MarketPlaceDetailView.class);
-                intent.putExtra("query","Grocery");
-                intent.putExtra("type","2");
-                startActivity(intent);
-            }
-        });
-
-        cat4Layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Marketplace.this,MarketPlaceDetailView.class);
-                intent.putExtra("query","Grocery");
-                intent.putExtra("type","2");
-                startActivity(intent);
-            }
-        });
 
         listingModel.setMarketplaceReadyListsner(new ListingModel.MarketplaceReadyListsner() {
             @Override
             public void onReady(ArrayList<ListingModel> bestSellers, ArrayList<ListingModel> newListing, int cat1, int cat2, int cat3, int cat4) {
-                cat1Text.setText(Integer.toString(cat1));
-                cat2Text.setText(Integer.toString(cat2));
-                cat3Text.setText(Integer.toString(cat3));
-                cat4Text.setText(Integer.toString(cat4));
                 loadingBar.setVisibility(View.GONE);
                 root.setVisibility(View.VISIBLE);
                 marketplaceBestSellerAdapter = new MarketplaceNewProductAdapter(Marketplace.this, bestSellers);

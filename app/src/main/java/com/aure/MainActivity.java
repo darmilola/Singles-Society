@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     Toolbar toolbar;
     FrameLayout mainView;
     ProgressBar progressBar;
-    LinearLayout emptyLayoutRoot,activityCaughtUpRoot,takeAction;
+    LinearLayout emptyLayoutRoot,activityCaughtUpRoot;
     LinearLayout mainInfoToggleLayout;
     LinearLayout mainMarketPlace;
     LinearLayout matchesMenu;
@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         mainMarketPlace = findViewById(R.id.main_marketplace);
         completeProfile = findViewById(R.id.complete_profile);
         filterProfile = findViewById(R.id.filter_layout);
-        takeAction = findViewById(R.id.showcase_take_action);
 
 
         counselling.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 activityCaughtUpRoot.setVisibility(View.GONE);
                 userShowcaseStack.setVisibility(View.GONE);
                 swipeToolRoot.setVisibility(View.GONE);
-                takeAction.setVisibility(View.GONE);
                 metMatchRoot.setVisibility(View.GONE);
                 errorLayoutRoot.setVisibility(View.GONE);
                 mainActivityModel.GetUserInfo();
@@ -221,12 +219,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
-        takeAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,TakeActionOnProfile.class));
-            }
-        });
+
 
 
         matchesMenu.setOnClickListener(new View.OnClickListener() {
@@ -358,7 +351,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 activityCaughtUpRoot.setVisibility(View.GONE);
                 userShowcaseStack.setVisibility(View.GONE);
                 swipeToolRoot.setVisibility(View.GONE);
-                takeAction.setVisibility(View.GONE);
                 metMatchRoot.setVisibility(View.GONE);
                 errorLayoutRoot.setVisibility(View.VISIBLE);
 
@@ -376,7 +368,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             activityCaughtUpRoot.setVisibility(View.GONE);
             userShowcaseStack.setVisibility(View.GONE);
             swipeToolRoot.setVisibility(View.GONE);
-            takeAction.setVisibility(View.GONE);
             metMatchRoot.setVisibility(View.GONE);
         }
         else{
@@ -446,7 +437,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     activityCaughtUpRoot.setVisibility(View.GONE);
                     userShowcaseStack.setVisibility(View.VISIBLE);
                     swipeToolRoot.setVisibility(View.VISIBLE);
-                    takeAction.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -459,7 +449,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     activityCaughtUpRoot.setVisibility(View.GONE);
                     userShowcaseStack.setVisibility(View.GONE);
                     swipeToolRoot.setVisibility(View.GONE);
-                    takeAction.setVisibility(View.GONE);
                     metMatchRoot.setVisibility(View.GONE);
                     errorLayoutRoot.setVisibility(View.VISIBLE);
                 }
@@ -473,7 +462,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     activityCaughtUpRoot.setVisibility(View.GONE);
                     userShowcaseStack.setVisibility(View.GONE);
                     swipeToolRoot.setVisibility(View.GONE);
-                    takeAction.setVisibility(View.GONE);
                 }
             });
         }
@@ -592,7 +580,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                             mainView.setVisibility(View.VISIBLE);
                             userShowcaseStack.setVisibility(View.GONE);
                             swipeToolRoot.setVisibility(View.GONE);
-                            takeAction.setVisibility(View.GONE);
                             metMatchRoot.setVisibility(View.VISIBLE);
                             //Uri uri = Uri.parse(previewProfileModels.get(position).getImage1Url());
                             //match_first_image.setImageURI(uri);
@@ -610,7 +597,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         mainView.setVisibility(View.VISIBLE);
                         userShowcaseStack.setVisibility(View.GONE);
                         swipeToolRoot.setVisibility(View.GONE);
-                        takeAction.setVisibility(View.GONE);
                     }
              }
 
@@ -623,7 +609,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             mainView.setVisibility(View.VISIBLE);
             userShowcaseStack.setVisibility(View.GONE);
             swipeToolRoot.setVisibility(View.GONE);
-            takeAction.setVisibility(View.GONE);
         }
     }
 

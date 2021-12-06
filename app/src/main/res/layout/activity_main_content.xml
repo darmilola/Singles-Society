@@ -74,16 +74,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/showcase_take_action"
             android:gravity="right">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="16dp"
-                android:layout_gravity="center"
-                android:tint="@color/light_text_color"
-                android:src="@drawable/ic_iconfinder_63_menu"/>
+
 
         </LinearLayout>
 

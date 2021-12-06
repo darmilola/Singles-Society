@@ -38,10 +38,12 @@ import com.limerse.iap.SubscriptionServiceListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import me.relex.circleindicator.CircleIndicator2;
@@ -140,7 +142,10 @@ public class AdminProductDetails extends AppCompatActivity {
         listingModel.getProductDetail();
         name.setText(mListingModel.getName());
         description.setText(mListingModel.getDescription());
-        price.setText(mListingModel.getPrice());
+        Locale NigerianLocale = new Locale("en","ng");
+        String unFormattedPrice = NumberFormat.getCurrencyInstance(NigerianLocale).format(Integer.parseInt(mListingModel.getPrice()));
+        String formattedPrice = unFormattedPrice.replaceAll("\\.00","");
+        price.setText(formattedPrice);
         if(mListingModel.getIsSponsored().equalsIgnoreCase("true")){
             promote.setVisibility(View.GONE);
         }

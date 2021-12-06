@@ -17,7 +17,9 @@ import android.widget.Toast;
 import com.aure.UiAdapters.MarketplaceProductDetailAdapter;
 import com.aure.UiModels.ListingModel;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import me.relex.circleindicator.CircleIndicator2;
 
@@ -55,7 +57,10 @@ public class MyListingDetails extends AppCompatActivity {
         listingModel.getProductDetail();
         name.setText(mListingModel.getName());
         description.setText(mListingModel.getDescription());
-        price.setText(mListingModel.getPrice());
+        Locale NigerianLocale = new Locale("en","ng");
+        String unFormattedPrice = NumberFormat.getCurrencyInstance(NigerianLocale).format(Integer.parseInt(mListingModel.getPrice()));
+        String formattedPrice = unFormattedPrice.replaceAll("\\.00","");
+        price.setText(formattedPrice);
 
         listingModel.setDetailsReadyListener(new ListingModel.DetailsReadyListener() {
             @Override

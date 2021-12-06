@@ -13,6 +13,29 @@
         app:cardCornerRadius="10dp"
         app:cardBackgroundColor="@color/White"
         app:cardElevation="0dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/add_to_cart_background"
+                android:elevation="2dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:backgroundTint="@color/pinkypinky"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/_564507_checked_favorite_star_favourite_rating_icon"
+                    android:tint="@color/white"/>
+
+            </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:layout_marginLeft="10dp"
-                    android:minHeight="50dp"
+                    android:minHeight="30dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -61,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
                         android:layout_marginLeft="5dp"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:maxLines="3"
                         android:ellipsize="end"
                         android:id="@+id/listing_item_name"
@@ -75,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/light_text_color"
                 android:layout_marginLeft="15dp"
-                android:textSize="13dp"
+                android:textSize="12dp"
                  android:maxLines="2"
                  android:ellipsize="end"
                  android:id="@+id/list_item_description"
@@ -93,6 +116,6 @@
 
             </LinearLayout>
         </LinearLayout>
-
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
