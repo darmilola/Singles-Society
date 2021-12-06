@@ -39,8 +39,6 @@ public class ResetPassword extends AppCompatActivity {
 
         userIdHash = data.getQueryParameter("hash");
 
-        System.out.println(userIdHash);
-
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -14,7 +14,8 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
     defaultConfig {
-        applicationId "com.aure.testing"
+         //com.aure.testing
+        applicationId "com.aure"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 4

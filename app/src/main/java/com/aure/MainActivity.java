@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -33,6 +34,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -44,6 +46,7 @@ import com.aure.UiModels.ShowCaseModel;
 import com.aure.UiModels.ShowcaseMetadata;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -74,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     ActionBarDrawerToggle drawerToggle;
     DrawerLayout drawerLayout;
     CircleImageView profileImageView;
+    TextView metMatchText;
+    SimpleDraweeView match_first_image, match_second_image;
     Toolbar toolbar;
     FrameLayout mainView;
     ProgressBar progressBar;
@@ -107,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
 
     private void initView(){
+        metMatchText = findViewById(R.id.met_match_text);
+        match_first_image = findViewById(R.id.met_match_first_image);
+        match_second_image = findViewById(R.id.met_match_second_image);
         counselling = findViewById(R.id.main_counselling_layout);
         profileImageView = findViewById(R.id.main_profile_imageview);
         swipeToolRoot = findViewById(R.id.showcase_swipe_layout);
@@ -586,6 +594,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                             swipeToolRoot.setVisibility(View.GONE);
                             takeAction.setVisibility(View.GONE);
                             metMatchRoot.setVisibility(View.VISIBLE);
+                            //Uri uri = Uri.parse(previewProfileModels.get(position).getImage1Url());
+                            //match_first_image.setImageURI(uri);
+                            //Uri uri2 = Uri.parse(mainActivityModel.getImageUrl());
+                            //match_second_image.setImageURI(uri2);
+                            metMatchText.setText("You and "+ previewProfileModels.get(position).getFirstname()+" have matched");
                             break;
                         }
                     }

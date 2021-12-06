@@ -51,6 +51,7 @@
             fresco:placeholderImageScaleType="fitXY"
             fresco:roundedCornerRadius="3dp"
             fresco:roundAsCircle="true"
+            android:id="@+id/met_match_first_image"
             fresco:roundingBorderWidth="2dp"
             fresco:roundingBorderColor="@color/special_activity_background"
             fresco:placeholderImage="@drawable/profileplaceholder" />
@@ -64,6 +65,7 @@
             fresco:placeholderImageScaleType="fitXY"
             fresco:roundedCornerRadius="3dp"
             fresco:roundAsCircle="true"
+            android:id="@+id/met_match_second_image"
             fresco:roundingBorderWidth="2dp"
             fresco:roundingBorderColor="@color/special_activity_background"
             fresco:placeholderImage="@drawable/profileplaceholder"/>
