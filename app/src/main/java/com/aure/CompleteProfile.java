@@ -41,6 +41,7 @@ public class CompleteProfile extends AppCompatActivity {
     SeekBar ageSelect;
     LinearLayout rootLayout;
     ProgressBar progressBar;
+    MaterialButton startSearching;
     CompleteProfileModel completeProfileModel;
     ImageView image1,image2,image3;
     ArrayList<String> maritalItems = new ArrayList<>();
@@ -61,6 +62,7 @@ public class CompleteProfile extends AppCompatActivity {
     }
 
     private void initView(){
+        startSearching = findViewById(R.id.complete_profile_start_searching);
         errorLayout = findViewById(R.id.error_layout_root);
         errorRetry = findViewById(R.id.error_page_retry);
         image1Select = findViewById(R.id.first_display_image_select);
@@ -101,6 +103,14 @@ public class CompleteProfile extends AppCompatActivity {
         image3 = findViewById(R.id.third_image_view);
         populateItems();
 
+        startSearching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
+
         completeProfileModel = new CompleteProfileModel(CompleteProfile.this);
         completeProfileModel.GetUserInfo();
         completeProfileModel.setInfoReadyListener(new CompleteProfileModel.InfoReadyListener() {
@@ -109,6 +119,7 @@ public class CompleteProfile extends AppCompatActivity {
                 CompleteProfile.this.completeProfileModel = completeProfileModel;
                 rootLayout.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
+                startSearching.setVisibility(View.VISIBLE);
                 Toast.makeText(CompleteProfile.this, Integer.toString(completeProfileModel.getAge()), Toast.LENGTH_SHORT).show();
                 ageTextview.setText("Age("+Integer.toString(completeProfileModel.getAge())+")");
                 progressBar.setProgress(completeProfileModel.getAge());
@@ -240,6 +251,7 @@ public class CompleteProfile extends AppCompatActivity {
                 rootLayout.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
                 errorLayout.setVisibility(View.VISIBLE);
+                startSearching.setVisibility(View.GONE);
             }
         });
 
@@ -249,6 +261,7 @@ public class CompleteProfile extends AppCompatActivity {
                 rootLayout.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
                 errorLayout.setVisibility(View.GONE);
+                startSearching.setVisibility(View.GONE);
                 completeProfileModel.GetUserInfo();
             }
         });

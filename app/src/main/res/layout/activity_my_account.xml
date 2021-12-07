@@ -62,7 +62,7 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/signup_profile_image"
+                android:id="@+id/my_account_profile_image"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:src="@drawable/profileplaceholder"/>
@@ -87,6 +87,7 @@
                     android:text="llham Maulana"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:id="@+id/my_account_name"
                     android:fontFamily="@font/clanbook"/>
             </LinearLayout>
 
@@ -429,35 +430,6 @@
                     android:text="Terms and Conditions"
                     android:textColor="#4F565A"
                     android:textSize="12dp" />
-
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:rotation="180"
-                    android:layout_marginTop="1dp"
-                    android:src="@drawable/iconfinder_chevron_left_4781844"
-                    app:tint="@color/colorPrimary"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/clannews"
-                    android:gravity="center|left"
-                    android:maxLines="1"
-                    android:text="Contact us"
-                    android:textColor="#4F565A"
-                    android:textSize="12dp" />
-
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:rotation="180"
-                    android:layout_marginTop="1dp"
-                    android:src="@drawable/iconfinder_chevron_left_4781844"
-                    app:tint="@color/colorPrimary"/>
             </LinearLayout>
 
             <TextView

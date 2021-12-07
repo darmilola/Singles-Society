@@ -246,7 +246,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         completeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CompleteProfile.class));
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                startActivityForResult(new Intent(MainActivity.this, CompleteProfile.class),PREFERENCE_INT);
             }
         });
 

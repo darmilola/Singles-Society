@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,6 +7,23 @@
     android:background="@color/special_activity_background"
     android:orientation="vertical"
     tools:context=".PreferenceFilter">
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Start Searching"
+        android:textAllCaps="false"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/preference_start_searching"
+        android:backgroundTint="@color/pinkypinky"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -49,15 +66,7 @@
                 android:id="@+id/profile_preview"
                 android:layout_marginRight="5dp"
                 android:gravity="center">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Search"
-                    android:gravity="center"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/airreg"
-                    android:id="@+id/preference_search"
-                    android:textColor="@color/light_text_color"/>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -365,4 +374,5 @@
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+ </LinearLayout>
+</FrameLayout>

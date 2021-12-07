@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aure.UiModels.Utils.ListDialog;
+import com.google.android.material.button.MaterialButton;
 import com.mohammedalaa.seekbar.DoubleValueSeekBarView;
 import com.mohammedalaa.seekbar.OnDoubleValueSeekBarChangeListener;
 import com.mohammedalaa.seekbar.OnRangeSeekBarChangeListener;
@@ -34,7 +35,7 @@ public class PreferenceFilter extends AppCompatActivity {
     ArrayList<String> drinkingItems = new ArrayList<>();
     ArrayList<String> smokingItems = new ArrayList<>();
     DoubleValueSeekBarView ageSeekbar;
-    TextView preferenceSearch;
+    MaterialButton startSearching;
 
 
     @Override
@@ -46,7 +47,7 @@ public class PreferenceFilter extends AppCompatActivity {
 
     private void initView(){
         populateDialogListView();
-        preferenceSearch = findViewById(R.id.preference_search);
+        startSearching = findViewById(R.id.preference_start_searching);
         ageSeekbar = findViewById(R.id.age_range_seekbar);
         statusSelect = findViewById(R.id.status__filter_select);
         religionSelect = findViewById(R.id.religion_filter_select);
@@ -66,7 +67,7 @@ public class PreferenceFilter extends AppCompatActivity {
             //ageSeekbar.setMaxValue(preferences.getInt("min_age",18));
 
 
-        preferenceSearch.setOnClickListener(new View.OnClickListener() {
+        startSearching.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
