@@ -119,7 +119,7 @@ public final class DateFormatter {
 
     public enum Template {
         STRING_DAY_MONTH_YEAR("d MMMM yyyy"),
-        STRING_DAY_MONTH("d MMMM"),
+        STRING_DAY_MONTH("d MMM"),
         TIME("HH:mm");
 
         private String template;
