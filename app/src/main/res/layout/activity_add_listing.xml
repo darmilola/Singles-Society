@@ -73,7 +73,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_gravity="center"
                 app:backgroundTint="@color/colorPrimary"
-                android:text="Upload Product Images"
+                android:text="Upload Image"
                 android:textAllCaps="false"
                 android:id="@+id/upload_listing_image"/>
 
@@ -96,6 +96,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:inputType="text"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:maxLines="1"
                 android:id="@+id/add_listing_product_name"
                 android:background="@drawable/edit_profile_edittext_background"/>
@@ -119,29 +121,9 @@
                 android:layout_marginRight="16dp"
                 android:inputType="number"
                 android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:id="@+id/add_listing_product_price"
-                android:background="@drawable/edit_profile_edittext_background"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="* Category"
-                android:layout_marginLeft="16dp"
-                android:textSize="18dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/clanmed"
-                android:textColor="@color/colorPrimary"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:inputType="number"
-                android:maxLines="1"
-                android:id="@+id/add_listing_product_category"
                 android:background="@drawable/edit_profile_edittext_background"/>
 
             <TextView
@@ -160,9 +142,12 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="16dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:gravity="top|left"
                 android:layout_marginRight="16dp"
                 android:id="@+id/add_listing_product_desc"
-                android:inputType="text"
                 android:background="@drawable/edit_profile_edittext_background"/>
 
             <com.google.android.material.checkbox.MaterialCheckBox

@@ -193,11 +193,10 @@ public class ListingModel implements Parcelable {
            this.searchQuery = query;
     }
 
-    public ListingModel(Context context, String productId, String retailerId, String name, String price, String category, String description, String isSponsored, String displayImage){
+    public ListingModel(Context context, String productId, String retailerId, String name, String price, String description, String isSponsored, String displayImage){
         this.retailerId = retailerId;
         this.name = name;
         this.price = price;
-        this.category = category;
         this.description = description;
         this.displayImage = displayImage;
         this.productId = productId;

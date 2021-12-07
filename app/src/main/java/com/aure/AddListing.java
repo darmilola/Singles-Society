@@ -42,7 +42,6 @@ public class AddListing extends AppCompatActivity {
     EditText title,price,description;
     MaterialCheckBox availability;
     String mTitle,mPrice,mDescription,mCategory,mAvailability;
-    TextView category;
     LinearLayout cancel,save;
     AddProductImageAdapter adapter;
     ArrayList<ProductImageModel> imagesList = new ArrayList<>();
@@ -68,7 +67,6 @@ public class AddListing extends AppCompatActivity {
         price = findViewById(R.id.add_listing_product_price);
         description = findViewById(R.id.add_listing_product_desc);
         availability = findViewById(R.id.add_listing_product_availability);
-        category = findViewById(R.id.add_listing_product_category);
         cancel = findViewById(R.id.add_listing_cancel);
         save = findViewById(R.id.add_listing_save);
         scrollImageLayout = findViewById(R.id.product_image_layout);
@@ -87,20 +85,6 @@ public class AddListing extends AppCompatActivity {
 
 
 
-        category.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listDialog = new ListDialog(categoryList, AddListing.this);
-                listDialog.showListDialog();
-                listDialog.setItemClickedListener(new ListDialog.OnItemClickedListener() {
-                    @Override
-                    public void onItemClicked(String text) {
-                        category.setText(text);
-                    }
-                });
-            }
-        });
-
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +101,6 @@ public class AddListing extends AppCompatActivity {
             public void onClick(View view) {
                 mTitle = title.getText().toString().trim();
                 mPrice = price.getText().toString().trim();
-                mCategory = category.getText().toString().trim();
                 mDescription = description.getText().toString().trim();
                 if (availability.isChecked()) {
                     mAvailability = "true";
@@ -125,7 +108,7 @@ public class AddListing extends AppCompatActivity {
                     mAvailability = "false";
                 }
                 if (isValidInput()) {
-                    ListingModel listingModel = new ListingModel(AddListing.this, productId, retailerId, mTitle, mPrice, mCategory, mDescription, mAvailability, displayImage);
+                    ListingModel listingModel = new ListingModel(AddListing.this, productId, retailerId, mTitle, mPrice, mDescription, mAvailability, displayImage);
                     listingModel.createProduct();
                     listingModel.setCreateProductListener(new ListingModel.CreateProductListener() {
                         @Override
@@ -155,11 +138,6 @@ public class AddListing extends AppCompatActivity {
         if(TextUtils.isEmpty(mPrice)){
             isValid = false;
             price.setError("Required");
-            return isValid;
-        }
-        if(TextUtils.isEmpty(mCategory)){
-            isValid = false;
-            category.setError("Required");
             return isValid;
         }
         if(TextUtils.isEmpty(mDescription)){

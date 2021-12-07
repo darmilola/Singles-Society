@@ -14,7 +14,9 @@ import com.aure.R;
 import com.aure.UiModels.ListingModel;
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AdminDetailsAdapter extends RecyclerView.Adapter<AdminDetailsAdapter.MarketplaceViewViewAllHolder> {
 
@@ -46,7 +48,10 @@ public class AdminDetailsAdapter extends RecyclerView.Adapter<AdminDetailsAdapte
     @Override
     public void onBindViewHolder(@NonNull MarketplaceViewViewAllHolder holder, int position) {
         ListingModel listingModel = listingModels.get(position);
-        holder.price.setText(listingModel.getPrice());
+        Locale NigerianLocale = new Locale("en","ng");
+        String unFormattedPrice = NumberFormat.getCurrencyInstance(NigerianLocale).format(Integer.parseInt(listingModel.getPrice()));
+        String formattedPrice = unFormattedPrice.replaceAll("\\.00","");
+        holder.price.setText(formattedPrice);
         holder.description.setText(listingModel.getDescription());
         holder.name.setText(listingModel.getName());
         Glide.with(context)

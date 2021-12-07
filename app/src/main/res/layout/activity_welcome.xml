@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/serious_muslim"
+        android:src="@drawable/couple_love"
         android:elevation="1dp"
         android:scaleType="centerCrop"
         android:id="@+id/welcome_background_image"/>
@@ -33,9 +33,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="3.5"
             android:gravity="bottom"
             android:orientation="vertical">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/muzmatch"
+                android:tint="@color/pinkypinky"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,27 +51,17 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:lineSpacingExtra="5dp"
+                android:gravity="center"
                 android:fontFamily="@font/kumelianbold"
-                android:text="Auretayya\nMatchMaking App"/>
+                android:text="Auratayya\nMatchMaking App"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="70dp"
-                android:lineSpacingExtra="4dp"
-                android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/airreg"
-                android:text="some brief information about auretayya goes here"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_weight="2.5">
+            android:layout_weight="2">
 
 
 
@@ -72,9 +69,9 @@
             <LinearLayout
                 android:id="@+id/signin_with_google_layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/google_sign_in_background"
                 android:gravity="center"
@@ -109,9 +106,9 @@
             <LinearLayout
                 android:id="@+id/signin_with_email_layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/google_sign_in_background"
                 android:gravity="center"
