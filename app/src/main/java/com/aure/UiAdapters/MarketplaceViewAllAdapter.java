@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aure.MyListingDetails;
@@ -54,6 +55,9 @@ public class MarketplaceViewAllAdapter extends RecyclerView.Adapter<MarketplaceV
                 .placeholder(R.drawable.profileplaceholder)
                 .error(R.drawable.profileplaceholder)
                 .into(holder.imageView);
+        if(listingModel.getIsSponsored().equalsIgnoreCase("true")){
+            holder.badge.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -65,6 +69,7 @@ public class MarketplaceViewAllAdapter extends RecyclerView.Adapter<MarketplaceV
     public class MarketplaceViewViewAllHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
          ImageView imageView;
          TextView name,description,price;
+         LinearLayout badge;
 
         public MarketplaceViewViewAllHolder(View ItemView){
             super(ItemView);
@@ -72,6 +77,7 @@ public class MarketplaceViewAllAdapter extends RecyclerView.Adapter<MarketplaceV
             name = ItemView.findViewById(R.id.listing_item_name);
             description = ItemView.findViewById(R.id.list_item_description);
             price = ItemView.findViewById(R.id.listing_item_price);
+            badge = ItemView.findViewById(R.id.sponsored_badge);
             ItemView.setOnClickListener(this);
         }
 

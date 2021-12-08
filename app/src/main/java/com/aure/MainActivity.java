@@ -221,8 +221,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         matchedSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // iapConnector.subscribe(MainActivity.this, "com.aure.sub");
-
                 Activity activity = MainActivity.this;
                 int requestCode = 10; // YOUR REQUEST CODE
                 String itemId = "com.aure.sub";
@@ -635,7 +633,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void showAlert(){
         new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Password Reset")
+                .setTitle("Subscription successful")
                 .setMessage("You have successfully subscribed for Auratayya Premium, you can restart the App to activate more features")
 
                 // Specifying a listener allows you to take an action before dismissing the dialog.

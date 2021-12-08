@@ -25,11 +25,14 @@ import okhttp3.Response;
 public class PaymentModel {
     private String baseUrl = new URL().getBaseUrl();
     private String subscribeUrl = baseUrl+"users/update";
-    private String promoteProductUrl = baseUrl+"products/update";
+    private String promoteProductUrl = baseUrl+"products/sponsor";
     private String userId;
     private Context context;
     private LoadingDialogUtils loadingDialogUtils;
     private PaymentListener paymentListener;
+    private String sponsorshipEnds;
+    private String productId;
+
 
     public interface PaymentListener{
         void onSuccess();
@@ -39,6 +42,12 @@ public class PaymentModel {
     public PaymentModel(Context context, String userId){
            this.context = context;
            this.userId = userId;
+           loadingDialogUtils = new LoadingDialogUtils(context);
+    }
+
+    public PaymentModel(Context context, String sponsorshipEnds, String productId){
+           this.sponsorshipEnds = sponsorshipEnds;
+           this.productId = productId;
            loadingDialogUtils = new LoadingDialogUtils(context);
     }
 
@@ -100,12 +109,51 @@ public class PaymentModel {
     }
 
 
+    public void sponsor(){
+        loadingDialogUtils.showLoadingDialog("processing...");
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildSponsorship(this.sponsorshipEnds, this.productId));
+            Request request = new Request.Builder()
+                    .url(promoteProductUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = subscribeHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            subscribeHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
 
     private String buildSubscribe(String userEmail){
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("email",userEmail);
             jsonObject.put("isSubscribed","true");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+    private String buildSponsorship(String sponsorshipEnds, String productId){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("endDate",sponsorshipEnds);
+            jsonObject.put("id",productId);
         } catch (JSONException e) {
             e.printStackTrace();
         }
