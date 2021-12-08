@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +17,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 import okhttp3.MediaType;
@@ -38,6 +40,7 @@ public class MainActivityModel {
     private ArrayList<String> likedUserId = new ArrayList<>();
     private Context context;
     private String userId;
+    private String isMatched;
 
     public interface InfoReadyListener{
         void onReady(MainActivityModel mainActivityModel);
@@ -60,13 +63,14 @@ public class MainActivityModel {
         this.context = context;
     }
 
-    public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl, String phonenumber){
+    public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl, String phonenumber, String isMatched){
            this.isProfileCompleted = isProfileCompleted;
            this.isSubscribed = isSubscribed;
            this.firstname = firstname;
            this.lastname = lastname;
            this.imageUrl = imageUrl;
            this.phonenumber   = phonenumber;
+           this.isMatched = isMatched;
     }
 
     public String getIsProfileCompleted() {
@@ -75,6 +79,10 @@ public class MainActivityModel {
 
     public String getIsSubscribed() {
         return isSubscribed;
+    }
+
+    public String getIsMatched() {
+        return isMatched;
     }
 
     public String getFirstname() {
@@ -109,6 +117,7 @@ public class MainActivityModel {
                 if(status.equalsIgnoreCase("success")){
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     JSONArray jsonArray1 = jsonObject.getJSONArray("likes");
+                    JSONArray jsonArray2 = jsonObject.getJSONArray("likedYou");
                     if(jsonArray1.length() >= 1) {
                         for (int j = 0; j < jsonArray1.length(); j++) {
                             String userId = jsonArray1.getJSONObject(j).getString("userId");
@@ -136,9 +145,36 @@ public class MainActivityModel {
                         String gender = jsonArray.getJSONObject(i).getString("gender");
                         String mReligion = jsonArray.getJSONObject(i).getString("religion");
                         String firstname = jsonArray.getJSONObject(i).getString("firstname");
-                        PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname, about, mStatus, language, city, occupation, marriageGoals, education, workplace, drinking, smoking, gender, quote, age, firstImage, secondImage, thirdImage, mReligion);
+                        String isMatched = jsonArray.getJSONObject(i).getString("isMatched");
+                        PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname, about, mStatus, language, city, occupation, marriageGoals, education, workplace, drinking, smoking, gender, quote, age, firstImage, secondImage, thirdImage, mReligion,isMatched);
                         previewProfileModels.add(previewProfileModel);
                     }
+
+                    for(int i = 0; i < jsonArray2.length(); i++) {
+                        int age = jsonArray2.getJSONObject(i).getInt("age");
+                        String userId = jsonArray2.getJSONObject(i).getString("email");
+                        String city = jsonArray2.getJSONObject(i).getString("city");
+                        String mStatus = jsonArray2.getJSONObject(i).getString("status");
+                        String language = jsonArray2.getJSONObject(i).getString("language");
+                        String workplace = jsonArray2.getJSONObject(i).getString("workplace");
+                        String occupation = jsonArray2.getJSONObject(i).getString("occupation");
+                        String education = jsonArray2.getJSONObject(i).getString("education");
+                        String quote = jsonArray2.getJSONObject(i).getString("quote");
+                        String firstImage = jsonArray2.getJSONObject(i).getString("firstImage");
+                        String secondImage = jsonArray2.getJSONObject(i).getString("secondImage");
+                        String thirdImage = jsonArray2.getJSONObject(i).getString("thirdImage");
+                        String about = jsonArray2.getJSONObject(i).getString("about");
+                        String marriageGoals = jsonArray2.getJSONObject(i).getString("marriageGoals");
+                        String drinking = jsonArray2.getJSONObject(i).getString("drinking");
+                        String smoking = jsonArray2.getJSONObject(i).getString("smoking");
+                        String gender = jsonArray2.getJSONObject(i).getString("gender");
+                        String mReligion = jsonArray2.getJSONObject(i).getString("religion");
+                        String firstname = jsonArray2.getJSONObject(i).getString("firstname");
+                        String isMatched = jsonArray2.getJSONObject(i).getString("isMatched");
+                        PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname, about, mStatus, language, city, occupation, marriageGoals, education, workplace, drinking, smoking, gender, quote, age, firstImage, secondImage, thirdImage, mReligion,isMatched);
+                        previewProfileModels.add(previewProfileModel);
+                    }
+                    Collections.shuffle(previewProfileModels);
                     showcaseInfoReadyListener.onReady(previewProfileModels,likedUserId);
 
                     }
@@ -149,6 +185,7 @@ public class MainActivityModel {
                     showcaseInfoReadyListener.onError("Error Occurred");
                 }
             } catch (JSONException e) {
+                //Log.e("error occured  ", e.getLocalizedMessage());
                 showcaseInfoReadyListener.onError(e.getLocalizedMessage());
             }
 
@@ -175,10 +212,11 @@ public class MainActivityModel {
                     String lastname = jsonArray.getJSONObject(0).getString("lastname");
                     String imageUrl = jsonArray.getJSONObject(0).getString("profileImage");
                     String phonenumber = jsonArray.getJSONObject(0).getString("phonenumber");
+                    String isMatched = jsonArray.getJSONObject(0).getString("isMatched");
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
                     preferences.edit().putString("gender",gender).apply();
 
-                    MainActivityModel mainActivityModel = new MainActivityModel(isProfileCompleted,isSubscribed,firstname,lastname,imageUrl,phonenumber);
+                    MainActivityModel mainActivityModel = new MainActivityModel(isProfileCompleted,isSubscribed,firstname,lastname,imageUrl,phonenumber,isMatched);
                     infoReadyListener.onReady(mainActivityModel);
                 }
                 else if(status.equalsIgnoreCase("failure")){

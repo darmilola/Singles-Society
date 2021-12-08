@@ -32,8 +32,9 @@ public class PreviewProfileModel {
     private String image1Url,image2Url,image3Url;
     private InfoReadyListener infoReadyListener;
     private String userEmail,userId;
+    private String isMatched;
 
-    public PreviewProfileModel(String userId,String firstname,String about, String status, String language, String city, String occupation, String marriageGoals, String educationLevel, String workplace, String drinking, String smoking, String gender, String quote, int age, String image1Url, String image2Url, String image3Url,String religion){
+    public PreviewProfileModel(String userId,String firstname,String about, String status, String language, String city, String occupation, String marriageGoals, String educationLevel, String workplace, String drinking, String smoking, String gender, String quote, int age, String image1Url, String image2Url, String image3Url,String religion, String isMatched){
         this.about = about;
         this.status = status;
         this.language = language;
@@ -53,6 +54,7 @@ public class PreviewProfileModel {
         this.age = age;
         this.firstname = firstname;
         this.userId = userId;
+        this.isMatched = isMatched;
     }
 
     public PreviewProfileModel(Context context){
@@ -88,6 +90,10 @@ public class PreviewProfileModel {
 
     public String getAbout() {
         return about;
+    }
+
+    public String getIsMatched() {
+        return isMatched;
     }
 
     public String getCity() {
@@ -250,9 +256,10 @@ public class PreviewProfileModel {
                     String drinking = jsonArray.getJSONObject(0).getString("drinking");
                     String smoking = jsonArray.getJSONObject(0).getString("smoking");
                     String gender = jsonArray.getJSONObject(0).getString("gender");
+                    String isMathched = jsonArray.getJSONObject(0).getString("isMatched");
                     String mReligion = jsonArray.getJSONObject(0).getString("religion");
                     String firstname = jsonArray.getJSONObject(0).getString("firstname");
-                    PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname,about,mStatus,language,city,occupation,marriageGoals,education,workplace,drinking,smoking,gender,quote,age,firstImage,secondImage,thirdImage,mReligion);
+                    PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname,about,mStatus,language,city,occupation,marriageGoals,education,workplace,drinking,smoking,gender,quote,age,firstImage,secondImage,thirdImage,mReligion,isMatched);
                     infoReadyListener.onReady(previewProfileModel);
                 }
                 else if(status.equalsIgnoreCase("failure")){

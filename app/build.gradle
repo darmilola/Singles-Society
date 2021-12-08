@@ -15,11 +15,11 @@ android {
     buildToolsVersion "30.0.1"
     defaultConfig {
          //com.aure.testing
-        applicationId "com.aure"
+        applicationId "com.aure.testing" //"com.aure"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 4
-        versionName "1.03"
+        versionCode 5
+        versionName "1.04"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
@@ -68,8 +68,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.anjlab.android.iab.v3:library:2.0.3'
     def billing_version = "4.0.0"
-
     implementation "com.android.billingclient:billing:$billing_version"
     implementation 'com.github.akshaaatt:Google-IAP:1.2.1'
     implementation 'cz.msebera.android:httpclient:4.5.3'
+    implementation 'jp.alessandro.android:easy-checkout:v1.0.4'
 }

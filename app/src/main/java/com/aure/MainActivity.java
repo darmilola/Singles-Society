@@ -3,6 +3,7 @@ package com.aure;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -13,12 +14,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import jp.alessandro.android.iab.BillingApi;
+import jp.alessandro.android.iab.BillingContext;
+import jp.alessandro.android.iab.BillingException;
+import jp.alessandro.android.iab.BillingProcessor;
+import jp.alessandro.android.iab.Purchase;
+import jp.alessandro.android.iab.PurchaseType;
+import jp.alessandro.android.iab.handler.PurchaseHandler;
+import jp.alessandro.android.iab.handler.StartActivityHandler;
+import jp.alessandro.android.iab.logger.SystemLogger;
+import jp.alessandro.android.iab.response.PurchaseResponse;
 
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -40,6 +53,7 @@ import android.widget.Toast;
 
 import com.aure.UiAdapters.ShowcaseMainAdapter;
 import com.aure.UiModels.MainActivityModel;
+import com.aure.UiModels.PaymentModel;
 import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.ShowCaseMainModel;
 import com.aure.UiModels.ShowCaseModel;
@@ -53,6 +67,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.limerse.iap.DataWrappers;
+import com.limerse.iap.IapConnector;
+import com.limerse.iap.PurchaseServiceListener;
+import com.limerse.iap.SubscriptionServiceListener;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -63,8 +81,14 @@ import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
@@ -93,14 +117,15 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout helpDesk;
     LinearLayout logOut;
     LinearLayout counselling;
-    MaterialButton changePreference,visitMarketplace,completeProfileStartChatting,erroRetryButton;
+    MaterialButton changePreference,visitMarketplace,completeProfileStartChatting,erroRetryButton,matchedStartChatting,matchedSubscribe;
     RelativeLayout swipeToolRoot;
     ArrayList<String> likedUserId = new ArrayList<>();
     ArrayList<PreviewProfileModel> previewProfileModels = new ArrayList<>();
     String currentlyDisplayedUserId;
     boolean isRightSwipe = false;
-    LinearLayout metMatchRoot,completeProfileRoot,errorLayoutRoot;
+    LinearLayout metMatchRoot,completeProfileRoot,errorLayoutRoot,alreadyMatchedRoot;
     MainActivityModel mainActivityModel;
+    private BillingProcessor mBillingProcessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,8 +135,50 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         initView();
     }
 
+    private final PurchaseHandler mPurchaseHandler = new PurchaseHandler() {
+        @Override
+        public void call(PurchaseResponse response) {
+            if (response.isSuccess()) {
+                Purchase purchase = response.getPurchase();
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                String userEmail =  preferences.getString("userEmail","");
+                PaymentModel paymentModel = new PaymentModel(MainActivity.this, userEmail);
+                paymentModel.subscribe();
+                paymentModel.setPaymentListener(new PaymentModel.PaymentListener() {
+                    @Override
+                    public void onSuccess() {
+                        showAlert();
+                    }
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(MainActivity.this, "Error Occurred please try again", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            else {
+
+                // Handle the error
+            }
+        }
+    };
+
+
+    private void initBillingProcessor() {
+        BillingContext.Builder builder = new BillingContext.Builder()
+                .setContext(MainActivity.this) // App context
+                .setPublicKeyBase64("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB") // Public key generated on the Google Play Console
+                .setApiVersion(BillingApi.VERSION_5) // It also supports version 5
+                .setLogger(new SystemLogger());
+
+        mBillingProcessor = new BillingProcessor(builder.build(), mPurchaseHandler);
+    }
+
 
     private void initView(){
+        initBillingProcessor();
+        matchedStartChatting = findViewById(R.id.met_match_send_message);
+        matchedSubscribe = findViewById(R.id.main_matched_subscribe);
+        alreadyMatchedRoot = findViewById(R.id.already_matched_root);
         metMatchText = findViewById(R.id.met_match_text);
         match_first_image = findViewById(R.id.met_match_first_image);
         match_second_image = findViewById(R.id.met_match_second_image);
@@ -150,6 +217,43 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
+
+        matchedSubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // iapConnector.subscribe(MainActivity.this, "com.aure.sub");
+
+                Activity activity = MainActivity.this;
+                int requestCode = 10; // YOUR REQUEST CODE
+                String itemId = "com.aure.sub";
+                PurchaseType purchaseType = PurchaseType.SUBSCRIPTION; // or PurchaseType.SUBSCRIPTION for subscriptions
+                String developerPayload = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB";
+
+                mBillingProcessor.startPurchase(activity, requestCode, itemId, purchaseType, developerPayload,
+                        new StartActivityHandler() {
+                            @Override
+                            public void onSuccess() {
+                                // Billing activity started successfully
+                                // Do nothing
+                            }
+
+                            @Override
+                            public void onError(BillingException e) {
+                                // Handle the error
+                            }
+                        });
+
+            }
+        });
+
+
+        matchedStartChatting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, MatchesActivity.class));
+            }
+        });
+
         erroRetryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,6 +266,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 userShowcaseStack.setVisibility(View.GONE);
                 swipeToolRoot.setVisibility(View.GONE);
                 metMatchRoot.setVisibility(View.GONE);
+                alreadyMatchedRoot.setVisibility(View.GONE);
                 errorLayoutRoot.setVisibility(View.GONE);
                 mainActivityModel.GetUserInfo();
             }
@@ -354,6 +459,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 activityCaughtUpRoot.setVisibility(View.GONE);
                 userShowcaseStack.setVisibility(View.GONE);
                 swipeToolRoot.setVisibility(View.GONE);
+                alreadyMatchedRoot.setVisibility(View.GONE);
                 metMatchRoot.setVisibility(View.GONE);
                 errorLayoutRoot.setVisibility(View.VISIBLE);
 
@@ -372,6 +478,19 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             userShowcaseStack.setVisibility(View.GONE);
             swipeToolRoot.setVisibility(View.GONE);
             metMatchRoot.setVisibility(View.GONE);
+            alreadyMatchedRoot.setVisibility(View.GONE);
+        }
+       else if(mainActivityModel.getIsMatched().equalsIgnoreCase("true") && mainActivityModel.getIsSubscribed().equalsIgnoreCase("false")){
+            emptyLayoutRoot.setVisibility(View.GONE);
+            completeProfileRoot.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            activityCaughtUpRoot.setVisibility(View.GONE);
+            mainView.setVisibility(View.VISIBLE);
+            activityCaughtUpRoot.setVisibility(View.GONE);
+            userShowcaseStack.setVisibility(View.GONE);
+            swipeToolRoot.setVisibility(View.GONE);
+            metMatchRoot.setVisibility(View.GONE);
+            alreadyMatchedRoot.setVisibility(View.VISIBLE);
         }
         else{
             MainActivityModel mainActivityModel2 = new MainActivityModel(MainActivity.this);
@@ -379,6 +498,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             mainActivityModel2.setShowcaseInfoReadyListener(new MainActivityModel.ShowcaseInfoReadyListener() {
                 @Override
                 public void onReady(ArrayList<PreviewProfileModel> previewProfileModels,ArrayList<String> likeIds) {
+                    MainActivity.this.previewProfileModels.clear();
+                    MainActivity.this.likedUserId.clear();
+                    MainActivity.this.showCaseMainModelArrayList.clear();
                     MainActivity.this.likedUserId = likeIds;
                     MainActivity.this.previewProfileModels = previewProfileModels;
                     for (PreviewProfileModel previewProfileModel: previewProfileModels) {
@@ -440,6 +562,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     activityCaughtUpRoot.setVisibility(View.GONE);
                     userShowcaseStack.setVisibility(View.VISIBLE);
                     swipeToolRoot.setVisibility(View.VISIBLE);
+                    alreadyMatchedRoot.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -453,6 +576,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     userShowcaseStack.setVisibility(View.GONE);
                     swipeToolRoot.setVisibility(View.GONE);
                     metMatchRoot.setVisibility(View.GONE);
+                    alreadyMatchedRoot.setVisibility(View.GONE);
                     errorLayoutRoot.setVisibility(View.VISIBLE);
                 }
 
@@ -465,6 +589,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     activityCaughtUpRoot.setVisibility(View.GONE);
                     userShowcaseStack.setVisibility(View.GONE);
                     swipeToolRoot.setVisibility(View.GONE);
+                    alreadyMatchedRoot.setVisibility(View.GONE);
                 }
             });
         }
@@ -506,6 +631,22 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     }
                 });
 
+    }
+
+    private void showAlert(){
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Password Reset")
+                .setMessage("You have successfully subscribed for Auratayya Premium, you can restart the App to activate more features")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
 
@@ -581,6 +722,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                             activityCaughtUpRoot.setVisibility(View.GONE);
                             progressBar.setVisibility(View.GONE);
                             mainView.setVisibility(View.VISIBLE);
+                            alreadyMatchedRoot.setVisibility(View.GONE);
                             userShowcaseStack.setVisibility(View.GONE);
                             swipeToolRoot.setVisibility(View.GONE);
                             metMatchRoot.setVisibility(View.VISIBLE);
@@ -598,6 +740,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         activityCaughtUpRoot.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                         mainView.setVisibility(View.VISIBLE);
+                        alreadyMatchedRoot.setVisibility(View.GONE);
                         userShowcaseStack.setVisibility(View.GONE);
                         swipeToolRoot.setVisibility(View.GONE);
                     }
@@ -611,6 +754,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             progressBar.setVisibility(View.GONE);
             mainView.setVisibility(View.VISIBLE);
             userShowcaseStack.setVisibility(View.GONE);
+                 alreadyMatchedRoot.setVisibility(View.GONE);
             swipeToolRoot.setVisibility(View.GONE);
         }
     }
@@ -623,7 +767,13 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             progressBar.setVisibility(View.VISIBLE);
             mainView.setVisibility(View.GONE);
             mainActivityModel.GetUserInfo();
+            isRightSwipe = false;
 
+        }
+
+        if (mBillingProcessor.onActivityResult(requestCode, resultCode, data)) {
+            // The response will be sent through PurchaseHandler
+            return;
         }
     }
 

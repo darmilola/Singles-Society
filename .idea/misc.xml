@@ -7,6 +7,9 @@
         <entry key="..\:/Users/user/.gradle/caches/transforms-2/files-2.1/ad0fadcb27bd581967d9918b9febf251/jetified-android-chips-1.3.2/res/layout/copy_chip_dialog_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/drawable/edittext_background.xml" value="0.2203125" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/drawable/google_sign_in_background.xml" value="0.2203125" />
+        <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/drawable/like_white.xml" value="0.2203125" />
+        <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/drawable/overlay_black.xml" value="0.2203125" />
+        <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/drawable/skip_white.xml" value="0.2203125" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/activity_add_listing.xml" value="0.22" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/activity_admin_product_details.xml" value="0.16510416666666666" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/activity_caught_up.xml" value="0.20416666666666666" />
@@ -39,9 +42,11 @@
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/input_dialog_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/marketplace_category_item.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/marketplace_item.xml" value="0.25" />
+        <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/matahed_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/product_detail_recycler_item.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/product_image_recycler_item.xml" value="0.18072916666666666" />
         <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/product_image_scrollview.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/user/StudioProjects/Aure/app/src/main/res/layout/showcase_layout.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
