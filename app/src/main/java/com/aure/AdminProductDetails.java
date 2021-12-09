@@ -32,8 +32,14 @@ import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.aure.UiAdapters.MarketplaceProductDetailAdapter;
 import com.aure.UiModels.ListingModel;
+import com.aure.UiModels.MainActivityModel;
 import com.aure.UiModels.PaymentModel;
 import com.aure.UiModels.Utils.ListDialog;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.limerse.iap.DataWrappers;
 import com.limerse.iap.IapConnector;
@@ -185,7 +191,7 @@ public class AdminProductDetails extends AppCompatActivity {
         nestedScrollView = findViewById(R.id.user_details_scroller);
         mListingModel = getIntent().getParcelableExtra("info");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        retailerId = preferences.getString("retailerId","");
+        retailerId = preferences.getString("userEmail","");
         detailRecyclerview = findViewById(R.id.detail_recyclerview);
         name = findViewById(R.id.listing_detail_name);
         description = findViewById(R.id.listing_detail_description);
@@ -224,9 +230,17 @@ public class AdminProductDetails extends AppCompatActivity {
         });
 
 
+
         if((ignorePromotion != null) && (!ignorePromotion.equalsIgnoreCase(""))){
             promote.setVisibility(View.GONE);
         }
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDeleteAlert();
+            }
+        });
 
 
         listingModel.setDetailsReadyListener(new ListingModel.DetailsReadyListener() {
@@ -321,6 +335,42 @@ public class AdminProductDetails extends AppCompatActivity {
     private void populateCategory(){
         promotionType.add("1 week");
         promotionType.add("3 weeks");
+    }
+
+    private void showDeleteAlert(){
+        new AlertDialog.Builder(AdminProductDetails.this)
+                .setTitle("Delete Product")
+                .setMessage("You are about to delete this product. You cannot undo this action")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        ListingModel mListingModel = new ListingModel(listingModel.getProductId(),AdminProductDetails.this);
+                        mListingModel.deletePrduct();
+                        mListingModel.setCreateProductListener(new ListingModel.CreateProductListener() {
+                            @Override
+                            public void onSuccess() {
+                                Toast.makeText(AdminProductDetails.this, "Product Deleted", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            @Override
+                            public void onError(String message) {
+
+                            }
+                        });
+                    }
+                })
+                .show();
     }
 
 }

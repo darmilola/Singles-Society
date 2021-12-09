@@ -14,6 +14,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ public class MyListingProducts extends Fragment {
     MaterialButton addProduct;
     String mPhone;
     ProgressBar progressBar;
-    NestedScrollView rootView;
+    LinearLayout rootView;
     TextView nothingToshow;
     public MyListingProducts() {
         // Required empty public constructor
@@ -75,6 +76,7 @@ public class MyListingProducts extends Fragment {
                 recyclerView.setVisibility(View.VISIBLE);
                 rootView.setVisibility(View.VISIBLE);
                 nothingToshow.setVisibility(View.GONE);
+                addProduct.setVisibility(View.VISIBLE);
                 LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
                 viewAllAdapter = new AdminDetailsAdapter(getContext(),modelArrayList);
                 recyclerView.setAdapter(viewAllAdapter);
@@ -94,6 +96,7 @@ public class MyListingProducts extends Fragment {
             public void onEmpty() {
                 progressBar.setVisibility(View.GONE);
                 rootView.setVisibility(View.GONE);
+                addProduct.setVisibility(View.VISIBLE);
                 nothingToshow.setVisibility(View.VISIBLE);
             }
 
@@ -102,6 +105,7 @@ public class MyListingProducts extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 rootView.setVisibility(View.GONE);
                 nothingToshow.setVisibility(View.GONE);
+                addProduct.setVisibility(View.GONE);
                 Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             }
         });

@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 
+import com.aure.UiModels.Utils.LoadingDialogUtils;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +35,7 @@ public class MainActivityModel {
     private String getShowProfileUrl = baseUrl+"users/show";
     private String setMatchUrl = baseUrl+"matches";
     private String setLikeUrl = baseUrl+"like/user";
+    private String deleteAccountUrl = baseUrl+"users/delete";
     private String userEmail;
     private InfoReadyListener infoReadyListener;
     private ShowcaseInfoReadyListener showcaseInfoReadyListener;
@@ -41,26 +44,41 @@ public class MainActivityModel {
     private Context context;
     private String userId;
     private String isMatched;
+    private LoadingDialogUtils loadingDialogUtils;
+    private DeletionListener deletionListener;
 
     public interface InfoReadyListener{
         void onReady(MainActivityModel mainActivityModel);
         void onError(String message);
     }
+
     public interface ShowcaseInfoReadyListener{
         void onReady(ArrayList<PreviewProfileModel> previewProfileModels,ArrayList<String> likedUserId);
         void onError(String message);
         void onEmptyResponse();
     }
 
+
+    public interface DeletionListener{
+        void onSuccess();
+        void onError();
+    }
+
+    public void setDeletionListener(DeletionListener deletionListener) {
+        this.deletionListener = deletionListener;
+    }
+
     public MainActivityModel(Context context){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         userEmail = preferences.getString("userEmail","");
         this.context = context;
+        loadingDialogUtils = new LoadingDialogUtils(context);
     }
 
     public MainActivityModel(String userId,Context context){
         this.userId = userId;
         this.context = context;
+        loadingDialogUtils = new LoadingDialogUtils(context);
     }
 
     public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl, String phonenumber, String isMatched){
@@ -327,22 +345,24 @@ public class MainActivityModel {
     private Handler matchHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NotNull Message msg) {
+            loadingDialogUtils.cancelLoadingDialog();
             Bundle bundle = msg.getData();
             String response = bundle.getString("response");
             try {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
                 if(status.equalsIgnoreCase("success")){
-
+                    deletionListener.onSuccess();
                 }
                 else if(status.equalsIgnoreCase("failure")){
-
+                    deletionListener.onError();
                 }
                 else{
 
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                deletionListener.onError();
             }
         }
     };
@@ -404,6 +424,35 @@ public class MainActivityModel {
 
     }
 
+    public void deleteAccount(){
+        loadingDialogUtils.showLoadingDialog("Deleting...");
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildDeleteAccount());
+            Request request = new Request.Builder()
+                    .url(deleteAccountUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = matchHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            matchHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+
+    }
+
 
     private String buildSetLikeInfo(String likedUserId){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -424,6 +473,17 @@ public class MainActivityModel {
         try {
             jsonObject.put("userId",preferences.getString("userEmail",""));
             jsonObject.put("matchId",likedUserId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+    private String buildDeleteAccount(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("email",preferences.getString("userEmail",""));
         } catch (JSONException e) {
             e.printStackTrace();
         }

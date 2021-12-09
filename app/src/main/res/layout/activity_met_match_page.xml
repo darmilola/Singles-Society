@@ -26,9 +26,10 @@
          android:layout_marginLeft="30dp"
          android:layout_marginRight="30dp"
          android:id="@+id/met_match_text"
-         android:text="You and Jacques have matched each other"
+         android:text="You and dhgsay fgyf agsdh gJacques have matched each other"
          android:textSize="16dp"
-         android:maxLines="1"
+         android:maxLines="2"
+         android:gravity="center"
          android:ellipsize="end"
          android:textColor="@color/dark_text_color"
          android:fontFamily="@font/clannews"/>

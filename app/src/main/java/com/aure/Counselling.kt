@@ -7,6 +7,8 @@ import android.view.View
 import android.view.WindowManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_counselling.*
 
 class Counselling : AppCompatActivity() {
 
+    lateinit var goBack: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_counselling)
@@ -22,8 +25,16 @@ class Counselling : AppCompatActivity() {
         // WebViewClient allows you to handle
         // onPageFinished and override Url loading.
         webView.webViewClient = WebViewClient()
-        
-
+        goBack = findViewById(R.id.counselling_back_button)
+        goBack.setOnClickListener {
+            // if your webview can go back it will go back
+            if (webView.canGoBack())
+                webView.goBack()
+            // if your webview cannot go back
+            // it will exit the application
+            else
+                super.onBackPressed()
+        }
         // this will enable the javascript settings
         webView.settings.javaScriptEnabled = true
 
@@ -37,6 +48,10 @@ class Counselling : AppCompatActivity() {
 
         }
         webView.loadUrl("https://still-plateau-81737.herokuapp.com/auratayya_bookings_link.html")
+
+
+
+
     }
 
 
@@ -50,6 +65,8 @@ class Counselling : AppCompatActivity() {
         else
             super.onBackPressed()
     }
+
+
 
     override fun onResume() {
         super.onResume()

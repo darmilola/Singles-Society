@@ -18,12 +18,11 @@
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_alignParentLeft="true"
-                android:rotation="180"
                 android:layout_marginLeft="10dp"
                 android:tint="@color/colorPrimary"
                 android:layout_gravity="center|left"
-                android:id="@+id/matches_back_button"
-                android:src="@drawable/ic_iconfinder_chevron_right_4781843"/>
+                android:id="@+id/counselling_back_button"
+                android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
 
         </LinearLayout>
 

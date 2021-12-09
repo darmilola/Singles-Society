@@ -71,6 +71,12 @@ public class SignUpWithEmail extends AppCompatActivity {
         alreadyHaveAccountSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#fa2d65")), 22, 28, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         alreadyHaveAccount.setText(alreadyHaveAccountSpan);
 
+        alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         selectProfileImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

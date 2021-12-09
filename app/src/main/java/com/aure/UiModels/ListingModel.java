@@ -45,6 +45,7 @@ public class ListingModel implements Parcelable {
     private String detailsUrl = baseUrl+"products/details";
     private String marketplaceDisplayUrl = baseUrl+"products/display";
     private String searchUrl = baseUrl+"products/search";
+    private String deleteProductUrl = baseUrl+"products/delete";
     private String searchCatgoryUrl = baseUrl+"products/category";
     private String name,price,displayImage,category,retailerId,description,isSponsored;
     private ImageUploadDialog imageUploadDialog;
@@ -187,6 +188,12 @@ public class ListingModel implements Parcelable {
 
     public ListingModel(){
 
+    }
+
+    public ListingModel(String productId, Context context){
+           this.productId = productId;
+           this.context = context;
+           loadingDialogUtils = new LoadingDialogUtils(context);
     }
 
     public ListingModel(String query){
@@ -525,6 +532,34 @@ public class ListingModel implements Parcelable {
         myThread.start();
     }
 
+    public void deletePrduct(){
+        loadingDialogUtils.showLoadingDialog("Deleting Account...");
+        Runnable runnable = () -> {
+            String mResponse = "";
+            OkHttpClient client = new OkHttpClient();
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody requestBody = RequestBody.create(JSON,buildDeleteProduct(this.productId));
+            Request request = new Request.Builder()
+                    .url(deleteProductUrl)
+                    .post(requestBody)
+                    .build();
+            try (Response response = client.newCall(request).execute()) {
+                if(response != null){
+                    mResponse =  response.body().string();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Message msg = createProductHandler.obtainMessage();
+            Bundle bundle = new Bundle();
+            bundle.putString("response", mResponse);
+            msg.setData(bundle);
+            createProductHandler.sendMessage(msg);
+        };
+        Thread myThread = new Thread(runnable);
+        myThread.start();
+    }
+
 
     private Handler createProductHandler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -610,12 +645,9 @@ public class ListingModel implements Parcelable {
                     for(int i = 0; i < images.length(); i++){
                         String imageUrl = images.getJSONObject(i).getString("imageUrl");
                         imagesList.add(imageUrl);
-                    }
-                    for(int i = 0; i < retailerInfo.length(); i++){
-                        String phone = retailerInfo.getJSONObject(i).getString("phonenumber");
-                        sellersPhone = phone;
-                    }
-                    detailsReadyListener.onDetailsReady(imagesList,sellersPhone);
+                     }
+                        String phone = retailerInfo.getJSONObject(0).getString("phonenumber");
+                        detailsReadyListener.onDetailsReady(imagesList,phone);
 
 
                 }
@@ -818,6 +850,16 @@ public class ListingModel implements Parcelable {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("retailerId",retailerId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+    private String buildDeleteProduct(String productId){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("productId",productId);
         } catch (JSONException e) {
             e.printStackTrace();
         }

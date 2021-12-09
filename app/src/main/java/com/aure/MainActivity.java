@@ -210,10 +210,23 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         filterProfile = findViewById(R.id.filter_layout);
 
 
-        counselling.setOnClickListener(new View.OnClickListener() {
+
+        helpDesk.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Counselling.class));
+            public void onClick(View view) {
+                String[] TO = {"auratayyaHq@gmail.com"};
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("text/plain");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+
+                try {
+                    startActivity(Intent.createChooser(emailIntent, "Auratayya Support"));
+                    finish();
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -221,25 +234,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         matchedSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Activity activity = MainActivity.this;
-                int requestCode = 10; // YOUR REQUEST CODE
-                String itemId = "com.aure.sub";
-                PurchaseType purchaseType = PurchaseType.SUBSCRIPTION; // or PurchaseType.SUBSCRIPTION for subscriptions
-                String developerPayload = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB";
-
-                mBillingProcessor.startPurchase(activity, requestCode, itemId, purchaseType, developerPayload,
-                        new StartActivityHandler() {
-                            @Override
-                            public void onSuccess() {
-                                // Billing activity started successfully
-                                // Do nothing
-                            }
-
-                            @Override
-                            public void onError(BillingException e) {
-                                // Handle the error
-                            }
-                        });
+               startSubProcess();
 
             }
         });
@@ -307,7 +302,14 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         inviteAFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Download auratayya match making App on playstore http://play.google.com/store/apps/details?id=pk.nimgade.Bostan.Train.Schedule");
+                    Intent intent = Intent.createChooser(shareIntent, "Share");
+                    startActivity(intent);
 
+                }
             }
         });
 
@@ -431,12 +433,23 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         mainActivityModel.GetUserInfo();
         mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
             @Override
-            public void onReady(MainActivityModel mainActivityModel) {
+            public void onReady(MainActivityModel mMainActivityModel) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                preferences.edit().putString("firstname",mainActivityModel.getFirstname()).apply();
-                preferences.edit().putString("lastname",mainActivityModel.getLastname()).apply();
-                preferences.edit().putString("imageUrl",mainActivityModel.getImageUrl()).apply();
-                preferences.edit().putString("phonenumber",mainActivityModel.getPhonenumber()).apply();
+                preferences.edit().putString("firstname",mMainActivityModel.getFirstname()).apply();
+                preferences.edit().putString("lastname",mMainActivityModel.getLastname()).apply();
+                preferences.edit().putString("imageUrl",mMainActivityModel.getImageUrl()).apply();
+                preferences.edit().putString("phonenumber",mMainActivityModel.getPhonenumber()).apply();
+
+                counselling.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mMainActivityModel.getIsSubscribed().equalsIgnoreCase("false")) {
+                            showSubAlert();
+                        } else {
+                            startActivity(new Intent(MainActivity.this, Counselling.class));
+                        }
+                    }
+                });
 
                 Glide.with(MainActivity.this)
                         .load(mainActivityModel.getImageUrl())
@@ -444,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         .error(R.drawable.profileplaceholder)
                         .into(profileImageView);
 
-                ParseUserResponse(mainActivityModel);
+                ParseUserResponse(mMainActivityModel);
             }
             @Override
             public void onError(String message) {
@@ -464,7 +477,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             }
         });
 
+
+
+
     }
+
+
     private void ParseUserResponse(MainActivityModel mainActivityModel){
         if(mainActivityModel.getIsProfileCompleted().equalsIgnoreCase("false")){
             emptyLayoutRoot.setVisibility(View.GONE);
@@ -647,11 +665,28 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 .show();
     }
 
+    private void showSubAlert(){
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Subscribe")
+                .setMessage("This feature is only available for subscribed users, please subscribe now to unlock")
 
-    @Override
-    public void onBackPressed(){
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("Subscribe", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
 
+                       startSubProcess();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
     }
+
 
     @Override
     public void onResume() {
@@ -755,6 +790,28 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                  alreadyMatchedRoot.setVisibility(View.GONE);
             swipeToolRoot.setVisibility(View.GONE);
         }
+    }
+
+    private void startSubProcess(){
+        Activity activity = MainActivity.this;
+        int requestCode = 10; // YOUR REQUEST CODE
+        String itemId = "com.aure.sub";
+        PurchaseType purchaseType = PurchaseType.SUBSCRIPTION; // or PurchaseType.SUBSCRIPTION for subscriptions
+        String developerPayload = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB";
+
+        mBillingProcessor.startPurchase(activity, requestCode, itemId, purchaseType, developerPayload,
+                new StartActivityHandler() {
+                    @Override
+                    public void onSuccess() {
+                        // Billing activity started successfully
+                        // Do nothing
+                    }
+
+                    @Override
+                    public void onError(BillingException e) {
+                        // Handle the error
+                    }
+                });
     }
 
 

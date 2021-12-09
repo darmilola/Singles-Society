@@ -54,6 +54,7 @@ public class CompleteProfile extends AppCompatActivity {
     ArrayList<String> religionItem = new ArrayList<>();
     LinearLayout image1Select,image2Select,image3Select,errorLayout;
     MaterialButton errorRetry;
+    LinearLayout back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,7 @@ public class CompleteProfile extends AppCompatActivity {
     }
 
     private void initView(){
+        back = findViewById(R.id.complete_profile_back);
         startSearching = findViewById(R.id.complete_profile_start_searching);
         errorLayout = findViewById(R.id.error_layout_root);
         errorRetry = findViewById(R.id.error_page_retry);
@@ -111,6 +113,13 @@ public class CompleteProfile extends AppCompatActivity {
             }
         });
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         completeProfileModel = new CompleteProfileModel(CompleteProfile.this);
         completeProfileModel.GetUserInfo();
         completeProfileModel.setInfoReadyListener(new CompleteProfileModel.InfoReadyListener() {
@@ -120,7 +129,6 @@ public class CompleteProfile extends AppCompatActivity {
                 rootLayout.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
                 startSearching.setVisibility(View.VISIBLE);
-                Toast.makeText(CompleteProfile.this, Integer.toString(completeProfileModel.getAge()), Toast.LENGTH_SHORT).show();
                 ageTextview.setText("Age("+Integer.toString(completeProfileModel.getAge())+")");
                 progressBar.setProgress(completeProfileModel.getAge());
                 if(completeProfileModel.getAbout().equalsIgnoreCase("null")){

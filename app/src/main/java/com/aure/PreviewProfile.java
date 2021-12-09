@@ -39,6 +39,7 @@ public class PreviewProfile extends AppCompatActivity {
     LinearLayout errorLayout;
     MaterialButton errorRetry;
     PreviewProfileModel previewProfileModel;
+    LinearLayout previewBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class PreviewProfile extends AppCompatActivity {
 
     private void initView(){
 
+        previewBack = findViewById(R.id.preview_profile_back);
         errorLayout = findViewById(R.id.error_layout_root);
         errorRetry = findViewById(R.id.error_page_retry);
         search = findViewById(R.id.preview_profile_search);
@@ -58,6 +60,13 @@ public class PreviewProfile extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new RecyclerViewPagerIndicator(this));
 
+
+        previewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override

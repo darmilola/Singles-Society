@@ -89,6 +89,7 @@ public class ConnectWithEmail extends AppCompatActivity {
                                 Intent intent = new Intent(ConnectWithEmail.this,MainActivity.class);
                                 intent.putExtra("email",email);
                                 startActivity(intent);
+                                finish();
                                 return true;
                             }
 

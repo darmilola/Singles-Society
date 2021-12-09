@@ -42,6 +42,7 @@ public class MatchesActivity extends AppCompatActivity {
     TextView noMessages;
     LinearLayout errorLayout;
     MaterialButton errorRetry;
+    LinearLayout goBack;
     MessageConnectionModel messageConnectionModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class MatchesActivity extends AppCompatActivity {
     private void initView(){
         errorRetry = findViewById(R.id.error_page_retry);
         errorLayout = findViewById(R.id.error_layout_root);
+        goBack = findViewById(R.id.matches_back_button);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MatchesActivity.this);
         String userEmail = preferences.getString("userEmail","");
         matchesRoot = findViewById(R.id.matches_root);
@@ -81,7 +83,6 @@ public class MatchesActivity extends AppCompatActivity {
                 matchesRecyclerview.setVisibility(View.VISIBLE);
                 messagesRecyclerview.setVisibility(View.VISIBLE);
                 noMessages.setVisibility(View.GONE);
-                Toast.makeText(MatchesActivity.this, "here", Toast.LENGTH_SHORT).show();
 
                 if(matchesModelArrayList.size() < 1){
                     matchesRoot.setVisibility(View.GONE);
@@ -132,6 +133,13 @@ public class MatchesActivity extends AppCompatActivity {
                 matchesRecyclerview.setVisibility(View.GONE);
                 errorLayout.setVisibility(View.GONE);
                 messageConnectionModel.getConnection();
+            }
+        });
+
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

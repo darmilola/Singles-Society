@@ -36,6 +36,7 @@ public class PreferenceFilter extends AppCompatActivity {
     ArrayList<String> smokingItems = new ArrayList<>();
     DoubleValueSeekBarView ageSeekbar;
     MaterialButton startSearching;
+    LinearLayout preferenceBack;
 
 
     @Override
@@ -47,6 +48,7 @@ public class PreferenceFilter extends AppCompatActivity {
 
     private void initView(){
         populateDialogListView();
+        preferenceBack = findViewById(R.id.preference_back);
         startSearching = findViewById(R.id.preference_start_searching);
         ageSeekbar = findViewById(R.id.age_range_seekbar);
         statusSelect = findViewById(R.id.status__filter_select);
@@ -71,6 +73,13 @@ public class PreferenceFilter extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_OK);
+                finish();
+            }
+        });
+
+        preferenceBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });

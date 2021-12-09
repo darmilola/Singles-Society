@@ -69,6 +69,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
     private TextView receiverDisplayName;
     ImageView receiverImageView;
     TextView chatStatus;
+    ImageView goBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         receiverLastname = intent.getStringExtra("receiverLastname");
         receiverImageUrl = intent.getStringExtra("receiverImageUrl");
         senderId = preferences.getString("userEmail", "");
+        goBack = findViewById(R.id.chat_activity_back);
         receiverDisplayName = findViewById(R.id.chat_receiver_name);
         receiverImageView = findViewById(R.id.chat_receiver_imageview);
         receiverDisplayName.setText(receiverFirstname + " " + receiverLastname);
@@ -108,7 +110,16 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         initSocket();
         performHttpRequest();
 
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
+
+
 
     private void performHttpRequest() {
 

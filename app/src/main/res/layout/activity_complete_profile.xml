@@ -64,11 +64,13 @@
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_weight="0.7"
+               android:id="@+id/complete_profile_back"
                android:gravity="center">
                <ImageView
                    android:layout_width="24dp"
                    android:layout_height="24dp"
-                   android:src="@drawable/iconfinder_chevron_left"/>
+                   android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+
            </LinearLayout>
 
             <LinearLayout
