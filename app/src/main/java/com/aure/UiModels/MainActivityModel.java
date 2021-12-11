@@ -331,8 +331,10 @@ public class MainActivityModel {
             jsonObject.put("religion",preferences.getString("religion","Christian"));
             jsonObject.put("drinking",preferences.getString("drinking","d'ont drink"));
             jsonObject.put("smoking",preferences.getString("smoking","d'ont smoke"));
-            jsonObject.put("max_age",preferences.getInt("max_age",70));
-            jsonObject.put("min_age",preferences.getInt("min_age",18));
+            jsonObject.put("language",preferences.getString("language","English only"));
+            jsonObject.put("goal",preferences.getString("goal","Ready to marry in 1-2 years"));
+            jsonObject.put("max_age",Integer.parseInt(preferences.getString("max_age","70")));
+            jsonObject.put("min_age",Integer.parseInt(preferences.getString("min_age","18")));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -352,17 +354,17 @@ public class MainActivityModel {
                 JSONObject jsonObject = new JSONObject(response);
                 String status = jsonObject.getString("status");
                 if(status.equalsIgnoreCase("success")){
-                    deletionListener.onSuccess();
+
                 }
                 else if(status.equalsIgnoreCase("failure")){
-                    deletionListener.onError();
+
                 }
                 else{
 
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                deletionListener.onError();
+
             }
         }
     };

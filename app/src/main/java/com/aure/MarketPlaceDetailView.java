@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aure.UiAdapters.MarketplaceViewAllAdapter;
 import com.aure.UiModels.ListingModel;
@@ -25,6 +27,7 @@ public class MarketPlaceDetailView extends AppCompatActivity {
     ProgressBar progressBar;
     String searchQuery, searchType;
     ListingModel listingModel;
+    LinearLayout exit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +36,20 @@ public class MarketPlaceDetailView extends AppCompatActivity {
     }
 
     private void iniView(){
+        exit = findViewById(R.id.marketplace_detail_exit);
         searchQuery = getIntent().getStringExtra("query");
         searchType = getIntent().getStringExtra("type");
         progressBar = findViewById(R.id.detail_view_progress);
         recyclerView = findViewById(R.id.all_products_recycler_view);
         title = findViewById(R.id.marketplace_detaillist_title);
         title.setText(searchQuery);
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         listingModel = new ListingModel(searchQuery);
         if(searchType.equalsIgnoreCase("1")){
@@ -61,7 +72,9 @@ public class MarketPlaceDetailView extends AppCompatActivity {
 
             @Override
             public void onEmpty() {
-
+                Toast.makeText(MarketPlaceDetailView.this, "Product not Available", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
             }
 
             @Override

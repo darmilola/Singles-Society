@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     DrawerLayout drawerLayout;
     CircleImageView profileImageView;
     TextView metMatchText;
-    SimpleDraweeView match_first_image, match_second_image;
+    SimpleDraweeView match_first_image, match_second_image, caught_up_first_image, caught_up_second_image;
     Toolbar toolbar;
     FrameLayout mainView;
     ProgressBar progressBar;
@@ -176,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void initView(){
         initBillingProcessor();
+        caught_up_first_image = findViewById(R.id.caught_up_image1);
+        caught_up_second_image = findViewById(R.id.caught_up_image2);
         matchedStartChatting = findViewById(R.id.met_match_send_message);
         matchedSubscribe = findViewById(R.id.main_matched_subscribe);
         alreadyMatchedRoot = findViewById(R.id.already_matched_root);
@@ -209,6 +211,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         completeProfile = findViewById(R.id.complete_profile);
         filterProfile = findViewById(R.id.filter_layout);
 
+        Uri uri = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226408.png");
+        caught_up_first_image.setImageURI(uri);
+        Uri uri2 = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226540.png");
+        caught_up_second_image.setImageURI(uri2);
 
 
         helpDesk.setOnClickListener(new View.OnClickListener() {
@@ -354,7 +360,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
-                startActivityForResult(new Intent(MainActivity.this, CompleteProfile.class),PREFERENCE_INT);
+
+                Intent intent = new Intent(MainActivity.this,CompleteProfile.class);
+                startActivityForResult(intent,PREFERENCE_INT);
             }
         });
 
@@ -403,7 +411,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         leftSwipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                isRightSwipe = false;
                 SwipeAnimationSetting setting = new SwipeAnimationSetting.Builder()
                         .setDirection(Direction.Left)
                         .setDuration(Duration.Slow.duration)
@@ -417,7 +425,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         rightSwipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
              public void onClick(View v) {
-
+                isRightSwipe = true;
                 SwipeAnimationSetting setting = new SwipeAnimationSetting.Builder()
                         .setDirection(Direction.Right)
                         .setDuration(Duration.Slow.duration)
@@ -425,6 +433,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         .build();
                 manager.setSwipeAnimationSetting(setting);
                 userShowcaseStack.swipe();
+
 
             }
         });
@@ -452,7 +461,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 });
 
                 Glide.with(MainActivity.this)
-                        .load(mainActivityModel.getImageUrl())
+                        .load(mMainActivityModel.getImageUrl())
                         .placeholder(R.drawable.profileplaceholder)
                         .error(R.drawable.profileplaceholder)
                         .into(profileImageView);
@@ -495,6 +504,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             swipeToolRoot.setVisibility(View.GONE);
             metMatchRoot.setVisibility(View.GONE);
             alreadyMatchedRoot.setVisibility(View.GONE);
+            Uri uri = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226408.png");
+            caught_up_first_image.setImageURI(uri);
+            Uri uri2 = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226540.png");
+            caught_up_second_image.setImageURI(uri2);
         }
        else if(mainActivityModel.getIsMatched().equalsIgnoreCase("true") && mainActivityModel.getIsSubscribed().equalsIgnoreCase("false")){
             emptyLayoutRoot.setVisibility(View.GONE);
@@ -507,6 +520,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             swipeToolRoot.setVisibility(View.GONE);
             metMatchRoot.setVisibility(View.GONE);
             alreadyMatchedRoot.setVisibility(View.VISIBLE);
+            Uri uri = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226408.png");
+            caught_up_first_image.setImageURI(uri);
+            Uri uri2 = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226540.png");
+            caught_up_second_image.setImageURI(uri2);
         }
         else{
             MainActivityModel mainActivityModel2 = new MainActivityModel(MainActivity.this);
@@ -606,6 +623,10 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     userShowcaseStack.setVisibility(View.GONE);
                     swipeToolRoot.setVisibility(View.GONE);
                     alreadyMatchedRoot.setVisibility(View.GONE);
+                    Uri uri = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226408.png");
+                    caught_up_first_image.setImageURI(uri);
+                    Uri uri2 = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226540.png");
+                    caught_up_second_image.setImageURI(uri2);
                 }
             });
         }
@@ -759,10 +780,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                             userShowcaseStack.setVisibility(View.GONE);
                             swipeToolRoot.setVisibility(View.GONE);
                             metMatchRoot.setVisibility(View.VISIBLE);
-                            //Uri uri = Uri.parse(previewProfileModels.get(position).getImage1Url());
-                            //match_first_image.setImageURI(uri);
-                            //Uri uri2 = Uri.parse(mainActivityModel.getImageUrl());
-                            //match_second_image.setImageURI(uri2);
+                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                            String imgUrl =  preferences.getString("imageUrl","");
+                            Uri uri = Uri.parse(previewProfileModels.get(position).getImage1Url());
+                            match_first_image.setImageURI(uri);
+                            Uri uri2 = Uri.parse(imgUrl);
+                            match_second_image.setImageURI(uri2);
                             metMatchText.setText("You and "+ previewProfileModels.get(position).getFirstname()+" have matched");
                             break;
                         }
@@ -776,6 +799,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         alreadyMatchedRoot.setVisibility(View.GONE);
                         userShowcaseStack.setVisibility(View.GONE);
                         swipeToolRoot.setVisibility(View.GONE);
+                      ;
                     }
              }
 
@@ -789,7 +813,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             userShowcaseStack.setVisibility(View.GONE);
                  alreadyMatchedRoot.setVisibility(View.GONE);
             swipeToolRoot.setVisibility(View.GONE);
+
         }
+
     }
 
     private void startSubProcess(){

@@ -12,7 +12,9 @@ import android.util.Range;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.aure.UiModels.CompleteProfileModel;
 import com.aure.UiModels.Utils.ListDialog;
 import com.google.android.material.button.MaterialButton;
 import com.mohammedalaa.seekbar.DoubleValueSeekBarView;
@@ -26,14 +28,15 @@ import java.util.ArrayList;
 
 public class PreferenceFilter extends AppCompatActivity {
 
-    LinearLayout statusSelect,religionSelect,drinkingSelect,smokingSelect;
-    TextView languageText,statusText,religionText,drinkingText,smokingText;
+    LinearLayout statusSelect,religionSelect,drinkingSelect,smokingSelect,goalSelect,languageSelect;
+    TextView languageText,statusText,religionText,drinkingText,smokingText,goalText;
     ListDialog listDialog;
     ArrayList<String> languageItems = new ArrayList<>();
     ArrayList<String> statusItems = new ArrayList<>();
     ArrayList<String> religionItems = new ArrayList<>();
     ArrayList<String> drinkingItems = new ArrayList<>();
     ArrayList<String> smokingItems = new ArrayList<>();
+    ArrayList<String> goalsItems = new ArrayList<>();
     DoubleValueSeekBarView ageSeekbar;
     MaterialButton startSearching;
     LinearLayout preferenceBack;
@@ -48,6 +51,10 @@ public class PreferenceFilter extends AppCompatActivity {
 
     private void initView(){
         populateDialogListView();
+        languageText = findViewById(R.id.language_select_textview);
+        languageSelect = findViewById(R.id.profile_language_select);
+        goalSelect = findViewById(R.id.profile_marriage_goals_select);
+        goalText = findViewById(R.id.marriage_goals_select_textview);
         preferenceBack = findViewById(R.id.preference_back);
         startSearching = findViewById(R.id.preference_start_searching);
         ageSeekbar = findViewById(R.id.age_range_seekbar);
@@ -65,9 +72,10 @@ public class PreferenceFilter extends AppCompatActivity {
             religionText.setText(preferences.getString("religion","Christian"));
             drinkingText.setText(preferences.getString("drinking","d'ont drink"));
             smokingText.setText(preferences.getString("smoking","d'ont smoke"));
-            //ageSeekbar.setMaxValue(preferences.getInt("max_age",70));
-            //ageSeekbar.setMaxValue(preferences.getInt("min_age",18));
-
+            languageText.setText(preferences.getString("language","English only"));
+            goalText.setText(preferences.getString("goal","Ready to marry in 1-2 years"));
+           // ageSeekbar.setMinValue(Integer.parseInt(preferences.getString("min_age","18")));
+           // ageSeekbar.setMaxValue(Integer.parseInt(preferences.getString("max_age","79")));
 
         startSearching.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,16 +96,18 @@ public class PreferenceFilter extends AppCompatActivity {
                 @Override
                 public void onValueChanged(@Nullable DoubleValueSeekBarView doubleValueSeekBarView, int i, int i1, boolean b) {
 
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PreferenceFilter.this);
+                    String min_age = String.valueOf(i);
+                    String max_age = String.valueOf(i1);
+                    preferences.edit().putString("min_age",min_age).apply();
+                    preferences.edit().putString("max_age",max_age).apply();
+                    preferences.edit().putBoolean("preference_saved",true).apply();
 
                 }
 
                 @Override
                 public void onStartTrackingTouch(@Nullable DoubleValueSeekBarView doubleValueSeekBarView, int i, int i1) {
 
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PreferenceFilter.this);
-                    preferences.edit().putInt("min_age",doubleValueSeekBarView.getMinValue()).apply();
-                    preferences.edit().putInt("max_age",doubleValueSeekBarView.getMaxValue()).apply();
-                    preferences.edit().putBoolean("preference_saved",true).apply();
                 }
 
                 @Override
@@ -158,6 +168,42 @@ public class PreferenceFilter extends AppCompatActivity {
             }
         });
 
+        languageSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listDialog = new ListDialog(languageItems,PreferenceFilter.this);
+                listDialog.showListDialog();
+                listDialog.setItemClickedListener(new ListDialog.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(String item) {
+                        languageText.setText(item);
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PreferenceFilter.this);
+                        preferences.edit().putString("language",item).apply();
+                        preferences.edit().putBoolean("preference_saved",true).apply();
+
+                    }
+                });
+            }
+        });
+
+        goalSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listDialog = new ListDialog(goalsItems,PreferenceFilter.this);
+                listDialog.showListDialog();
+                listDialog.setItemClickedListener(new ListDialog.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(String item) {
+                        goalText.setText(item);
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PreferenceFilter.this);
+                        preferences.edit().putString("goal",item).apply();
+                        preferences.edit().putBoolean("preference_saved",true).apply();
+
+                    }
+                });
+            }
+        });
+
         smokingSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,6 +254,15 @@ public class PreferenceFilter extends AppCompatActivity {
         smokingItems.add("d'ont smoke");
         smokingItems.add("Smokes occasionally");
         smokingItems.add("Smoke always");
+
+        goalsItems.add("Ready to marry in 3-6 months");
+        goalsItems.add("Ready to marry in 6-12 months");
+        goalsItems.add("Ready to marry in 1-2 years");
+
+        languageItems.add("Hausa and English");
+        languageItems.add("Ibo and English");
+        languageItems.add("Yoruba and English");
+        languageItems.add("English Only");
     }
 
     @Override

@@ -49,13 +49,13 @@
             android:layout_height="90dp"
             android:layout_marginRight="45dp"
             android:layout_gravity="center"
-            fresco:placeholderImageScaleType="fitXY"
+            fresco:placeholderImageScaleType="centerCrop"
             fresco:roundedCornerRadius="3dp"
             fresco:roundAsCircle="true"
             android:id="@+id/met_match_first_image"
             fresco:roundingBorderWidth="2dp"
             fresco:roundingBorderColor="@color/special_activity_background"
-            fresco:placeholderImage="@drawable/profileplaceholder" />
+            fresco:placeholderImage="@drawable/profileplaceholder"/>
 
         <com.facebook.drawee.view.SimpleDraweeView
             xmlns:fresco = "http://schemas.android.com/apk/res-auto"
@@ -63,7 +63,7 @@
             android:layout_height="90dp"
             android:layout_marginLeft="25dp"
             android:layout_gravity="center"
-            fresco:placeholderImageScaleType="fitXY"
+            fresco:placeholderImageScaleType="centerCrop"
             fresco:roundedCornerRadius="3dp"
             fresco:roundAsCircle="true"
             android:id="@+id/met_match_second_image"

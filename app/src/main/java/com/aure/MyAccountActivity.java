@@ -149,7 +149,7 @@ public class MyAccountActivity extends AppCompatActivity {
     private void showDeleteAlert(){
         new AlertDialog.Builder(MyAccountActivity.this)
                 .setTitle("Delete Account")
-                .setMessage("You are about to delete your Account, this will wipe all your data from our database.\n Note: You cannot undo this action.")
+                .setMessage("You are about to delete your Account, this will wipe all your data from our database.\nNote: You cannot undo this action.")
 
                 // Specifying a listener allows you to take an action before dismissing the dialog.
                 // The dialog is automatically dismissed when a dialog button is clicked.

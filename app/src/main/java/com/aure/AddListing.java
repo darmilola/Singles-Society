@@ -95,6 +95,13 @@ public class AddListing extends AppCompatActivity {
             }
         });
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +122,7 @@ public class AddListing extends AppCompatActivity {
                         public void onSuccess() {
                             setResult(1);
                             finish();
+                            Toast.makeText(AddListing.this, "New Product Added", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

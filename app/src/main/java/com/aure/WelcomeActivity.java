@@ -115,22 +115,26 @@ public class WelcomeActivity extends AppCompatActivity {
         if(!new NetworkUtils(WelcomeActivity.this).isNetworkAvailable()) {
             Toast.makeText(WelcomeActivity.this, "No Network", Toast.LENGTH_SHORT).show();
         }
+        else if(firstname.equalsIgnoreCase("null") || lastname.equalsIgnoreCase("null")){
+            Toast.makeText(WelcomeActivity.this, "Credentials not valid", Toast.LENGTH_SHORT).show();
+        }
         else {
             signupModel.SignupUsingGmail();
-        }
-        signupModel.setSignupListener(new SignupModel.SignupListener() {
-            @Override
-            public void isSuccessful(String message) {
-                Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
-                intent.putExtra("email",userEmail);
-                startActivity(intent);
-                finish();
-            }
+            signupModel.setSignupListener(new SignupModel.SignupListener() {
+                @Override
+                public void isSuccessful(String message) {
+                    Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
+                    intent.putExtra("email",userEmail);
+                    startActivity(intent);
+                    finish();
+                }
 
-            @Override
-            public void isFailed(String message) {
-                Toast.makeText(WelcomeActivity.this, message, Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void isFailed(String message) {
+                    Toast.makeText(WelcomeActivity.this, message, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
     }
 }

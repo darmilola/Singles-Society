@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
@@ -219,6 +221,9 @@ public class CompleteProfile extends AppCompatActivity {
                 else{
                     quoteTextview.setText(completeProfileModel.getQuote());
                 }
+                if(!(completeProfileModel.getAge() == 18)){
+                    ageSelect.setProgress(completeProfileModel.getAge());
+                }
 
                 if(completeProfileModel.getImage1Url().equalsIgnoreCase("null")){
 
@@ -279,6 +284,7 @@ public class CompleteProfile extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 ageTextview.setText("Age("+Integer.toString(progress)+")");
+
             }
 
             @Override
@@ -618,6 +624,8 @@ public class CompleteProfile extends AppCompatActivity {
                         mModel.setSaveInfoListener(new CompleteProfileModel.SaveInfoListener() {
                             @Override
                             public void onSuccess() {
+                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(CompleteProfile.this);
+                                preferences.edit().putString("gender",item).apply();
                                 completeProfileModel.setGender(item);
                             }
 
