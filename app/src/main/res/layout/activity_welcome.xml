@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/couple_love"
+        android:elevation="1dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/welcome_background_image"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/new_black_gradient"
+        android:alpha="0.99"
+        android:elevation="2dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:elevation="3dp"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.5"
+            android:gravity="bottom"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/muzmatch"
+                android:tint="@color/pinkypinky"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:lineSpacingExtra="5dp"
+                android:gravity="center"
+                android:fontFamily="@font/kumelianbold"
+                android:text="Match\nMeet\nGet Union"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="2">
+
+
+
+
+            <LinearLayout
+                android:id="@+id/signin_with_google_layout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/google_sign_in_background"
+                android:gravity="center"
+                android:weightSum="4"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/google"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airreg"
+                    android:text="Continue with Google"
+                    android:layout_weight="3"
+                    android:textColor="@color/materialBlue"
+                    android:textSize="17dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/signin_with_email_layout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/google_sign_in_background"
+                android:gravity="center"
+                android:weightSum="4"
+                android:backgroundTint="@color/pinkypinky"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:tint="@color/white"
+                        android:src="@drawable/mail_2x" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airreg"
+                    android:text="Connect with Email"
+                    android:layout_weight="3"
+                    android:textColor="@color/white"
+                    android:textSize="17dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/airreg"
+                android:lineSpacingExtra="5dp"
+                android:id="@+id/welcome_privacy_policy"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:text="By Creating your Auretayya account you agree to our Terms of Use and Privacy Policy"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

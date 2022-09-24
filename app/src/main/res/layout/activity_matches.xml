@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <include layout="@layout/error_page"/>
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".MatchesActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="300dp"
+            android:id="@+id/matches_progressbar"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/matches_root">
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="5"
+        android:gravity="center|left">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:id="@+id/matches_back_button"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:tint="@color/colorPrimary"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center|left"
+                android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3.3">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Messages"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/airsemi"
+                android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="#F9F9F9">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matches"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/airsemi"
+                    android:textColor="#CFCECE"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="5"
+                    tools:itemCount="5"
+                    android:id="@+id/matches_recyclerview"
+                    tools:listitem="@layout/matches_item"/>
+
+            </LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+</RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:id="@+id/messages_recyclerview"
+        tools:listitem="@layout/direct_message_item"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No Messages"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/matches_no_messages"
+            android:textColor="@color/light_text_color"
+            android:fontFamily="@font/airreg"
+            android:layout_marginTop="250dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
+</LinearLayout>

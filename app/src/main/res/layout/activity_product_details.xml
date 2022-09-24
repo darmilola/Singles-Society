@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProductDetails"
+    android:gravity="center"
+    android:background="@color/White">
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/user_detail_progressbar"/>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/user_details_scroller">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:orientation="vertical"
+                android:background="@color/special_activity_background">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="#F1F1F1"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    android:id="@+id/detail_recyclerview"
+                    tools:listitem="@layout/product_detail_recycler_item"/>
+
+                <me.relex.circleindicator.CircleIndicator2
+                    android:id="@+id/detail_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    app:ci_drawable="@drawable/pink_radius"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="10dp"/>
+            </FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_text_color"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:textSize="21dp"
+                android:maxLines="3"
+                android:id="@+id/listing_detail_name"
+                android:lineSpacingExtra="4dp"
+                android:fontFamily="@font/airsemi"
+                android:layout_marginTop="40dp"
+                android:text="Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best WoodsWayfair Trench 24.5 inches Made with the best Woods int the jungle"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pinkypinky"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:textSize="18dp"
+                android:maxLines="3"
+                android:text="AED 250"
+                android:id="@+id/listing_detail_price"
+                android:lineSpacingExtra="4dp"
+                android:fontFamily="@font/airsemi"
+                android:layout_marginTop="15dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_text_color"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="16dp"
+                android:justificationMode="inter_word"
+                android:id="@+id/listing_detail_description"
+                android:lineSpacingExtra="5dp"
+                android:fontFamily="@font/airreg"
+                android:layout_marginTop="10dp"
+                android:text=" Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best Woods Wayfair Trench 24.5 inches Made with the best WoodsWayfair Trench 24.5 inches Made with the best Woods int the jungle"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:cornerRadius="5dp"
+                android:id="@+id/listing_detail_contact_seller"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:text="Contact Seller"
+                android:textSize="16dp"
+                android:textColor="@color/White"
+                app:backgroundTint="@color/green"
+                android:textAllCaps="false"
+                android:fontFamily="@font/clanmed"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

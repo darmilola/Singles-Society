@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/error_layout_root"
+    android:visibility="gone"
+    android:background="@color/special_activity_background"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:tint="@color/light_text_color"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/error_occured"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="We are sorry"
+        android:textSize="30dp"
+        android:fontFamily="@font/kumelian"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:gravity="center"
+        android:layout_marginRight="30dp"
+        android:text="There seems to be an error loading the current page"
+        android:textSize="14dp"
+        android:textColor="@color/light_text_color"
+        android:fontFamily="@font/clannews"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="10dp"
+        android:text="Retry"
+        app:backgroundTint="@color/pinkypinky"
+        app:cornerRadius="7dp"
+        android:id="@+id/error_page_retry"
+        android:textAllCaps="false"
+        android:textSize="17dp"/>
+</LinearLayout>

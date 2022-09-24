@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="120dp"
+    android:layout_height="150dp"
+    android:background="@color/transparent"
+    android:paddingTop="10dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center|bottom"
+        fresco:actualImageScaleType="fitXY"
+        fresco:placeholderImage="@drawable/lady3"
+        fresco:placeholderImageScaleType="centerCrop"
+        fresco:roundAsCircle="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Dresses"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="15dp"
+        android:fontFamily="@font/clannews"
+        android:textColor="@color/colorPrimary"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="2dp"
+        android:text="1,250 items"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:fontFamily="@font/clannews"
+        android:textColor="@color/light_text_color"/>
+</LinearLayout>

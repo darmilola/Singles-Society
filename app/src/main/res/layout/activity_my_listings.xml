@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".MyListings"
+    android:background="@color/special_activity_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="5">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center|left">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:text="My Listings"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/clannews"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:gravity="right|center">
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:weightSum="6"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:fontFamily="@font/clanbold"
+            android:text="Phone:"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/dark_text_color"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:fontFamily="@font/clannews"
+            android:text="Not Available"
+            android:gravity="center"
+            android:id="@+id/my_listing_phone"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_weight="4.5"
+            android:textColor="#797878"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:tint="@color/dark_text_color"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:id="@+id/my_listing_phone_select"
+            android:src="@drawable/ic_edit"/>
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/transparent"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/pinkypinky"
+        app:tabMode="auto"
+        android:id="@+id/mylistings_tabs"
+        app:tabIndicatorHeight="7dp"
+        app:tabPaddingEnd="30dp"
+        app:tabPaddingStart="30dp"
+        android:layout_gravity="bottom"
+        app:tabIndicator="@drawable/grocery_tab_indicator"
+        app:tabIndicatorGravity="bottom"
+        app:tabIndicatorFullWidth="false"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextAppearance="@style/TabTextAppearance"
+        app:tabTextColor="#c8c8c8"/>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listings_viewpager"/>
+
+
+</LinearLayout>

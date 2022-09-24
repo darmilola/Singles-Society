@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#f5f5f5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/colorPrimary"
+        android:weightSum="5">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.3"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="10dp"
+                android:tint="@color/white"
+                android:id="@+id/chat_activity_back"
+                android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/chat_receiver_imageview"
+                android:src="@drawable/profileplaceholder"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:gravity="center|left">
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textColor="@color/white"
+              android:textSize="14dp"
+              android:maxLines="1"
+              android:ellipsize="end"
+              android:id="@+id/chat_receiver_name"
+              android:fontFamily="@font/clannews"
+              android:text="Ellen Johnson-Sirleaf"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/clannews"
+                android:text="Offline"
+                android:id="@+id/chat_receiver_status"
+                android:textColor="#F8ED8D"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/chat_payment_icon"
+            android:orientation="vertical"
+            android:gravity="right">
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.aure.ChatKit.messages.MessagesList
+        android:id="@+id/messagesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        tools:listitem="@layout/item_incoming_text_message"
+        android:layout_above="@+id/input"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/input"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/light_text_color"/>
+
+    <com.aure.ChatKit.messages.MessageInput
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:inputHint="Type here..."
+        app:showAttachmentButton="true"/>
+
+</RelativeLayout>

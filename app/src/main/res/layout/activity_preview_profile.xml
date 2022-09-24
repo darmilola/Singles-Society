@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PreviewProfile"
+    android:orientation="vertical"
+    android:background="@color/special_activity_background">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="5">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/preview_profile_back"
+                android:layout_marginLeft="10dp"
+                android:gravity="center|left">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Preview Profile"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorPrimary"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_marginRight="15dp"
+                android:gravity="center|right">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Search"
+                    android:gravity="center"
+                    android:textSize="17dp"
+                    android:id="@+id/preview_profile_search"
+                    android:textColor="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/preview_recycerview"
+        android:visibility="gone"
+        tools:listitem="@layout/user_showcase_type_main"/>
+
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:id="@+id/preview_profile_progress"
+        android:layout_marginTop="250dp"/>
+    <include layout="@layout/error_page"/>
+</LinearLayout>

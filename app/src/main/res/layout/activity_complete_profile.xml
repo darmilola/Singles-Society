@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/special_activity_background"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".CompleteProfile">
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Start Searching"
+        android:textAllCaps="false"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="15dp"
+        android:visibility="gone"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/complete_profile_start_searching"
+        android:backgroundTint="@color/pinkypinky"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/complete_profile_root"
+        android:gravity="center">
+
+
+
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:indeterminateTint="@color/pinkypinky"
+        android:id="@+id/complete_profile_progress"
+        android:layout_gravity="center"/>
+
+    <include layout="@layout/error_page"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/complete_profile_root_layout"
+        android:visibility="gone">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="5">
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="0.7"
+               android:id="@+id/complete_profile_back"
+               android:gravity="center">
+               <ImageView
+                   android:layout_width="24dp"
+                   android:layout_height="24dp"
+                   android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+
+           </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.3">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Complete Profile"
+                    android:gravity="center"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/clannews"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorPrimary"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/profile_preview"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Preview"
+                    android:gravity="center"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/airreg"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/pinkypinky"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:layout_marginLeft="16dp"
+           android:layout_marginRight="16dp">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Age(18)"
+               android:layout_marginLeft="10dp"
+               android:textSize="15dp"
+               android:fontFamily="@font/airreg"
+               android:id="@+id/complete_profile_age"
+               android:layout_marginTop="10dp"
+               android:layout_marginBottom="10dp"
+               android:textColor="@color/colorPrimary"/>
+
+           <SeekBar
+               android:id="@+id/age_seek_bar"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:max="80"
+               android:min="18"
+               android:layout_marginBottom="10dp"
+               android:thumbTint="@color/pinkypinky"
+               android:progressTint="@color/pinkypinky"
+               android:progress="18"/>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/about"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="About"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="I am a very gentle person and love playing games"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/about_select_textview"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/profile_about_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/status"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Status"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Married"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/status_select_textview"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/status_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/prayer"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Religion"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="English and hausa"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
+                       android:id="@+id/religion_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/profile_religion_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/language"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Language"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:layout_marginLeft="10dp"
+                       android:fontFamily="@font/airreg"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="English and hausa"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
+                       android:id="@+id/language_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/profile_language_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/city"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="City"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="New Brunswick"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/city_select_textview"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/profile_city_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="24dp"
+                       android:layout_height="24dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/occupation"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Occupation"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Civil Servant"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:fontFamily="@font/airreg"
+                       android:ellipsize="end"
+                       android:id="@+id/occupation_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/occupation_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/marriage_goals"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Marriage Goals"
+                       android:gravity="center"
+                       android:fontFamily="@font/airreg"
+                       android:textSize="16dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Ready to marry in 6 months"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
+                       android:id="@+id/marriage_goals_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/profile_marriage_goals_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/education_level"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Education Levels"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Bachelors"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
+                       android:id="@+id/education_level_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/profile_education_level_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/workplace"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Workplace"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Nasdaq listed Multi-Billion Dollar"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:fontFamily="@font/airreg"
+                       android:ellipsize="end"
+                       android:id="@+id/workplace_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/profile_workplace_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/drink"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="drinking"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Engineering Manager"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/drinking_select_textview"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/drinking_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/smoking"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Smoking"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Engineering Manager"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:fontFamily="@font/airreg"
+                       android:id="@+id/smoking_select_textview"
+                       android:textSize="14dp"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/smoking_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/gender"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Gender"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Engineering Manager"
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/gender_select_textview"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/gender_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/quote"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Quote"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="If it works d'ont touch it."
+                       android:gravity="left|center"
+                       android:maxLines="1"
+                       android:ellipsize="end"
+                       android:id="@+id/quote_select_textview"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="#07A03A"/>
+               </LinearLayout>
+
+
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/quote_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/display_picture"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Display Picture"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/first_display_image_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+           <ImageView
+               android:layout_width="280dp"
+               android:layout_height="350dp"
+               android:layout_marginTop="10dp"
+               android:id="@+id/first_image_view"
+               android:src="@drawable/profileplaceholder"
+               android:scaleType="centerCrop"/>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="45dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/display_picture"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Display Picture"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/second_display_image_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+           <ImageView
+               android:layout_width="280dp"
+               android:layout_height="350dp"
+               android:layout_marginTop="10dp"
+               android:id="@+id/second_image_view"
+               android:src="@drawable/profileplaceholder"
+               android:scaleType="centerCrop"/>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="100px">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_alignParentLeft="true"
+                   android:gravity="center|left"
+                   android:layout_marginRight="70dp">
+
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/pinkypinky"
+                       android:src="@drawable/display_picture"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Display Picture"
+                       android:gravity="center"
+                       android:textSize="16dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/colorPrimary"/>
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:id="@+id/third_display_image_select"
+                   android:layout_alignParentRight="true"
+                   android:gravity="center|right">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="Select"
+                       android:gravity="center"
+                       android:textSize="14dp"
+                       android:fontFamily="@font/airreg"
+                       android:layout_marginLeft="10dp"
+                       android:textColor="@color/light_text_color"/>
+                   <ImageView
+                       android:layout_width="16dp"
+                       android:layout_height="16dp"
+                       android:tint="@color/light_text_color"
+                       android:rotation="180"
+                       android:src="@drawable/iconfinder_chevron_left"/>
+               </LinearLayout>
+           </RelativeLayout>
+           <ImageView
+               android:layout_width="280dp"
+               android:layout_height="350dp"
+               android:layout_marginTop="10dp"
+               android:id="@+id/third_image_view"
+               android:src="@drawable/profileplaceholder"
+               android:scaleType="centerCrop"/>
+
+       </LinearLayout>
+   </ScrollView>
+  </LinearLayout>
+ </LinearLayout>
+</FrameLayout>

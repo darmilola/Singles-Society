@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MetMatchPage"
+    android:id="@+id/already_matched_root"
+    android:background="@color/special_activity_background"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="You are Matched"
+        android:textSize="40dp"
+        android:fontFamily="@font/kumelian"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:id="@+id/met_match_text"
+        android:text="You have been matched, subscribe to match with more people"
+        android:textSize="15dp"
+        android:maxLines="3"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:textColor="@color/dark_text_color"
+        android:fontFamily="@font/clannews"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
+
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            xmlns:fresco = "http://schemas.android.com/apk/res-auto"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginRight="45dp"
+            android:layout_gravity="center"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundedCornerRadius="3dp"
+            fresco:roundAsCircle="true"
+            android:id="@+id/caught_up_image2"
+            fresco:roundingBorderWidth="2dp"
+            fresco:roundingBorderColor="@color/special_activity_background"
+            fresco:placeholderImage="@drawable/profileplaceholder" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            xmlns:fresco = "http://schemas.android.com/apk/res-auto"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="35dp"
+            android:layout_gravity="center"
+            fresco:placeholderImageScaleType="centerCrop"
+            fresco:roundedCornerRadius="3dp"
+            fresco:roundAsCircle="true"
+            android:id="@+id/caught_up_image1"
+            fresco:roundingBorderWidth="2dp"
+            fresco:roundingBorderColor="@color/special_activity_background"
+            fresco:placeholderImage="@drawable/profileplaceholder"/>
+    </FrameLayout>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="20dp"
+        android:text="Subscribe"
+        app:backgroundTint="@color/pinkypinky"
+        app:cornerRadius="23dp"
+        android:id="@+id/main_matched_subscribe"
+        android:textAllCaps="false"
+        android:textSize="17dp"/>
+</LinearLayout>
