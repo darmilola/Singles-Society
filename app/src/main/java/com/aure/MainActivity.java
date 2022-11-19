@@ -208,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         mainMarketPlace = findViewById(R.id.main_marketplace);
         completeProfile = findViewById(R.id.complete_profile);
         filterProfile = findViewById(R.id.filter_layout);
+        mainMarketPlace.setVisibility(View.GONE);
 
         Uri uri = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226408.png");
         caught_up_first_image.setImageURI(uri);
@@ -648,7 +649,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         finish();
                     }
                 });
-
     }
 
     private void showAlert(){

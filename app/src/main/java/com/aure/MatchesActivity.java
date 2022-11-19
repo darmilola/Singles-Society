@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -85,16 +86,16 @@ public class MatchesActivity extends AppCompatActivity {
                 noMessages.setVisibility(View.GONE);
 
                 if(matchesModelArrayList.size() < 1){
-                    matchesRoot.setVisibility(View.GONE);
+                    matchesRoot.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
                     noMessages.setVisibility(View.VISIBLE);
                     matchesRecyclerview.setVisibility(View.GONE);
-                    messagesRecyclerview.setVisibility(View.GONE);
+                    messagesRecyclerview.setVisibility(View.VISIBLE);
                     noMessages.setText("No Matches");
                 }
 
                else if(messageConnectionModels.size() < 1){
-                    matchesRoot.setVisibility(View.GONE);
+                    matchesRoot.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
                     noMessages.setVisibility(View.VISIBLE);
                     messagesRecyclerview.setVisibility(View.GONE);

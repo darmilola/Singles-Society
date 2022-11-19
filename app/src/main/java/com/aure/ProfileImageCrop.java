@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -57,10 +58,15 @@ public class ProfileImageCrop extends AppCompatActivity {
             @Override
             public void onSuccess(@NotNull Bitmap bitmap) {
                 byte[] bitmapArray = convertBitmap(bitmap);
-                Intent intent = new Intent();
-                intent.putExtra("croppedImage",bitmapArray);
-                setResult(2,intent);
-                finish();
+                if (bitmapArray.length >= 1000000) {
+                    Toast.makeText(ProfileImageCrop.this, "Image Too Large", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Intent intent = new Intent();
+                    intent.putExtra("croppedImage", bitmapArray);
+                    setResult(2, intent);
+                    finish();
+                }
             }
 
             @Override

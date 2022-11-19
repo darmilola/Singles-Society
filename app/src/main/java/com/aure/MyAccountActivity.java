@@ -52,6 +52,7 @@ public class MyAccountActivity extends AppCompatActivity {
         circleImageView = findViewById(R.id.my_account_profile_image);
         accountName = findViewById(R.id.my_account_name);
         deleteAccount = findViewById(R.id.delete_my_account_layout);
+        myListings.setVisibility(View.GONE);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String firstname =  preferences.getString("firstname","");
         String lastname =  preferences.getString("lastname","");
@@ -168,23 +169,11 @@ public class MyAccountActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess() {
 
-                                GoogleSignInClient mSignInClient;
-                                GoogleSignInOptions options =
-                                        new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().requestProfile()
-                                                .build();
-                                mSignInClient = GoogleSignIn.getClient(MyAccountActivity.this, options);
-                                mSignInClient.signOut()
-                                        .addOnCompleteListener(MyAccountActivity.this, new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                Toast.makeText(MyAccountActivity.this, "Account Deleted", Toast.LENGTH_SHORT).show();
-                                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MyAccountActivity.this);
-                                                preferences.edit().remove("userEmail").apply();
-                                                startActivity(new Intent(MyAccountActivity.this,WelcomeActivity.class));
-                                                finish();
-
-                                            }
-                                        });
+                                Toast.makeText(MyAccountActivity.this, "Account Deleted", Toast.LENGTH_SHORT).show();
+                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MyAccountActivity.this);
+                                preferences.edit().remove("userEmail").apply();
+                                startActivity(new Intent(MyAccountActivity.this,WelcomeActivity.class));
+                                finish();
 
                             }
 

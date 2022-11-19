@@ -1,9 +1,15 @@
 package com.aure;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +21,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,14 +41,14 @@ import java.io.ByteArrayOutputStream;
 public class SignUpWithEmail extends AppCompatActivity {
 
     MaterialButton signupWithEmail;
-    static int PICK_IMAGE = 1;
-    static int CROP_IMAGE = 2;
+    static int PICK_IMAGE = 3;
+    static int CROP_IMAGE = 4;
     ImageView selectProfileImageButton;
     CircleImageView circleImageView;
     LoadingDialogUtils loadingDialogUtils;
     TextInputEditText firstname,lastname,emailAddress,password;
     TextInputLayout firstnameLayout,lastnameLayout,emailLayout,passwordLayout;
-    String mFirstname, mLastname, mEmailaddress, mPassword,mProfileImage;
+    String mFirstname, mLastname, mEmailaddress, mPassword,mProfileImage = "";
     TextView alreadyHaveAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
