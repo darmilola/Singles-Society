@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -396,6 +395,17 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
         }
+        Intent intent = new Intent(this, NotificationService.class);
+        intent.putExtra("userId",senderId);
+        stopService(intent);
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        Intent intent = new Intent(this, NotificationService.class);
+        intent.putExtra("userId",senderId);
+        startService(intent);
     }
 
     public String BitmapToString(Bitmap image) {
@@ -453,5 +463,6 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         super.onDestroy();
 
     }
+
 
 }

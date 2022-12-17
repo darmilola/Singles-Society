@@ -34,6 +34,7 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 public class NotificationService extends Service {
 
     private Socket mSocket;
+    private String userId = "";
     private static final String URL = "https://glacial-springs-30545.herokuapp.com";
 
     public NotificationService() {
@@ -54,8 +55,7 @@ public class NotificationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        // Toast.makeText(this, "Okay ne'er mind", Toast.LENGTH_SHORT).show();
-        //displayChatNotification("My Notification is here","Yeah receiver");
+         userId = intent.getStringExtra("userId");
 
         try {
             mSocket = IO.socket("https://quiet-dusk-08267.herokuapp.com/");
@@ -108,6 +108,7 @@ public class NotificationService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        mSocket.disconnect();
 
     }
 
@@ -123,9 +124,6 @@ public class NotificationService extends Service {
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.profileplaceholder))
                         .setPriority(NotificationCompat.PRIORITY_MAX);
 
-        Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent, 0);
-        mBuilder.setContentIntent(resultPendingIntent);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -181,9 +179,7 @@ public class NotificationService extends Service {
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.profileplaceholder))
                         .setPriority(NotificationCompat.PRIORITY_MAX);
 
-        Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent, 0);
-        mBuilder.setContentIntent(resultPendingIntent);
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){

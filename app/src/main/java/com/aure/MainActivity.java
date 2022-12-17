@@ -24,6 +24,7 @@ import jp.alessandro.android.iab.handler.PurchaseHandler;
 import jp.alessandro.android.iab.handler.StartActivityHandler;
 import jp.alessandro.android.iab.logger.SystemLogger;
 import jp.alessandro.android.iab.response.PurchaseResponse;
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 
 import android.app.Activity;
@@ -36,9 +37,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
@@ -71,6 +75,8 @@ import com.limerse.iap.DataWrappers;
 import com.limerse.iap.IapConnector;
 import com.limerse.iap.PurchaseServiceListener;
 import com.limerse.iap.SubscriptionServiceListener;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -81,6 +87,7 @@ import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URISyntaxException;
@@ -578,6 +585,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     userShowcaseStack.setVisibility(View.VISIBLE);
                     swipeToolRoot.setVisibility(View.VISIBLE);
                     alreadyMatchedRoot.setVisibility(View.GONE);
+
+                    if(!likeIds.isEmpty()) displayLikedNotification();
                 }
 
                 @Override
@@ -784,7 +793,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         caught_up_first_image.setImageURI(uri);
                         Uri uri2 = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226540.png");
                         caught_up_second_image.setImageURI(uri2);
-                      ;
                     }
              }
 
@@ -861,6 +869,32 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     @Override
     public void onBackPressed(){
 
+    }
+
+    private void displayLikedNotification(){
+        String message = "This List Contains a possible match";
+        String CHANNEL_ID = "AURATAYYA";
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this,CHANNEL_ID)
+                        .setSmallIcon(R.drawable.iconfinder_usa)
+                        .setContentText(StringEscapeUtils.unescapeJava(message))
+                        .setAutoCancel(true)
+                        .setOngoing(false)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.profileplaceholder))
+                        .setPriority(NotificationCompat.PRIORITY_MAX);
+
+        Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent, 0);
+        mBuilder.setContentIntent(resultPendingIntent);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "AURATAYYA_MESSAGES";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,name,importance);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+        notificationManager.notify(1, mBuilder.build());
     }
 
 }
