@@ -25,41 +25,46 @@ import com.google.android.gms.tasks.Task;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    LinearLayout googleSignInLayout,emailSigninLayout;
-    TextView privacyTerms;
+    LinearLayout googleSignIn,emailSignin, getStarted;
     private static final int GC_SIGN_IN = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_welcome_v2);
         initView();
     }
 
     private void initView(){
-        privacyTerms = findViewById(R.id.welcome_privacy_policy);
-        googleSignInLayout = findViewById(R.id.signin_with_google_layout);
-        emailSigninLayout = findViewById(R.id.signin_with_email_layout);
+
+        googleSignIn = findViewById(R.id.signin_with_google);
+        emailSignin = findViewById(R.id.signin_with_email);
+        getStarted = findViewById(R.id.get_started);
 
 
-        // set up spanned string with url
+   /*     // set up spanned string with url
         SpannableString termsOfUseString = new SpannableString("By Creating your Auretayya account you agree to our  Terms of Use and Privacy Policy");
         String privacyUrl = "https://developer.android.com";
         termsOfUseString.setSpan(new URLSpan(privacyUrl), 53, 65, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        termsOfUseString.setSpan(new URLSpan(privacyUrl), 70, 84, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        termsOfUseString.setSpan(new URLSpan(privacyUrl), 70, 84, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);*/
 
-        privacyTerms.setText(termsOfUseString);
-        privacyTerms.setMovementMethod(LinkMovementMethod.getInstance());
 
-        googleSignInLayout.setOnClickListener(new View.OnClickListener() {
+        googleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startGoogleSignIn();
             }
         });
-        emailSigninLayout.setOnClickListener(new View.OnClickListener() {
+        emailSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WelcomeActivity.this,ConnectWithEmail.class));
+            }
+        });
+
+        getStarted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomeActivity.this,SignUpWithEmail.class));
             }
         });
     }

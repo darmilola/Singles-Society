@@ -4,15 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:background="@color/full_transparency">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         app:cardElevation="0dp"
-        android:layout_marginTop="20dp"
         app:cardCornerRadius="20dp">
         <FrameLayout
             android:layout_width="match_parent"
@@ -22,6 +21,9 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:id="@+id/type_main_image"/>
+
+
+            <include android:id="@+id/potential_match" layout="@layout/potential_match" android:layout_height="wrap_content" android:layout_width="wrap_content"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -36,8 +38,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_gravity="center"
+                        android:gravity="left"
+                        android:layout_gravity="left"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:id="@+id/type_main_name_age"
@@ -50,13 +52,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:gravity="left"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:id="@+id/type_main_city"
                         android:textColor="@color/White"
                         android:textSize="17dp"
+                        android:visibility="gone"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/airreg"
                         android:maxLines="1"
@@ -69,7 +72,9 @@
                         android:gravity="center"
                         android:orientation="horizontal"
                         app:flexWrap="wrap"
-                        app:justifyContent="center">
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        app:justifyContent="flex_start">
 
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
@@ -78,19 +83,48 @@
                             android:padding="10dp"
                             app:iconStartPadding="10dp"
                             android:textColor="@color/White"
-                            android:textSize="15dp"
+                            android:textSize="12dp"
                             android:id="@+id/type_main_occupation"
                             app:chipSurfaceColor="@color/transparent"
                             android:fontFamily="@font/airsemi"
                             app:closeIconEnabled="false"
-                            app:chipIconVisible="true"
-                            app:chipIconSize="16dp"
+                            app:chipIconVisible="false"
+                            app:chipIconSize="14dp"
                             android:layout_marginLeft="5dp"
-                            app:chipIconTint="@color/pinkypinky"
                             android:layout_marginRight="10dp"
                             app:chipIcon="@drawable/ic_iconfinder_business"
-                            app:chipBackgroundColor="@color/grey"/>
+                            app:chipBackgroundColor="#20ffffff"/>
                     </com.google.android.flexbox.FlexboxLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/light_gray"
+                        android:textSize="13dp"
+                        android:layout_marginTop="25dp"
+                        android:fontFamily="@font/airreg"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="BIO"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="40dp"
+                        android:textColor="@color/white"
+                        android:textSize="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="4"
+                        android:lineSpacingExtra="7dp"
+                        android:ellipsize="end"
+                        android:text="Am going to write a little about myself here just incase you care to know a little about me Am going to write a little about myself here just incase you care to know a little about me"/>
                 </LinearLayout>
         </FrameLayout>
     </androidx.cardview.widget.CardView>

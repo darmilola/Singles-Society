@@ -6,9 +6,12 @@ public class ShowCaseModel {
     private int showcaseType;
     private ArrayList<String> modelInfoList;
 
-    public ShowCaseModel(ArrayList<String> modelInfoList,int showcaseType){
+    private ArrayList<String> likeList;
+
+    public ShowCaseModel(ArrayList<String> modelInfoList,int showcaseType, ArrayList<String> likeList){
            this.modelInfoList = modelInfoList;
            this.showcaseType = showcaseType;
+           this.likeList = likeList;
     }
 
     public ArrayList<String> getModelInfoList() {
@@ -25,6 +28,10 @@ public class ShowCaseModel {
 
     public int getShowcaseType() {
         return showcaseType;
+    }
+
+    public ArrayList<String> getLikeList() {
+        return likeList;
     }
 
     public void setShowcaseType(int showcaseType) {

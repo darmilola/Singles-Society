@@ -64,4 +64,13 @@ dependencies {
     implementation 'com.github.akshaaatt:Google-IAP:1.2.1'
     implementation 'cz.msebera.android:httpclient:4.5.3'
     implementation 'jp.alessandro.android:easy-checkout:v1.0.4'
+    implementation 'com.allattentionhere:autoplayvideos:0.2.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.11.0'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.0'
+    implementation 'com.facebook.fresco:fresco:1.10.0'
+    implementation 'jp.wasabeef:blurry:4.0.1'
 }

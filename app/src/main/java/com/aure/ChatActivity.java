@@ -276,7 +276,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
 
     private void publishNotification(String message){
         try {
-            Socket mSocket = IO.socket("https://quiet-dusk-08267.herokuapp.com/");
+            Socket mSocket = IO.socket("https://aura-chat-socket.herokuapp.com");
             mSocket.connect();
             mSocket.emit("notificationdetection",receiverId,message,senderFirstname+" "+senderLastname,senderImageUrl);
         } catch (URISyntaxException e) {
@@ -287,7 +287,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
 
     private void initSocket() {
         try {
-            mSocket = IO.socket("https://glacial-springs-30545.herokuapp.com");
+            mSocket = IO.socket("https://aura-chat-socket.herokuapp.com");
             mSocket.connect();
             mSocket.emit("join", senderId);
             mSocket.emit("online",receiverId);
@@ -397,15 +397,12 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         }
         Intent intent = new Intent(this, NotificationService.class);
         intent.putExtra("userId",senderId);
-        stopService(intent);
+        startService(intent);
     }
 
     @Override
     public void onStop(){
         super.onStop();
-        Intent intent = new Intent(this, NotificationService.class);
-        intent.putExtra("userId",senderId);
-        startService(intent);
     }
 
     public String BitmapToString(Bitmap image) {

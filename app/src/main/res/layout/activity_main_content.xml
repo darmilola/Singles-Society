@@ -38,7 +38,7 @@
             android:id="@+id/activity_main_toolbar">
    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:weightSum="4"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
@@ -49,8 +49,8 @@
             android:id="@+id/main_info_toggle_layout"
             android:gravity="center|left">
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginLeft="16dp"
                 android:layout_gravity="center"
                 android:tint="@color/light_text_color"
@@ -85,15 +85,15 @@
      <com.yuyakaido.android.cardstackview.CardStackView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:layout_marginBottom="20dp"
-         android:background="@color/special_activity_background"
+         android:layout_marginBottom="5dp"
+         android:background="@color/full_transparency"
         android:id="@+id/showcase_main_recyclerview"/>
         <include layout="@layout/emptyfilter_layout"/>
         <include layout="@layout/activity_caught_up"/>
         <include layout="@layout/activity_met_match_page"/>
         <include layout="@layout/activity_complete_profile_prompt"/>
         <include layout="@layout/error_page"/>
-        <include layout="@layout/matahed_layout"/>
+        <include layout="@layout/matched_layout"/>
     </LinearLayout>
 
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/transparent"
+    android:background="@color/special_activity_background"
     android:layout_height="130dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

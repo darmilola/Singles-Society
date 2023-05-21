@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp">
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.aure.Arvi.widget.PlayableItemsRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/special_activity_background"

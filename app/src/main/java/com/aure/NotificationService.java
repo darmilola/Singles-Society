@@ -35,7 +35,7 @@ public class NotificationService extends Service {
 
     private Socket mSocket;
     private String userId = "";
-    private static final String URL = "https://glacial-springs-30545.herokuapp.com";
+    private static final String URL = "https://aesthetic-sunshine-b2b4ba.netlify.app/";
 
     public NotificationService() {
     }
@@ -58,7 +58,7 @@ public class NotificationService extends Service {
          userId = intent.getStringExtra("userId");
 
         try {
-            mSocket = IO.socket("https://quiet-dusk-08267.herokuapp.com/");
+            mSocket = IO.socket("https://aura-chat-socket.herokuapp.com");
             mSocket.connect();
             mSocket.emit("join", intent.getStringExtra("userId"));
         } catch (URISyntaxException e) {

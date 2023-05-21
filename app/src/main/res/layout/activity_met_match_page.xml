@@ -1,90 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MetMatchPage"
     android:id="@+id/met_match_root"
-    android:background="@color/special_activity_background"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:visibility="gone"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MetMatchPage">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="It's a Match"
-        android:textSize="40dp"
-        android:fontFamily="@font/kumelian"
-        android:textColor="@color/colorPrimary"
-        android:gravity="center"/>
-     <TextView
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="30dp"
-         android:layout_marginRight="30dp"
-         android:id="@+id/met_match_text"
-         android:text="You and dhgsay fgyf agsdh gJacques have matched each other"
-         android:textSize="16dp"
-         android:maxLines="2"
-         android:gravity="center"
-         android:ellipsize="end"
-         android:textColor="@color/dark_text_color"
-         android:fontFamily="@font/clannews"/>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/match_gradient"
+        android:elevation="1dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/match_gradient"
+        android:layout_gravity="bottom"
+        android:id="@+id/match_bottom_bar"
+        android:elevation="1dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/full_transparency"
+            android:layout_marginBottom="-30dp"
+            app:cardCornerRadius="40dp">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            xmlns:fresco = "http://schemas.android.com/apk/res-auto"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginRight="45dp"
-            android:layout_gravity="center"
-            fresco:placeholderImageScaleType="centerCrop"
-            fresco:roundedCornerRadius="3dp"
-            fresco:roundAsCircle="true"
-            android:id="@+id/met_match_first_image"
-            fresco:roundingBorderWidth="2dp"
-            fresco:roundingBorderColor="@color/special_activity_background"
-            fresco:placeholderImage="@drawable/profileplaceholder"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="You Matched"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="30dp"
+                    android:fontFamily="sans-serif"/>
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            xmlns:fresco = "http://schemas.android.com/apk/res-auto"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="25dp"
-            android:layout_gravity="center"
-            fresco:placeholderImageScaleType="centerCrop"
-            fresco:roundedCornerRadius="3dp"
-            fresco:roundAsCircle="true"
-            android:id="@+id/met_match_second_image"
-            fresco:roundingBorderWidth="2dp"
-            fresco:roundingBorderColor="@color/special_activity_background"
-            fresco:placeholderImage="@drawable/profileplaceholder"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Let's get to know\n each other better!"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="17dp"
+                    android:lineSpacingExtra="5dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="sans-serif"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="170dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="#7C000000"
+                    app:cardCornerRadius="25dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:id="@+id/message_match"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/chat_icon"
+                            app:tint="@color/white"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13dp"
+                            android:text="MESSAGE"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/white"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
     </FrameLayout>
 
 
-    <com.google.android.material.button.MaterialButton
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginTop="20dp"
-        android:text="Send Message"
-        app:backgroundTint="@color/pinkypinky"
-        app:cornerRadius="23dp"
-        android:textColor="@color/white"
-        android:id="@+id/met_match_send_message"
-        android:textAllCaps="false"
-        android:textSize="17dp"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@color/special_activity_background"
+        android:orientation="vertical"
+        android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lady1"
+            android:id="@+id/met_match_first_image"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lady3"
+            android:id="@+id/met_match_second_image"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

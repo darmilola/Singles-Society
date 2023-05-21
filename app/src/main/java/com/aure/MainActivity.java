@@ -24,6 +24,7 @@ import jp.alessandro.android.iab.handler.PurchaseHandler;
 import jp.alessandro.android.iab.handler.StartActivityHandler;
 import jp.alessandro.android.iab.logger.SystemLogger;
 import jp.alessandro.android.iab.response.PurchaseResponse;
+import jp.wasabeef.blurry.Blurry;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
 
@@ -37,6 +38,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -48,6 +50,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -109,7 +112,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     DrawerLayout drawerLayout;
     CircleImageView profileImageView;
     TextView metMatchText;
-    SimpleDraweeView match_first_image, match_second_image, caught_up_first_image, caught_up_second_image;
+    SimpleDraweeView caught_up_first_image, caught_up_second_image;
+    ImageView match_first_image, match_second_image;
     Toolbar toolbar;
     FrameLayout mainView;
     ProgressBar progressBar;
@@ -123,13 +127,15 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout inviteAFriend;
     LinearLayout logOut;
     LinearLayout counselling;
-    MaterialButton changePreference,visitMarketplace,completeProfileStartChatting,erroRetryButton,matchedStartChatting,matchedSubscribe;
+    MaterialButton changePreference,visitMarketplace,completeProfileStartChatting,erroRetryButton,matchedSubscribe;
+    LinearLayout matchedStartChatting;
     RelativeLayout swipeToolRoot;
     ArrayList<String> likedUserId = new ArrayList<>();
     ArrayList<PreviewProfileModel> previewProfileModels = new ArrayList<>();
     String currentlyDisplayedUserId;
     boolean isRightSwipe = false;
-    LinearLayout metMatchRoot,completeProfileRoot,errorLayoutRoot,alreadyMatchedRoot;
+    LinearLayout completeProfileRoot,errorLayoutRoot,alreadyMatchedRoot;
+    FrameLayout metMatchRoot;
     MainActivityModel mainActivityModel;
     private BillingProcessor mBillingProcessor;
 
@@ -184,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         initBillingProcessor();
         caught_up_first_image = findViewById(R.id.caught_up_image1);
         caught_up_second_image = findViewById(R.id.caught_up_image2);
-        matchedStartChatting = findViewById(R.id.met_match_send_message);
+        matchedStartChatting = findViewById(R.id.message_match);
         matchedSubscribe = findViewById(R.id.main_matched_subscribe);
         alreadyMatchedRoot = findViewById(R.id.already_matched_root);
         metMatchText = findViewById(R.id.met_match_text);
@@ -202,6 +208,14 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         errorLayoutRoot = findViewById(R.id.error_layout_root);
         completeProfileRoot = findViewById(R.id.complete_profile_prompt_root);
         completeProfileStartChatting = findViewById(R.id.main_complete_profile_start_chatting);
+       // Blurry.with(this).radius(25).sampling(2).onto(metMatchRoot);
+        Blurry.with(MainActivity.this)
+                .radius(10)
+                .sampling(8)
+                .color(Color.argb(66, 255, 255, 0))
+                .async()
+                .animate(500)
+                .onto(metMatchRoot);
         String userEmail = getIntent().getStringExtra("email");
         Intent intent = new Intent(this, NotificationService.class);
         intent.putExtra("userId",userEmail);
@@ -535,44 +549,50 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         ArrayList<String> imageStrings = new ArrayList<>();
                         ArrayList<String> goalStrings = new ArrayList<>();
 
+
                         mainStrings.add(previewProfileModel.getFirstname());
                         mainStrings.add(String.valueOf(previewProfileModel.getAge()));
                         mainStrings.add(previewProfileModel.getCity());
                         mainStrings.add(previewProfileModel.getOccupation());
                         mainStrings.add(previewProfileModel.getImage1Url());
-                        ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1);
+                        mainStrings.add(previewProfileModel.getUserId());
+                        ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1,likeIds);
                         showCaseModelArrayList.add(showCaseModel);
 
                         quoteStrings.add(previewProfileModel.getQuote());
-                        ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2);
+                        ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2,likeIds);
                         showCaseModelArrayList.add(showCaseModel1);
+
+                        ShowCaseModel showCaseModel9 = new ShowCaseModel(goalStrings,9,likeIds);
+                        showCaseModelArrayList.add(showCaseModel9);
 
                         aboutStrings.add(previewProfileModel.getStatus());
                         aboutStrings.add(previewProfileModel.getSmoking());
                         aboutStrings.add(previewProfileModel.getDrinking());
                         aboutStrings.add(previewProfileModel.getLanguage());
                         aboutStrings.add(previewProfileModel.getReligion());
-                        ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3);
+                        ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3,likeIds);
                         showCaseModelArrayList.add(showCaseModel2);
 
                         careerStrings.add(previewProfileModel.getEducationLevel());
                         careerStrings.add(previewProfileModel.getOccupation());
                         careerStrings.add(previewProfileModel.getWorkplace());
                         careerStrings.add(previewProfileModel.getImage2Url());
-                        ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4);
+                        ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4,likeIds);
                         showCaseModelArrayList.add(showCaseModel3);
 
                         aboutTextStrings.add(previewProfileModel.getAbout());
-                        ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5);
+                        ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5,likeIds);
                         showCaseModelArrayList.add(showCaseModel4);
 
                         imageStrings.add(previewProfileModel.getImage3Url());
-                        ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6);
+                        ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6,likeIds);
                         showCaseModelArrayList.add(showCaseModel5);
 
                         goalStrings.add(previewProfileModel.getMarriageGoals());
-                        ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7);
+                        ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7,likeIds);
                         showCaseModelArrayList.add(showCaseModel6);
+
                         ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList);
                         showCaseMainModelArrayList.add(showCaseMainModel);
                     }
@@ -586,7 +606,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     swipeToolRoot.setVisibility(View.VISIBLE);
                     alreadyMatchedRoot.setVisibility(View.GONE);
 
-                    if(!likeIds.isEmpty()) displayLikedNotification();
+                   // if(!likeIds.isEmpty()) displayLikedNotification();
                 }
 
                 @Override
@@ -626,12 +646,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private void initializeCardStack() {
 
         manager = new CardStackLayoutManager(this,this);
-        manager.setStackFrom(StackFrom.None);
+        manager.setStackFrom(StackFrom.Top);
         manager.setVisibleCount(2);
         manager.setTranslationInterval(6.0f);
         manager.setScaleInterval(0.90f);
         manager.setSwipeThreshold(0.3f);
-        manager.setMaxDegree(30.0f);
+        manager.setMaxDegree(50.0f);
         manager.setDirections(Direction.HORIZONTAL);
         manager.setCanScrollHorizontal(true);
         manager.setCanScrollVertical(false);
@@ -643,7 +663,11 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
 
     private void logOut(){
-        GoogleSignInClient mSignInClient;
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        preferences.edit().remove("userEmail").apply();
+        startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
+        finish();
+      /*  GoogleSignInClient mSignInClient;
         GoogleSignInOptions options =
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().requestProfile()
                         .build();
@@ -657,7 +681,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
                         finish();
                     }
-                });
+                });*/
     }
 
     private void showAlert(){
@@ -857,7 +881,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
     private void publishMatchNotification(String receiverId,String matchFirstname,String matchImageUrl){
         try {
-            Socket mSocket = IO.socket("https://quiet-dusk-08267.herokuapp.com/");
+            Socket mSocket = IO.socket("https://strong-swan-8610e4.netlify.app");
             mSocket.connect();
             mSocket.emit("match",receiverId,matchFirstname,matchImageUrl);
         } catch (URISyntaxException e) {

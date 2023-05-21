@@ -89,11 +89,11 @@ public class PreviewProfile extends AppCompatActivity {
               mainStrings.add(previewProfileModel.getCity());
               mainStrings.add(previewProfileModel.getOccupation());
               mainStrings.add(previewProfileModel.getImage1Url());
-              ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1);
+              ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1,new ArrayList<String>());
               showCaseModelArrayList.add(showCaseModel);
 
               quoteStrings.add(previewProfileModel.getQuote());
-              ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2);
+              ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2,new ArrayList<String>());
               showCaseModelArrayList.add(showCaseModel1);
 
               aboutStrings.add(previewProfileModel.getStatus());
@@ -101,26 +101,26 @@ public class PreviewProfile extends AppCompatActivity {
               aboutStrings.add(previewProfileModel.getDrinking());
               aboutStrings.add(previewProfileModel.getLanguage());
               aboutStrings.add(previewProfileModel.getReligion());
-              ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3);
+              ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3,new ArrayList<String>());
               showCaseModelArrayList.add(showCaseModel2);
 
               careerStrings.add(previewProfileModel.getEducationLevel());
               careerStrings.add(previewProfileModel.getOccupation());
               careerStrings.add(previewProfileModel.getWorkplace());
               careerStrings.add(previewProfileModel.getImage2Url());
-              ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4);
+              ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4,new ArrayList<String>());
               showCaseModelArrayList.add(showCaseModel3);
 
               aboutTextStrings.add(previewProfileModel.getAbout());
-              ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5);
+              ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5,new ArrayList<String>());
               showCaseModelArrayList.add(showCaseModel4);
 
               imageStrings.add(previewProfileModel.getImage3Url());
-              ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6);
+              ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6,new ArrayList<String>());
               showCaseModelArrayList.add(showCaseModel5);
 
               goalStrings.add(previewProfileModel.getMarriageGoals());
-              ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7);
+              ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7,new ArrayList<String>());
               showCaseModelArrayList.add(showCaseModel6);
 
               adapter = new ViewProfileAdapter(PreviewProfile.this,showCaseModelArrayList);
