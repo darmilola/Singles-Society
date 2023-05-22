@@ -12,6 +12,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class ConnectWithEmail extends AppCompatActivity {
 
     TextView dontHaveAccount,forgotPassword;
-    MaterialButton loginButton;
+    LinearLayout loginButton;
     TextInputLayout emailLayout,passwordLayout;
     TextInputEditText emailEdit,passwordEdit;
     String mEmail,mPassword;
@@ -57,7 +58,7 @@ public class ConnectWithEmail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(ConnectWithEmail.this,VerificationEmail.class));
+                startActivity(new Intent(ConnectWithEmail.this,ResetPassword.class));
 
             }
         });

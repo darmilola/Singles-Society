@@ -25,10 +25,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="NewRegisterTextField" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="NewRegisterTextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@android:color/transparent</item>
-        <item name="boxStrokeColor">@color/colorPrimary</item>
+        <item name="boxStrokeColor">@color/pink</item>
         <item name="boxStrokeWidth">3dp</item>
+        <item name="hintColor">@color/lighter_text_color</item>
         <item name="android:textColorHint">@color/lighter_text_color</item>
     </style>
 

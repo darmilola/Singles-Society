@@ -2,14 +2,17 @@ package com.aure;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.aure.UiModels.ForgotPasswordModel;
@@ -19,7 +22,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class ResetPassword extends AppCompatActivity {
 
     TextInputEditText newPassword, retypePassword;
-    MaterialButton reset;
+    LinearLayout reset;
     String userIdHash;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +32,15 @@ public class ResetPassword extends AppCompatActivity {
     }
 
     private void initView(){
-        newPassword = findViewById(R.id.reset_password_password);
-        retypePassword = findViewById(R.id.reset_password_password_retype);
-        reset = findViewById(R.id.reset_password_reset_button);
+        newPassword = findViewById(R.id.reset_password_text);
+        retypePassword = findViewById(R.id.reset_password_text_retype);
+        reset = findViewById(R.id.reset_password_button);
 
-        Intent intent = getIntent();
-        String action = intent.getAction();
-        Uri data = intent.getData();
+      //  Intent intent = getIntent();
+     //   String action = intent.getAction();
+     //   Uri data = intent.getData();
 
-        userIdHash = data.getQueryParameter("hash");
+      //  userIdHash = data.getQueryParameter("hash");
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +79,15 @@ public class ResetPassword extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
+        }
     }
 
     private boolean isValidForm(){

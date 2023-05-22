@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,15 +41,13 @@ import java.io.ByteArrayOutputStream;
 
 public class SignUpWithEmail extends AppCompatActivity {
 
-    MaterialButton signupWithEmail;
+    LinearLayout signupWithEmail;
     static int PICK_IMAGE = 3;
     static int CROP_IMAGE = 4;
-    ImageView selectProfileImageButton;
-    CircleImageView circleImageView;
     LoadingDialogUtils loadingDialogUtils;
     TextInputEditText firstname,lastname,emailAddress,password;
     TextInputLayout firstnameLayout,lastnameLayout,emailLayout,passwordLayout;
-    String mFirstname, mLastname, mEmailaddress, mPassword,mProfileImage = "";
+    String mFirstname, mLastname, mEmailaddress, mPassword,mProfileImage = "Dummy Image";
     TextView alreadyHaveAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +60,6 @@ public class SignUpWithEmail extends AppCompatActivity {
     private void initView(){
         alreadyHaveAccount = findViewById(R.id.sign_up_have_account);
         signupWithEmail = findViewById(R.id.signup_with_email_button);
-        selectProfileImageButton = findViewById(R.id.select_profile_image_button);
-        circleImageView = findViewById(R.id.signup_profile_image);
         loadingDialogUtils = new LoadingDialogUtils(SignUpWithEmail.this);
         firstnameLayout = findViewById(R.id.sign_up_firstname_layout);
         lastnameLayout = findViewById(R.id.sign_up_lastname_layout);
@@ -82,15 +79,6 @@ public class SignUpWithEmail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-            }
-        });
-        selectProfileImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), PICK_IMAGE);
             }
         });
 
@@ -135,32 +123,13 @@ public class SignUpWithEmail extends AppCompatActivity {
 
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
         }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && null != data) {
-            String selectedImageString = data.getData().toString();
-            Intent cropIntent = new Intent(SignUpWithEmail.this,ProfileImageCrop.class);
-            cropIntent.putExtra("image",selectedImageString);
-            startActivityForResult(cropIntent,CROP_IMAGE);
-        }
-
-        if (requestCode == CROP_IMAGE && resultCode == 2) {
-            byte[] byteArray = data.getByteArrayExtra("croppedImage");
-            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            mProfileImage = getEncodedImage(bmp);
-            circleImageView.setImageBitmap(bmp);
-        }
-
     }
 
     public static String getEncodedImage(Bitmap bitmap){
@@ -183,6 +152,7 @@ public class SignUpWithEmail extends AppCompatActivity {
 
     }
 
+
     private boolean isValidForm() {
 
         boolean valid = true;
@@ -204,11 +174,6 @@ public class SignUpWithEmail extends AppCompatActivity {
         }
         if (TextUtils.isEmpty(mPassword)) {
             passwordLayout.setError("Required");
-            valid = false;
-            return valid;
-        }
-        if(TextUtils.isEmpty(mProfileImage)){
-            Toast.makeText(this, "Upload profile image", Toast.LENGTH_LONG).show();
             valid = false;
             return valid;
         }

@@ -2,10 +2,13 @@ package com.aure;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.aure.UiModels.ForgotPasswordModel;
@@ -15,7 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class VerificationEmail extends AppCompatActivity {
 
     TextInputEditText emailText;
-    MaterialButton getResetLink;
+    LinearLayout getResetLink;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +81,15 @@ public class VerificationEmail extends AppCompatActivity {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
+        }
     }
 
 

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/met_match_root"
+    android:background="#f2f2f3"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MetMatchPage">
 
@@ -25,30 +26,56 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:gravity="bottom"
-        android:layout_weight="0.8">
+        android:gravity="top"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Congratulations"
-            android:textColor="@color/dark_gray"
-            android:layout_marginTop="40dp"
+            android:textColor="#262A2C"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:textSize="30dp"
-            android:fontFamily="sans-serif-medium"/>
+            android:fontFamily="sans-serif-black"/>
 
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mutual Sympathy do not waste time\nand write to her"
-            android:lineSpacingExtra="3dp"
-            android:textColor="#848B8E"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:textSize="15dp"
-            android:fontFamily="sans-serif"/>
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
+
+            <FrameLayout
+                android:layout_width="220dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:rotation="3"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/filled_radii_background">
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="220dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#262A2C"
+                android:rotation="-4"
+                android:background="@drawable/filled_radii_background">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="It's a Match"
+                    android:textColor="#F1F1F1"
+                    android:gravity="center"
+                    android:textSize="24dp"
+                    android:fontFamily="@font/clanbold"/>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
 
     </LinearLayout>
 
@@ -58,16 +85,9 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_weight="2.5">
+        android:layout_weight="2">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:tint="@color/pink"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="165dp"
-            android:rotation="15"
-            android:src="@drawable/iconfinder_heart_favourite_favorite_love"/>
+
 
 
         <ImageView
@@ -115,39 +135,43 @@
             android:elevation="1dp"
             android:src="@drawable/iconfinder_heart_favourite_favorite_love"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
         <com.makeramen.roundedimageview.RoundedImageView
-            android:src="@drawable/lady2"
+            android:src="@drawable/enthusiastic"
             android:id="@+id/met_match_image1"
-            android:scaleType="fitCenter"
             app:riv_corner_radius="30dip"
-            app:riv_border_width="2dip"
-            app:riv_border_color="@color/pink"
+            app:riv_border_color="@color/full_transparency"
             app:riv_mutate_background="true"
-            app:riv_tile_mode="repeat"
             android:layout_width="200dp"
-            android:layout_height="330dp"
+            android:layout_height="300dp"
             android:layout_gravity="left"
-            android:layout_marginTop="70dp"
             app:riv_corner_radius_bottom_left="25dp"
             app:riv_corner_radius_bottom_right="25dp"
             app:riv_corner_radius_top_left="25dp"
             app:riv_corner_radius_top_right="25dp"
-            android:layout_marginLeft="25dp"
-            android:padding="10dp"
-            android:rotation="-10"/>
+            android:layout_marginLeft="20dp"
+            android:rotation="-15"/>
+
+
+
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:src="@drawable/lady3"
+            android:src="@drawable/enthusiastic"
             app:riv_corner_radius="30dp"
             android:id="@+id/met_match_image2"
-            app:riv_border_width="2dip"
-            app:riv_border_color="@color/deep_yellow"
+            app:riv_border_color="@color/full_transparency"
             app:riv_mutate_background="true"
-            app:riv_tile_mode="repeat"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:padding="10dp"
-            android:layout_width="210dp"
-            android:layout_height="310dp"
+            android:layout_width="220dp"
+            android:layout_height="250dp"
             android:scaleType="centerCrop"
             android:layout_gravity="right"
             android:layout_marginTop="20dp"
@@ -155,8 +179,8 @@
             app:riv_corner_radius_bottom_right="25dp"
             app:riv_corner_radius_top_left="25dp"
             app:riv_corner_radius_top_right="25dp"
-            android:rotation="5"
-            android:layout_marginRight="25dp"/>
+            android:rotation="20"
+            android:layout_marginRight="15dp"/>
 
 
 
@@ -174,9 +198,9 @@
         android:layout_weight="0.7">
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="280dp"
             android:id="@+id/message_match"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:background="@drawable/filled_circle"
             android:gravity="center">
             <TextView
