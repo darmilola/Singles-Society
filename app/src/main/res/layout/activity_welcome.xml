@@ -42,7 +42,7 @@
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
                 android:src="@drawable/muzmatch"
-                android:tint="@color/pinkypinky"/>
+                android:tint="@color/pink"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                 android:background="@drawable/google_sign_in_background"
                 android:gravity="center"
                 android:weightSum="4"
-                android:backgroundTint="@color/pinkypinky"
+                android:backgroundTint="@color/pink"
                 android:orientation="horizontal">
 
                 <LinearLayout

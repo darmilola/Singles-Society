@@ -3,8 +3,8 @@
 
     <gradient
         android:angle="270"
-        android:endColor="@color/pinkypinky"
-        android:startColor="@color/pinkypinky" />
+        android:endColor="@color/pink"
+        android:startColor="@color/pink" />
 
     <size
         android:height="20dp"

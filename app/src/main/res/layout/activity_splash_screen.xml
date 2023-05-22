@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#132a39"
+    android:background="@drawable/love_gradient"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".SplashScreen">
@@ -19,7 +19,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:id="@+id/logo_image"
-            android:tint="@color/pinkypinky"
+            android:tint="@color/white"
             android:src="@drawable/muzmatch"/>
         <TextView
             android:layout_width="wrap_content"

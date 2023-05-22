@@ -96,7 +96,7 @@
         android:layout_marginRight="10dp"
         android:background="@color/transparent"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/pinkypinky"
+        app:tabIndicatorColor="@color/pink"
         app:tabMode="auto"
         android:id="@+id/mylistings_tabs"
         app:tabIndicatorHeight="7dp"

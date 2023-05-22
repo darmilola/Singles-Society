@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import com.aure.R;
+import com.aure.UiModels.LinePagerIndicator;
 import com.aure.UiModels.RecyclerViewPagerIndicator;
 import com.aure.UiModels.ShowCaseMainModel;
 
@@ -61,7 +62,7 @@ public class ShowcaseMainAdapter extends RecyclerView.Adapter<ShowcaseMainAdapte
         public ShowcaseMainGeneralItemViewHolder(View ItemView){
             super(ItemView);
             showcaseRecyclerview = ItemView.findViewById(R.id.showcase_recyclerview);
-            showcaseRecyclerview.addItemDecoration(new RecyclerViewPagerIndicator(context));
+            showcaseRecyclerview.addItemDecoration(new LinePagerIndicator());
             ItemView.setOnClickListener(this);
         }
 

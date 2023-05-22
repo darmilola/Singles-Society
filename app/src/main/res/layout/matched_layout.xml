@@ -81,7 +81,7 @@
         android:layout_marginRight="45dp"
         android:layout_marginTop="20dp"
         android:text="Subscribe"
-        app:backgroundTint="@color/pinkypinky"
+        app:backgroundTint="@color/pink"
         app:cornerRadius="23dp"
         android:id="@+id/main_matched_subscribe"
         android:textAllCaps="false"

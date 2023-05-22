@@ -35,9 +35,9 @@
         android:background="@drawable/overlay_black">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/like_white"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/potential_love"
             android:layout_gravity="center"/>
 
     </FrameLayout>

@@ -80,7 +80,7 @@
                     app:boxStrokeColor="@color/colorAccent"
                     app:errorEnabled="true"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/pinkypinky"
+                    app:passwordToggleTint="@color/pink"
                     app:errorTextAppearance="@style/ErrorText">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -102,7 +102,7 @@
                     android:layout_marginTop="10dp"
                     android:text="Login"
                     android:textColor="@color/white"
-                    android:backgroundTint="@color/pinkypinky"
+                    android:backgroundTint="@color/pink"
                     android:id="@+id/login_with_email_button"
                     android:textAllCaps="false"
                     android:textSize="15dp"/>

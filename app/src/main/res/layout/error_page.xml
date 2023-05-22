@@ -46,7 +46,7 @@
         android:layout_marginRight="45dp"
         android:layout_marginTop="10dp"
         android:text="Retry"
-        app:backgroundTint="@color/pinkypinky"
+        app:backgroundTint="@color/pink"
         app:cornerRadius="7dp"
         android:id="@+id/error_page_retry"
         android:textAllCaps="false"

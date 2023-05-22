@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:tint="@color/pinkypinky"
+        app:tint="@color/pink"
         android:src="@drawable/redlines"/>
 
 
@@ -56,7 +56,7 @@
               android:layout_height="55dp"
               android:layout_marginTop="20dp"
               app:cardElevation="0dp"
-              app:cardBackgroundColor="@color/pinkypinky"
+              app:cardBackgroundColor="@color/pink"
               app:cardCornerRadius="15dp">
 
               <LinearLayout
@@ -129,7 +129,7 @@
                   <ImageView
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
-                      android:tint="@color/pinkypinky"
+                      android:tint="@color/pink"
                       android:src="@drawable/mail_2x"/>
 
 

@@ -78,7 +78,7 @@
         android:layout_marginRight="45dp"
         android:layout_marginTop="20dp"
         android:text="View Ads"
-        app:backgroundTint="@color/pinkypinky"
+        app:backgroundTint="@color/pink"
         app:cornerRadius="23dp"
         android:textColor="@color/white"
         android:id="@+id/caught_up_visit_marketplace"

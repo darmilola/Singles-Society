@@ -52,7 +52,7 @@
                     app:chipBackgroundColor="@color/transparent"
                     app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
                     app:chipIconSize="16dp"
-                    app:chipIconTint="@color/pinkypinky"
+                    app:chipIconTint="@color/pink"
                     app:chipIconVisible="true"
                     app:chipSurfaceColor="#DBE4E9"
                     app:closeIconEnabled="false"

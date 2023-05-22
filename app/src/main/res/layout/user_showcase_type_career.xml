@@ -64,15 +64,17 @@
                         app:iconStartPadding="10dp"
                         android:textColor="@color/White"
                         android:textSize="15dp"
-                        app:chipSurfaceColor="@color/transparent"
-                        android:fontFamily="@font/airsemi"
                         app:closeIconEnabled="false"
-                        app:chipIconVisible="true"
                         android:id="@+id/type_career_education"
                         app:chipIconSize="16dp"
-                        app:chipIconTint="@color/pinkypinky"
                         app:chipIcon="@drawable/ic_iconfinder_awarded_cap_commencement_degree_cap_graduate_cap_mortarboard_4763252"
-                        app:chipBackgroundColor="@color/grey"/>
+                        app:chipIconTint="@color/white"
+                        app:chipStrokeColor="@color/white"
+                        app:chipStrokeWidth="0.5dp"
+                        app:chipIconVisible="true"
+                        app:chipSurfaceColor="@color/full_transparency"
+                        app:chipBackgroundColor="@color/full_transparency"
+                        android:fontFamily="sans-serif"/>
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
@@ -83,15 +85,17 @@
                         android:id="@+id/type_career_occupation"
                         android:textColor="@color/White"
                         android:textSize="15dp"
-                        app:chipSurfaceColor="@color/transparent"
-                        android:fontFamily="@font/airsemi"
                         app:closeIconEnabled="false"
-                        app:chipIconVisible="true"
                         app:chipIconSize="16dp"
                         android:layout_marginLeft="5dp"
-                        app:chipIconTint="@color/pinkypinky"
                         app:chipIcon="@drawable/ic_iconfinder_business"
-                        app:chipBackgroundColor="@color/grey"/>
+                        app:chipIconTint="@color/white"
+                        app:chipStrokeColor="@color/white"
+                        app:chipStrokeWidth="0.5dp"
+                        app:chipIconVisible="true"
+                        app:chipSurfaceColor="@color/full_transparency"
+                        app:chipBackgroundColor="@color/full_transparency"
+                        android:fontFamily="sans-serif"/>
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
@@ -105,14 +109,16 @@
                         android:textColor="@color/White"
                         android:textSize="15dp"
                         android:id="@+id/type_career_workplace"
-                        app:chipSurfaceColor="@color/transparent"
-                        android:fontFamily="@font/airsemi"
                         app:closeIconEnabled="false"
-                        app:chipIconVisible="true"
                         android:layout_marginLeft="5dp"
-                        app:chipIconTint="@color/pinkypinky"
                         app:chipIcon="@drawable/ic_iconfinder_office_business_work_workplace_home_company__13_7218080"
-                        app:chipBackgroundColor="@color/grey"/>
+                        app:chipIconTint="@color/white"
+                        app:chipStrokeColor="@color/white"
+                        app:chipStrokeWidth="0.5dp"
+                        app:chipIconVisible="true"
+                        app:chipSurfaceColor="@color/full_transparency"
+                        app:chipBackgroundColor="@color/full_transparency"
+                        android:fontFamily="sans-serif"/>
                 </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
         </FrameLayout>

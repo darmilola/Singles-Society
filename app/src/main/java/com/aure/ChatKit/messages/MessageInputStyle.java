@@ -105,11 +105,11 @@ class MessageInputStyle extends Style {
 
         style.attachmentButtonIcon = typedArray.getResourceId(R.styleable.MessageInput_attachmentButtonIcon, -1);
         style.attachmentButtonDefaultIconColor = typedArray.getColor(R.styleable.MessageInput_attachmentButtonDefaultIconColor,
-                style.getColor(R.color.pinkypinky));
+                style.getColor(R.color.pink));
         style.attachmentButtonDefaultIconPressedColor = typedArray.getColor(R.styleable.MessageInput_attachmentButtonDefaultIconPressedColor,
-                style.getColor(R.color.pinkypinky));
+                style.getColor(R.color.pink));
         style.attachmentButtonDefaultIconDisabledColor = typedArray.getColor(R.styleable.MessageInput_attachmentButtonDefaultIconDisabledColor,
-                style.getColor(R.color.pinkypinky));
+                style.getColor(R.color.pink));
 
         style.attachmentButtonWidth = typedArray.getDimensionPixelSize(R.styleable.MessageInput_attachmentButtonWidth, style.getDimension(R.dimen.input_attach_button_height));
         style.attachmentButtonHeight = typedArray.getDimensionPixelSize(R.styleable.MessageInput_attachmentButtonHeight, style.getDimension(R.dimen.input_attach_button_height));
@@ -117,7 +117,7 @@ class MessageInputStyle extends Style {
 
         style.inputButtonBackground = typedArray.getResourceId(R.styleable.MessageInput_inputButtonBackground, -1);
         style.inputButtonDefaultBgColor = typedArray.getColor(R.styleable.MessageInput_inputButtonDefaultBgColor,
-                style.getColor(R.color.pinkypinky));
+                style.getColor(R.color.pink));
         style.inputButtonDefaultBgPressedColor = typedArray.getColor(R.styleable.MessageInput_inputButtonDefaultBgPressedColor,
                 style.getColor(R.color.cornflower_blue_two_dark));
         style.inputButtonDefaultBgDisabledColor = typedArray.getColor(R.styleable.MessageInput_inputButtonDefaultBgDisabledColor,

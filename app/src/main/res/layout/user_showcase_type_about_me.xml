@@ -3,19 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/transparent"
+    android:background="#f2f2f3"
+    android:paddingBottom="10dp"
     android:layout_height="wrap_content"
     android:minHeight="160dp">
-    <androidx.cardview.widget.CardView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
-        android:layout_marginTop="15dp"
-        app:cardBackgroundColor="@color/White"
-        app:cardCornerRadius="20dp"
-        android:padding="30dp"
-        app:cardElevation="0dp">
+        android:layout_height="0.5dp"
+        android:background="#D4D4D6"
+        android:layout_marginTop="15dp" />
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,12 +23,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="About Me"
-        android:gravity="center"
+        android:text="Basics"
+        android:gravity="center|left"
         android:layout_marginTop="15dp"
         android:textSize="16dp"
-        android:textColor="@color/colorPrimary"
-        android:fontFamily="@font/airsemi"/>
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/colorPrimary"/>
 
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
@@ -44,18 +43,20 @@
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:fontFamily="@font/airsemi"
             android:padding="10dp"
             android:text="Single"
             android:id="@+id/type_about_status"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#616263"
             android:textSize="15dp"
-            app:chipBackgroundColor="@color/transparent"
             app:chipIcon="@drawable/status"
             app:chipIconSize="16dp"
-            app:chipIconTint="@color/pinkypinky"
+            app:chipIconTint="#616263"
+            app:chipStrokeColor="#616263"
+            app:chipStrokeWidth="0.5dp"
             app:chipIconVisible="true"
-            app:chipSurfaceColor="#DBE4E9"
+            app:chipSurfaceColor="@color/full_transparency"
+            app:chipBackgroundColor="@color/full_transparency"
+            android:fontFamily="sans-serif"
             app:closeIconEnabled="false"
             app:iconStartPadding="10dp"/>
 
@@ -63,84 +64,115 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
-            android:fontFamily="@font/airsemi"
             android:padding="10dp"
             android:text="d'oesnt smoke"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#616263"
             android:textSize="15dp"
             android:id="@+id/type_about_smoking"
-            app:chipBackgroundColor="@color/transparent"
             app:chipIcon="@drawable/smoking"
             app:chipIconSize="16dp"
-            app:chipIconTint="@color/pinkypinky"
-            app:chipIconVisible="true"
-            app:chipSurfaceColor="#DBE4E9"
             app:closeIconEnabled="false"
-            app:iconStartPadding="10dp" />
+            app:iconStartPadding="10dp"
+            app:chipIconTint="#616263"
+            app:chipStrokeColor="#616263"
+            app:chipStrokeWidth="0.5dp"
+            app:chipIconVisible="true"
+            app:chipSurfaceColor="@color/full_transparency"
+            app:chipBackgroundColor="@color/full_transparency"
+            android:fontFamily="sans-serif"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
-            android:fontFamily="@font/airsemi"
             android:maxLines="1"
             android:id="@+id/type_about_drinking"
             android:padding="10dp"
             android:text="d'oesnt drink"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#616263"
             android:textSize="15dp"
-            app:chipBackgroundColor="@color/transparent"
             app:chipIcon="@drawable/drink"
             app:chipIconSize="16dp"
-            app:chipIconTint="@color/pinkypinky"
-            app:chipIconVisible="true"
-            app:chipSurfaceColor="#DBE4E9"
             app:closeIconEnabled="false"
-            app:iconStartPadding="10dp" />
+            app:iconStartPadding="10dp"
+            app:chipIconTint="#616263"
+            app:chipStrokeColor="#616263"
+            app:chipStrokeWidth="0.5dp"
+            app:chipIconVisible="true"
+            app:chipSurfaceColor="@color/full_transparency"
+            app:chipBackgroundColor="@color/full_transparency"
+            android:fontFamily="sans-serif"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:ellipsize="end"
-            android:fontFamily="@font/airsemi"
             android:maxLines="1"
             android:id="@+id/type_about_language"
             android:padding="10dp"
             android:text="English and hausa"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#616263"
             android:textSize="15dp"
-            app:chipBackgroundColor="@color/transparent"
             app:chipIcon="@drawable/language"
-            app:chipIconTint="@color/pinkypinky"
             app:chipIconSize="16dp"
-            app:chipIconVisible="true"
-            app:chipSurfaceColor="#DBE4E9"
             app:closeIconEnabled="false"
-            app:iconStartPadding="10dp" />
+            app:iconStartPadding="10dp"
+            app:chipIconTint="#616263"
+            app:chipStrokeColor="#616263"
+            app:chipStrokeWidth="0.5dp"
+            app:chipIconVisible="true"
+            app:chipSurfaceColor="@color/full_transparency"
+            app:chipBackgroundColor="@color/full_transparency"
+            android:fontFamily="sans-serif"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
-            android:fontFamily="@font/airsemi"
             android:maxLines="1"
             android:padding="10dp"
             android:id="@+id/type_about_religion"
             android:text="Christianity"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#616263"
             android:textSize="15dp"
-            app:chipIconTint="@color/pinkypinky"
-            app:chipBackgroundColor="@color/transparent"
             app:chipIcon="@drawable/prayer"
             app:chipIconSize="16dp"
-            app:chipIconVisible="true"
-            app:chipSurfaceColor="#DBE4E9"
             app:closeIconEnabled="false"
-            app:iconStartPadding="10dp" />
+            app:iconStartPadding="10dp"
+            app:chipIconTint="#616263"
+            app:chipStrokeColor="#616263"
+            app:chipStrokeWidth="0.5dp"
+            app:chipIconVisible="true"
+            app:chipSurfaceColor="@color/full_transparency"
+            app:chipBackgroundColor="@color/full_transparency"
+            android:fontFamily="sans-serif"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:text="Seeking marriage within 1-2 years"
+            android:textColor="#616263"
+            android:textSize="15dp"
+            android:id="@+id/marriage_goals"
+            app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
+            app:chipIconSize="16dp"
+            app:closeIconEnabled="false"
+            app:iconStartPadding="10dp"
+            app:chipIconTint="#616263"
+            app:chipStrokeColor="#616263"
+            app:chipStrokeWidth="0.5dp"
+            app:chipIconVisible="true"
+            app:chipSurfaceColor="@color/full_transparency"
+            app:chipBackgroundColor="@color/full_transparency"
+            android:fontFamily="sans-serif"/>
     </com.google.android.flexbox.FlexboxLayout>
 </LinearLayout>
-</androidx.cardview.widget.CardView>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#D4D4D6"
+        android:layout_marginTop="15dp" />
 </LinearLayout>

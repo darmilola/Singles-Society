@@ -18,7 +18,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:id="@+id/preference_start_searching"
-        android:backgroundTint="@color/pinkypinky"/>
+        android:backgroundTint="@color/pink"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:tint="@color/pinkypinky"
+                        android:tint="@color/pink"
                         android:src="@drawable/status"/>
 
                     <TextView
@@ -164,7 +164,7 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:tint="@color/pinkypinky"
+                        android:tint="@color/pink"
                         android:src="@drawable/prayer"/>
 
                     <TextView
@@ -230,7 +230,7 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:tint="@color/pinkypinky"
+                        android:tint="@color/pink"
                         android:src="@drawable/language"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -294,7 +294,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:tint="@color/pinkypinky"
+                        android:tint="@color/pink"
                         android:src="@drawable/marriage_goals"/>
 
                     <TextView
@@ -359,7 +359,7 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:tint="@color/pinkypinky"
+                        android:tint="@color/pink"
                         android:src="@drawable/education_level"/>
 
                     <TextView
@@ -455,7 +455,7 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/drink"
-                        android:tint="@color/pinkypinky"/>
+                        android:tint="@color/pink"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -519,7 +519,7 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:tint="@color/pinkypinky"
+                        android:tint="@color/pink"
                         android:src="@drawable/smoking"/>
 
                     <TextView

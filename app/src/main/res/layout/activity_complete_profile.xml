@@ -20,7 +20,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:id="@+id/complete_profile_start_searching"
-        android:backgroundTint="@color/pinkypinky"/>
+        android:backgroundTint="@color/pink"/>
 
 
     <LinearLayout
@@ -35,7 +35,7 @@
     <ProgressBar
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:indeterminateTint="@color/pinkypinky"
+        android:indeterminateTint="@color/pink"
         android:id="@+id/complete_profile_progress"
         android:layout_gravity="center"/>
 
@@ -103,7 +103,7 @@
                     android:fontFamily="@font/airreg"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    android:textColor="@color/pinkypinky"/>
+                    android:textColor="@color/pink"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -136,8 +136,8 @@
                android:max="80"
                android:min="18"
                android:layout_marginBottom="10dp"
-               android:thumbTint="@color/pinkypinky"
-               android:progressTint="@color/pinkypinky"
+               android:thumbTint="@color/pink"
+               android:progressTint="@color/pink"
                android:progress="18"/>
 
            <RelativeLayout
@@ -154,7 +154,7 @@
                    <ImageView
                        android:layout_width="20dp"
                        android:layout_height="20dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/about"/>
 
                    <TextView
@@ -221,7 +221,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/status"/>
                    <TextView
                        android:layout_width="wrap_content"
@@ -285,7 +285,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/prayer"/>
 
                    <TextView
@@ -350,7 +350,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/language"/>
                    <TextView
                        android:layout_width="wrap_content"
@@ -414,7 +414,7 @@
                    <ImageView
                        android:layout_width="24dp"
                        android:layout_height="24dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/city"/>
 
                    <TextView
@@ -479,7 +479,7 @@
                    <ImageView
                        android:layout_width="24dp"
                        android:layout_height="24dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/occupation"/>
 
                    <TextView
@@ -544,7 +544,7 @@
                    <ImageView
                        android:layout_width="20dp"
                        android:layout_height="20dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/marriage_goals"/>
 
                    <TextView
@@ -610,7 +610,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/education_level"/>
 
                    <TextView
@@ -676,7 +676,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/workplace"/>
 
                    <TextView
@@ -742,7 +742,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/drink"/>
 
                    <TextView
@@ -806,7 +806,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/smoking"/>
 
                    <TextView
@@ -870,7 +870,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/gender"/>
                    <TextView
                        android:layout_width="wrap_content"
@@ -935,7 +935,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/quote"/>
                    <TextView
                        android:layout_width="wrap_content"
@@ -1003,7 +1003,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/display_picture"/>
                    <TextView
                        android:layout_width="wrap_content"
@@ -1062,7 +1062,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/display_picture"/>
                    <TextView
                        android:layout_width="wrap_content"
@@ -1121,7 +1121,7 @@
                    <ImageView
                        android:layout_width="16dp"
                        android:layout_height="16dp"
-                       android:tint="@color/pinkypinky"
+                       android:tint="@color/pink"
                        android:src="@drawable/display_picture"/>
                    <TextView
                        android:layout_width="wrap_content"

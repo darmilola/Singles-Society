@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewPagerIndicator extends RecyclerView.ItemDecoration {
 
 
-    private int colorActive = R.color.pinkypinky;
+    private int colorActive = R.color.pink;
     private int colorInactive = R.color.light_text_color;
 
     private static final float DP = Resources.getSystem().getDisplayMetrics().density;
@@ -115,7 +115,7 @@ public class RecyclerViewPagerIndicator extends RecyclerView.ItemDecoration {
 
     private void drawHighlights(Canvas c, float indicatorStartX, float indicatorPosY,
                                 int highlightPosition, float progress, int itemCount) {
-        mPaint.setColor(ContextCompat.getColor(context,R.color.pinkypinky));
+        mPaint.setColor(ContextCompat.getColor(context,R.color.pink));
 
         // width of item indicator including padding
         final float itemWidth = mIndicatorItemLength + mIndicatorItemPadding;

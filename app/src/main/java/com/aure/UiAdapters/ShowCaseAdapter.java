@@ -56,9 +56,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static int SHOWCASE_TYPE_QUOTE = 2;
     private static int SHOWCASE_TYPE_ABOUT_ME = 3;
     private static int SHOWCASE_TYPE_CAREER = 4;
-    private static int SHOWCASE_TYPE_ABOUT_TEXT = 5;
     private static int SHOWCASE_TYPE_PICTURE = 6;
-    private static int SHOWCASE_TYPE_MARRIAGE_GOALS = 7;
     private static int SHOWCASE_TYPE_TAKE_ACTION = 8;
 
     private static int SHOWCASE_TYPE_VIDEO = 9;
@@ -95,20 +93,13 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new ShowcaseAboutMeItemViewHolder(view);
         }
 
-        if (viewType == SHOWCASE_TYPE_MARRIAGE_GOALS) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_marriage_goals, parent, false);
-            return new ShowcaseMarriageGoalsItemViewHolder(view);
-        }
 
         if (viewType == SHOWCASE_TYPE_TAKE_ACTION) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_fav_report_block, parent, false);
             return new ShowcaseTakeActionItemViewHolder(view);
         }
 
-        if (viewType == SHOWCASE_TYPE_ABOUT_TEXT) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_text, parent, false);
-            return new ShowcaseAboutTextViewholder(view);
-        }
+
         if (viewType == SHOWCASE_TYPE_VIDEO) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_video, parent, false);
             return new ShowcaseVideoItemViewHolder(parent, view);
@@ -140,11 +131,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         }
 
-        if(showCaseModel.getShowcaseType() == 2){
-            ShowcaseQuoteItemViewHolder showcaseQuoteItemViewHolder = (ShowcaseQuoteItemViewHolder) holder;
-            showcaseQuoteItemViewHolder.textView.setText(showCaseModel.getModelInfoList().get(0));
-        }
-
         if(showCaseModel.getShowcaseType() == 3){
             ShowcaseAboutMeItemViewHolder showcaseAboutMeItemViewHolder = (ShowcaseAboutMeItemViewHolder) holder;
             showcaseAboutMeItemViewHolder.status.setText(showCaseModel.getModelInfoList().get(0));
@@ -152,6 +138,8 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             showcaseAboutMeItemViewHolder.drinking.setText(showCaseModel.getModelInfoList().get(2));
             showcaseAboutMeItemViewHolder.language.setText(showCaseModel.getModelInfoList().get(3));
             showcaseAboutMeItemViewHolder.religion.setText(showCaseModel.getModelInfoList().get(4));
+            showcaseAboutMeItemViewHolder.marriageGoals.setText(showCaseModel.getModelInfoList().get(5));
+
         }
 
         if(showCaseModel.getShowcaseType() == 4){
@@ -166,11 +154,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     .into(showcaseCareerItemViewHolder.imageView);
         }
 
-        if(showCaseModel.getShowcaseType() == 5){
-            ShowcaseAboutTextViewholder showcaseAboutTextViewholder = (ShowcaseAboutTextViewholder) holder;
-            showcaseAboutTextViewholder.textView.setText(showCaseModel.getModelInfoList().get(0));
-        }
-
         if(showCaseModel.getShowcaseType() == 6){
             ShowcasePictureItemViewHolder showcasePictureItemViewHolder = (ShowcasePictureItemViewHolder) holder;
             Glide.with(context)
@@ -180,10 +163,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     .into(showcasePictureItemViewHolder.imageView);
         }
 
-        if(showCaseModel.getShowcaseType() == 7){
-            ShowcaseMarriageGoalsItemViewHolder showcaseMarriageGoalsItemViewHolder = (ShowcaseMarriageGoalsItemViewHolder) holder;
-            showcaseMarriageGoalsItemViewHolder.goal.setText(showCaseModel.getModelInfoList().get(0));
-        }
+
 
         if(showCaseModel.getShowcaseType() == 9){
             ShowcaseVideoItemViewHolder vi = (ShowcaseVideoItemViewHolder) holder;
@@ -222,15 +202,10 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ABOUT_ME){
             return SHOWCASE_TYPE_ABOUT_ME;
         }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_MARRIAGE_GOALS){
-            return SHOWCASE_TYPE_MARRIAGE_GOALS;
-        }
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_TAKE_ACTION){
             return SHOWCASE_TYPE_TAKE_ACTION;
         }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ABOUT_TEXT){
-            return SHOWCASE_TYPE_ABOUT_TEXT;
-        }
+
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_VIDEO){
             return SHOWCASE_TYPE_VIDEO;
         }
@@ -256,15 +231,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public class ShowcaseAboutTextViewholder extends RecyclerView.ViewHolder{
-
-        TextView textView;
-        public ShowcaseAboutTextViewholder(View ItemView){
-            super(ItemView);
-            textView = ItemView.findViewById(R.id.type_about_text_text);
-        }
-
-    }
 
 
 
@@ -300,7 +266,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder{
 
-        Chip status,smoking,drinking,language,religion;
+        Chip status,smoking,drinking,language,religion,marriageGoals;
 
         public ShowcaseAboutMeItemViewHolder(View ItemView){
             super(ItemView);
@@ -309,6 +275,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             drinking = ItemView.findViewById(R.id.type_about_drinking);
             language = ItemView.findViewById(R.id.type_about_language);
             religion = ItemView.findViewById(R.id.type_about_religion);
+            marriageGoals = ItemView.findViewById(R.id.marriage_goals);
         }
 
     }

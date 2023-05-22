@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/pinkypinky"
+                android:textColor="@color/pink"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="50dp"
                 android:textSize="18dp"
@@ -115,7 +115,7 @@
                 android:id="@+id/listing_detail_delete"
                 android:textSize="16dp"
                 android:textColor="@color/White"
-                app:backgroundTint="@color/pinkypinky"
+                app:backgroundTint="@color/pink"
                 android:textAllCaps="false"
                 android:fontFamily="@font/clanmed"/>
 

@@ -12,7 +12,6 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -112,7 +111,7 @@ public class ConnectWithEmail extends AppCompatActivity {
 
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pinkypinky));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
         }
     }
 

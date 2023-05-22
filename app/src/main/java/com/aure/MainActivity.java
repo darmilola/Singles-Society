@@ -26,6 +26,14 @@ import jp.alessandro.android.iab.logger.SystemLogger;
 import jp.alessandro.android.iab.response.PurchaseResponse;
 import jp.wasabeef.blurry.Blurry;
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+import nl.dionsegijn.konfetti.core.Angle;
+import nl.dionsegijn.konfetti.core.Party;
+import nl.dionsegijn.konfetti.core.Position;
+import nl.dionsegijn.konfetti.core.Rotation;
+import nl.dionsegijn.konfetti.core.emitter.Emitter;
+import nl.dionsegijn.konfetti.core.models.Shape;
+import nl.dionsegijn.konfetti.core.models.Size;
+import nl.dionsegijn.konfetti.xml.KonfettiView;
 
 
 import android.app.Activity;
@@ -57,7 +65,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.aure.UiAdapters.ShowcaseMainAdapter;
 import com.aure.UiModels.MainActivityModel;
 import com.aure.UiModels.PaymentModel;
@@ -78,6 +85,7 @@ import com.limerse.iap.DataWrappers;
 import com.limerse.iap.IapConnector;
 import com.limerse.iap.PurchaseServiceListener;
 import com.limerse.iap.SubscriptionServiceListener;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -99,6 +107,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
 
@@ -107,13 +116,14 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     CardStackLayoutManager manager;
     ShowcaseMainAdapter showcaseMainAdapter;
     ArrayList<ShowCaseMainModel> showCaseMainModelArrayList = new ArrayList<>();
-    CardView leftSwipeCard,rightSwipeCard;
+
+    LinearLayout rightSwipeCard, leftSwipeCard;
     ActionBarDrawerToggle drawerToggle;
     DrawerLayout drawerLayout;
     CircleImageView profileImageView;
     TextView metMatchText;
     SimpleDraweeView caught_up_first_image, caught_up_second_image;
-    ImageView match_first_image, match_second_image;
+    RoundedImageView match_first_image, match_second_image;
     Toolbar toolbar;
     FrameLayout mainView;
     ProgressBar progressBar;
@@ -129,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     LinearLayout counselling;
     MaterialButton changePreference,visitMarketplace,completeProfileStartChatting,erroRetryButton,matchedSubscribe;
     LinearLayout matchedStartChatting;
-    RelativeLayout swipeToolRoot;
+    LinearLayout swipeToolRoot;
     ArrayList<String> likedUserId = new ArrayList<>();
     ArrayList<PreviewProfileModel> previewProfileModels = new ArrayList<>();
     String currentlyDisplayedUserId;
@@ -138,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     FrameLayout metMatchRoot;
     MainActivityModel mainActivityModel;
     private BillingProcessor mBillingProcessor;
+
+    private KonfettiView konfettiView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,8 +206,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         matchedSubscribe = findViewById(R.id.main_matched_subscribe);
         alreadyMatchedRoot = findViewById(R.id.already_matched_root);
         metMatchText = findViewById(R.id.met_match_text);
-        match_first_image = findViewById(R.id.met_match_first_image);
-        match_second_image = findViewById(R.id.met_match_second_image);
+        match_first_image = findViewById(R.id.met_match_image1);
+        match_second_image = findViewById(R.id.met_match_image2);
         counselling = findViewById(R.id.main_counselling_layout);
         profileImageView = findViewById(R.id.main_profile_imageview);
         swipeToolRoot = findViewById(R.id.showcase_swipe_layout);
@@ -205,17 +217,12 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         activityCaughtUpRoot = findViewById(R.id.caught_up_root);
         erroRetryButton = findViewById(R.id.error_page_retry);
         metMatchRoot = findViewById(R.id.met_match_root);
+        konfettiView = findViewById(R.id.konfettiView);
         errorLayoutRoot = findViewById(R.id.error_layout_root);
         completeProfileRoot = findViewById(R.id.complete_profile_prompt_root);
         completeProfileStartChatting = findViewById(R.id.main_complete_profile_start_chatting);
        // Blurry.with(this).radius(25).sampling(2).onto(metMatchRoot);
-        Blurry.with(MainActivity.this)
-                .radius(10)
-                .sampling(8)
-                .color(Color.argb(66, 255, 255, 0))
-                .async()
-                .animate(500)
-                .onto(metMatchRoot);
+
         String userEmail = getIntent().getStringExtra("email");
         Intent intent = new Intent(this, NotificationService.class);
         intent.putExtra("userId",userEmail);
@@ -230,6 +237,41 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         completeProfile = findViewById(R.id.complete_profile);
         filterProfile = findViewById(R.id.filter_layout);
         mainMarketPlace.setVisibility(View.GONE);
+
+       ArrayList<Size> size = new ArrayList<>();
+       size.add(Size.Companion.getLARGE());
+        size.add(Size.Companion.getMEDIUM());
+        size.add(Size.Companion.getSMALL());
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(0xfce18a);
+        colors.add(0xff726d);
+        colors.add(0xf4306d);
+        colors.add(0xb48def);
+
+        ArrayList<Shape> sh = new ArrayList<Shape>();
+        sh.add(new Shape.Rectangle(0.4f));
+
+
+
+       Party mParty = new  Party(
+               Angle.TOP,
+               360,
+               120f,
+               0f,
+               0.9f,
+                size,
+                colors,
+               sh,
+               3000,
+               true,
+               new Position.Relative(0, 1),
+                0,
+                new Rotation(),
+                new Emitter(5, TimeUnit.MINUTES).perSecond(500));
+
+
+        konfettiView.start(mParty);
 
         Uri uri = Uri.parse("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1639226408.png");
         caught_up_first_image.setImageURI(uri);
@@ -545,7 +587,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         ArrayList<String> quoteStrings = new ArrayList<>();
                         ArrayList<String> aboutStrings = new ArrayList<>();
                         ArrayList<String> careerStrings = new ArrayList<>();
-                        ArrayList<String> aboutTextStrings = new ArrayList<>();
                         ArrayList<String> imageStrings = new ArrayList<>();
                         ArrayList<String> goalStrings = new ArrayList<>();
 
@@ -571,6 +612,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         aboutStrings.add(previewProfileModel.getDrinking());
                         aboutStrings.add(previewProfileModel.getLanguage());
                         aboutStrings.add(previewProfileModel.getReligion());
+                        aboutStrings.add(previewProfileModel.getMarriageGoals());
                         ShowCaseModel showCaseModel2 = new ShowCaseModel(aboutStrings,3,likeIds);
                         showCaseModelArrayList.add(showCaseModel2);
 
@@ -581,17 +623,14 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         ShowCaseModel showCaseModel3 = new ShowCaseModel(careerStrings,4,likeIds);
                         showCaseModelArrayList.add(showCaseModel3);
 
-                        aboutTextStrings.add(previewProfileModel.getAbout());
-                        ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5,likeIds);
-                        showCaseModelArrayList.add(showCaseModel4);
+                       // aboutTextStrings.add(previewProfileModel.getAbout());
+                        //ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5,likeIds);
+                       // showCaseModelArrayList.add(showCaseModel4);
 
                         imageStrings.add(previewProfileModel.getImage3Url());
                         ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6,likeIds);
                         showCaseModelArrayList.add(showCaseModel5);
 
-                        goalStrings.add(previewProfileModel.getMarriageGoals());
-                        ShowCaseModel showCaseModel6 = new ShowCaseModel(goalStrings,7,likeIds);
-                        showCaseModelArrayList.add(showCaseModel6);
 
                         ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList);
                         showCaseMainModelArrayList.add(showCaseMainModel);
@@ -797,9 +836,9 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                             String imgUrl =  preferences.getString("imageUrl","");
                             Uri uri = Uri.parse(previewProfileModels.get(position).getImage1Url());
-                            match_first_image.setImageURI(uri);
+                          //  match_first_image.setImageURI(uri);
                             Uri uri2 = Uri.parse(imgUrl);
-                            match_second_image.setImageURI(uri2);
+                           // match_second_image.setImageURI(uri2);
                             metMatchText.setText("You and "+ previewProfileModels.get(position).getFirstname()+" have matched");
                             break;
                         }
