@@ -64,7 +64,7 @@ public class SplashScreen extends AppCompatActivity {
                         intent = new Intent(SplashScreen.this,WelcomeActivity.class);
                     }
                     else{
-                        intent = new Intent(SplashScreen.this,MainActivity.class);
+                        intent = new Intent(SplashScreen.this,MainAct2.class);
                         intent.putExtra("email",userEmail);
                     }
                     startActivity(intent);

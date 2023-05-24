@@ -225,4 +225,32 @@
 
     </declare-styleable>
 
+    <declare-styleable name="CellImageView">
+        <attr format="boolean" name="icon_imageview_useColor"/>
+        <attr format="boolean" name="icon_imageview_isBitmap"/>
+        <attr format="reference" name="icon_imageview_resource"/>
+        <attr format="color" name="icon_imageview_color"/>
+        <attr format="dimension" name="icon_imageview_size"/>
+        <attr format="boolean" name="icon_imageview_isAction"/>
+        <attr format="boolean" name="icon_imageview_actionBackgroundAlpha"/>
+        <attr format="boolean" name="icon_imageview_changeSize"/>
+        <attr format="boolean" name="icon_imageview_fitImage"/>
+    </declare-styleable>
+    <declare-styleable name="SSCustomBottomNavigation">
+        <attr format="color" name="ss_defaultIconColor"/>
+        <attr format="color" name="ss_selectedIconColor"/>
+        <attr format="string" name="ss_iconTextTypeface"/>
+        <attr format="color" name="ss_iconTextColor"/>
+        <attr format="color" name="ss_selectedIconTextColor"/>
+        <attr format="dimension" name="ss_iconTextSize"/>
+        <attr format="integer" name="ss_waveHeight"/>
+        <attr format="color" name="ss_backgroundBottomColor"/>
+        <attr format="color" name="ss_circleColor"/>
+        <attr format="color" name="ss_countTextColor"/>
+        <attr format="color" name="ss_countBackgroundColor"/>
+        <attr format="string" name="ss_countTypeface"/>
+        <attr format="color" name="ss_rippleColor"/>
+        <attr format="color" name="ss_shadowColor"/>
+    </declare-styleable>
+
 </resources>

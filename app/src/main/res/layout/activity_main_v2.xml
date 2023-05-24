@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    tools:context=".MainActivityV2">
+
+
+    <com.aure.UiModels.BottomNav
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:ss_backgroundBottomColor="@color/black"
+        app:ss_circleColor="@color/deep_yellow"
+        app:ss_waveHeight="1"
+        app:ss_countBackgroundColor="@color/pink"
+        app:ss_countTextColor="#ffffff"
+        app:ss_defaultIconColor="#6200EE"
+        app:ss_iconTextColor="#838282"
+        app:ss_rippleColor="#2f424242"
+        android:elevation="2dp"
+        android:background="#f2f3f5"
+        app:ss_iconTextSize="14sp"
+        app:ss_selectedIconColor="@color/pink"
+        app:ss_selectedIconTextColor="@color/pink"
+        app:ss_shadowColor="@color/deep_yellow" />
+
+</LinearLayout>

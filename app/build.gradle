@@ -76,4 +76,5 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'nl.dionsegijn:konfetti-xml:2.0.2'
     implementation 'nl.dionsegijn:konfetti-compose:2.0.2'
+    implementation 'com.github.simformsolutions:SSCustomBottomNavigation:2.1'
 }

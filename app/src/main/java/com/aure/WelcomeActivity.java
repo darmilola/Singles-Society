@@ -128,7 +128,7 @@ public class WelcomeActivity extends AppCompatActivity {
             signupModel.setSignupListener(new SignupModel.SignupListener() {
                 @Override
                 public void isSuccessful(String message) {
-                    Intent intent = new Intent(WelcomeActivity.this,MainActivity.class);
+                    Intent intent = new Intent(WelcomeActivity.this,MainActivityV2.class);
                     intent.putExtra("email",userEmail);
                     startActivity(intent);
                     finish();
