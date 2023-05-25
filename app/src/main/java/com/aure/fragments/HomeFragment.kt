@@ -35,7 +35,6 @@ import jp.alessandro.android.iab.handler.PurchaseHandler
 import jp.alessandro.android.iab.handler.StartActivityHandler
 import jp.alessandro.android.iab.logger.SystemLogger
 import kotlinx.android.synthetic.main.activity_caught_up.*
-import kotlinx.android.synthetic.main.activity_complete_profile.*
 import kotlinx.android.synthetic.main.activity_complete_profile_prompt.*
 import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
@@ -157,7 +156,7 @@ class HomeFragment : Fragment(), CardStackListener  {
         //matchedStartChatting.setOnClickListener(View.OnClickListener { startActivity(Intent(requireContext(), MatchesActivity::class.java)) })
         error_page_retry.setOnClickListener(View.OnClickListener {
             empty_layout_root.setVisibility(View.GONE)
-            complete_profile_root.setVisibility(View.GONE)
+          //  complete_profile_root.setVisibility(View.GONE)
             activity_main_progressbar.setVisibility(View.VISIBLE)
            // caught_up_visit_marketplace.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.GONE)
@@ -207,7 +206,7 @@ class HomeFragment : Fragment(), CardStackListener  {
 
             override fun onError(message: String) {
                 empty_layout_root.setVisibility(View.GONE)
-                complete_profile_root.setVisibility(View.GONE)
+             //   complete_profile_root.setVisibility(View.GONE)
                 activity_main_progressbar.setVisibility(View.GONE)
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
@@ -224,7 +223,7 @@ class HomeFragment : Fragment(), CardStackListener  {
         if (mainActivityModel.isProfileCompleted.equals("false", ignoreCase = true)) {
 
             empty_layout_root.setVisibility(View.GONE)
-            complete_profile_root.setVisibility(View.VISIBLE)
+         //   complete_profile_root.setVisibility(View.VISIBLE)
             activity_main_progressbar.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
@@ -235,7 +234,7 @@ class HomeFragment : Fragment(), CardStackListener  {
 
         } else if (mainActivityModel.isMatched.equals("true", ignoreCase = true) && mainActivityModel.isSubscribed.equals("false", ignoreCase = true)) {
             empty_layout_root.setVisibility(View.GONE)
-            complete_profile_root.setVisibility(View.GONE)
+          //  complete_profile_root.setVisibility(View.GONE)
             activity_main_progressbar.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
@@ -316,7 +315,7 @@ class HomeFragment : Fragment(), CardStackListener  {
 
                 override fun onError(message: String) {
                     empty_layout_root.setVisibility(View.GONE)
-                    complete_profile_root.setVisibility(View.GONE)
+                //    complete_profile_root.setVisibility(View.GONE)
                     activity_main_progressbar.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
@@ -329,7 +328,7 @@ class HomeFragment : Fragment(), CardStackListener  {
 
                 override fun onEmptyResponse() {
                     empty_layout_root.setVisibility(View.VISIBLE)
-                    complete_profile_root.setVisibility(View.GONE)
+                //    complete_profile_root.setVisibility(View.GONE)
                     activity_main_progressbar.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
@@ -407,7 +406,7 @@ class HomeFragment : Fragment(), CardStackListener  {
 
 
                     empty_layout_root.setVisibility(View.GONE)
-                    complete_profile_root.setVisibility(View.GONE)
+                 //   complete_profile_root.setVisibility(View.GONE)
                     activity_main_progressbar.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
