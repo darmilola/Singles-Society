@@ -133,10 +133,10 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw) {
-                val d = GradientDrawable()
-                d.setColor(field)
-                d.shape = GradientDrawable.OVAL
-                ViewCompat.setBackground(tv_count, d)
+               // val d = GradientDrawable()
+              //  d.setColor(field)
+               // d.shape = GradientDrawable.OVAL
+               // ViewCompat.setBackground(tv_count, d)
             }
         }
 

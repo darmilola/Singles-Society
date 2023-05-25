@@ -125,7 +125,7 @@ internal class CellImageView : AppCompatImageView {
             interpolator = FastOutSlowInInterpolator()
             addUpdateListener { animation ->
                 val f = animation.animatedFraction
-                color = com.aure.UiModels.ColorHelper.mixTwoColors(newColor, lastColor, f)
+                color = ColorHelper.mixTwoColors(newColor, lastColor, f)
             }
             start()
         }

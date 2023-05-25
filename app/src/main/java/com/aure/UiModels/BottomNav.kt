@@ -192,7 +192,7 @@ class BottomNav : LinearLayout {
             bezierView.bezierX = if (Build.VERSION.SDK_INT >= 17 && layoutDirection == LayoutDirection.RTL) measuredWidth + dipf(context, 72) else -dipf(context, 72)
         }
         if (selectedId != -1) {
-            show(selectedId, false)
+            show(selectedId, true)
         }
     }
 
@@ -262,14 +262,14 @@ class BottomNav : LinearLayout {
 
         val nPos = if (nowPos < 0) 0 else nowPos
         val dif = abs(pos - nPos)
-        val d = (dif) * 100L + 150L
+        //val d = (dif) * 100L + 10L
 
-        val animDuration = if (enableAnimation) d else 1L
+        //val animDuration = if (enableAnimation) d else 0.5
         val animInterpolator = FastOutSlowInInterpolator()
 
         val anim = ValueAnimator.ofFloat(0f, 1f)
         anim.apply {
-            duration = animDuration
+          //  duration = animDuration as Long
             interpolator = animInterpolator
             val beforeX = bezierView.bezierX
             addUpdateListener {
@@ -288,7 +288,7 @@ class BottomNav : LinearLayout {
         if (abs(pos - nowPos) > 1) {
             val progressAnim = ValueAnimator.ofFloat(0f, 1f)
             progressAnim.apply {
-                duration = animDuration
+            //    duration = animDuration as Long
                 interpolator = animInterpolator
                 addUpdateListener {
                     val f = it.animatedFraction
@@ -300,7 +300,7 @@ class BottomNav : LinearLayout {
 
         cell.isFromLeft = pos > nowPos
         cells.forEach {
-            it.duration = d
+           // it.duration = d
         }
     }
 
@@ -309,7 +309,7 @@ class BottomNav : LinearLayout {
             val model = models[i]
             val cell = cells[i]
             if (model.id == id) {
-                anim(cell, id, enableAnimation)
+                anim(cell, id)
                 cell.enableCell()
                 onShowListener(model)
             } else {
