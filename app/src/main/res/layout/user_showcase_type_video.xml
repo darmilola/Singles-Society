@@ -22,10 +22,10 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/attachment_video_loader_view"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:elevation="6dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_gravity="center"
                 app:lottie_rawRes="@raw/loader"
                 app:lottie_autoPlay="true"
@@ -72,6 +72,7 @@
                             android:layout_weight="0.7"
                             android:textColor="@color/white"
                             android:text="1:15:01"
+                            android:visibility="gone"
                             android:textSize="12dp"
                             android:id="@+id/video_attachments_playing_duration"
                             android:fontFamily="@font/airreg"
@@ -79,19 +80,26 @@
                             android:gravity="center"/>
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="3.8"
-                            android:gravity="center">
+                            android:gravity="bottom">
 
-
-                            <androidx.appcompat.widget.AppCompatSeekBar
+                            <com.mackhartley.roundedprogressbar.RoundedProgressBar
                                 android:id="@+id/video_attachments_progressbar"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:progress="40"
-                                android:progressDrawable="@drawable/audio_listening_progress_drawable"
-                                android:thumbTint="@color/colorPrimary" />
+                                android:layout_height="6dp"
+                                app:rpbCornerRadiusTopLeft="0dp"
+                                app:rpbCornerRadiusBottomLeft="2dp"
+                                app:rpbProgressColor="@color/pink"
+                                app:rpbBackgroundColor="#F397B0"
+                                app:rpbBackgroundTextColor="@color/full_transparency"
+                                app:rpbShowProgressText="false"
+                                app:rpbProgressTextColor="@color/white"
+                                app:rpbCornerRadiusTopRight="0dp"
+                                app:rpbCornerRadiusBottomRight="2dp"/>
+
+
                         </LinearLayout>
 
 
@@ -106,18 +114,19 @@
                             android:id="@+id/attachment_play_pause_layout"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:background="@drawable/white_outline_circle"
                             android:gravity="center">
 
                             <com.airbnb.lottie.LottieAnimationView
                                 android:id="@+id/attachment_video_play_pause_view"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
                                 android:elevation="3dp"
-                                app:lottie_autoPlay="true"
+                                app:lottie_autoPlay="false"
                                 app:lottie_loop="false"
+                                android:visibility="gone"
+                                android:backgroundTint="@color/pink"
                                 app:lottie_rawRes="@raw/playpause"
-                                app:tint="#D0FFFFFF" />
+                                app:tint="@color/pink" />
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>

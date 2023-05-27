@@ -34,6 +34,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.material.chip.Chip;
+import com.mackhartley.roundedprogressbar.RoundedProgressBar;
 
 
 import java.util.ArrayList;
@@ -168,8 +169,8 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(showCaseModel.getShowcaseType() == 9){
             ShowcaseVideoItemViewHolder vi = (ShowcaseVideoItemViewHolder) holder;
 
-            vi.setUrl("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4");
-            ImageRequest request = ImageRequest.fromUri("https://timesbuddy.s3.us-east-1.amazonaws.com/images/image-1668503010.png");
+            vi.setUrl("https://joy1.videvo.net/videvo_files/video/free/2016-12/large_watermarked/Code_flythough_loop_01_Videvo_preview.mp4");
+            ImageRequest request = ImageRequest.fromUri("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                     .setImageRequest(request)
                     .setOldController((vi).thumbnail.getController()).build();
@@ -325,7 +326,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             RelativeLayout transparentOverlay;
             FrameLayout touchArea;
             LinearLayout progressToolLayout;
-            AppCompatSeekBar videoProgress;
+            RoundedProgressBar videoProgress;
             TextView duration;
             LinearLayout playPauseLayout;
             LottieAnimationView loader;
@@ -361,7 +362,9 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 progressToolLayout = itemView.findViewById(R.id.video_attachments_progress_layout);
                 duration = itemView.findViewById(R.id.video_attachments_playing_duration);
                 controller = itemView.findViewById(R.id.video_attachments_controller);
-                playPauseView.setMinAndMaxFrame(0, 45);
+                playPauseView.setVisibility(View.GONE);
+                playPauseView.setMinAndMaxFrame(0,40);
+                playPauseView.resumeAnimation();
 
 
                 setOnGestureListeners();
@@ -543,8 +546,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 isLooping = true;
                 if (isPaused) {
 
-                    playPauseView.setMaxFrame(89);
-                    playPauseView.resumeAnimation();
+                    playPauseView.setMaxFrame(40);
                     isPaused = false;
 
 
@@ -584,18 +586,18 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 thumbnail.setVisibility(View.GONE);
                 transparentOverlay.setVisibility(View.GONE);
                 progressToolLayout.setVisibility(View.GONE);
-                playPauseView.setMaxFrame(89);
-                playPauseView.resumeAnimation();
+                playPauseView.setMaxFrame(40);
 
-                videoProgress.setMax((int) getDuration());
+                int mDuration = (int) getDuration();
+
+                //videoProgress.setMax((int) getDuration());
                 ((Activity) context).runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
 
                         if (mPlayerView != null) {
-                            int mCurrentPosition = (int) (getPlaybackPosition());
-                            videoProgress.setProgress(mCurrentPosition);
+                            int mCurrentPosition = (int) TimeUnit.MILLISECONDS.toSeconds(getPlaybackPosition()) % 60;
                             int formattedSecPostion = (int) TimeUnit.MILLISECONDS.toSeconds(getPlaybackPosition()) % 60;
                             int unformattedSecPostion = (int) TimeUnit.MILLISECONDS.toSeconds(getPlaybackPosition());
                             int formattedMinutePostion = (int) TimeUnit.MILLISECONDS.toMinutes(getPlaybackPosition()) % 60;
@@ -603,6 +605,13 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             int secs = formattedSecPostion >= 0 ? formattedSecPostion : unformattedSecPostion;
                             int minutes = formattedMinutePostion >= 0 ? formattedMinutePostion : unformattedMinutePostion;
                             int hours = (int) TimeUnit.MILLISECONDS.toHours(getPlaybackPosition());
+
+
+                            int totalSeconds = (int) TimeUnit.MILLISECONDS.toSeconds(getDuration());
+
+                            Double percentProgress = Double.valueOf((float)mCurrentPosition/totalSeconds * 100);
+
+                            videoProgress.setProgressPercentage(percentProgress,true);
 
 
                             if (hours <= 0) {
@@ -636,7 +645,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     }
                 });
 
-                videoProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+             /*   videoProgress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         playerProgress = progress;
@@ -662,7 +671,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     public void onStopTrackingTouch(SeekBar seekBar) {
 
                     }
-                });
+                });*/
 
             }
 
@@ -682,7 +691,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 thumbnail.setVisibility(View.GONE);
                 isPaused = true;
                 isLooping = false;
-                playPauseView.setMinAndMaxFrame(0, 45);
+                playPauseView.setMinAndMaxFrame(40, 140);
                 playPauseView.resumeAnimation();
 
 
@@ -700,7 +709,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     isCancelled = true;
                     alphaAnim2.cancel();
                 }
-                playPauseView.setMinAndMaxFrame(0, 45);
+                playPauseView.setMinAndMaxFrame(40, 140);
                 playPauseView.resumeAnimation();
                 playPauseView.setVisibility(View.VISIBLE);
                 playPauseLayout.setVisibility(View.VISIBLE);
@@ -723,7 +732,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     isCancelled = true;
                     alphaAnim2.cancel();
                 }
-                playPauseView.setMinAndMaxFrame(0, 45);
+                playPauseView.setMinAndMaxFrame(40, 140);
                 playPauseView.resumeAnimation();
                 loader.setVisibility(View.GONE);
                 playPauseView.setVisibility(View.VISIBLE);
