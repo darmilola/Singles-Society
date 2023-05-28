@@ -1,6 +1,5 @@
 package com.aure.fragments
 
-import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -16,33 +15,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
-import android.widget.*
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
-import com.aure.*
+import com.aure.CompleteProfile
+import com.aure.MainActivity
 import com.aure.R
-import com.aure.UiAdapters.ShowcaseMainAdapter
+import com.aure.UiAdapters.TrendingMainAdapter
 import com.aure.UiModels.*
 import com.aure.UiModels.MainActivityModel.ShowcaseInfoReadyListener
 import com.aure.UiModels.PaymentModel.PaymentListener
-import com.bumptech.glide.Glide
-import com.facebook.drawee.backends.pipeline.Fresco
 import com.yuyakaido.android.cardstackview.*
 import io.socket.client.IO
-import jp.alessandro.android.iab.*
+import jp.alessandro.android.iab.BillingApi
+import jp.alessandro.android.iab.BillingContext
+import jp.alessandro.android.iab.BillingProcessor
 import jp.alessandro.android.iab.handler.PurchaseHandler
-import jp.alessandro.android.iab.handler.StartActivityHandler
 import jp.alessandro.android.iab.logger.SystemLogger
-import kotlinx.android.synthetic.main.activity_caught_up.*
 import kotlinx.android.synthetic.main.activity_complete_profile_prompt.*
 import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
 import kotlinx.android.synthetic.main.error_page.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.activity_main_progressbar
 import kotlinx.android.synthetic.main.matched_layout.*
-import kotlinx.android.synthetic.main.showcase_layout.*
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -62,7 +58,7 @@ class HomeFragment : Fragment(), CardStackListener  {
 
     private val PREFERENCE_INT = 1
     var manager: CardStackLayoutManager? = null
-    var showcaseMainAdapter: ShowcaseMainAdapter? = null
+    var trendingMainAdapter: TrendingMainAdapter? = null
     var showCaseMainModelArrayList = java.util.ArrayList<ShowCaseMainModel>()
     var likedUserId = java.util.ArrayList<String>()
     var mPreviewProfileModels = ArrayList<PreviewProfileModel>()
@@ -70,6 +66,7 @@ class HomeFragment : Fragment(), CardStackListener  {
     var isRightSwipe = false
     var mainActivityModel: MainActivityModel? = null
     private var mBillingProcessor: BillingProcessor? = null
+    private val TYPE_SHOWCASE = 102
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -297,10 +294,22 @@ class HomeFragment : Fragment(), CardStackListener  {
                         imageStrings.add(previewProfileModel.image3Url)
                         val showCaseModel5 = ShowCaseModel(imageStrings, 6, likeIds)
                         showCaseModelArrayList.add(showCaseModel5)
-                        val showCaseMainModel = ShowCaseMainModel(showCaseModelArrayList)
+                        val communityPostModel = CommunityPostModel()
+                        val communityPostModelArrayList = java.util.ArrayList<CommunityPostModel>()
+                        for (i in 0..4) {
+                            communityPostModelArrayList.add(communityPostModel)
+                        }
+                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModelArrayList, 1)
+                        val showCaseMainModel =
+                            ShowCaseMainModel(showCaseModelArrayList, 0, TYPE_SHOWCASE)
                         showCaseMainModelArrayList.add(showCaseMainModel)
+                        showCaseMainModelArrayList.add(showCaseMainModel1)
                     }
-                    showcaseMainAdapter = ShowcaseMainAdapter(requireContext(), showCaseMainModelArrayList)
+                    trendingMainAdapter =
+                        TrendingMainAdapter(
+                            requireContext(),
+                            showCaseMainModelArrayList
+                        )
                     initializeCardStack()
                     activity_main_progressbar.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
@@ -355,7 +364,7 @@ class HomeFragment : Fragment(), CardStackListener  {
         manager?.setCanScrollVertical(false)
         manager?.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
         userShowcaseStack?.setLayoutManager(manager)
-        userShowcaseStack?.setAdapter(showcaseMainAdapter)
+        userShowcaseStack?.setAdapter(trendingMainAdapter)
     }
 
 
@@ -388,7 +397,14 @@ class HomeFragment : Fragment(), CardStackListener  {
 
     override fun onCardCanceled() {}
 
-    override fun onCardAppeared(view: View?, position: Int) {}
+    override fun onCardAppeared(view: View?, position: Int) {
+       if(showCaseMainModelArrayList[position].itemViewType == 1){
+           showcase_swipe_layout.visibility = View.GONE
+       }
+        else{
+           showcase_swipe_layout.visibility = View.VISIBLE
+        }
+    }
 
     override fun onCardDisappeared(view: View?, position: Int) {
         var isMatched = false

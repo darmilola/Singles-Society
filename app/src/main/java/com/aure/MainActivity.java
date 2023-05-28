@@ -1,12 +1,10 @@
 package com.aure;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -24,8 +22,6 @@ import jp.alessandro.android.iab.handler.PurchaseHandler;
 import jp.alessandro.android.iab.handler.StartActivityHandler;
 import jp.alessandro.android.iab.logger.SystemLogger;
 import jp.alessandro.android.iab.response.PurchaseResponse;
-import jp.wasabeef.blurry.Blurry;
-import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 import nl.dionsegijn.konfetti.core.Angle;
 import nl.dionsegijn.konfetti.core.Party;
 import nl.dionsegijn.konfetti.core.Position;
@@ -44,50 +40,31 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aure.UiAdapters.ShowcaseMainAdapter;
+import com.aure.UiAdapters.TrendingMainAdapter;
+import com.aure.UiModels.CommunityPostModel;
 import com.aure.UiModels.MainActivityModel;
 import com.aure.UiModels.PaymentModel;
 import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.ShowCaseMainModel;
 import com.aure.UiModels.ShowCaseModel;
-import com.aure.UiModels.ShowcaseMetadata;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.limerse.iap.DataWrappers;
-import com.limerse.iap.IapConnector;
-import com.limerse.iap.PurchaseServiceListener;
-import com.limerse.iap.SubscriptionServiceListener;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -99,14 +76,9 @@ import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 
 import org.apache.commons.text.StringEscapeUtils;
-import org.jetbrains.annotations.NotNull;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements CardStackListener {
@@ -114,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private static int PREFERENCE_INT = 1;
     CardStackView userShowcaseStack;
     CardStackLayoutManager manager;
-    ShowcaseMainAdapter showcaseMainAdapter;
+    TrendingMainAdapter trendingMainAdapter;
     ArrayList<ShowCaseMainModel> showCaseMainModelArrayList = new ArrayList<>();
 
     LinearLayout rightSwipeCard, leftSwipeCard;
@@ -148,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     FrameLayout metMatchRoot;
     MainActivityModel mainActivityModel;
     private BillingProcessor mBillingProcessor;
+
+    private static final int TYPE_SHOWCASE = 102;
 
     private KonfettiView konfettiView;
 
@@ -631,11 +605,17 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6,likeIds);
                         showCaseModelArrayList.add(showCaseModel5);
 
-
-                        ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList);
+                        CommunityPostModel communityPostModel = new CommunityPostModel();
+                        ArrayList<CommunityPostModel> communityPostModelArrayList = new ArrayList<>();
+                        for(int i = 0; i < 5; i++){
+                            communityPostModelArrayList.add(communityPostModel);
+                        }
+                        ShowCaseMainModel showCaseMainModel1 = new ShowCaseMainModel(communityPostModelArrayList,2);
+                        ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList,1,TYPE_SHOWCASE);
                         showCaseMainModelArrayList.add(showCaseMainModel);
+                        showCaseMainModelArrayList.add(showCaseMainModel1);
                     }
-                    showcaseMainAdapter = new ShowcaseMainAdapter(MainActivity.this,showCaseMainModelArrayList);
+                    trendingMainAdapter = new TrendingMainAdapter(MainActivity.this,showCaseMainModelArrayList);
                     initializeCardStack();
                     progressBar.setVisibility(View.GONE);
                     mainView.setVisibility(View.VISIBLE);
@@ -696,7 +676,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         manager.setCanScrollVertical(false);
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual);
         userShowcaseStack.setLayoutManager(manager);
-        userShowcaseStack.setAdapter(showcaseMainAdapter);
+        userShowcaseStack.setAdapter(trendingMainAdapter);
 
     }
 
