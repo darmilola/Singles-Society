@@ -82,15 +82,15 @@ public class PreviewProfile extends AppCompatActivity {
             @Override
             public void onReady(PreviewProfileModel previewProfileModel) {
               progressBar.setVisibility(View.GONE);
-              recyclerView.setVisibility(View.VISIBLE);
+          /*    recyclerView.setVisibility(View.VISIBLE);
 
               mainStrings.add(previewProfileModel.getFirstname());
               mainStrings.add(String.valueOf(previewProfileModel.getAge()));
               mainStrings.add(previewProfileModel.getCity());
               mainStrings.add(previewProfileModel.getOccupation());
               mainStrings.add(previewProfileModel.getImage1Url());
-              ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1,new ArrayList<String>());
-              showCaseModelArrayList.add(showCaseModel);
+            //  ShowCaseModel showCaseModel = new ShowCaseModel(mainStrings,1,new ArrayList<String>());
+             // showCaseModelArrayList.add(showCaseModel);
 
               quoteStrings.add(previewProfileModel.getQuote());
               ShowCaseModel showCaseModel1 = new ShowCaseModel(quoteStrings,2,new ArrayList<String>());
@@ -124,7 +124,7 @@ public class PreviewProfile extends AppCompatActivity {
               showCaseModelArrayList.add(showCaseModel6);
 
               adapter = new ViewProfileAdapter(PreviewProfile.this,showCaseModelArrayList);
-              recyclerView.setAdapter(adapter);
+              recyclerView.setAdapter(adapter);*/
 
             }
 

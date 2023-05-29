@@ -52,6 +52,7 @@ import nl.dionsegijn.konfetti.core.models.Size.Companion.SMALL
 import org.apache.commons.text.StringEscapeUtils
 import java.net.URISyntaxException
 import java.util.concurrent.TimeUnit
+import kotlin.random.Random
 
 
 class HomeFragment : Fragment(), CardStackListener  {
@@ -67,6 +68,7 @@ class HomeFragment : Fragment(), CardStackListener  {
     var mainActivityModel: MainActivityModel? = null
     private var mBillingProcessor: BillingProcessor? = null
     private val TYPE_SHOWCASE = 102
+    private var isMatched = false
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -266,12 +268,12 @@ class HomeFragment : Fragment(), CardStackListener  {
                         mainStrings.add(previewProfileModel.occupation)
                         mainStrings.add(previewProfileModel.image1Url)
                         mainStrings.add(previewProfileModel.userId)
-                        val showCaseModel = ShowCaseModel(mainStrings, 1, likeIds)
+                        val showCaseModel = ShowCaseModel(mainStrings, 1, likeIds, previewProfileModel.userId)
                         showCaseModelArrayList.add(showCaseModel)
                         quoteStrings.add(previewProfileModel.quote)
-                        val showCaseModel1 = ShowCaseModel(quoteStrings, 2, likeIds)
+                        val showCaseModel1 = ShowCaseModel(quoteStrings, 2, likeIds, previewProfileModel.userId)
                         showCaseModelArrayList.add(showCaseModel1)
-                        val showCaseModel9 = ShowCaseModel(goalStrings, 9, likeIds)
+                        val showCaseModel9 = ShowCaseModel(goalStrings, 9, likeIds, previewProfileModel.userId)
                         showCaseModelArrayList.add(showCaseModel9)
                         aboutStrings.add(previewProfileModel.status)
                         aboutStrings.add(previewProfileModel.smoking)
@@ -279,32 +281,38 @@ class HomeFragment : Fragment(), CardStackListener  {
                         aboutStrings.add(previewProfileModel.language)
                         aboutStrings.add(previewProfileModel.religion)
                         aboutStrings.add(previewProfileModel.marriageGoals)
-                        val showCaseModel2 = ShowCaseModel(aboutStrings, 3, likeIds)
+                        val showCaseModel2 = ShowCaseModel(aboutStrings, 3, likeIds, previewProfileModel.userId)
                         showCaseModelArrayList.add(showCaseModel2)
                         careerStrings.add(previewProfileModel.educationLevel)
                         careerStrings.add(previewProfileModel.occupation)
                         careerStrings.add(previewProfileModel.workplace)
                         careerStrings.add(previewProfileModel.image2Url)
-                        val showCaseModel3 = ShowCaseModel(careerStrings, 4, likeIds)
+                        val showCaseModel3 = ShowCaseModel(careerStrings, 4, likeIds, previewProfileModel.userId)
                         showCaseModelArrayList.add(showCaseModel3)
 
                         // aboutTextStrings.add(previewProfileModel.getAbout());
                         //ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5,likeIds);
                         // showCaseModelArrayList.add(showCaseModel4);
                         imageStrings.add(previewProfileModel.image3Url)
-                        val showCaseModel5 = ShowCaseModel(imageStrings, 6, likeIds)
+                        val showCaseModel5 = ShowCaseModel(imageStrings, 6, likeIds, previewProfileModel.userId)
                         showCaseModelArrayList.add(showCaseModel5)
-                        val communityPostModel = CommunityPostModel()
-                        val communityPostModelArrayList = java.util.ArrayList<CommunityPostModel>()
-                        for (i in 0..4) {
-                            communityPostModelArrayList.add(communityPostModel)
-                        }
-                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModelArrayList, 1)
+
                         val showCaseMainModel =
-                            ShowCaseMainModel(showCaseModelArrayList, 0, TYPE_SHOWCASE)
+                            ShowCaseMainModel(showCaseModelArrayList, 0, true)
                         showCaseMainModelArrayList.add(showCaseMainModel)
-                        showCaseMainModelArrayList.add(showCaseMainModel1)
+
                     }
+
+                    for (i in 0..4) {
+                        val communityPostModel = CommunityPostModel()
+                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModel, 1)
+                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                    }
+
+                    Log.e("onReady: ", showCaseMainModelArrayList.size.toString() )
+
+                    showCaseMainModelArrayList.shuffle(Random(5))
+
                     trendingMainAdapter =
                         TrendingMainAdapter(
                             requireContext(),
@@ -401,55 +409,97 @@ class HomeFragment : Fragment(), CardStackListener  {
        if(showCaseMainModelArrayList[position].itemViewType == 1){
            showcase_swipe_layout.visibility = View.GONE
        }
+        else if(isMatched){
+           showcase_swipe_layout.visibility = View.GONE
+        }
         else{
            showcase_swipe_layout.visibility = View.VISIBLE
         }
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
-        var isMatched = false
-        currentlyDisplayedUserId = mPreviewProfileModels.get(position).getUserId()
-        val mainActivityModel = MainActivityModel(currentlyDisplayedUserId, requireContext())
-        if (isRightSwipe) {
-            //set like to db
-            mainActivityModel.setLiked()
-            for (i in likedUserId.indices) {
-                if (currentlyDisplayedUserId.equals(likedUserId.get(i), ignoreCase = true)) {
-                    //There is a Match set match break
-                    mainActivityModel.setMatched()
-                    publishMatchNotification(currentlyDisplayedUserId, mPreviewProfileModels.get(position).getFirstname(), mPreviewProfileModels.get(position).getImage1Url())
-                    isMatched = true
+        if(showCaseMainModelArrayList.get(position).showCaseModelArrayList != null){
+            currentlyDisplayedUserId = showCaseMainModelArrayList[position].showCaseModelArrayList[0].userId
+            val mainActivityModel = MainActivityModel(currentlyDisplayedUserId, requireContext())
+            if (isRightSwipe) {
+                //set like to db
+                mainActivityModel.setLiked()
+                for (i in likedUserId.indices) {
+                    if (currentlyDisplayedUserId.equals(likedUserId.get(i), ignoreCase = true)) {
+                        //There is a Match set match break
+                        mainActivityModel.setMatched()
+                        publishMatchNotification(
+                            currentlyDisplayedUserId,
+                            showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[0],
+                            showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[4]
+                        )
+                        isMatched = true
 
 
-                    empty_layout_root.setVisibility(View.GONE)
-                 //   complete_profile_root.setVisibility(View.GONE)
-                    activity_main_progressbar.setVisibility(View.GONE)
-                    activity_main_main_view.setVisibility(View.VISIBLE)
-                    userShowcaseStack?.setVisibility(View.GONE)
-                    showcase_swipe_layout.setVisibility(View.GONE)
-                    already_matched_root.setVisibility(View.GONE)
-                    met_match_root.setVisibility(View.VISIBLE)
-                    error_layout_root.setVisibility(View.GONE)
-                    already_matched_root.visibility = View.GONE
+                        empty_layout_root.setVisibility(View.GONE)
+                        //   complete_profile_root.setVisibility(View.GONE)
+                        activity_main_progressbar.setVisibility(View.GONE)
+                        activity_main_main_view.setVisibility(View.VISIBLE)
+                        userShowcaseStack?.setVisibility(View.GONE)
+                        showcase_swipe_layout.setVisibility(View.GONE)
+                        already_matched_root.setVisibility(View.GONE)
+                        met_match_root.setVisibility(View.VISIBLE)
+                        error_layout_root.setVisibility(View.GONE)
+                        already_matched_root.visibility = View.GONE
 
-                    val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-                    val imgUrl = preferences.getString("imageUrl", "")
-                    val uri = Uri.parse(mPreviewProfileModels.get(position).getImage1Url())
-                    //  match_first_image.setImageURI(uri);
-                    val uri2 = Uri.parse(imgUrl)
-                    // match_second_image.setImageURI(uri2);
-                    met_match_text.setText("You and " + mPreviewProfileModels.get(position).getFirstname() + " have matched")
-                    break
+                        val preferences =
+                            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                        val imgUrl = preferences.getString("imageUrl", "")
+                        val uri = Uri.parse(showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[4])
+                        //  match_first_image.setImageURI(uri);
+                        val uri2 = Uri.parse(imgUrl)
+                        // match_second_image.setImageURI(uri2);
+                        break
+
+                    }
+                    else if(position == showCaseMainModelArrayList.size - 1){
+                        empty_layout_root.setVisibility(View.VISIBLE)
+                        //   complete_profile_root.setVisibility(View.GONE)
+                        activity_main_progressbar.setVisibility(View.GONE)
+                        activity_main_main_view.setVisibility(View.VISIBLE)
+                        userShowcaseStack?.setVisibility(View.GONE)
+                        showcase_swipe_layout.setVisibility(View.GONE)
+                        already_matched_root.setVisibility(View.GONE)
+                        met_match_root.setVisibility(View.GONE)
+                        error_layout_root.setVisibility(View.GONE)
+                        already_matched_root.visibility = View.GONE
+                    }
 
                 }
-            }
-            if (!isMatched && position == showCaseMainModelArrayList.size - 1) {
+                if (position == showCaseMainModelArrayList.size - 1) {
 
-                // Nothing to show
-            }
-        } else if (position == showCaseMainModelArrayList.size - 1 && !isRightSwipe) {
-            //At the last position of the show
 
+                }
+            } else if (position == showCaseMainModelArrayList.size - 1 && !isRightSwipe) {
+                empty_layout_root.setVisibility(View.VISIBLE)
+                //   complete_profile_root.setVisibility(View.GONE)
+                activity_main_progressbar.setVisibility(View.GONE)
+                activity_main_main_view.setVisibility(View.VISIBLE)
+                userShowcaseStack?.setVisibility(View.GONE)
+                showcase_swipe_layout.setVisibility(View.GONE)
+                already_matched_root.setVisibility(View.GONE)
+                met_match_root.setVisibility(View.GONE)
+                error_layout_root.setVisibility(View.GONE)
+                already_matched_root.visibility = View.GONE
+
+            }
+        }
+        else if(showCaseMainModelArrayList.size -1 == position){
+            empty_layout_root.setVisibility(View.VISIBLE)
+            //   complete_profile_root.setVisibility(View.GONE)
+            activity_main_progressbar.setVisibility(View.GONE)
+            activity_main_main_view.setVisibility(View.VISIBLE)
+            userShowcaseStack?.setVisibility(View.GONE)
+            showcase_swipe_layout.setVisibility(View.GONE)
+            already_matched_root.setVisibility(View.GONE)
+            met_match_root.setVisibility(View.GONE)
+            error_layout_root.setVisibility(View.GONE)
+            already_matched_root.visibility = View.GONE
         }
     }
 

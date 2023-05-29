@@ -550,7 +550,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
             mainActivityModel2.setShowcaseInfoReadyListener(new MainActivityModel.ShowcaseInfoReadyListener() {
                 @Override
                 public void onReady(ArrayList<PreviewProfileModel> previewProfileModels,ArrayList<String> likeIds) {
-                    MainActivity.this.previewProfileModels.clear();
+             MainActivity.this.previewProfileModels.clear();
                     MainActivity.this.likedUserId.clear();
                     MainActivity.this.showCaseMainModelArrayList.clear();
                     MainActivity.this.likedUserId = likeIds;
@@ -565,7 +565,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                         ArrayList<String> goalStrings = new ArrayList<>();
 
 
-                        mainStrings.add(previewProfileModel.getFirstname());
+                 /*       mainStrings.add(previewProfileModel.getFirstname());
                         mainStrings.add(String.valueOf(previewProfileModel.getAge()));
                         mainStrings.add(previewProfileModel.getCity());
                         mainStrings.add(previewProfileModel.getOccupation());
@@ -603,19 +603,19 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
                         imageStrings.add(previewProfileModel.getImage3Url());
                         ShowCaseModel showCaseModel5 = new ShowCaseModel(imageStrings,6,likeIds);
-                        showCaseModelArrayList.add(showCaseModel5);
+                        showCaseModelArrayList.add(showCaseModel5);*/
 
                         CommunityPostModel communityPostModel = new CommunityPostModel();
                         ArrayList<CommunityPostModel> communityPostModelArrayList = new ArrayList<>();
                         for(int i = 0; i < 5; i++){
                             communityPostModelArrayList.add(communityPostModel);
                         }
-                        ShowCaseMainModel showCaseMainModel1 = new ShowCaseMainModel(communityPostModelArrayList,2);
+                     /*   ShowCaseMainModel showCaseMainModel1 = new ShowCaseMainModel(communityPostModelArrayList,2);
                         ShowCaseMainModel showCaseMainModel = new ShowCaseMainModel(showCaseModelArrayList,1,TYPE_SHOWCASE);
                         showCaseMainModelArrayList.add(showCaseMainModel);
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                        showCaseMainModelArrayList.add(showCaseMainModel1);*/
                     }
-                    trendingMainAdapter = new TrendingMainAdapter(MainActivity.this,showCaseMainModelArrayList);
+                   // trendingMainAdapter = new TrendingMainAdapter(MainActivity.this,showCaseMainModelArrayList);
                     initializeCardStack();
                     progressBar.setVisibility(View.GONE);
                     mainView.setVisibility(View.VISIBLE);
@@ -624,6 +624,8 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     userShowcaseStack.setVisibility(View.VISIBLE);
                     swipeToolRoot.setVisibility(View.VISIBLE);
                     alreadyMatchedRoot.setVisibility(View.GONE);
+
+
 
                    // if(!likeIds.isEmpty()) displayLikedNotification();
                 }

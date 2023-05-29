@@ -31,9 +31,8 @@ public class TrendingMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static int TYPE_POST = 1;
 
 
-    private CommunityPostItemViewHolder communityPostItemViewHolder;
-
     public TrendingMainAdapter(Context context, ArrayList<ShowCaseMainModel> showCaseMainModelArrayList){
+        Log.e("TrendingMainAdapter: ", String.valueOf(showCaseMainModelArrayList.size()));
         this.context = context;
         this.showCaseMainModelArrayList = showCaseMainModelArrayList;
     }
@@ -47,10 +46,9 @@ public class TrendingMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             return new ShowcaseMainGeneralItemViewHolder(view);
         }
 
-        if(viewType == TYPE_POST){
+        else if(viewType == TYPE_POST){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post, parent, false);
-            communityPostItemViewHolder = new CommunityPostItemViewHolder(view);
-            return communityPostItemViewHolder;
+            return new CommunityPostItemViewHolder(view);
         }
 
         return null;
@@ -59,16 +57,17 @@ public class TrendingMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(position == TYPE_MAIN){
+        if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
+            Log.e("onBindViewHolder: ", String.valueOf(TYPE_MAIN));
             ShowcaseMainGeneralItemViewHolder holder1 = (ShowcaseMainGeneralItemViewHolder)holder;
             showCaseAdapter = new ShowCaseAdapter(context,showCaseMainModelArrayList.get(position).getShowCaseModelArrayList());
             LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
             holder1.showcaseRecyclerview.setLayoutManager(layoutManager);
             holder1.showcaseRecyclerview.setAdapter(showCaseAdapter);
         }
-       else if(position == TYPE_POST){
-            CommunityPostItemViewHolder communityPostItemViewHolder = (CommunityPostItemViewHolder) holder;
-        }
+       else if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_POST){
+               CommunityPostItemViewHolder communityPostItemViewHolder = (CommunityPostItemViewHolder) holder;
+       }
     }
 
 
@@ -101,8 +100,14 @@ public class TrendingMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
             return TYPE_MAIN;
         }
+        else if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_POST){
+            return TYPE_POST;
+        }
+        else{
+            return TYPE_POST;
+        }
 
-        return TYPE_POST;
+
     }
 
 
