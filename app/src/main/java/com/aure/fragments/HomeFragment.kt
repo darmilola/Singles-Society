@@ -19,6 +19,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
+import com.aure.Arvi.widget.CardStackLayoutManager
+import com.aure.Arvi.widget.SwipeableMethod
 import com.aure.CompleteProfile
 import com.aure.MainActivity
 import com.aure.R
@@ -55,7 +57,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 
-class HomeFragment : Fragment(), CardStackListener  {
+class HomeFragment : Fragment(), CardStackListener {
 
     private val PREFERENCE_INT = 1
     var manager: CardStackLayoutManager? = null

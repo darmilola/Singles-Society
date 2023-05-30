@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f3">
+    android:layout_marginTop="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -12,16 +12,65 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         app:cardElevation="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         app:cardCornerRadius="20dp">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/forum_post_item_attachments_video_frame">
+            android:id="@+id/video_frame">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:weightSum="5"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:elevation="5dp"
+                android:id="@+id/video_progress_layout"
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:textColor="@color/white"
+                    android:text="1:15:01"
+                    android:visibility="gone"
+                    android:textSize="12dp"
+                    android:id="@+id/video_playing_duration"
+                    android:fontFamily="@font/airreg"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.8"
+                    android:gravity="bottom">
+
+                    <com.mackhartley.roundedprogressbar.RoundedProgressBar
+                        android:id="@+id/video_progressbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        app:rpbCornerRadiusTopLeft="0dp"
+                        android:visibility="visible"
+                        app:rpbCornerRadiusBottomLeft="2dp"
+                        app:rpbProgressColor="@color/pink"
+                        app:rpbBackgroundColor="#F397B0"
+                        app:rpbBackgroundTextColor="@color/full_transparency"
+                        app:rpbShowProgressText="false"
+                        app:rpbProgressTextColor="@color/white"
+                        app:rpbCornerRadiusTopRight="0dp"
+                        app:rpbCornerRadiusBottomRight="2dp"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/attachment_video_loader_view"
+                android:id="@+id/video_loader_view"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:elevation="6dp"
@@ -38,13 +87,13 @@
                 fresco:placeholderImage="@color/grey"
                 fresco:actualImageScaleType="centerCrop"
                 android:elevation="2dp"
-                android:id="@+id/attachment_video_thumbnail"
+                android:id="@+id/video_thumbnail"
                 fresco:placeholderImageScaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/video_attachments_controller"
+                android:id="@+id/video_controller"
                 android:elevation="5dp">
 
 
@@ -53,57 +102,7 @@
                     android:layout_height="match_parent"
                     android:background="#90000000"
                     android:gravity="center"
-                    android:id="@+id/video_attachments_transparent_overlay">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:weightSum="5"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        android:id="@+id/video_attachments_progress_layout"
-                        android:layout_alignParentBottom="true"
-                        android:gravity="bottom">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.7"
-                            android:textColor="@color/white"
-                            android:text="1:15:01"
-                            android:visibility="gone"
-                            android:textSize="12dp"
-                            android:id="@+id/video_attachments_playing_duration"
-                            android:fontFamily="@font/airreg"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3.8"
-                            android:gravity="bottom">
-
-                            <com.mackhartley.roundedprogressbar.RoundedProgressBar
-                                android:id="@+id/video_attachments_progressbar"
-                                android:layout_width="match_parent"
-                                android:layout_height="6dp"
-                                app:rpbCornerRadiusTopLeft="0dp"
-                                app:rpbCornerRadiusBottomLeft="2dp"
-                                app:rpbProgressColor="@color/pink"
-                                app:rpbBackgroundColor="#F397B0"
-                                app:rpbBackgroundTextColor="@color/full_transparency"
-                                app:rpbShowProgressText="false"
-                                app:rpbProgressTextColor="@color/white"
-                                app:rpbCornerRadiusTopRight="0dp"
-                                app:rpbCornerRadiusBottomRight="2dp"/>
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
+                    android:id="@+id/video_transparent_overlay">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -111,13 +110,13 @@
                         android:gravity="center">
 
                         <LinearLayout
-                            android:id="@+id/attachment_play_pause_layout"
+                            android:id="@+id/video_play_pause_layout"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:gravity="center">
 
                             <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/attachment_video_play_pause_view"
+                                android:id="@+id/video_play_pause_view"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:elevation="3dp"

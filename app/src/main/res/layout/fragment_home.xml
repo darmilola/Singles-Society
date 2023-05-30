@@ -22,7 +22,7 @@
         android:id="@+id/activity_main_main_view">
 
 
-    <com.yuyakaido.android.cardstackview.CardStackView
+       <com.aure.Arvi.widget.PlayableCardStackView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/full_transparency"

@@ -58,8 +58,8 @@ public abstract class PlayableItemViewHolder extends RecyclerView.ViewHolder imp
     private boolean isInReadyState = false;
     private int positionInAdapter;
     private boolean isPausedByUser = false;
-    PlayBackStarted playBackStarted;
-    OnReadyState onReadyState;
+    public PlayBackStarted playBackStarted;
+    public OnReadyState onReadyState;
     onPlayBackPause onPlayBackPause;
     onPlayBackStopped onPlayBackStopped;
     Config config;
@@ -73,11 +73,11 @@ public abstract class PlayableItemViewHolder extends RecyclerView.ViewHolder imp
     interface onPlayBackPause{
         public void isOnPaused();
     }
-    interface OnReadyState{
+   public interface OnReadyState{
         public void isOnReadyState();
     }
 
-    interface PlayBackStarted{
+   public interface PlayBackStarted{
         public void onPlayBackPlaying();
     }
 
@@ -387,6 +387,12 @@ public abstract class PlayableItemViewHolder extends RecyclerView.ViewHolder imp
     @Override
     public final PlaybackInfo getPlaybackInfo() {
         return PlaybackInfoCache.getInstance(isNewPlayer,getPlayBackCacheID()).get(getPlayBackCacheID(), new PlaybackInfo());
+    }
+
+    @NonNull
+    @Override
+    public String getUrl() {
+        return null;
     }
 
     private void removePlaybackInfo() {

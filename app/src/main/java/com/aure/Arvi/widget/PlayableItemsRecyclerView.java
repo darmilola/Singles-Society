@@ -34,7 +34,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public final class PlayableItemsRecyclerView extends RecyclerView implements PlayableItemsContainer {
+public class PlayableItemsRecyclerView extends RecyclerView implements PlayableItemsContainer {
 
 
     private static final Set<PlaybackTriggeringState> DEFAULT_PLAYBACK_TRIGGERING_STATES = hashSetOf(
@@ -201,7 +201,9 @@ public final class PlayableItemsRecyclerView extends RecyclerView implements Pla
     @Override
     public final void onPause(boolean fromActivityStateChange) {
         isFromActivityStateChange = fromActivityStateChange;
-        if(!isFromActivityStateChange)setOnReadyState(false);
+        if(!isFromActivityStateChange){
+            setOnReadyState(false);
+        }
           pausePlayback();
     }
 
@@ -387,23 +389,6 @@ public final class PlayableItemsRecyclerView extends RecyclerView implements Pla
 
 
 
-    @Override
-    public final void onScrollStateChanged(int state) {
-        super.onScrollStateChanged(state);
-        //handleItemPlayback();
-    }
-
-
-
-
-    @Override
-    public final void onScrolled(int dx, int dy) {
-        super.onScrolled(dx, dy);
-        mIsScrolling = ((Math.abs(mPreviousScrollDeltaX - dx) > 0) || (Math.abs(mPreviousScrollDeltaY - dy) > 0));
-        //handleItemPlayback();
-        mPreviousScrollDeltaX = dx;
-        mPreviousScrollDeltaY = dy;
-    }
 
     private boolean canPlay() {
         final PlaybackTriggeringState state = getPlaybackStateForScrollState(getScrollState());
