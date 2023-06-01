@@ -311,9 +311,14 @@ class HomeFragment : Fragment(), CardStackListener {
                         showCaseMainModelArrayList.add(showCaseMainModel1);
                     }
 
+                    for (i in 0..4) {
+                        val showCaseMainModel1 = ShowCaseMainModel(2)
+                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                    }
+
                     Log.e("onReady: ", showCaseMainModelArrayList.size.toString() )
 
-                    showCaseMainModelArrayList.shuffle(Random(5))
+                    showCaseMainModelArrayList.shuffle(Random(50))
 
                     trendingMainAdapter =
                         TrendingMainAdapter(
@@ -408,7 +413,7 @@ class HomeFragment : Fragment(), CardStackListener {
     override fun onCardCanceled() {}
 
     override fun onCardAppeared(view: View?, position: Int) {
-       if(showCaseMainModelArrayList[position].itemViewType == 1){
+       if(showCaseMainModelArrayList[position].itemViewType == 1 || showCaseMainModelArrayList[position].itemViewType == 2){
            showcase_swipe_layout.visibility = View.GONE
        }
         else if(isMatched){

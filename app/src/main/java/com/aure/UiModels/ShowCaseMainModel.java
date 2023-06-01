@@ -21,6 +21,10 @@ public class ShowCaseMainModel {
         this.itemViewType = itemViewType;
     }
 
+    public ShowCaseMainModel(int itemViewType){
+        this.itemViewType = itemViewType;
+    }
+
     public ArrayList<ShowCaseModel> getShowCaseModelArrayList() {
            return showCaseModelArrayList;
     }

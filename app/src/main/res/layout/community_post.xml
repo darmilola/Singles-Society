@@ -23,24 +23,11 @@
                 android:layout_height="60dp"
                 android:weightSum="5"
                 android:orientation="horizontal"
-                android:visibility="gone"
                 android:elevation="5dp"
+                android:translationZ="1dp"
                 android:id="@+id/video_progress_layout"
                 android:layout_gravity="bottom"
                 android:gravity="bottom">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:textColor="@color/white"
-                    android:text="1:15:01"
-                    android:visibility="gone"
-                    android:textSize="12dp"
-                    android:id="@+id/video_playing_duration"
-                    android:fontFamily="@font/airreg"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,7 +38,7 @@
                     <com.mackhartley.roundedprogressbar.RoundedProgressBar
                         android:id="@+id/video_progressbar"
                         android:layout_width="match_parent"
-                        android:layout_height="6dp"
+                        android:layout_height="4dp"
                         app:rpbCornerRadiusTopLeft="0dp"
                         android:visibility="visible"
                         app:rpbCornerRadiusBottomLeft="2dp"
@@ -104,15 +91,18 @@
                     android:gravity="center"
                     android:id="@+id/video_transparent_overlay">
 
-                    <LinearLayout
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center">
 
+                        <include layout="@layout/community_post_engagement_view"/>
+
                         <LinearLayout
                             android:id="@+id/video_play_pause_layout"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone"
                             android:gravity="center">
 
                             <com.airbnb.lottie.LottieAnimationView
@@ -127,7 +117,7 @@
                                 app:lottie_rawRes="@raw/playpause"
                                 app:tint="@color/pink" />
                         </LinearLayout>
-                    </LinearLayout>
+                    </FrameLayout>
                 </RelativeLayout>
             </LinearLayout>
             <com.google.android.exoplayer2.ui.PlayerView

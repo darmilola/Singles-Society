@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/black_gradient"
     android:weightSum="7">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,10 +11,56 @@
         android:layout_height="match_parent"
         android:layout_weight="6">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:visibility="gone"
+            android:layout_marginRight="16dp"
+            android:id="@+id/postTextPreviewLayout"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:layout_marginBottom="15dp"
+                android:maxLines="2"
+                android:fontFamily="sans-serif-light"
+                android:text="On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/white"
+                android:maxLines="5"
+                android:ellipsize="end"
+                android:layout_marginBottom="25dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Add a comment (15)"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/engagement_box_layout"
+            android:background="@drawable/dark_black_gradient">
+
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/engagement_box_layout"
             app:layout_constraintBottom_toTopOf="@id/comment_box_layout">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,19 +74,19 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="30dp"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:lineSpacingExtra="4dp"
                     android:textColor="@color/white"
                     android:paddingTop="120dp"
                     android:maxLines="20"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="sans-serif-light"
                     android:text="On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:lineSpacingExtra="4dp"
                     android:textColor="@color/white"
                     android:maxLines="5"
@@ -75,6 +120,7 @@
            android:layout_marginRight="10dp"
            android:layout_marginBottom="10dp"
            android:id="@+id/comment_box_layout"
+           android:visibility="visible"
            android:layout_gravity="bottom"
            app:layout_constraintBottom_toBottomOf="parent"
            android:background="@drawable/comment_section"
@@ -109,7 +155,7 @@
 
        </LinearLayout>
 
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -117,23 +163,24 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/black_gradient"
         android:orientation="vertical"
+        android:id="@+id/userProfileLayout"
+        android:background="@drawable/dark_black_gradient"
         android:gravity="bottom|center">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_marginBottom="10dp"
-            app:civ_border_width="1dp"
+            app:civ_border_width="0.5dp"
             app:civ_border_color="@color/pink"
             android:src="@drawable/woman_official"/>
 
 
         <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
             android:layout_marginTop="20dp"
             app:tint="@color/white"
             android:src="@drawable/like"/>
@@ -143,16 +190,18 @@
             android:gravity="center"
             android:text="450"
             android:textColor="@color/white"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginBottom="10dp"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:fontFamily="@font/airreg"/>
 
 
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="15dp"
             app:tint="@color/white"
             android:layout_marginBottom="20dp"
             android:src="@drawable/bookmark"/>
