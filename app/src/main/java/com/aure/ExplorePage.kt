@@ -1,4 +1,4 @@
-package com.aure.fragments
+package com.aure
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,26 +8,21 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
-import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import com.aure.Arvi.widget.CardStackLayoutManager
 import com.aure.Arvi.widget.SwipeableMethod
-import com.aure.CompleteProfile
-import com.aure.MainActivity
-import com.aure.R
 import com.aure.UiAdapters.HomeMainAdapter
 import com.aure.UiModels.*
-import com.aure.UiModels.MainActivityModel.ShowcaseInfoReadyListener
-import com.aure.UiModels.PaymentModel.PaymentListener
+import com.aure.fragments.HomeFragment
 import com.yuyakaido.android.cardstackview.*
 import io.socket.client.IO
 import jp.alessandro.android.iab.BillingApi
@@ -48,18 +43,13 @@ import nl.dionsegijn.konfetti.core.Rotation
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.core.models.Shape
 import nl.dionsegijn.konfetti.core.models.Size
-import nl.dionsegijn.konfetti.core.models.Size.Companion.LARGE
-import nl.dionsegijn.konfetti.core.models.Size.Companion.MEDIUM
-import nl.dionsegijn.konfetti.core.models.Size.Companion.SMALL
 import org.apache.commons.text.StringEscapeUtils
 import java.net.URISyntaxException
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
+class ExplorePage : AppCompatActivity(), CardStackListener {
 
-class HomeFragment : Fragment(), CardStackListener {
-
-    private val PREFERENCE_INT = 1
     var manager: CardStackLayoutManager? = null
     var homeMainAdapter: HomeMainAdapter? = null
     var showCaseMainModelArrayList = java.util.ArrayList<ShowCaseMainModel>()
@@ -72,42 +62,35 @@ class HomeFragment : Fragment(), CardStackListener {
     private val TYPE_SHOWCASE = 102
     private var isMatched = false
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_explore_page)
         initView()
     }
 
-
     private fun initBillingProcessor() {
         val builder = BillingContext.Builder()
-                .setContext(requireContext()) // App context
-                .setPublicKeyBase64("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB") // Public key generated on the Google Play Console
-                .setApiVersion(BillingApi.VERSION_5) // It also supports version 5
-                .setLogger(SystemLogger())
+            .setContext(this) // App context
+            .setPublicKeyBase64("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB") // Public key generated on the Google Play Console
+            .setApiVersion(BillingApi.VERSION_5) // It also supports version 5
+            .setLogger(SystemLogger())
         mBillingProcessor = BillingProcessor(builder.build(), mPurchaseHandler)
     }
 
     private val mPurchaseHandler = PurchaseHandler { response ->
         if (response.isSuccess) {
             val purchase = response.purchase
-            val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            val preferences = PreferenceManager.getDefaultSharedPreferences(this)
             val userEmail = preferences.getString("userEmail", "")
-            val paymentModel = PaymentModel(requireContext(), userEmail)
+            val paymentModel = PaymentModel(this, userEmail)
             paymentModel.subscribe()
-            paymentModel.setPaymentListener(object : PaymentListener {
+            paymentModel.setPaymentListener(object : PaymentModel.PaymentListener {
                 override fun onSuccess() {
                     showAlert()
                 }
 
                 override fun onFailure() {
-                    Toast.makeText(requireContext(), "Error Occurred please try again", Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(this, "Error Occurred please try again", Toast.LENGTH_SHORT).show()
                 }
             })
         } else {
@@ -116,21 +99,14 @@ class HomeFragment : Fragment(), CardStackListener {
         }
     }
 
-    companion object
-
-    fun newInstance(): HomeFragment {
-        val fragment = HomeFragment()
-        return fragment
-    }
-
 
     private fun initView() {
         initBillingProcessor()
         // Blurry.with(this).radius(25).sampling(2).onto(metMatchRoot);
         val size = ArrayList<Size>()
-        size.add(LARGE)
-        size.add(MEDIUM)
-        size.add(SMALL)
+        size.add(Size.LARGE)
+        size.add(Size.MEDIUM)
+        size.add(Size.SMALL)
         val colors = ArrayList<Int>()
         colors.add(0xfce18a)
         colors.add(0xff726d)
@@ -139,27 +115,27 @@ class HomeFragment : Fragment(), CardStackListener {
         val sh = ArrayList<Shape>()
         sh.add(Shape.Rectangle(0.4f))
         val mParty = Party(
-                Angle.TOP,
-                360,
-                120f,
-                0f,
-                0.9f,
-                size,
-                colors,
-                sh,
-                3000,
-                true,
-                Position.Relative(0.0, 1.0),
-                0,
-                Rotation(),
-                Emitter(5, TimeUnit.MINUTES).perSecond(500))
+            Angle.TOP,
+            360,
+            120f,
+            0f,
+            0.9f,
+            size,
+            colors,
+            sh,
+            3000,
+            true,
+            Position.Relative(0.0, 1.0),
+            0,
+            Rotation(),
+            Emitter(5, TimeUnit.MINUTES).perSecond(500))
         konfettiView.start(mParty)
         //matchedStartChatting.setOnClickListener(View.OnClickListener { startActivity(Intent(requireContext(), MatchesActivity::class.java)) })
         error_page_retry.setOnClickListener(View.OnClickListener {
             empty_layout_root.setVisibility(View.GONE)
-          //  complete_profile_root.setVisibility(View.GONE)
+            //  complete_profile_root.setVisibility(View.GONE)
             activity_main_progressbar.setVisibility(View.VISIBLE)
-           // caught_up_visit_marketplace.setVisibility(View.GONE)
+            // caught_up_visit_marketplace.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.GONE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
@@ -168,16 +144,18 @@ class HomeFragment : Fragment(), CardStackListener {
             error_layout_root.setVisibility(View.GONE)
             mainActivityModel?.GetUserInfo()
         })
-        main_complete_profile_start_chatting.setOnClickListener(View.OnClickListener { startActivity(Intent(requireContext(), CompleteProfile::class.java)) })
+        main_complete_profile_start_chatting.setOnClickListener(View.OnClickListener { startActivity(
+            Intent(this, CompleteProfile::class.java)
+        ) })
 
 
         user_swipe_left.setOnClickListener(View.OnClickListener {
             isRightSwipe = false
             val setting = SwipeAnimationSetting.Builder()
-                    .setDirection(Direction.Left)
-                    .setDuration(Duration.Slow.duration)
-                    .setInterpolator(AccelerateInterpolator())
-                    .build()
+                .setDirection(Direction.Left)
+                .setDuration(Duration.Slow.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
             manager?.setSwipeAnimationSetting(setting)
             userShowcaseStack?.swipe()
         })
@@ -185,18 +163,18 @@ class HomeFragment : Fragment(), CardStackListener {
         user_swipe_right.setOnClickListener(View.OnClickListener {
             isRightSwipe = true
             val setting = SwipeAnimationSetting.Builder()
-                    .setDirection(Direction.Right)
-                    .setDuration(Duration.Slow.duration)
-                    .setInterpolator(AccelerateInterpolator())
-                    .build()
+                .setDirection(Direction.Right)
+                .setDuration(Duration.Slow.duration)
+                .setInterpolator(AccelerateInterpolator())
+                .build()
             manager?.setSwipeAnimationSetting(setting)
             userShowcaseStack?.swipe()
         })
-        mainActivityModel = MainActivityModel(requireContext())
+        mainActivityModel = MainActivityModel(this)
         mainActivityModel?.GetUserInfo()
         mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {
             override fun onReady(mMainActivityModel: MainActivityModel) {
-                val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                val preferences = PreferenceManager.getDefaultSharedPreferences(this@ExplorePage)
                 preferences.edit().putString("firstname", mMainActivityModel.firstname).apply()
                 preferences.edit().putString("lastname", mMainActivityModel.lastname).apply()
                 preferences.edit().putString("imageUrl", mMainActivityModel.imageUrl).apply()
@@ -207,7 +185,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
             override fun onError(message: String) {
                 empty_layout_root.setVisibility(View.GONE)
-             //   complete_profile_root.setVisibility(View.GONE)
+                //   complete_profile_root.setVisibility(View.GONE)
                 activity_main_progressbar.setVisibility(View.GONE)
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
@@ -224,7 +202,7 @@ class HomeFragment : Fragment(), CardStackListener {
         if (mainActivityModel.isProfileCompleted.equals("false", ignoreCase = true)) {
 
             empty_layout_root.setVisibility(View.GONE)
-         //   complete_profile_root.setVisibility(View.VISIBLE)
+            //   complete_profile_root.setVisibility(View.VISIBLE)
             activity_main_progressbar.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
@@ -235,7 +213,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
         } else if (mainActivityModel.isMatched.equals("true", ignoreCase = true) && mainActivityModel.isSubscribed.equals("false", ignoreCase = true)) {
             empty_layout_root.setVisibility(View.GONE)
-          //  complete_profile_root.setVisibility(View.GONE)
+            //  complete_profile_root.setVisibility(View.GONE)
             activity_main_progressbar.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
@@ -246,9 +224,10 @@ class HomeFragment : Fragment(), CardStackListener {
             already_matched_root.visibility = View.VISIBLE
 
         } else {
-            val mainActivityModel2 = MainActivityModel(requireContext())
+            val mainActivityModel2 = MainActivityModel(this)
             mainActivityModel2.GetShowUserInfo()
-            mainActivityModel2.setShowcaseInfoReadyListener(object : ShowcaseInfoReadyListener {
+            mainActivityModel2.setShowcaseInfoReadyListener(object :
+                MainActivityModel.ShowcaseInfoReadyListener {
                 override fun onReady(previewProfileModels: ArrayList<PreviewProfileModel>, likeIds: ArrayList<String>) {
                     mPreviewProfileModels.clear()
                     mPreviewProfileModels = previewProfileModels
@@ -322,7 +301,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
                     homeMainAdapter =
                         HomeMainAdapter(
-                            requireContext(),
+                            this@ExplorePage,
                             showCaseMainModelArrayList
                         )
                     initializeCardStack()
@@ -339,7 +318,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
                 override fun onError(message: String) {
                     empty_layout_root.setVisibility(View.GONE)
-                //    complete_profile_root.setVisibility(View.GONE)
+                    //    complete_profile_root.setVisibility(View.GONE)
                     activity_main_progressbar.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
@@ -352,7 +331,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
                 override fun onEmptyResponse() {
                     empty_layout_root.setVisibility(View.VISIBLE)
-                //    complete_profile_root.setVisibility(View.GONE)
+                    //    complete_profile_root.setVisibility(View.GONE)
                     activity_main_progressbar.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
@@ -367,7 +346,7 @@ class HomeFragment : Fragment(), CardStackListener {
     }
 
     private fun initializeCardStack() {
-        manager = CardStackLayoutManager(requireContext(), this)
+        manager = CardStackLayoutManager(this, this)
         manager?.setStackFrom(StackFrom.Top)
         manager?.setTranslationInterval(6.0f)
         manager?.setVisibleCount(2)
@@ -385,12 +364,12 @@ class HomeFragment : Fragment(), CardStackListener {
 
 
     private fun showAlert() {
-        AlertDialog.Builder(requireContext())
-                .setTitle("Subscription successful")
-                .setMessage("You have successfully subscribed for Auratayya Premium, you can restart the App to activate more features") // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton("Okay") { dialog, which -> dialog.dismiss() }
-                .show()
+        AlertDialog.Builder(this)
+            .setTitle("Subscription successful")
+            .setMessage("You have successfully subscribed for Auratayya Premium, you can restart the App to activate more features") // Specifying a listener allows you to take an action before dismissing the dialog.
+            // The dialog is automatically dismissed when a dialog button is clicked.
+            .setPositiveButton("Okay") { dialog, which -> dialog.dismiss() }
+            .show()
     }
 
 
@@ -413,21 +392,21 @@ class HomeFragment : Fragment(), CardStackListener {
     override fun onCardCanceled() {}
 
     override fun onCardAppeared(view: View?, position: Int) {
-       if(showCaseMainModelArrayList[position].itemViewType == 1 || showCaseMainModelArrayList[position].itemViewType == 2){
-           showcase_swipe_layout.visibility = View.GONE
-       }
+        if(showCaseMainModelArrayList[position].itemViewType == 1 || showCaseMainModelArrayList[position].itemViewType == 2){
+            showcase_swipe_layout.visibility = View.GONE
+        }
         else if(isMatched){
-           showcase_swipe_layout.visibility = View.GONE
+            showcase_swipe_layout.visibility = View.GONE
         }
         else{
-           showcase_swipe_layout.visibility = View.VISIBLE
+            showcase_swipe_layout.visibility = View.VISIBLE
         }
     }
 
     override fun onCardDisappeared(view: View?, position: Int) {
         if(showCaseMainModelArrayList.get(position).showCaseModelArrayList != null){
             currentlyDisplayedUserId = showCaseMainModelArrayList[position].showCaseModelArrayList[0].userId
-            val mainActivityModel = MainActivityModel(currentlyDisplayedUserId, requireContext())
+            val mainActivityModel = MainActivityModel(currentlyDisplayedUserId, this)
             if (isRightSwipe) {
                 //set like to db
                 mainActivityModel.setLiked()
@@ -455,7 +434,7 @@ class HomeFragment : Fragment(), CardStackListener {
                         already_matched_root.visibility = View.GONE
 
                         val preferences =
-                            PreferenceManager.getDefaultSharedPreferences(requireContext())
+                            PreferenceManager.getDefaultSharedPreferences(this)
                         val imgUrl = preferences.getString("imageUrl", "")
                         val uri = Uri.parse(showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[4])
                         //  match_first_image.setImageURI(uri);
@@ -528,17 +507,17 @@ class HomeFragment : Fragment(), CardStackListener {
     private fun displayLikedNotification() {
         val message = "This List Contains a possible match"
         val CHANNEL_ID = "AURATAYYA"
-        val mBuilder: NotificationCompat.Builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.iconfinder_usa)
-                .setContentText(StringEscapeUtils.unescapeJava(message))
-                .setAutoCancel(true)
-                .setOngoing(false)
-                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.profileplaceholder))
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-        val resultIntent = Intent(requireContext(), MainActivity::class.java)
-        val resultPendingIntent = PendingIntent.getActivity(requireContext(), 0, resultIntent, 0)
+        val mBuilder: NotificationCompat.Builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.iconfinder_usa)
+            .setContentText(StringEscapeUtils.unescapeJava(message))
+            .setAutoCancel(true)
+            .setOngoing(false)
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.profileplaceholder))
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+        val resultIntent = Intent(this, MainActivity::class.java)
+        val resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, 0)
         mBuilder.setContentIntent(resultPendingIntent)
-        val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name: CharSequence = "AURATAYYA_MESSAGES"
             val importance = NotificationManager.IMPORTANCE_HIGH
@@ -548,6 +527,12 @@ class HomeFragment : Fragment(), CardStackListener {
         notificationManager.notify(1, mBuilder.build())
     }
 
-
-
+    override fun onResume() {
+        super.onResume()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.deep_yellow)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.pink)
+            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }
+    }
 }

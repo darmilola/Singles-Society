@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.aure.UiModels.BottomNav
 import com.aure.fragments.ChatFragment
 import com.aure.fragments.HomeFragment
+import com.aure.fragments.TrendingFragment
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_main_v2.*
 
@@ -76,6 +77,9 @@ class MainAct2 : AppCompatActivity() {
                 ID_HOME -> {
                     loadFragment(HomeFragment())
                 }
+               ID_EXPLORE ->{
+                   loadFragment(TrendingFragment())
+               }
                ID_MESSAGE -> {
                    loadFragment(ChatFragment())
                }

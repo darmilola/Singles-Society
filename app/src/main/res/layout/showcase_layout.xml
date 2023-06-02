@@ -10,7 +10,6 @@
     <com.aure.Arvi.widget.PlayableItemsRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/special_activity_background"
         tools:listitem="@layout/user_showcase_type_career"
         android:id="@+id/showcase_recyclerview"/>
 

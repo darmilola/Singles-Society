@@ -28,9 +28,6 @@ import com.aure.R;
 import com.aure.UiModels.LinePagerIndicator;
 import com.aure.UiModels.ShowCaseMainModel;
 import com.bumptech.glide.Glide;
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -54,7 +51,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TrendingMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private Context context;
@@ -67,7 +64,7 @@ public class TrendingMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static int TYPE_IMAGE = 2;
 
 
-    public TrendingMainAdapter(Context context, ArrayList<ShowCaseMainModel> showCaseMainModelArrayList){
+    public HomeMainAdapter(Context context, ArrayList<ShowCaseMainModel> showCaseMainModelArrayList){
         this.context = context;
         this.showCaseMainModelArrayList = showCaseMainModelArrayList;
     }

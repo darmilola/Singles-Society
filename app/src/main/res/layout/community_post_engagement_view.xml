@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="16dp"
-            android:visibility="gone"
             android:layout_marginRight="16dp"
             android:id="@+id/postTextPreviewLayout"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -55,12 +54,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/engagement_box_layout"
+            android:visibility="gone"
             android:background="@drawable/dark_black_gradient">
 
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/comment_box_layout">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,7 +121,7 @@
            android:layout_marginRight="10dp"
            android:layout_marginBottom="10dp"
            android:id="@+id/comment_box_layout"
-           android:visibility="visible"
+           android:visibility="gone"
            android:layout_gravity="bottom"
            app:layout_constraintBottom_toBottomOf="parent"
            android:background="@drawable/comment_section"
@@ -165,7 +166,6 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:id="@+id/userProfileLayout"
-        android:background="@drawable/dark_black_gradient"
         android:gravity="bottom|center">
 
 

@@ -53,7 +53,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aure.UiAdapters.TrendingMainAdapter;
+import com.aure.UiAdapters.HomeMainAdapter;
 import com.aure.UiModels.CommunityPostModel;
 import com.aure.UiModels.MainActivityModel;
 import com.aure.UiModels.PaymentModel;
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private static int PREFERENCE_INT = 1;
     CardStackView userShowcaseStack;
     CardStackLayoutManager manager;
-    TrendingMainAdapter trendingMainAdapter;
+    HomeMainAdapter homeMainAdapter;
     ArrayList<ShowCaseMainModel> showCaseMainModelArrayList = new ArrayList<>();
 
     LinearLayout rightSwipeCard, leftSwipeCard;
@@ -678,7 +678,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         manager.setCanScrollVertical(false);
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual);
         userShowcaseStack.setLayoutManager(manager);
-        userShowcaseStack.setAdapter(trendingMainAdapter);
+        userShowcaseStack.setAdapter(homeMainAdapter);
 
     }
 
