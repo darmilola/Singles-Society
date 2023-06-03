@@ -155,6 +155,20 @@ public class MessageConnectionModel {
                             }
                             MessageConnectionModel messageConnectionModel = new MessageConnectionModel(mReceiverFirstname, mReceiverLastname, mReceiverPicture, mReceiverId, lastMessage, timestamp, unreadCount, senderId, receiverId);
                             messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+                            messageConnectionModelArrayList.add(messageConnectionModel);
+
+
+
                         }
                     }
                     Log.e(String.valueOf(messageConnectionModelArrayList.size()), " handleMessage: ");

@@ -4,15 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:background="@color/special_activity_background">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
-        app:cardElevation="0dp"
-        android:layout_marginTop="15dp"
-        app:cardCornerRadius="20dp">
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="10dp">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

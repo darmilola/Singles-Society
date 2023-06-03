@@ -391,7 +391,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         userShowcaseStack = findViewById(R.id.showcase_main_recyclerview);
         toolbar = findViewById(R.id.activity_main_toolbar);
         mainView = findViewById(R.id.activity_main_main_view);
-        progressBar = findViewById(R.id.activity_main_progressbar);
+        progressBar = findViewById(R.id.loaderView);
         mainInfoToggleLayout = findViewById(R.id.main_info_toggle_layout);
 
         drawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawerLayout,toolbar,R.string.app_name,R.string.app_name){

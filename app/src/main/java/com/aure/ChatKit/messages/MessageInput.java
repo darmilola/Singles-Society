@@ -234,7 +234,7 @@ public class MessageInput extends RelativeLayout
         messageInput = (EditText) findViewById(R.id.messageInput);
         messageSendButton =  findViewById(R.id.messageSendButton);
         attachmentButton = findViewById(R.id.attachmentButton);
-       // sendButtonSpace = (Space) findViewById(R.id.sendButtonSpace);
+        //sendButtonSpace = (Space) findViewById(R.id.sendButtonSpace);
         //attachmentButtonSpace = (Space) findViewById(R.id.attachmentButtonSpace);
 
         messageSendButton.setOnClickListener(this);

@@ -14,7 +14,6 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -22,7 +21,6 @@ import com.aure.Arvi.widget.CardStackLayoutManager
 import com.aure.Arvi.widget.SwipeableMethod
 import com.aure.UiAdapters.HomeMainAdapter
 import com.aure.UiModels.*
-import com.aure.fragments.HomeFragment
 import com.yuyakaido.android.cardstackview.*
 import io.socket.client.IO
 import jp.alessandro.android.iab.BillingApi
@@ -31,10 +29,16 @@ import jp.alessandro.android.iab.BillingProcessor
 import jp.alessandro.android.iab.handler.PurchaseHandler
 import jp.alessandro.android.iab.logger.SystemLogger
 import kotlinx.android.synthetic.main.activity_complete_profile_prompt.*
+import kotlinx.android.synthetic.main.activity_explore_page.*
 import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
 import kotlinx.android.synthetic.main.error_page.*
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.activity_main_main_view
+import kotlinx.android.synthetic.main.fragment_home.loaderView
+import kotlinx.android.synthetic.main.fragment_home.showcase_swipe_layout
+import kotlinx.android.synthetic.main.fragment_home.userShowcaseStack
+import kotlinx.android.synthetic.main.fragment_home.user_swipe_left
+import kotlinx.android.synthetic.main.fragment_home.user_swipe_right
 import kotlinx.android.synthetic.main.matched_layout.*
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
@@ -134,7 +138,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         error_page_retry.setOnClickListener(View.OnClickListener {
             empty_layout_root.setVisibility(View.GONE)
             //  complete_profile_root.setVisibility(View.GONE)
-            activity_main_progressbar.setVisibility(View.VISIBLE)
+            loaderView.setVisibility(View.VISIBLE)
             // caught_up_visit_marketplace.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.GONE)
             userShowcaseStack?.setVisibility(View.GONE)
@@ -147,6 +151,10 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         main_complete_profile_start_chatting.setOnClickListener(View.OnClickListener { startActivity(
             Intent(this, CompleteProfile::class.java)
         ) })
+
+        explorePageBackButton.setOnClickListener {
+            finish()
+        }
 
 
         user_swipe_left.setOnClickListener(View.OnClickListener {
@@ -186,7 +194,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
             override fun onError(message: String) {
                 empty_layout_root.setVisibility(View.GONE)
                 //   complete_profile_root.setVisibility(View.GONE)
-                activity_main_progressbar.setVisibility(View.GONE)
+                loaderView.setVisibility(View.GONE)
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
                 showcase_swipe_layout.setVisibility(View.GONE)
@@ -203,7 +211,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
 
             empty_layout_root.setVisibility(View.GONE)
             //   complete_profile_root.setVisibility(View.VISIBLE)
-            activity_main_progressbar.setVisibility(View.GONE)
+            loaderView.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
@@ -214,7 +222,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         } else if (mainActivityModel.isMatched.equals("true", ignoreCase = true) && mainActivityModel.isSubscribed.equals("false", ignoreCase = true)) {
             empty_layout_root.setVisibility(View.GONE)
             //  complete_profile_root.setVisibility(View.GONE)
-            activity_main_progressbar.setVisibility(View.GONE)
+            loaderView.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
@@ -305,7 +313,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
                             showCaseMainModelArrayList
                         )
                     initializeCardStack()
-                    activity_main_progressbar.setVisibility(View.GONE)
+                    loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     empty_layout_root.setVisibility(View.GONE)
                     userShowcaseStack?.setVisibility(View.VISIBLE)
@@ -319,7 +327,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
                 override fun onError(message: String) {
                     empty_layout_root.setVisibility(View.GONE)
                     //    complete_profile_root.setVisibility(View.GONE)
-                    activity_main_progressbar.setVisibility(View.GONE)
+                    loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
                     showcase_swipe_layout.setVisibility(View.GONE)
@@ -332,7 +340,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
                 override fun onEmptyResponse() {
                     empty_layout_root.setVisibility(View.VISIBLE)
                     //    complete_profile_root.setVisibility(View.GONE)
-                    activity_main_progressbar.setVisibility(View.GONE)
+                    loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
                     showcase_swipe_layout.setVisibility(View.GONE)
@@ -350,15 +358,15 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         manager?.setStackFrom(StackFrom.Top)
         manager?.setTranslationInterval(6.0f)
         manager?.setVisibleCount(2)
-        manager?.setScaleInterval(0.90f)
-        manager?.setSwipeThreshold(0.3f)
-        manager?.setMaxDegree(50.0f)
+        manager?.setScaleInterval(0.95f)
+        manager?.setSwipeThreshold(0.5f)
+        manager?.setMaxDegree(5.0f)
         manager?.setDirections(Direction.HORIZONTAL)
         manager?.setCanScrollHorizontal(true)
         manager?.setCanScrollVertical(false)
         manager?.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
-        userShowcaseStack?.setLayoutManager(manager)
-        userShowcaseStack?.setAdapter(homeMainAdapter)
+        userShowcaseStack?.layoutManager = manager
+        userShowcaseStack?.adapter = homeMainAdapter
     }
 
 
@@ -424,7 +432,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
 
                         empty_layout_root.setVisibility(View.GONE)
                         //   complete_profile_root.setVisibility(View.GONE)
-                        activity_main_progressbar.setVisibility(View.GONE)
+                        loaderView.setVisibility(View.GONE)
                         activity_main_main_view.setVisibility(View.VISIBLE)
                         userShowcaseStack?.setVisibility(View.GONE)
                         showcase_swipe_layout.setVisibility(View.GONE)
@@ -446,7 +454,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
                     else if(position == showCaseMainModelArrayList.size - 1){
                         empty_layout_root.setVisibility(View.VISIBLE)
                         //   complete_profile_root.setVisibility(View.GONE)
-                        activity_main_progressbar.setVisibility(View.GONE)
+                        loaderView.setVisibility(View.GONE)
                         activity_main_main_view.setVisibility(View.VISIBLE)
                         userShowcaseStack?.setVisibility(View.GONE)
                         showcase_swipe_layout.setVisibility(View.GONE)
@@ -464,7 +472,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
             } else if (position == showCaseMainModelArrayList.size - 1 && !isRightSwipe) {
                 empty_layout_root.setVisibility(View.VISIBLE)
                 //   complete_profile_root.setVisibility(View.GONE)
-                activity_main_progressbar.setVisibility(View.GONE)
+                loaderView.setVisibility(View.GONE)
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
                 showcase_swipe_layout.setVisibility(View.GONE)
@@ -478,7 +486,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         else if(showCaseMainModelArrayList.size -1 == position){
             empty_layout_root.setVisibility(View.VISIBLE)
             //   complete_profile_root.setVisibility(View.GONE)
-            activity_main_progressbar.setVisibility(View.GONE)
+            loaderView.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
@@ -530,8 +538,9 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
     override fun onResume() {
         super.onResume()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.deep_yellow)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.pink)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }
     }

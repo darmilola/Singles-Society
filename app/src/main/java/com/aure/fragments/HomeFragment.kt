@@ -116,12 +116,7 @@ class HomeFragment : Fragment(), CardStackListener {
         }
     }
 
-    companion object
 
-    fun newInstance(): HomeFragment {
-        val fragment = HomeFragment()
-        return fragment
-    }
 
 
     private fun initView() {
@@ -158,7 +153,7 @@ class HomeFragment : Fragment(), CardStackListener {
         error_page_retry.setOnClickListener(View.OnClickListener {
             empty_layout_root.setVisibility(View.GONE)
           //  complete_profile_root.setVisibility(View.GONE)
-            activity_main_progressbar.setVisibility(View.VISIBLE)
+            loaderView.setVisibility(View.VISIBLE)
            // caught_up_visit_marketplace.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.GONE)
             userShowcaseStack?.setVisibility(View.GONE)
@@ -208,7 +203,7 @@ class HomeFragment : Fragment(), CardStackListener {
             override fun onError(message: String) {
                 empty_layout_root.setVisibility(View.GONE)
              //   complete_profile_root.setVisibility(View.GONE)
-                activity_main_progressbar.setVisibility(View.GONE)
+                loaderView.setVisibility(View.GONE)
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
                 showcase_swipe_layout.setVisibility(View.GONE)
@@ -225,7 +220,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
             empty_layout_root.setVisibility(View.GONE)
          //   complete_profile_root.setVisibility(View.VISIBLE)
-            activity_main_progressbar.setVisibility(View.GONE)
+            loaderView.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
@@ -236,7 +231,7 @@ class HomeFragment : Fragment(), CardStackListener {
         } else if (mainActivityModel.isMatched.equals("true", ignoreCase = true) && mainActivityModel.isSubscribed.equals("false", ignoreCase = true)) {
             empty_layout_root.setVisibility(View.GONE)
           //  complete_profile_root.setVisibility(View.GONE)
-            activity_main_progressbar.setVisibility(View.GONE)
+            loaderView.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
@@ -326,7 +321,7 @@ class HomeFragment : Fragment(), CardStackListener {
                             showCaseMainModelArrayList
                         )
                     initializeCardStack()
-                    activity_main_progressbar.setVisibility(View.GONE)
+                    loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     empty_layout_root.setVisibility(View.GONE)
                     userShowcaseStack?.setVisibility(View.VISIBLE)
@@ -340,7 +335,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 override fun onError(message: String) {
                     empty_layout_root.setVisibility(View.GONE)
                 //    complete_profile_root.setVisibility(View.GONE)
-                    activity_main_progressbar.setVisibility(View.GONE)
+                    loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
                     showcase_swipe_layout.setVisibility(View.GONE)
@@ -353,7 +348,7 @@ class HomeFragment : Fragment(), CardStackListener {
                 override fun onEmptyResponse() {
                     empty_layout_root.setVisibility(View.VISIBLE)
                 //    complete_profile_root.setVisibility(View.GONE)
-                    activity_main_progressbar.setVisibility(View.GONE)
+                    loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
                     showcase_swipe_layout.setVisibility(View.GONE)
@@ -371,15 +366,15 @@ class HomeFragment : Fragment(), CardStackListener {
         manager?.setStackFrom(StackFrom.Top)
         manager?.setTranslationInterval(6.0f)
         manager?.setVisibleCount(2)
-        manager?.setScaleInterval(0.90f)
-        manager?.setSwipeThreshold(0.3f)
-        manager?.setMaxDegree(50.0f)
+        manager?.setScaleInterval(0.95f)
+        manager?.setSwipeThreshold(0.5f)
+        manager?.setMaxDegree(5.0f)
         manager?.setDirections(Direction.HORIZONTAL)
         manager?.setCanScrollHorizontal(true)
         manager?.setCanScrollVertical(false)
         manager?.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
-        userShowcaseStack?.setLayoutManager(manager)
-        userShowcaseStack?.setAdapter(homeMainAdapter)
+        userShowcaseStack?.layoutManager = manager
+        userShowcaseStack?.adapter = homeMainAdapter
     }
 
 
@@ -445,7 +440,7 @@ class HomeFragment : Fragment(), CardStackListener {
 
                         empty_layout_root.setVisibility(View.GONE)
                         //   complete_profile_root.setVisibility(View.GONE)
-                        activity_main_progressbar.setVisibility(View.GONE)
+                        loaderView.setVisibility(View.GONE)
                         activity_main_main_view.setVisibility(View.VISIBLE)
                         userShowcaseStack?.setVisibility(View.GONE)
                         showcase_swipe_layout.setVisibility(View.GONE)
@@ -467,7 +462,7 @@ class HomeFragment : Fragment(), CardStackListener {
                     else if(position == showCaseMainModelArrayList.size - 1){
                         empty_layout_root.setVisibility(View.VISIBLE)
                         //   complete_profile_root.setVisibility(View.GONE)
-                        activity_main_progressbar.setVisibility(View.GONE)
+                        loaderView.setVisibility(View.GONE)
                         activity_main_main_view.setVisibility(View.VISIBLE)
                         userShowcaseStack?.setVisibility(View.GONE)
                         showcase_swipe_layout.setVisibility(View.GONE)
@@ -485,7 +480,7 @@ class HomeFragment : Fragment(), CardStackListener {
             } else if (position == showCaseMainModelArrayList.size - 1 && !isRightSwipe) {
                 empty_layout_root.setVisibility(View.VISIBLE)
                 //   complete_profile_root.setVisibility(View.GONE)
-                activity_main_progressbar.setVisibility(View.GONE)
+                loaderView.setVisibility(View.GONE)
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
                 showcase_swipe_layout.setVisibility(View.GONE)
@@ -499,7 +494,7 @@ class HomeFragment : Fragment(), CardStackListener {
         else if(showCaseMainModelArrayList.size -1 == position){
             empty_layout_root.setVisibility(View.VISIBLE)
             //   complete_profile_root.setVisibility(View.GONE)
-            activity_main_progressbar.setVisibility(View.GONE)
+            loaderView.setVisibility(View.GONE)
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)

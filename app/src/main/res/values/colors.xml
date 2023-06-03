@@ -51,6 +51,6 @@
     <color name="dialog_date_text">@color/warm_grey_two</color>
     <color name="dialog_unread_text">@color/white</color>
     <color name="dialog_unread_bubble">@color/dark_mint</color>
-    <color name="love_color">#0FD8FB</color>
+    <color name="love_color">#45C4DA</color>
 </resources>
 

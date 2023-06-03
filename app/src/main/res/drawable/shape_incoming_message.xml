@@ -4,7 +4,6 @@
     <corners
         android:bottomLeftRadius="0dp"
         android:bottomRightRadius="@dimen/message_bubble_corners_radius"
-        android:topLeftRadius="@dimen/message_bubble_corners_radius"
         android:topRightRadius="@dimen/message_bubble_corners_radius" />
 
     <solid android:color="@color/white" />

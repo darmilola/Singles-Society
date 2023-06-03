@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aure.ChatActivity;
@@ -38,12 +39,12 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ItemView
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
           MatchesModel matchesModel = matchesModelArrayList.get(position);
-          holder.firstname.setText(matchesModel.getUserFirstname());
+          holder.firstname.setText("Amreeta");
           Glide.with(context)
-                .load(matchesModel.getUserImageUrl())
+                .load("https://img.freepik.com/free-photo/cute-small-height-african-american-girl-with-dreadlocks-wear-coloured-yellow-dress-posed-sunset_627829-2760.jpg?w=2000&t=st=1685801484~exp=1685802084~hmac=9ce68a821ca77872d4dfea597051d151aa6e827fe5b21620e797d246956b2882")
                 .placeholder(R.drawable.profileplaceholder)
                 .error(R.drawable.profileplaceholder)
-                .into(holder.circleImageView);
+                .into(holder.imageView);
     }
 
     @Override
@@ -52,11 +53,11 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ItemView
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        CircleImageView circleImageView;
+        ImageView imageView;
         TextView firstname;
         public ItemViewHolder(View ItemView){
             super(ItemView);
-            circleImageView = ItemView.findViewById(R.id.matches_imageview);
+            imageView = ItemView.findViewById(R.id.matches_imageview);
             firstname = ItemView.findViewById(R.id.matches_firstname);
             ItemView.setOnClickListener(this);
         }

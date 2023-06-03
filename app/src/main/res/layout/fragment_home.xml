@@ -9,11 +9,16 @@
     android:gravity="center">
 
 
-    <ProgressBar
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:id="@+id/activity_main_progressbar"
-        android:layout_gravity="center"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loaderView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:elevation="6dp"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        app:lottie_rawRes="@raw/loader"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -13,7 +13,13 @@ import com.aure.UiAdapters.MessagesAdapter
 import com.aure.UiModels.MatchesModel
 import com.aure.UiModels.MessageConnectionModel
 import kotlinx.android.synthetic.main.activity_matches.*
+import kotlinx.android.synthetic.main.activity_matches.matches_no_messages
+import kotlinx.android.synthetic.main.activity_matches.matches_progressbar
+import kotlinx.android.synthetic.main.activity_matches.matches_recyclerview
+import kotlinx.android.synthetic.main.activity_matches.matches_root
+import kotlinx.android.synthetic.main.activity_matches.messages_recyclerview
 import kotlinx.android.synthetic.main.error_page.*
+import kotlinx.android.synthetic.main.fragment_chat.*
 
 class ChatFragment : Fragment() {
 
@@ -51,6 +57,7 @@ class ChatFragment : Fragment() {
                 messages_recyclerview!!.layoutManager = messagesManger
                 matches_recyclerview.layoutManager = matchesManager
                 matches_progressbar.visibility = View.GONE
+                matchesListView.visibility = View.VISIBLE
                 matches_root.visibility = View.VISIBLE
                 matches_recyclerview.visibility = View.VISIBLE
                 messages_recyclerview.visibility = View.VISIBLE
@@ -78,6 +85,7 @@ class ChatFragment : Fragment() {
                 messages_recyclerview!!.visibility = View.GONE
                 matches_recyclerview!!.visibility = View.GONE
                 matches_no_messages.text = "No Matches"
+                matchesListView.visibility = View.GONE
             }
 
             override fun onError() {
@@ -87,6 +95,7 @@ class ChatFragment : Fragment() {
                 messages_recyclerview!!.visibility = View.GONE
                 matches_recyclerview.visibility = View.GONE
                 error_layout_root.visibility = View.VISIBLE
+                matchesListView.visibility = View.GONE
             }
         })
         error_page_retry!!.setOnClickListener {
@@ -96,6 +105,7 @@ class ChatFragment : Fragment() {
             messages_recyclerview.visibility = View.GONE
             matches_recyclerview.visibility = View.GONE
             error_layout_root.visibility = View.GONE
+            matchesListView.visibility = View.GONE
             messageConnectionModel!!.getConnection()
         }
         //goBack!!.setOnClickListener { finish() }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
+    android:layout_height="95dp"
     android:gravity="center"
-    android:background="@color/white">
+    android:background="@color/special_activity_background">
 
 
     <LinearLayout
@@ -19,15 +20,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="0.2">
+            android:gravity="center"
+            android:layout_weight="0.4">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/message_connection_sender_profile_image"
-                android:src="@drawable/profileplaceholder"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:cardElevation="0dp"
+                android:scaleType="centerCrop"
+                app:cardCornerRadius="15dp"
+                android:src="@drawable/profileplaceholder">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/woman_official"
+                    android:id="@+id/message_connection_sender_profile_image"
+                    android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
 
 
 
@@ -38,17 +48,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="5dp"
-            android:layout_weight="4.6">
+            android:layout_weight="4.4">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/airsemi"
+                android:fontFamily="sans-serif-medium"
                 android:id="@+id/message_connection_sender_name"
-                android:text="John Doe"
-                android:textColor="@color/dark_text_color"
+                android:text="Alisha Singh"
+                android:textColor="@color/new_dark_text_color"
                 android:textSize="17dp"
                 android:layout_marginBottom="1dp"/>
 
@@ -56,14 +66,13 @@
                 android:id="@+id/message_connection_last_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="7dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/airreg"
+                android:fontFamily="sans-serif"
                 android:maxLines="2"
-                android:lineSpacingExtra="4dp"
                 android:text="Also send files to yourself just select your own name from the owner fo the file then"
-                android:textColor="@color/light_text_color"
-                android:textSize="15dp" />
+                android:textColor="#7A7979"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,8 +96,8 @@
                 android:textSize="14dp"/>
 
             <LinearLayout
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_marginTop="6dp"
                 android:id="@+id/message_connection_unread_count_layout"
                 android:gravity="center"
@@ -103,8 +112,9 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:text="9+"
+                    android:padding="2dp"
                     android:id="@+id/message_connection_unread_count"
-                    android:fontFamily="@font/airreg"
+                    android:fontFamily="sans-serif"
                     android:textColor="@color/White"
                     android:textSize="12dp"/>
             </LinearLayout>

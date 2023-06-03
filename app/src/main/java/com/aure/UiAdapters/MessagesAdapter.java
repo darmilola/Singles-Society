@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -52,7 +53,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         Date currentDate = new Date();
         dateFormat.format(currentDate);
 
-        try {
+     /*   try {
 
             Date parsedDate = dateFormat.parse(messageConnectionModel.getTimestamp());
             timestamp = new java.sql.Timestamp(parsedDate.getTime());
@@ -78,9 +79,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
         else{
             holder.unreadCount.setText(Integer.toString(messageConnectionModel.getUnreadCount()));
-        }
+        }*/
         Glide.with(context)
-                .load(messageConnectionModel.getReceiverProfileImage())
+                .load("https://img.freepik.com/free-photo/african-american-business-woman-by-window_1303-10869.jpg?w=2000&t=st=1685802798~exp=1685803398~hmac=579550482f3d0bcdd91eebdfd983b837d9ed35d3587e8f1fe14be3e8eced05f1")
                 .placeholder(R.drawable.profileplaceholder)
                 .error(R.drawable.profileplaceholder)
                 .into(holder.profilePicture);
@@ -93,7 +94,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     }
 
     public class MessagesViewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        CircleImageView profilePicture;
+        ImageView profilePicture;
         TextView displayName;
         TextView lastMessage;
         TextView timestamp;
