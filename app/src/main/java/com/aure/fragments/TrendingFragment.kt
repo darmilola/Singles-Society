@@ -23,11 +23,7 @@ class TrendingFragment : Fragment() {
     private lateinit var itemAdapter: ExploreItemAdapter
 
     private val images = ArrayList<Int>().apply {
-        add(R.drawable.header)
-        add(R.drawable.header)
-        add(R.drawable.header)
-        add(R.drawable.header)
-        add(R.drawable.header)
+        add(R.drawable.ml)
     }
 
     private val headerAdapter by lazy { TrendingHeaderAdapter() }
@@ -51,6 +47,7 @@ class TrendingFragment : Fragment() {
         }
         itemAdapter = ExploreItemAdapter(itemList,requireContext())
         exploreItemRecyclerview.adapter = itemAdapter
+        myCommunitiesRecyclerview.adapter = itemAdapter
 
         exploreHeader.setAdapter(headerAdapter)
         exploreHeader.setItems(images)

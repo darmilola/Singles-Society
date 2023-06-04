@@ -100,7 +100,7 @@
         android:layout_marginTop="67dp"
         android:layout_marginBottom="92dp"
         app:outcomingTextColor="@color/white"
-        app:outcomingDefaultBubbleColor="@color/pink"
+        app:outcomingDefaultBubbleColor="#FA4375"
         app:layout_constraintTop_toBottomOf="@id/toolbarArena"
         app:layout_constraintBottom_toTopOf="@id/createArena"
         tools:listitem="@layout/item_incoming_text_message" />

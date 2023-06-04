@@ -40,9 +40,9 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:id="@+id/user_name_age"
-                    android:textColor="@color/White"
+                    android:textColor="#DDFFFFFF"
                     android:textSize="26sp"
-                    android:fontFamily="@font/avenirmed"
+                    android:fontFamily="@font/nunitoreg"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:layout_marginBottom="10dp"
@@ -62,19 +62,19 @@
                         android:text="Bachelor"
                         android:padding="10dp"
                         app:iconStartPadding="10dp"
-                        android:textColor="@color/White"
+                        android:textColor="#DDFFFFFF"
                         android:textSize="15sp"
                         app:closeIconEnabled="false"
                         android:id="@+id/type_career_education"
                         app:chipIconSize="16dp"
                         app:chipIcon="@drawable/ic_iconfinder_awarded_cap_commencement_degree_cap_graduate_cap_mortarboard_4763252"
-                        app:chipIconTint="@color/white"
-                        app:chipStrokeColor="@color/white"
+                        app:chipIconTint="#DDFFFFFF"
+                        app:chipStrokeColor="#DDFFFFFF"
                         app:chipStrokeWidth="0.5dp"
                         app:chipIconVisible="true"
                         app:chipSurfaceColor="@color/full_transparency"
                         app:chipBackgroundColor="@color/full_transparency"
-                        android:fontFamily="@font/avenirreg"/>
+                        android:fontFamily="@font/nunitoreg"/>
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
@@ -83,19 +83,19 @@
                         android:padding="10dp"
                         app:iconStartPadding="10dp"
                         android:id="@+id/type_career_occupation"
-                        android:textColor="@color/White"
+                        android:textColor="#DDFFFFFF"
                         android:textSize="15sp"
                         app:closeIconEnabled="false"
                         app:chipIconSize="16dp"
                         android:layout_marginLeft="5dp"
                         app:chipIcon="@drawable/ic_iconfinder_business"
-                        app:chipIconTint="@color/white"
-                        app:chipStrokeColor="@color/white"
+                        app:chipIconTint="#DDFFFFFF"
+                        app:chipStrokeColor="#DDFFFFFF"
                         app:chipStrokeWidth="0.5dp"
                         app:chipIconVisible="true"
                         app:chipSurfaceColor="@color/full_transparency"
                         app:chipBackgroundColor="@color/full_transparency"
-                        android:fontFamily="@font/avenirreg"/>
+                        android:fontFamily="@font/nunitoreg"/>
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
@@ -106,19 +106,19 @@
                         android:maxLines="1"
                         android:ellipsize="end"
                         app:chipIconSize="16dp"
-                        android:textColor="@color/White"
+                        android:textColor="#DDFFFFFF"
                         android:textSize="15sp"
                         android:id="@+id/type_career_workplace"
                         app:closeIconEnabled="false"
                         android:layout_marginLeft="5dp"
                         app:chipIcon="@drawable/ic_iconfinder_office_business_work_workplace_home_company__13_7218080"
-                        app:chipIconTint="@color/white"
-                        app:chipStrokeColor="@color/white"
+                        app:chipIconTint="#DDFFFFFF"
+                        app:chipStrokeColor="#DDFFFFFF"
                         app:chipStrokeWidth="0.5dp"
                         app:chipIconVisible="true"
                         app:chipSurfaceColor="@color/full_transparency"
                         app:chipBackgroundColor="@color/full_transparency"
-                        android:fontFamily="@font/avenirreg"/>
+                        android:fontFamily="@font/nunitoreg"/>
                 </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
         </FrameLayout>

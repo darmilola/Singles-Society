@@ -42,7 +42,7 @@
                     android:layout_width="45dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    app:tint="@color/pink"
+                    app:tint="#FA4375"
                     android:src="@drawable/muzmatch"/>
 
                  <TextView
@@ -50,7 +50,7 @@
                      android:layout_height="wrap_content"
                      android:textSize="25dp"
                      android:text="Singles"
-                     android:textColor="@color/pink"
+                     android:textColor="#FA4375"
                      android:fontFamily="@font/kumelian"
                      android:layout_marginLeft="5dp"/>
 
@@ -67,7 +67,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    android:tint="@color/pink"
+                    app:tint="#FA4375"
                     android:src="@drawable/ring_icon"/>
 
             </LinearLayout>
@@ -96,18 +96,18 @@
         android:layout_height="45dp"
         android:layout_gravity="bottom"
         app:ss_backgroundBottomColor="@color/black"
-        app:ss_circleColor="@color/deep_yellow"
+        app:ss_circleColor="#FA4375"
         app:ss_waveHeight="1"
         app:layout_constraintTop_toBottomOf="@id/container"
-        app:ss_countBackgroundColor="#EF3669"
+        app:ss_countBackgroundColor="#FA4375"
         app:ss_countTextColor="#ffffff"
         app:ss_defaultIconColor="#6200EE"
         app:ss_iconTextColor="#838282"
         app:ss_rippleColor="#2f424242"
         android:background="#f2f3f5"
         app:ss_iconTextSize="14sp"
-        app:ss_selectedIconColor="@color/pink"
-        app:ss_selectedIconTextColor="@color/pink"
+        app:ss_selectedIconColor="#FA4375"
+        app:ss_selectedIconTextColor="#FA4375"
         app:ss_shadowColor="@color/deep_yellow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
