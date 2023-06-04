@@ -46,7 +46,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:text="Talks and Stuffs"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
@@ -54,7 +54,7 @@
                     android:gravity="center"
                     android:background="@drawable/white_radius"
                     android:textColor="@color/pink"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="@font/avenirmed"
                     android:layout_marginLeft="5dp"/>
 
             </LinearLayout>
@@ -81,8 +81,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loaderView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:elevation="6dp"
             android:visibility="visible"
             android:layout_gravity="center"

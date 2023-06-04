@@ -97,7 +97,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
         goBack = findViewById(R.id.chat_activity_back);
         receiverDisplayName = findViewById(R.id.chat_receiver_name);
         receiverImageView = findViewById(R.id.chat_receiver_imageview);
-        receiverDisplayName.setText(receiverFirstname + " " + receiverLastname);
+       // receiverDisplayName.setText(receiverFirstname + " " + receiverLastname);
 
         Glide.with(ChatActivity.this)
                 .load(receiverImageUrl)

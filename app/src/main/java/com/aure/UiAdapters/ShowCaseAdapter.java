@@ -116,7 +116,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ShowCaseModel showCaseModel = showcaseList.get(position);
         if(showCaseModel.getShowcaseType() == 1){
             ShowcaseMainItemViewHolder showcaseMainItemViewHolder = (ShowcaseMainItemViewHolder) holder;
-            showcaseMainItemViewHolder.nameAge.setText(showCaseModel.getModelInfoList().get(0)+", "+showCaseModel.getModelInfoList().get(1));
+            //showcaseMainItemViewHolder.nameAge.setText(showCaseModel.getModelInfoList().get(0)+", "+showCaseModel.getModelInfoList().get(1));
             showcaseMainItemViewHolder.city.setText(showCaseModel.getModelInfoList().get(2));
             showcaseMainItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(3));
             for(String id: showCaseModel.getLikeList()){

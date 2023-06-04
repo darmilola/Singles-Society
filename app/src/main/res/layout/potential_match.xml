@@ -21,7 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="16dp"
+            android:textSize="17sp"
+            android:fontFamily="@font/avenirreg"
             android:textColor="@color/white"
             android:text="Potential Match!"/>
 

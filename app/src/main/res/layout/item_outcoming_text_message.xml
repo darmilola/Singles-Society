@@ -24,9 +24,9 @@
             android:id="@id/messageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:lineSpacingExtra="3dp"
-            android:fontFamily="sans-serif"
+            android:textSize="20sp"
+            android:lineSpacingExtra="-3dp"
+            android:fontFamily="@font/avenirreg"
             android:layout_alignWithParentIfMissing="true"/>
 
         <TextView
@@ -35,8 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/messageText"
             android:layout_marginLeft="8dp"
-            android:fontFamily="sans-serif"
-            android:textSize="16dp"
+            android:fontFamily="@font/avenir"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
             android:lineSpacingExtra="3dp"
             android:layout_marginStart="8dp"
             app:layout_alignSelf="center"

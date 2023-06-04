@@ -26,9 +26,9 @@
         android:text="Basics"
         android:gravity="center|left"
         android:layout_marginTop="15dp"
-        android:textSize="16dp"
+        android:textSize="17sp"
         android:layout_marginLeft="20dp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/avenirmed"
         android:textColor="@color/colorPrimary"/>
 
     <com.google.android.flexbox.FlexboxLayout
@@ -37,6 +37,8 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:flexWrap="wrap"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="5dp"
         app:justifyContent="center">
 
@@ -47,7 +49,7 @@
             android:text="Single"
             android:id="@+id/type_about_status"
             android:textColor="#616263"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:chipIcon="@drawable/status"
             app:chipIconSize="16dp"
             app:chipIconTint="#616263"
@@ -56,7 +58,7 @@
             app:chipIconVisible="true"
             app:chipSurfaceColor="@color/full_transparency"
             app:chipBackgroundColor="@color/full_transparency"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/avenirreg"
             app:closeIconEnabled="false"
             app:iconStartPadding="10dp"/>
 
@@ -67,7 +69,7 @@
             android:padding="10dp"
             android:text="d'oesnt smoke"
             android:textColor="#616263"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:id="@+id/type_about_smoking"
             app:chipIcon="@drawable/smoking"
             app:chipIconSize="16dp"
@@ -79,7 +81,7 @@
             app:chipIconVisible="true"
             app:chipSurfaceColor="@color/full_transparency"
             app:chipBackgroundColor="@color/full_transparency"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="@font/avenirreg"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
@@ -91,7 +93,7 @@
             android:padding="10dp"
             android:text="d'oesnt drink"
             android:textColor="#616263"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:chipIcon="@drawable/drink"
             app:chipIconSize="16dp"
             app:closeIconEnabled="false"
@@ -102,7 +104,7 @@
             app:chipIconVisible="true"
             app:chipSurfaceColor="@color/full_transparency"
             app:chipBackgroundColor="@color/full_transparency"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="@font/avenirreg"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
@@ -114,7 +116,7 @@
             android:padding="10dp"
             android:text="English and hausa"
             android:textColor="#616263"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:chipIcon="@drawable/language"
             app:chipIconSize="16dp"
             app:closeIconEnabled="false"
@@ -125,7 +127,7 @@
             app:chipIconVisible="true"
             app:chipSurfaceColor="@color/full_transparency"
             app:chipBackgroundColor="@color/full_transparency"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="@font/avenirreg"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
@@ -136,7 +138,7 @@
             android:id="@+id/type_about_religion"
             android:text="Christianity"
             android:textColor="#616263"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:chipIcon="@drawable/prayer"
             app:chipIconSize="16dp"
             app:closeIconEnabled="false"
@@ -147,7 +149,7 @@
             app:chipIconVisible="true"
             app:chipSurfaceColor="@color/full_transparency"
             app:chipBackgroundColor="@color/full_transparency"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="@font/avenirreg"/>
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
@@ -155,7 +157,7 @@
             android:padding="10dp"
             android:text="Seeking marriage within 1-2 years"
             android:textColor="#616263"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:id="@+id/marriage_goals"
             app:chipIcon="@drawable/ic_iconfinder_10_wine_beverages_cup_glass"
             app:chipIconSize="16dp"
@@ -167,7 +169,7 @@
             app:chipIconVisible="true"
             app:chipSurfaceColor="@color/full_transparency"
             app:chipBackgroundColor="@color/full_transparency"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="@font/avenirreg"/>
     </com.google.android.flexbox.FlexboxLayout>
 </LinearLayout>
     <LinearLayout

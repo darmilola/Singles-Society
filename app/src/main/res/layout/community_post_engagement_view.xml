@@ -24,13 +24,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:lineSpacingExtra="4dp"
                 android:textColor="@color/white"
                 android:ellipsize="end"
                 android:layout_marginBottom="15dp"
-                android:maxLines="2"
-                android:fontFamily="sans-serif-light"
+                android:maxLines="3"
+                android:fontFamily="@font/avenir"
                 android:text="On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."/>
 
 
@@ -39,14 +39,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:lineSpacingExtra="4dp"
                 android:textColor="@color/white"
                 android:maxLines="5"
                 android:ellipsize="end"
                 android:layout_marginBottom="25dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Add a comment (15)"/>
+                android:fontFamily="@font/avenirmed"
+                android:text="Add a Comment (15)"/>
 
         </LinearLayout>
 
@@ -75,12 +75,12 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="30dp"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:lineSpacingExtra="4dp"
                     android:textColor="@color/white"
                     android:paddingTop="120dp"
                     android:maxLines="20"
-                    android:fontFamily="sans-serif-light"
+                    android:fontFamily="@font/avenir"
                     android:text="On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."/>
 
                 <TextView
@@ -182,7 +182,7 @@
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_marginTop="20dp"
-            app:tint="@color/white"
+            app:tint="@color/pink"
             android:src="@drawable/like"/>
         <TextView
             android:layout_width="match_parent"
@@ -194,14 +194,14 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="10dp"
-            android:textSize="12sp"
-            android:fontFamily="@font/airreg"/>
+            android:textSize="13sp"
+            android:fontFamily="@font/avenir"/>
 
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             app:tint="@color/white"
             android:layout_marginBottom="20dp"
             android:src="@drawable/bookmark"/>

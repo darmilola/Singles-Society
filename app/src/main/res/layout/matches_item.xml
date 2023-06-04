@@ -33,6 +33,6 @@
         android:id="@+id/matches_firstname"
         android:layout_marginTop="5dp"
         android:textSize="15sp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/avenirmed"
         android:textColor="@color/dark_text_color"/>
 </LinearLayout>

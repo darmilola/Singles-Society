@@ -57,22 +57,21 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:textColor="@color/dark_text_color"
-              android:textSize="14dp"
+              android:textSize="16sp"
               android:maxLines="1"
               android:ellipsize="end"
               android:id="@+id/chat_receiver_name"
-              android:fontFamily="sans-serif-medium"
+              android:fontFamily="@font/avenirmed"
               android:text="Ellen Johnson-Sirleaf"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/clannews"
+                android:fontFamily="@font/avenirmed"
                 android:text="Online"
-                android:textColor="@color/green"
+                android:textColor="#30D330"
                 android:id="@+id/chat_receiver_status"
-                android:layout_marginTop="3dp"
-                android:textSize="11dp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -92,17 +91,20 @@
         </LinearLayout>
     </LinearLayout>
 
+
+
     <com.aure.ChatKit.messages.MessagesList
         android:id="@+id/messagesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="67dp"
-        android:layout_marginBottom="87dp"
+        android:layout_marginBottom="92dp"
         app:outcomingTextColor="@color/white"
-        app:outcomingDefaultBubbleColor="#45C4DA"
+        app:outcomingDefaultBubbleColor="@color/pink"
         app:layout_constraintTop_toBottomOf="@id/toolbarArena"
         app:layout_constraintBottom_toTopOf="@id/createArena"
         tools:listitem="@layout/item_incoming_text_message" />
+
 
 
 

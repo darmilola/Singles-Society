@@ -45,10 +45,10 @@
                         android:id="@+id/type_main_name_age"
                         android:textColor="@color/White"
                         android:textSize="25dp"
-                        android:fontFamily="@font/kumelian"
+                        android:fontFamily="@font/avenirmed"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:text="Fathiah, 25"/>
+                        android:text="Alisha, 25"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -58,9 +58,9 @@
                         android:layout_marginRight="20dp"
                         android:id="@+id/type_main_city"
                         android:textColor="@color/White"
-                        android:textSize="17dp"
+                        android:textSize="18dp"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/airreg"
+                        android:fontFamily="@font/avenirreg"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:text="Chibok"/>
@@ -82,7 +82,7 @@
                             android:padding="10dp"
                             app:iconStartPadding="10dp"
                             android:textColor="@color/White"
-                            android:textSize="12dp"
+                            android:textSize="14sp"
                             android:id="@+id/type_main_occupation"
                             app:closeIconEnabled="false"
                             app:chipIconSize="14dp"
@@ -95,7 +95,7 @@
                             app:chipIconVisible="true"
                             app:chipSurfaceColor="@color/full_transparency"
                             app:chipBackgroundColor="@color/full_transparency"
-                            android:fontFamily="sans-serif"/>
+                            android:fontFamily="@font/avenirreg"/>
                     </com.google.android.flexbox.FlexboxLayout>
                     <TextView
                         android:layout_width="match_parent"
@@ -105,9 +105,9 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/light_gray"
-                        android:textSize="13dp"
+                        android:textSize="12sp"
                         android:layout_marginTop="25dp"
-                        android:fontFamily="@font/airreg"
+                        android:fontFamily="@font/avenir"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:text="BIO"/>
@@ -119,10 +119,10 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="40dp"
                         android:textColor="@color/white"
-                        android:textSize="15dp"
+                        android:textSize="16sp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="40dp"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/avenir"
                         android:maxLines="4"
                         android:lineSpacingExtra="7dp"
                         android:ellipsize="end"
