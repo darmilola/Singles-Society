@@ -49,6 +49,7 @@ public class SignUpWithEmail extends AppCompatActivity {
     TextInputLayout firstnameLayout,lastnameLayout,emailLayout,passwordLayout;
     String mFirstname, mLastname, mEmailaddress, mPassword,mProfileImage = "Dummy Image";
     TextView alreadyHaveAccount;
+    ImageView backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,7 @@ public class SignUpWithEmail extends AppCompatActivity {
         lastnameLayout = findViewById(R.id.sign_up_lastname_layout);
         emailLayout = findViewById(R.id.sign_up_email_layout);
         passwordLayout = findViewById(R.id.sign_up_password_layout);
-
+        backButton = findViewById(R.id.backButton);
         firstname = findViewById(R.id.sign_up_firstname);
         lastname = findViewById(R.id.sign_up_lastname);
         emailAddress = findViewById(R.id.sign_up_email);
@@ -76,6 +77,13 @@ public class SignUpWithEmail extends AppCompatActivity {
         alreadyHaveAccount.setText(alreadyHaveAccountSpan);
 
         alreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();

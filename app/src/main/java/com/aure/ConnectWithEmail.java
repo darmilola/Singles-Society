@@ -12,6 +12,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,8 @@ public class ConnectWithEmail extends AppCompatActivity {
 
     TextView dontHaveAccount,forgotPassword;
     LinearLayout loginButton;
+
+    ImageView backButton;
     TextInputLayout emailLayout,passwordLayout;
     TextInputEditText emailEdit,passwordEdit;
     String mEmail,mPassword;
@@ -44,6 +47,7 @@ public class ConnectWithEmail extends AppCompatActivity {
         forgotPassword = findViewById(R.id.login_forgot_password);
         emailLayout = findViewById(R.id.login_email_layout);
         passwordLayout = findViewById(R.id.login_password_layout);
+        backButton = findViewById(R.id.backButton);
 
         Spannable forgotPasswordSpan = new SpannableString("Forgot Password?");
         forgotPasswordSpan.setSpan(new ForegroundColorSpan(Color.parseColor("#fa2d65")), 7, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -53,6 +57,13 @@ public class ConnectWithEmail extends AppCompatActivity {
         dontHaveAccount.setText(dontHaveAccountSpan);
 
         forgotPassword.setText(forgotPasswordSpan);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +97,7 @@ public class ConnectWithEmail extends AppCompatActivity {
                         loginModel.setLoginListener(new LoginModel.LoginListener() {
                             @Override
                             public boolean isLoginSuccessful(String email) {
-                                Intent intent = new Intent(ConnectWithEmail.this,MainActivity.class);
+                                Intent intent = new Intent(ConnectWithEmail.this,MainAct2.class);
                                 intent.putExtra("email",email);
                                 startActivity(intent);
                                 finish();

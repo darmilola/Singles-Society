@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ public class ResetPassword extends AppCompatActivity {
     TextInputEditText newPassword, retypePassword;
     LinearLayout reset;
     String userIdHash;
+    ImageView backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class ResetPassword extends AppCompatActivity {
         newPassword = findViewById(R.id.reset_password_text);
         retypePassword = findViewById(R.id.reset_password_text_retype);
         reset = findViewById(R.id.reset_password_button);
-
+        backButton = findViewById(R.id.backButton);
       //  Intent intent = getIntent();
      //   String action = intent.getAction();
      //   Uri data = intent.getData();
@@ -60,6 +62,13 @@ public class ResetPassword extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

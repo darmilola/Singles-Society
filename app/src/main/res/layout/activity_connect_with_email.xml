@@ -18,6 +18,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="20dp"
+            android:id="@+id/backButton"
             android:tint="@color/white"
             android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
 
@@ -29,8 +30,8 @@
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:id="@+id/logo_image"
                 android:tint="@color/white"
@@ -38,10 +39,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
+                android:textSize="24dp"
                 android:id="@+id/logo_text"
                 android:textColor="@color/white"
-                android:text="Auratayya"
+                android:layout_marginLeft="5dp"
+                android:text="Single Society"
                 android:fontFamily="@font/kumelian"/>
         </LinearLayout>
 
@@ -53,19 +55,19 @@
             android:text="Welcome Back"
             android:layout_marginTop="40dp"
             android:layout_gravity="bottom"
-            android:fontFamily="sans-serif-medium"/>
+            android:fontFamily="@font/nunitobold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
+            android:textSize="17sp"
             android:gravity="bottom"
             android:layout_gravity="bottom"
             android:textColor="#EFEFEF"
             android:layout_marginBottom="10dp"
             android:text="Log into your account to continue"
             android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"/>
+            android:fontFamily="@font/nunitomed"/>
 
 
     </LinearLayout>
@@ -111,8 +113,8 @@
                         android:maxLength="160"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:textSize="17dp"
-                        android:fontFamily="sans-serif"
+                        android:textSize="17sp"
+                        android:fontFamily="@font/nunitomed"
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -139,10 +141,10 @@
                         android:maxLength="160"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:textSize="17dp"
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray"
-                        android:fontFamily="sans-serif"/>
+                        android:textSize="17sp"
+                        android:fontFamily="@font/nunitomed"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -151,10 +153,10 @@
                     android:layout_height="wrap_content"
                     android:text="Forgot Password?"
                     android:padding="5dp"
-                    android:textSize="12dp"
+                    android:textSize="13sp"
                     android:id="@+id/login_forgot_password"
                     android:gravity="right"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/nunitobold"
                     android:textColor="@color/pink"/>
 
 
@@ -173,9 +175,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
+                        android:textSize="18sp"
                         android:textColor="@color/white"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/nunitobold"
                         android:text="Login"/>
                 </LinearLayout>
 
@@ -205,7 +207,7 @@
                         android:layout_marginLeft="10dp"
                         android:textSize="16dp"
                         android:gravity="center"
-                        android:fontFamily="sans-serif-medium"
+                        android:fontFamily="@font/nunitoreg"
                         android:textColor="#9C9B9B"/>
 
                     <View
@@ -233,11 +235,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
                         android:layout_marginLeft="7dp"
                         android:textColor="@color/dark_text_color"
-                        android:fontFamily="sans-serif-black"
-                        android:text="Continue with Google"/>
+                        android:textSize="15sp"
+                        android:text="Continue With Google"
+                        android:fontFamily="@font/nunitobold"/>
                 </LinearLayout>
 
 
@@ -245,14 +247,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="Don't have an account? Register"
+                    android:text="don't have an account? Register"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/avenirbold"
                     android:id="@+id/login_dont_have_account"
                     android:textColor="@color/colorPrimary"/>
             </LinearLayout>

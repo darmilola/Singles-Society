@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    android:paddingBottom="20dp"
+    android:background="@color/special_activity_background">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="20dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="70dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/woman_official"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="Mario Dedivanovic"
+        android:textSize="20sp"
+        android:fontFamily="@font/nunitomed"
+        android:textColor="@color/dark_text_color"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="Los Angeles, California"
+        android:textSize="15sp"
+        android:fontFamily="@font/nunitomed"
+        android:textColor="@color/light_text_color"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:tint="#5A70F4"
+            android:src="@drawable/link_icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="link.tree/daemwilolae"
+            android:textSize="14sp"
+            android:linksClickable="true"
+            android:fontFamily="@font/nunitomed"
+            android:textColor="#5A70F4"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="4"
+        android:layout_marginRight="20dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="223,674"
+                android:textSize="20sp"
+                android:fontFamily="@font/avenirbold"
+                android:textColor="@color/dark_text_color"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Posts"
+                android:textSize="15sp"
+                android:fontFamily="@font/nunitomed"
+                android:textColor="@color/light_text_color"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="25dp"
+                android:background="@color/light_text_color"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="267k"
+                android:textSize="20sp"
+                android:fontFamily="@font/avenirbold"
+                android:textColor="@color/dark_text_color"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Followers"
+                android:textSize="15sp"
+                android:fontFamily="@font/nunitomed"
+                android:textColor="@color/light_text_color"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="25dp"
+                android:background="@color/light_text_color"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="500k"
+                android:textSize="20sp"
+                android:fontFamily="@font/avenirbold"
+                android:textColor="@color/dark_text_color"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Following"
+                android:textSize="15sp"
+                android:fontFamily="@font/nunitomed"
+                android:textColor="@color/light_text_color"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:weightSum="2"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:textSize="17sp"
+            android:text="Edit Profile"
+            android:backgroundTint="#FA4375"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunitoreg"
+            android:background="@drawable/filled_circle"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:text="Log Out"
+            android:id="@+id/logOutCta"
+            android:layout_marginLeft="5dp"
+            android:textColor="#FA4375"
+            android:fontFamily="@font/nunitoreg"
+            android:background="@drawable/pink_outline_circle"/>
+
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:text="About Me"
+        android:textSize="17sp"
+        android:fontFamily="@font/avenirbold"
+        android:layout_marginRight="16sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/dark_text_color"
+        android:maxLines="1"
+        android:layout_marginLeft="16dp"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|left"
+        android:text="About.me is a personal web hosting service co-founded by Ryan Freitas, Tony Conrad and Tim Young in October 2009. The site offers registered users a simple platform from which to link multiple online identities, relevant external sites, and popular social networking websites such as Facebook, Flickr, and Google+"
+        android:textSize="15sp"
+        android:fontFamily="@font/nunitoreg"
+        android:layout_marginRight="16sp"
+        android:layout_marginTop="10dp"
+        android:paddingRight="30dp"
+
+        android:textColor="@color/light_text_color"
+        android:maxLines="4"
+        android:lineSpacingExtra="7dp"
+        android:layout_marginLeft="16dp"
+        android:ellipsize="end"/>
+
+
+
+</LinearLayout>
