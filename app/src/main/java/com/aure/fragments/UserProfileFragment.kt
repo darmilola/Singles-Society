@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.aure.NewWelcome
 import com.aure.R
 import com.aure.UiAdapters.ExploreItemAdapter
+import com.aure.UiModels.BottomNav
 import com.aure.UiModels.ExploreItem
 import com.aure.WelcomeActivity
 import kotlinx.android.synthetic.main.fragment_trending.*
@@ -17,37 +18,95 @@ import kotlinx.android.synthetic.main.fragment_user_profile.*
 import kotlinx.android.synthetic.main.profile_info_arena.*
 
 
+
+private const val ID_IMAGE_LIBRARY = 0
+private const val ID_VIDEO_LIBRARY = 1
+private const val ID_BOOKMARKS = 2
+private const val ID_DATING_PROFILE = 3
 class UserProfileFragment : Fragment() {
 
-    private var itemList: ArrayList<ExploreItem>  = arrayListOf()
-    private lateinit var itemView: View
-    private lateinit var itemAdapter: ExploreItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        populateView()
+
+        initView()
 
         logOutCta.setOnClickListener {
             logOut()
         }
     }
 
-    private fun populateView(){
-        for (i in 0..30) {
-            itemList.add(ExploreItem())
+    private fun initView() {
+
+        userProfileNavigation?.apply {
+
+            add(
+                BottomNav.Model(
+                     ID_IMAGE_LIBRARY,
+                    R.drawable.pictures,
+                    "ImageLibrary"
+                )
+            )
+            add(
+                BottomNav.Model(
+                     ID_VIDEO_LIBRARY,
+                    R.drawable.play_circle_icon,
+                    "videoLibrary"
+                )
+            )
+            add(
+                BottomNav.Model(
+                     ID_BOOKMARKS,
+                    R.drawable.bookmark,
+                    "Bookmarks"
+                )
+            )
+            add(
+                BottomNav.Model(
+                    ID_DATING_PROFILE,
+                    R.drawable.dating_smartphone_man_icon,
+                    "datingProfile"
+                )
+            )
+        }?.show(ID_IMAGE_LIBRARY)
+        loadFragment(ImageLibraryFragment())
+
+        userProfileNavigation.setOnClickMenuListener {
+            when (it.id) {
+                ID_IMAGE_LIBRARY -> {
+                    loadFragment(ImageLibraryFragment())
+                }
+                 ID_VIDEO_LIBRARY -> {
+                    loadFragment(VideoLibraryFragment())
+                }
+                 ID_BOOKMARKS -> {
+                    loadFragment(BookMarksFragment())
+                }
+                 ID_DATING_PROFILE -> {
+                    loadFragment(DatingProfileFragment())
+                }
+            }
         }
-        itemAdapter = ExploreItemAdapter(itemList,requireContext())
-        recyclerview.adapter = itemAdapter
 
     }
+
+
+
+    private fun loadFragment(fragment: Fragment){
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.userProfileLibraryPage,fragment)
+        transaction.commit()
+    }
+
+
+
 
     private fun logOut() {
         val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())

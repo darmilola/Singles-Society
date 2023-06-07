@@ -542,7 +542,4 @@ class HomeFragment : Fragment(), CardStackListener {
         }
         notificationManager.notify(1, mBuilder.build())
     }
-
-
-
 }

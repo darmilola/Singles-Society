@@ -44,61 +44,27 @@
                 android:elevation="0dp"
                 android:layout_height="70dp"
                 app:layout_collapseMode="pin" >
-                <LinearLayout
+
+             <com.aure.UiModels.BottomNav
+                    android:id="@+id/userProfileNavigation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:weightSum="4">
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/pictures"
-                            app:tint="@color/light_text_color"/>
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/play_circle_icon"
-                            app:tint="@color/light_text_color"/>
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/bookmark_icon"
-                            app:tint="@color/light_text_color"/>
-                    </FrameLayout>
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/datingprofile"
-                            app:tint="@color/light_text_color"/>
-                    </FrameLayout>
-
-                </LinearLayout>
-
+                    android:layout_gravity="bottom"
+                    app:ss_backgroundBottomColor="@color/black"
+                    app:ss_circleColor="#FA4375"
+                    app:ss_waveHeight="1"
+                    app:ss_countBackgroundColor="#FA4375"
+                    app:ss_countTextColor="#ffffff"
+                    app:ss_defaultIconColor="#6200EE"
+                    app:ss_iconTextColor="#838282"
+                    app:ss_rippleColor="#2f424242"
+                    android:background="#f2f3f5"
+                    app:ss_iconTextSize="14sp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    app:ss_selectedIconColor="#FA4375"
+                    app:ss_selectedIconTextColor="#FA4375"
+                    app:ss_shadowColor="@color/deep_yellow"/>
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -114,15 +80,11 @@
         android:backgroundTint="@color/special_activity_background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:itemCount="30"
-            android:id="@+id/recyclerview"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/explore_item"/>
-
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/userProfileLibraryPage"/>
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
