@@ -54,7 +54,7 @@ public class SignUpWithEmail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);
-        setContentView(R.layout.activity_sign_up_with_email);
+        setContentView(R.layout.sign_up_screen);
         initView();
     }
 
@@ -86,7 +86,7 @@ public class SignUpWithEmail extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                supportFinishAfterTransition();
             }
         });
 
@@ -131,7 +131,9 @@ public class SignUpWithEmail extends AppCompatActivity {
 
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
 

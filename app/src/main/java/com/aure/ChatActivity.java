@@ -395,7 +395,6 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
         }
         Intent intent = new Intent(this, NotificationService.class);
         intent.putExtra("userId",senderId);

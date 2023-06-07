@@ -11,6 +11,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,7 +36,7 @@ public class ConnectWithEmail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_connect_with_email);
+        setContentView(R.layout.login_screen);
         initView();
     }
 
@@ -61,7 +62,7 @@ public class ConnectWithEmail extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                supportFinishAfterTransition();
             }
         });
 
@@ -123,7 +124,9 @@ public class ConnectWithEmail extends AppCompatActivity {
 
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
 
@@ -141,4 +144,6 @@ public class ConnectWithEmail extends AppCompatActivity {
         }
         return valid;
     }
+
+
 }

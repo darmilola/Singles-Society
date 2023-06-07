@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.aure.NewWelcome
 import com.aure.R
 import com.aure.UiAdapters.ExploreItemAdapter
 import com.aure.UiModels.ExploreItem
@@ -51,7 +52,7 @@ class UserProfileFragment : Fragment() {
     private fun logOut() {
         val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         preferences.edit().remove("userEmail").apply()
-        startActivity(Intent(requireContext(), WelcomeActivity::class.java))
+        startActivity(Intent(requireContext(), NewWelcome::class.java))
         activity?.finish()
     }
 }

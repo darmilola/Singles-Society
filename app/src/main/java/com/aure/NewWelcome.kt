@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import com.aure.UiModels.SignupModel
 import com.aure.UiModels.SignupModel.SignupListener
@@ -16,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import kotlinx.android.synthetic.main.activity_new_welcome.*
+
 
 class NewWelcome : AppCompatActivity() {
 
@@ -34,20 +35,22 @@ class NewWelcome : AppCompatActivity() {
         googleSignIn.setOnClickListener(
             View.OnClickListener { startGoogleSignIn() })
         emailSignIn.setOnClickListener(View.OnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    ConnectWithEmail::class.java
-                )
+
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@NewWelcome,
+                (welcomePeople as View?)!!, "welcomePeople"
             )
+            val intent = Intent(this, ConnectWithEmail::class.java)
+            startActivity(intent,options.toBundle())
         })
         getStarted.setOnClickListener(View.OnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    SignUpWithEmail::class.java
-                )
+
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@NewWelcome,
+                (welcomePeople as View?)!!, "welcomePeople"
             )
+            val intent = Intent(this, SignUpWithEmail::class.java)
+            startActivity(intent, options.toBundle())
         })
     }
 
