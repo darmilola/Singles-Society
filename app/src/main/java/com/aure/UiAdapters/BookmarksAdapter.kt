@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aure.ExplorePage
-import com.aure.R
+import com.aure.*
 import com.aure.UiModels.BookmarksModel
 
 private const val TYPE_IMAGE = 1
@@ -21,22 +20,22 @@ class BookmarksAdapter(private val bookmarkList: ArrayList<BookmarksModel>, var 
             TYPE_IMAGE -> {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.image_media_item, parent, false)
-                return BookMarkItemViewHolder(view)
+                return BookMarkItemImageViewHolder(view)
             }
             TYPE_VIDEO -> {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.video_media_item, parent, false)
-                return BookMarkItemViewHolder(view)
+                return BookMarkItemVideoViewHolder(view)
             }
             TYPE_PROFILE -> {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.profile_media_item, parent, false)
-                return BookMarkItemViewHolder(view)
+                return BookMarkItemProfileViewHolder(view)
             }
             else -> {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.image_media_item, parent, false)
-                return BookMarkItemViewHolder(view)
+                return BookMarkItemImageViewHolder(view)
             }
         }
 
@@ -69,10 +68,27 @@ class BookmarksAdapter(private val bookmarkList: ArrayList<BookmarksModel>, var 
         }
     }
 
-   inner class BookMarkItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-       init {
+
+    inner class BookMarkItemVideoViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        init {
             ItemView.setOnClickListener {
-                context.startActivity(Intent(context,ExplorePage::class.java))
+                context.startActivity(Intent(context,VideoPostFullView::class.java))
+            }
+        }
+    }
+
+    inner class BookMarkItemImageViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        init {
+            ItemView.setOnClickListener {
+                context.startActivity(Intent(context,ImagePostFullView::class.java))
+            }
+        }
+    }
+
+    inner class BookMarkItemProfileViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        init {
+            ItemView.setOnClickListener {
+                context.startActivity(Intent(context,DatingProfileFullView::class.java))
             }
         }
     }

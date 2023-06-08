@@ -19,6 +19,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DatingProfileFullView"
+            android:exported="false" />
+        <activity
+            android:name=".VideoPostFullView"
+            android:exported="false" />
+        <activity
+            android:name=".ImagePostFullView"
+            android:exported="false" />
+        <activity
+            android:name=".GetResetPasswordLink"
+            android:exported="false" />
+        <activity
             android:name=".NewWelcome"
             android:exported="false" />
         <activity

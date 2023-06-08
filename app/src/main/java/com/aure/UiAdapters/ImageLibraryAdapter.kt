@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aure.ExplorePage
+import com.aure.ImagePostFullView
 import com.aure.R
 import com.aure.UiModels.ImageModel
 
@@ -30,7 +31,7 @@ class ImageLibraryAdapter(val imageList: ArrayList<ImageModel>,val context: Cont
 
         init {
             ItemView.setOnClickListener {
-                context.startActivity(Intent(context, ExplorePage::class.java))
+                context.startActivity(Intent(context, ImagePostFullView::class.java))
             }
         }
 

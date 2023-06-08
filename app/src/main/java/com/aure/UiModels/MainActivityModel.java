@@ -30,12 +30,18 @@ import okhttp3.Response;
 
 public class MainActivityModel {
     private String isProfileCompleted,isSubscribed,firstname,lastname,imageUrl,phonenumber;
+
+    private String about,status,language,city,occupation,marriageGoals,educationLevel,workplace,drinking,smoking,gender,quote,religion;
+    private int age;
     private String baseUrl = new URL().getBaseUrl();
     private String getProfileUrl = baseUrl+"users/search";
     private String getShowProfileUrl = baseUrl+"users/show";
     private String setMatchUrl = baseUrl+"matches";
     private String setLikeUrl = baseUrl+"like/user";
     private String deleteAccountUrl = baseUrl+"users/delete";
+
+    private String image1Url,image2Url,image3Url;
+
     private String userEmail;
     private InfoReadyListener infoReadyListener;
     private ShowcaseInfoReadyListener showcaseInfoReadyListener;
@@ -48,7 +54,7 @@ public class MainActivityModel {
     private DeletionListener deletionListener;
 
     public interface InfoReadyListener{
-        void onReady(MainActivityModel mainActivityModel);
+        void onReady(PreviewProfileModel previewProfileModel, ArrayList<String> likeIds);
         void onError(String message);
     }
 
@@ -81,14 +87,32 @@ public class MainActivityModel {
         loadingDialogUtils = new LoadingDialogUtils(context);
     }
 
-    public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl, String phonenumber, String isMatched){
-           this.isProfileCompleted = isProfileCompleted;
-           this.isSubscribed = isSubscribed;
-           this.firstname = firstname;
-           this.lastname = lastname;
-           this.imageUrl = imageUrl;
-           this.phonenumber   = phonenumber;
-           this.isMatched = isMatched;
+    public MainActivityModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl, String phonenumber, String about, String status, String language, String city, String occupation, String marriageGoals, String educationLevel, String workplace, String drinking, String smoking, String gender, String quote, int age, String image1Url, String image2Url, String image3Url,String religion, String isMatched, String userId){
+        this.isProfileCompleted = isProfileCompleted;
+        this.isSubscribed = isSubscribed;
+        this.lastname = lastname;
+        this.imageUrl = imageUrl;
+        this.phonenumber   = phonenumber;
+        this.about = about;
+        this.status = status;
+        this.language = language;
+        this.city = city;
+        this.occupation = occupation;
+        this.marriageGoals = marriageGoals;
+        this.educationLevel = educationLevel;
+        this.workplace = workplace;
+        this.drinking = drinking;
+        this.smoking = smoking;
+        this.gender = gender;
+        this.quote = quote;
+        this.image1Url = image1Url;
+        this.image2Url = image2Url;
+        this.image3Url = image3Url;
+        this.religion = religion;
+        this.age = age;
+        this.firstname = firstname;
+        this.userId = userId;
+        this.isMatched = isMatched;
     }
 
     public String getIsProfileCompleted() {
@@ -117,6 +141,11 @@ public class MainActivityModel {
 
     public String getPhonenumber() {
         return phonenumber;
+    }
+
+
+    public String getUserId() {
+        return userId;
     }
 
     public void setShowcaseInfoReadyListener(ShowcaseInfoReadyListener showcaseInfoReadyListener) {
@@ -168,30 +197,6 @@ public class MainActivityModel {
                         previewProfileModels.add(previewProfileModel);
                     }
 
-              /*      for(int i = 0; i < jsonArray2.length(); i++) {
-                        int age = jsonArray2.getJSONObject(i).getInt("age");
-                        String userId = jsonArray2.getJSONObject(i).getString("email");
-                        String city = jsonArray2.getJSONObject(i).getString("city");
-                        String mStatus = jsonArray2.getJSONObject(i).getString("status");
-                        String language = jsonArray2.getJSONObject(i).getString("language");
-                        String workplace = jsonArray2.getJSONObject(i).getString("workplace");
-                        String occupation = jsonArray2.getJSONObject(i).getString("occupation");
-                        String education = jsonArray2.getJSONObject(i).getString("education");
-                        String quote = jsonArray2.getJSONObject(i).getString("quote");
-                        String firstImage = jsonArray2.getJSONObject(i).getString("firstImage");
-                        String secondImage = jsonArray2.getJSONObject(i).getString("secondImage");
-                        String thirdImage = jsonArray2.getJSONObject(i).getString("thirdImage");
-                        String about = jsonArray2.getJSONObject(i).getString("about");
-                        String marriageGoals = jsonArray2.getJSONObject(i).getString("marriageGoals");
-                        String drinking = jsonArray2.getJSONObject(i).getString("drinking");
-                        String smoking = jsonArray2.getJSONObject(i).getString("smoking");
-                        String gender = jsonArray2.getJSONObject(i).getString("gender");
-                        String mReligion = jsonArray2.getJSONObject(i).getString("religion");
-                        String firstname = jsonArray2.getJSONObject(i).getString("firstname");
-                        String isMatched = jsonArray2.getJSONObject(i).getString("isMatched");
-                        PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname, about, mStatus, language, city, occupation, marriageGoals, education, workplace, drinking, smoking, gender, quote, age, firstImage, secondImage, thirdImage, mReligion,isMatched);
-                        previewProfileModels.add(previewProfileModel);
-                    }*/
                     Collections.shuffle(previewProfileModels);
                     showcaseInfoReadyListener.onReady(previewProfileModels,likedUserId);
 
@@ -223,6 +228,15 @@ public class MainActivityModel {
                 if(status.equalsIgnoreCase("success")){
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
 
+                  /*  JSONArray jsonArray1 = jsonObject.getJSONArray("likes");
+                    // JSONArray jsonArray2 = jsonObject.getJSONArray("likedYou");
+                    if(jsonArray1.length() >= 1) {
+                        for (int j = 0; j < jsonArray1.length(); j++) {
+                            String userId = jsonArray1.getJSONObject(j).getString("userId");
+                            likedUserId.add(userId);
+                        }
+                    }*/
+
                     String isSubscribed = jsonArray.getJSONObject(0).getString("isSubscribed");
                     String isProfileCompleted = jsonArray.getJSONObject(0).getString("isProfileCompleted");
                     String gender = jsonArray.getJSONObject(0).getString("gender");
@@ -231,11 +245,28 @@ public class MainActivityModel {
                     String imageUrl = jsonArray.getJSONObject(0).getString("profileImage");
                     String phonenumber = jsonArray.getJSONObject(0).getString("phonenumber");
                     String isMatched = jsonArray.getJSONObject(0).getString("isMatched");
+                    String userId = jsonArray.getJSONObject(0).getString("email");
+                    int age = jsonArray.getJSONObject(0).getInt("age");
+                    String city = jsonArray.getJSONObject(0).getString("city");
+                    String mStatus = jsonArray.getJSONObject(0).getString("status");
+                    String language = jsonArray.getJSONObject(0).getString("language");
+                    String workplace = jsonArray.getJSONObject(0).getString("workplace");
+                    String occupation = jsonArray.getJSONObject(0).getString("occupation");
+                    String education = jsonArray.getJSONObject(0).getString("education");
+                    String quote = jsonArray.getJSONObject(0).getString("quote");
+                    String firstImage = jsonArray.getJSONObject(0).getString("firstImage");
+                    String secondImage = jsonArray.getJSONObject(0).getString("secondImage");
+                    String thirdImage = jsonArray.getJSONObject(0).getString("thirdImage");
+                    String about = jsonArray.getJSONObject(0).getString("about");
+                    String marriageGoals = jsonArray.getJSONObject(0).getString("marriageGoals");
+                    String drinking = jsonArray.getJSONObject(0).getString("drinking");
+                    String smoking = jsonArray.getJSONObject(0).getString("smoking");
+                    String mReligion = jsonArray.getJSONObject(0).getString("religion");
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
                     preferences.edit().putString("gender",gender).apply();
 
-                    MainActivityModel mainActivityModel = new MainActivityModel(isProfileCompleted,isSubscribed,firstname,lastname,imageUrl,phonenumber,isMatched);
-                    infoReadyListener.onReady(mainActivityModel);
+                    PreviewProfileModel previewProfileModel = new PreviewProfileModel(isProfileCompleted,isSubscribed,firstname,lastname,imageUrl,phonenumber,about,mStatus,language,city,occupation,marriageGoals,education,workplace,drinking,smoking,gender,quote,age,firstImage,secondImage,thirdImage,mReligion,isMatched,userId,new ArrayList<String>());
+                    infoReadyListener.onReady(previewProfileModel, likedUserId);
                 }
                 else if(status.equalsIgnoreCase("failure")){
                     infoReadyListener.onError("Error Occurred please try again");

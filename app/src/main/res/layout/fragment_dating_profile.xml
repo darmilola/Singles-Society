@@ -1,49 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
     android:background="@color/special_activity_background">
 
-    <LinearLayout
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loaderView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:elevation="6dp"
+        android:visibility="visible"
+        app:lottie_rawRes="@raw/loader"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="4dp"
+        android:visibility="gone"
+        android:layout_marginRight="4dp"
+        android:id="@+id/rootView"
+        android:layout_marginTop="10dp">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loaderView"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:elevation="6dp"
-            android:visibility="visible"
-            android:layout_gravity="center"
-            app:lottie_rawRes="@raw/loader"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:elevation="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:weightSum="4"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|left">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
 
-        <FrameLayout
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right">
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_gravity="center"
+                        app:tint="@color/pink"
+                        android:src="@drawable/edit_profile_icon"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <com.aure.Arvi.widget.PlayableItemsRecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:id="@+id/main_view">
+            tools:listitem="@layout/user_showcase_type_career"
+            android:id="@+id/userDatingProfileRecyclerview"/>
 
-
-            <com.aure.Arvi.widget.PlayableCardStackView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/userShowcaseStack"/>
-            <include layout="@layout/error_page"/>
-
-
-
-        </FrameLayout>
-
-
-
-    </LinearLayout>
-
+    </FrameLayout>
 </LinearLayout>

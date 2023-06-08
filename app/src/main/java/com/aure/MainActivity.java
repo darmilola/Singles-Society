@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 metMatchRoot.setVisibility(View.GONE);
                 alreadyMatchedRoot.setVisibility(View.GONE);
                 errorLayoutRoot.setVisibility(View.GONE);
-                mainActivityModel.GetUserInfo();
+                //mainActivityModel.GetUserInfo();
             }
         });
 
@@ -456,57 +456,6 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
 
             }
         });
-
-        mainActivityModel = new MainActivityModel(MainActivity.this);
-        mainActivityModel.GetUserInfo();
-        mainActivityModel.setInfoReadyListener(new MainActivityModel.InfoReadyListener() {
-            @Override
-            public void onReady(MainActivityModel mMainActivityModel) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                preferences.edit().putString("firstname",mMainActivityModel.getFirstname()).apply();
-                preferences.edit().putString("lastname",mMainActivityModel.getLastname()).apply();
-                preferences.edit().putString("imageUrl",mMainActivityModel.getImageUrl()).apply();
-                preferences.edit().putString("phonenumber",mMainActivityModel.getPhonenumber()).apply();
-
-                counselling.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (mMainActivityModel.getIsSubscribed().equalsIgnoreCase("false")) {
-                            showSubAlert();
-                        } else {
-                            startActivity(new Intent(MainActivity.this, Counselling.class));
-                        }
-                    }
-                });
-
-                Glide.with(MainActivity.this)
-                        .load(mMainActivityModel.getImageUrl())
-                        .placeholder(R.drawable.profileplaceholder)
-                        .error(R.drawable.profileplaceholder)
-                        .into(profileImageView);
-
-                ParseUserResponse(mMainActivityModel);
-            }
-            @Override
-            public void onError(String message) {
-
-                emptyLayoutRoot.setVisibility(View.GONE);
-                completeProfileRoot.setVisibility(View.GONE);
-                progressBar.setVisibility(View.GONE);
-                activityCaughtUpRoot.setVisibility(View.GONE);
-                mainView.setVisibility(View.VISIBLE);
-                activityCaughtUpRoot.setVisibility(View.GONE);
-                userShowcaseStack.setVisibility(View.GONE);
-                swipeToolRoot.setVisibility(View.GONE);
-                alreadyMatchedRoot.setVisibility(View.GONE);
-                metMatchRoot.setVisibility(View.GONE);
-                errorLayoutRoot.setVisibility(View.VISIBLE);
-
-            }
-        });
-
-
-
 
     }
 

@@ -37,7 +37,7 @@ public class ResetPassword extends AppCompatActivity {
         newPassword = findViewById(R.id.reset_password_text);
         retypePassword = findViewById(R.id.reset_password_text_retype);
         reset = findViewById(R.id.reset_password_button);
-        backButton = findViewById(R.id.backButton);
+        backButton = findViewById(R.id.resetPasswordBackButton);
       //  Intent intent = getIntent();
      //   String action = intent.getAction();
      //   Uri data = intent.getData();
@@ -95,9 +95,12 @@ public class ResetPassword extends AppCompatActivity {
 
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
+
 
     private boolean isValidForm(){
         boolean isValid = true;

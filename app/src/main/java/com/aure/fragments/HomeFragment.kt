@@ -190,17 +190,19 @@ class HomeFragment : Fragment(), CardStackListener {
         mainActivityModel = MainActivityModel(requireContext())
         mainActivityModel?.GetUserInfo()
         mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {
-            override fun onReady(mMainActivityModel: MainActivityModel) {
+            override fun onReady(previewProfileModel: PreviewProfileModel,  likeIds: ArrayList<String>) {
                 val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-                preferences.edit().putString("firstname", mMainActivityModel.firstname).apply()
-                preferences.edit().putString("lastname", mMainActivityModel.lastname).apply()
-                preferences.edit().putString("imageUrl", mMainActivityModel.imageUrl).apply()
-                preferences.edit().putString("phonenumber", mMainActivityModel.phonenumber).apply()
+                preferences.edit().putString("firstname", previewProfileModel.firstname).apply()
+                preferences.edit().putString("lastname", previewProfileModel.lastname).apply()
+                preferences.edit().putString("imageUrl", previewProfileModel.imageUrl).apply()
+                preferences.edit().putString("userId", previewProfileModel.userId).apply()
+                preferences.edit().putString("phonenumber", previewProfileModel.phonenumber).apply()
 
-                ParseUserResponse(mainActivityModel!!)
+                ParseUserResponse(previewProfileModel)
             }
 
             override fun onError(message: String) {
+                Log.e("onError: ", message)
                 empty_layout_root.setVisibility(View.GONE)
              //   complete_profile_root.setVisibility(View.GONE)
                 loaderView.setVisibility(View.GONE)
@@ -215,8 +217,8 @@ class HomeFragment : Fragment(), CardStackListener {
     }
 
 
-    private fun ParseUserResponse(mainActivityModel: MainActivityModel) {
-        if (mainActivityModel.isProfileCompleted.equals("false", ignoreCase = true)) {
+    private fun ParseUserResponse(previewProfileModel: PreviewProfileModel) {
+        if (previewProfileModel.isProfileCompleted.equals("false", ignoreCase = true)) {
 
             empty_layout_root.setVisibility(View.GONE)
          //   complete_profile_root.setVisibility(View.VISIBLE)
@@ -228,7 +230,7 @@ class HomeFragment : Fragment(), CardStackListener {
             met_match_root.setVisibility(View.GONE)
             error_layout_root.setVisibility(View.GONE)
 
-        } else if (mainActivityModel.isMatched.equals("true", ignoreCase = true) && mainActivityModel.isSubscribed.equals("false", ignoreCase = true)) {
+        } else if (previewProfileModel.isMatched.equals("true", ignoreCase = true) && previewProfileModel.isSubscribed.equals("false", ignoreCase = true)) {
             empty_layout_root.setVisibility(View.GONE)
           //  complete_profile_root.setVisibility(View.GONE)
             loaderView.setVisibility(View.GONE)
@@ -346,16 +348,45 @@ class HomeFragment : Fragment(), CardStackListener {
                 }
 
                 override fun onEmptyResponse() {
-                    empty_layout_root.setVisibility(View.VISIBLE)
-                //    complete_profile_root.setVisibility(View.GONE)
+
+                    for (i in 0..4) {
+                        val communityPostModel = CommunityPostModel()
+                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModel, 1)
+                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                    }
+
+                    for (i in 0..4) {
+                        val showCaseMainModel1 = ShowCaseMainModel(2)
+                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                    }
+
+                    Log.e("onReady: ", showCaseMainModelArrayList.size.toString() )
+
+                    showCaseMainModelArrayList.shuffle(Random(50))
+
+                    homeMainAdapter =
+                        HomeMainAdapter(
+                            requireContext(),
+                            showCaseMainModelArrayList
+                        )
+                    initializeCardStack()
                     loaderView.setVisibility(View.GONE)
+                    activity_main_main_view.setVisibility(View.VISIBLE)
+                    empty_layout_root.setVisibility(View.GONE)
+                    userShowcaseStack?.setVisibility(View.VISIBLE)
+                    showcase_swipe_layout.setVisibility(View.VISIBLE)
+                    already_matched_root.setVisibility(View.GONE)
+                    met_match_root.visibility = View.GONE
+                //    empty_layout_root.setVisibility(View.VISIBLE)
+                //    complete_profile_root.setVisibility(View.GONE)
+               /*     loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
                     showcase_swipe_layout.setVisibility(View.GONE)
                     already_matched_root.setVisibility(View.GONE)
                     met_match_root.setVisibility(View.GONE)
                     error_layout_root.setVisibility(View.GONE)
-                    already_matched_root.visibility = View.GONE
+                    already_matched_root.visibility = View.GONE*/
                 }
             })
         }

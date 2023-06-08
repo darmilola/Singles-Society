@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 import okhttp3.MediaType;
@@ -26,6 +27,8 @@ public class PreviewProfileModel {
 
     private String firstname,about,status,language,city,occupation,marriageGoals,educationLevel,workplace,drinking,smoking,gender,quote,religion;
     private int age;
+
+    private String isProfileCompleted,isSubscribed,lastname,imageUrl,phonenumber;
     private String baseUrl = new URL().getBaseUrl();
     private String getProfileUrl = baseUrl+"users/search";
     private Context context;
@@ -33,6 +36,8 @@ public class PreviewProfileModel {
     private InfoReadyListener infoReadyListener;
     private String userEmail,userId;
     private String isMatched;
+
+    private ArrayList<String> likeIds;
 
     public PreviewProfileModel(String userId,String firstname,String about, String status, String language, String city, String occupation, String marriageGoals, String educationLevel, String workplace, String drinking, String smoking, String gender, String quote, int age, String image1Url, String image2Url, String image3Url,String religion, String isMatched){
         this.about = about;
@@ -57,6 +62,37 @@ public class PreviewProfileModel {
         this.isMatched = isMatched;
     }
 
+    public PreviewProfileModel(String isProfileCompleted, String isSubscribed, String firstname, String lastname, String imageUrl, String phonenumber, String about, String status, String language, String city, String occupation, String marriageGoals, String educationLevel, String workplace, String drinking, String smoking, String gender, String quote, int age, String image1Url, String image2Url, String image3Url, String religion, String isMatched, String userId, ArrayList<String> likeIds){
+        this.isProfileCompleted = isProfileCompleted;
+        this.isSubscribed = isSubscribed;
+        this.lastname = lastname;
+        this.imageUrl = imageUrl;
+        this.phonenumber   = phonenumber;
+        this.about = about;
+        this.status = status;
+        this.language = language;
+        this.city = city;
+        this.occupation = occupation;
+        this.marriageGoals = marriageGoals;
+        this.educationLevel = educationLevel;
+        this.workplace = workplace;
+        this.drinking = drinking;
+        this.smoking = smoking;
+        this.gender = gender;
+        this.quote = quote;
+        this.image1Url = image1Url;
+        this.image2Url = image2Url;
+        this.image3Url = image3Url;
+        this.religion = religion;
+        this.age = age;
+        this.firstname = firstname;
+        this.userId = userId;
+        this.isMatched = isMatched;
+        this.likeIds = likeIds;
+    }
+
+
+
     public PreviewProfileModel(Context context){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         userEmail = preferences.getString("userEmail","");
@@ -67,6 +103,25 @@ public class PreviewProfileModel {
         void onError(String message);
     }
 
+    public String getIsProfileCompleted() {
+        return isProfileCompleted;
+    }
+
+    public String getIsSubscribed() {
+        return isSubscribed;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
 
     public void setQuote(String quote) {
         this.quote = quote;
@@ -74,6 +129,10 @@ public class PreviewProfileModel {
 
     public void setReligion(String religion) {
         this.religion = religion;
+    }
+
+    public String getLastname() {
+        return lastname;
     }
 
     public String getFirstname() {
@@ -256,7 +315,7 @@ public class PreviewProfileModel {
                     String drinking = jsonArray.getJSONObject(0).getString("drinking");
                     String smoking = jsonArray.getJSONObject(0).getString("smoking");
                     String gender = jsonArray.getJSONObject(0).getString("gender");
-                    String isMathched = jsonArray.getJSONObject(0).getString("isMatched");
+                    String isMatched = jsonArray.getJSONObject(0).getString("isMatched");
                     String mReligion = jsonArray.getJSONObject(0).getString("religion");
                     String firstname = jsonArray.getJSONObject(0).getString("firstname");
                     PreviewProfileModel previewProfileModel = new PreviewProfileModel(userId,firstname,about,mStatus,language,city,occupation,marriageGoals,education,workplace,drinking,smoking,gender,quote,age,firstImage,secondImage,thirdImage,mReligion,isMatched);

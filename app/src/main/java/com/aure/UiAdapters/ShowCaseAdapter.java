@@ -6,7 +6,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +64,8 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private static int SHOWCASE_TYPE_VIDEO = 9;
     Context context;
+
+    private Boolean uiNeedsAdjustment = false;
     ArrayList<ShowCaseModel> showcaseList = new ArrayList<>();
 
     public ShowCaseAdapter(Context context, ArrayList<ShowCaseModel> showCaseList){
@@ -109,6 +113,9 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return null;
     }
 
+    public void setUiNeedsAdjustment(Boolean uiNeedsAdjustment) {
+        this.uiNeedsAdjustment = uiNeedsAdjustment;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -125,7 +132,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             }
             Glide.with(context)
-                    .load(showCaseModel.getModelInfoList().get(4))
+                    .load("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=260&h=650&dpr=2")
                     .placeholder(R.drawable.profileplaceholder)
                     .error(R.drawable.profileplaceholder)
                     .into(showcaseMainItemViewHolder.imageView);
@@ -222,6 +229,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView city,nameAge;
         Chip occupation;
         ConstraintLayout potentialMatch;
+        LinearLayout viewRoot;
         public ShowcaseMainItemViewHolder(View ItemView){
             super(ItemView);
             imageView = ItemView.findViewById(R.id.type_main_image);
@@ -229,8 +237,25 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             nameAge = ItemView.findViewById(R.id.type_main_name_age);
             occupation = ItemView.findViewById(R.id.type_main_occupation);
             potentialMatch = ItemView.findViewById(R.id.potential_match);
+            viewRoot = ItemView.findViewById(R.id.mainViewRoot);
+            if(uiNeedsAdjustment) {
+                final int heightDp = context.getResources().getSystem().getDisplayMetrics().heightPixels - convertDpToPixel(70, context);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightDp);
+                viewRoot.setLayoutParams(layoutParams);
+            }
+
         }
     }
+
+    public static int convertPixelsToDp(float px, Context context){
+        return (int) (px / ((int) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    public static int convertDpToPixel(float dp, Context context){
+        return (int) (dp * ((int) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+
 
 
 
@@ -281,13 +306,23 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-    public class ShowcasePictureItemViewHolder extends RecyclerView.ViewHolder{
+    public class ShowcasePictureItemViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
-        public ShowcasePictureItemViewHolder(View ItemView){
+        LinearLayout viewRoot;
+
+        public ShowcasePictureItemViewHolder(View ItemView) {
             super(ItemView);
             imageView = ItemView.findViewById(R.id.type_picture_image);
+            viewRoot = ItemView.findViewById(R.id.mainViewRoot);
+            if(uiNeedsAdjustment) {
+                final int heightDp = context.getResources().getSystem().getDisplayMetrics().heightPixels - convertDpToPixel(70, context);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightDp);
+                viewRoot.setLayoutParams(layoutParams);
+            }
+
         }
+
     }
 
 
@@ -309,6 +344,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         Chip degree, occupation, workplace;
         ImageView imageView;
+        LinearLayout viewRoot;
 
         public ShowcaseCareerItemViewHolder(View ItemView) {
             super(ItemView);
@@ -316,6 +352,12 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             occupation = ItemView.findViewById(R.id.type_career_occupation);
             workplace = ItemView.findViewById(R.id.type_career_workplace);
             imageView = ItemView.findViewById(R.id.type_career_image);
+            viewRoot = ItemView.findViewById(R.id.mainViewRoot);
+            if(uiNeedsAdjustment) {
+                final int heightDp = context.getResources().getSystem().getDisplayMetrics().heightPixels - convertDpToPixel(70, context);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightDp);
+                viewRoot.setLayoutParams(layoutParams);
+            }
         }
 
     }
@@ -339,6 +381,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             AlphaAnimation alphaAnim2;
             LottieAnimationView playPauseView;
             String playbackCacheID = "";
+            LinearLayout viewRoot;
             private Handler mHandler = new Handler();
             boolean isCancelled = false;
             boolean isPaused = false;
@@ -365,6 +408,12 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 playPauseView.setVisibility(View.GONE);
                 playPauseView.setMinAndMaxFrame(0,40);
                 playPauseView.resumeAnimation();
+                viewRoot = itemView.findViewById(R.id.mainViewRoot);
+                if(uiNeedsAdjustment) {
+                    final int heightDp = context.getResources().getSystem().getDisplayMetrics().heightPixels - convertDpToPixel(70, context);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightDp);
+                    viewRoot.setLayoutParams(layoutParams);
+                }
 
 
                 setOnGestureListeners();

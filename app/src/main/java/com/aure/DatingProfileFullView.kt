@@ -8,37 +8,49 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
-import androidx.appcompat.app.AlertDialog
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.aure.Arvi.widget.CardStackLayoutManager
 import com.aure.Arvi.widget.SwipeableMethod
 import com.aure.UiAdapters.HomeMainAdapter
+import com.aure.UiAdapters.ShowCaseAdapter
+import com.aure.UiAdapters.ViewProfileAdapter
 import com.aure.UiModels.*
-import com.yuyakaido.android.cardstackview.*
+import com.google.android.material.button.MaterialButton
+import com.yuyakaido.android.cardstackview.CardStackListener
+import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.Duration
+import com.yuyakaido.android.cardstackview.StackFrom
+import com.yuyakaido.android.cardstackview.SwipeAnimationSetting
 import io.socket.client.IO
-import jp.alessandro.android.iab.BillingApi
-import jp.alessandro.android.iab.BillingContext
 import jp.alessandro.android.iab.BillingProcessor
-import jp.alessandro.android.iab.handler.PurchaseHandler
-import jp.alessandro.android.iab.logger.SystemLogger
 import kotlinx.android.synthetic.main.activity_complete_profile_prompt.*
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.*
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.activity_main_main_view
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.explorePageBackButton
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.loaderView
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.showcase_swipe_layout
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.userShowcaseStack
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.user_swipe_left
+import kotlinx.android.synthetic.main.activity_dating_profile_full_view.user_swipe_right
 import kotlinx.android.synthetic.main.activity_explore_page.*
+import kotlinx.android.synthetic.main.activity_image_post_full_view.*
+import kotlinx.android.synthetic.main.activity_image_post_full_view.backButton
 import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
 import kotlinx.android.synthetic.main.error_page.*
-import kotlinx.android.synthetic.main.fragment_home.activity_main_main_view
-import kotlinx.android.synthetic.main.fragment_home.loaderView
-import kotlinx.android.synthetic.main.fragment_home.showcase_swipe_layout
-import kotlinx.android.synthetic.main.fragment_home.userShowcaseStack
-import kotlinx.android.synthetic.main.fragment_home.user_swipe_left
-import kotlinx.android.synthetic.main.fragment_home.user_swipe_right
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.matched_layout.*
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
@@ -52,11 +64,32 @@ import java.net.URISyntaxException
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
-class ExplorePage : AppCompatActivity(), CardStackListener {
+class DatingProfileFullView : AppCompatActivity(), CardStackListener {
 
+
+    private var showCaseAdapter: ShowCaseAdapter? = null
+
+    var recyclerView: RecyclerView? = null
+    var showCaseModelArrayList = ArrayList<ShowCaseModel>()
+    var adapter: ViewProfileAdapter? = null
+    var progressBar: ProgressBar? = null
+    var mainStrings = ArrayList<String>()
+    var quoteStrings = ArrayList<String>()
+    var aboutStrings = ArrayList<String>()
+    var careerStrings = ArrayList<String>()
+    var aboutTextStrings = ArrayList<String>()
+    var imageStrings = ArrayList<String>()
+    var goalStrings = ArrayList<String>()
+    var search: TextView? = null
+    var errorLayout: LinearLayout? = null
+    var errorRetry: MaterialButton? = null
+    var previewProfileModel: PreviewProfileModel? = null
+    var previewBack: LinearLayout? = null
+
+    private val PREFERENCE_INT = 1
     var manager: CardStackLayoutManager? = null
     var homeMainAdapter: HomeMainAdapter? = null
-    var showCaseMainModelArrayList = java.util.ArrayList<ShowCaseMainModel>()
+    var showCaseMainModelArrayList = ArrayList<ShowCaseMainModel>()
     var likedUserId = java.util.ArrayList<String>()
     var mPreviewProfileModels = ArrayList<PreviewProfileModel>()
     var currentlyDisplayedUserId: String = ""
@@ -66,47 +99,15 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
     private val TYPE_SHOWCASE = 102
     private var isMatched = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_explore_page)
+        setContentView(R.layout.activity_dating_profile_full_view)
         initView()
-    }
-
-    private fun initBillingProcessor() {
-        val builder = BillingContext.Builder()
-            .setContext(this) // App context
-            .setPublicKeyBase64("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB") // Public key generated on the Google Play Console
-            .setApiVersion(BillingApi.VERSION_5) // It also supports version 5
-            .setLogger(SystemLogger())
-        mBillingProcessor = BillingProcessor(builder.build(), mPurchaseHandler)
-    }
-
-    private val mPurchaseHandler = PurchaseHandler { response ->
-        if (response.isSuccess) {
-            val purchase = response.purchase
-            val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-            val userEmail = preferences.getString("userEmail", "")
-            val paymentModel = PaymentModel(this, userEmail)
-            paymentModel.subscribe()
-            paymentModel.setPaymentListener(object : PaymentModel.PaymentListener {
-                override fun onSuccess() {
-                    showAlert()
-                }
-
-                override fun onFailure() {
-                   // Toast.makeText(this, "Error Occurred please try again", Toast.LENGTH_SHORT).show()
-                }
-            })
-        } else {
-
-            // Handle the error
-        }
     }
 
 
     private fun initView() {
-        initBillingProcessor()
-        // Blurry.with(this).radius(25).sampling(2).onto(metMatchRoot);
         val size = ArrayList<Size>()
         size.add(Size.LARGE)
         size.add(Size.MEDIUM)
@@ -183,11 +184,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {
             override fun onReady(previewProfileModel: PreviewProfileModel,
                                  likeIds: ArrayList<String>) {
-                val preferences = PreferenceManager.getDefaultSharedPreferences(this@ExplorePage)
-                preferences.edit().putString("firstname",previewProfileModel.firstname).apply()
-                preferences.edit().putString("lastname", previewProfileModel.lastname).apply()
-                preferences.edit().putString("imageUrl", previewProfileModel.imageUrl).apply()
-                preferences.edit().putString("phonenumber", previewProfileModel.phonenumber).apply()
+
 
                 ParseUserResponse(mainActivityModel!!)
             }
@@ -233,84 +230,68 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
             already_matched_root.visibility = View.VISIBLE
 
         } else {
-            val mainActivityModel2 = MainActivityModel(this)
-            mainActivityModel2.GetShowUserInfo()
-            mainActivityModel2.setShowcaseInfoReadyListener(object :
-                MainActivityModel.ShowcaseInfoReadyListener {
-                override fun onReady(previewProfileModels: ArrayList<PreviewProfileModel>, likeIds: ArrayList<String>) {
-                    mPreviewProfileModels.clear()
-                    mPreviewProfileModels = previewProfileModels
-                    Log.e("onReady: ", mPreviewProfileModels.size.toString())
-                    likedUserId.clear()
-                    showCaseMainModelArrayList.clear()
-                    likedUserId = likeIds
-                    for (previewProfileModel in previewProfileModels) {
-                        val showCaseModelArrayList = ArrayList<ShowCaseModel>()
-                        val mainStrings = ArrayList<String>()
-                        val quoteStrings = ArrayList<String>()
-                        val aboutStrings = ArrayList<String>()
-                        val careerStrings = ArrayList<String>()
-                        val imageStrings = ArrayList<String>()
-                        val goalStrings = ArrayList<String>()
-                        mainStrings.add(previewProfileModel.firstname)
-                        mainStrings.add(previewProfileModel.age.toString())
-                        mainStrings.add(previewProfileModel.city)
-                        mainStrings.add(previewProfileModel.occupation)
-                        mainStrings.add(previewProfileModel.image1Url)
-                        mainStrings.add(previewProfileModel.userId)
-                        val showCaseModel = ShowCaseModel(mainStrings, 1, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel)
-                        quoteStrings.add(previewProfileModel.quote)
-                        val showCaseModel1 = ShowCaseModel(quoteStrings, 2, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel1)
-                        val showCaseModel9 = ShowCaseModel(goalStrings, 9, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel9)
-                        aboutStrings.add(previewProfileModel.status)
-                        aboutStrings.add(previewProfileModel.smoking)
-                        aboutStrings.add(previewProfileModel.drinking)
-                        aboutStrings.add(previewProfileModel.language)
-                        aboutStrings.add(previewProfileModel.religion)
-                        aboutStrings.add(previewProfileModel.marriageGoals)
-                        val showCaseModel2 = ShowCaseModel(aboutStrings, 3, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel2)
-                        careerStrings.add(previewProfileModel.educationLevel)
-                        careerStrings.add(previewProfileModel.occupation)
-                        careerStrings.add(previewProfileModel.workplace)
-                        careerStrings.add(previewProfileModel.image2Url)
-                        val showCaseModel3 = ShowCaseModel(careerStrings, 4, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel3)
+           val mainActivityModel = MainActivityModel(this)
+            mainActivityModel?.GetUserInfo()
+            mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {
+                override fun onReady(
+                    previewProfileModel: PreviewProfileModel,
+                    likeIds: ArrayList<String>
+                ) {
 
-                        // aboutTextStrings.add(previewProfileModel.getAbout());
-                        //ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5,likeIds);
-                        // showCaseModelArrayList.add(showCaseModel4);
-                        imageStrings.add(previewProfileModel.image3Url)
-                        val showCaseModel5 = ShowCaseModel(imageStrings, 6, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel5)
+                    val showCaseModelArrayList = ArrayList<ShowCaseModel>()
+                    val mainStrings = ArrayList<String>()
+                    val quoteStrings = ArrayList<String>()
+                    val aboutStrings = ArrayList<String>()
+                    val careerStrings = ArrayList<String>()
+                    val imageStrings = ArrayList<String>()
+                    val goalStrings = ArrayList<String>()
+                    mainStrings.add(previewProfileModel.firstname)
+                    mainStrings.add(previewProfileModel.age.toString())
+                    mainStrings.add(previewProfileModel.city)
+                    mainStrings.add(previewProfileModel.occupation)
+                    mainStrings.add(previewProfileModel.image1Url)
+                    mainStrings.add(previewProfileModel.userId)
+                    val showCaseModel =
+                        ShowCaseModel(mainStrings, 1, likeIds, previewProfileModel.userId)
+                    showCaseModelArrayList.add(showCaseModel)
+                    quoteStrings.add(previewProfileModel.quote)
+                    val showCaseModel1 =
+                        ShowCaseModel(quoteStrings, 2, likeIds, previewProfileModel.userId)
+                    showCaseModelArrayList.add(showCaseModel1)
+                    val showCaseModel9 =
+                        ShowCaseModel(goalStrings, 9, likeIds, previewProfileModel.userId)
+                    showCaseModelArrayList.add(showCaseModel9)
+                    aboutStrings.add(previewProfileModel.status)
+                    aboutStrings.add(previewProfileModel.smoking)
+                    aboutStrings.add(previewProfileModel.drinking)
+                    aboutStrings.add(previewProfileModel.language)
+                    aboutStrings.add(previewProfileModel.religion)
+                    aboutStrings.add(previewProfileModel.marriageGoals)
+                    val showCaseModel2 =
+                        ShowCaseModel(aboutStrings, 3, likeIds, previewProfileModel.userId)
+                    showCaseModelArrayList.add(showCaseModel2)
+                    careerStrings.add(previewProfileModel.educationLevel)
+                    careerStrings.add(previewProfileModel.occupation)
+                    careerStrings.add(previewProfileModel.workplace)
+                    careerStrings.add(previewProfileModel.image2Url)
+                    val showCaseModel3 =
+                        ShowCaseModel(careerStrings, 4, likeIds, previewProfileModel.userId)
+                    showCaseModelArrayList.add(showCaseModel3)
 
-                        val showCaseMainModel =
-                            ShowCaseMainModel(showCaseModelArrayList, 0, true)
-                        showCaseMainModelArrayList.add(showCaseMainModel)
+                    imageStrings.add(previewProfileModel.image3Url)
+                    val showCaseModel5 =
+                        ShowCaseModel(imageStrings, 6, likeIds, previewProfileModel.userId)
+                    showCaseModelArrayList.add(showCaseModel5)
 
-                    }
+                    val showCaseMainModel =
+                        ShowCaseMainModel(showCaseModelArrayList, 0, true)
+                    showCaseMainModelArrayList.add(showCaseMainModel)
 
-                    for (i in 0..4) {
-                        val communityPostModel = CommunityPostModel()
-                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModel, 1)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
-                    }
 
-                    for (i in 0..4) {
-                        val showCaseMainModel1 = ShowCaseMainModel(2)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
-                    }
-
-                    Log.e("onReady: ", showCaseMainModelArrayList.size.toString() )
-
-                    showCaseMainModelArrayList.shuffle(Random(50))
 
                     homeMainAdapter =
                         HomeMainAdapter(
-                            this@ExplorePage,
+                            this@DatingProfileFullView,
                             showCaseMainModelArrayList
                         )
                     initializeCardStack()
@@ -322,7 +303,6 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
                     already_matched_root.setVisibility(View.GONE)
                     met_match_root.visibility = View.GONE
 
-                    // if(!likeIds.isEmpty()) displayLikedNotification();
                 }
 
                 override fun onError(message: String) {
@@ -338,55 +318,14 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
                     already_matched_root.visibility = View.GONE
                 }
 
-                override fun onEmptyResponse() {
-                    for (i in 0..4) {
-                        val communityPostModel = CommunityPostModel()
-                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModel, 1)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
-                    }
 
-                    for (i in 0..4) {
-                        val showCaseMainModel1 = ShowCaseMainModel(2)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
-                    }
-
-                    Log.e("onReady: ", showCaseMainModelArrayList.size.toString() )
-
-                    showCaseMainModelArrayList.shuffle(Random(50))
-
-                    homeMainAdapter =
-                        HomeMainAdapter(
-                            this@ExplorePage,
-                            showCaseMainModelArrayList
-                        )
-                    initializeCardStack()
-                    loaderView.setVisibility(View.GONE)
-                    activity_main_main_view.setVisibility(View.VISIBLE)
-                    empty_layout_root.setVisibility(View.GONE)
-                    userShowcaseStack?.setVisibility(View.VISIBLE)
-                    showcase_swipe_layout.setVisibility(View.VISIBLE)
-                    already_matched_root.setVisibility(View.GONE)
-                    met_match_root.visibility = View.GONE
-                /*    empty_layout_root.setVisibility(View.VISIBLE)
-                    //    complete_profile_root.setVisibility(View.GONE)
-                    loaderView.setVisibility(View.GONE)
-                    activity_main_main_view.setVisibility(View.VISIBLE)
-                    userShowcaseStack?.setVisibility(View.GONE)
-                    showcase_swipe_layout.setVisibility(View.GONE)
-                    already_matched_root.setVisibility(View.GONE)
-                    met_match_root.setVisibility(View.GONE)
-                    error_layout_root.setVisibility(View.GONE)
-                    already_matched_root.visibility = View.GONE*/
-                }
             })
         }
     }
 
     private fun initializeCardStack() {
         manager = CardStackLayoutManager(this, this)
-        manager?.setStackFrom(StackFrom.Top)
         manager?.setTranslationInterval(6.0f)
-        manager?.setVisibleCount(2)
         manager?.setScaleInterval(0.95f)
         manager?.setSwipeThreshold(0.5f)
         manager?.setMaxDegree(5.0f)
@@ -397,18 +336,6 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         userShowcaseStack?.layoutManager = manager
         userShowcaseStack?.adapter = homeMainAdapter
     }
-
-
-
-    private fun showAlert() {
-        AlertDialog.Builder(this)
-            .setTitle("Subscription successful")
-            .setMessage("You have successfully subscribed for Auratayya Premium, you can restart the App to activate more features") // Specifying a listener allows you to take an action before dismissing the dialog.
-            // The dialog is automatically dismissed when a dialog button is clicked.
-            .setPositiveButton("Okay") { dialog, which -> dialog.dismiss() }
-            .show()
-    }
-
 
     override fun onCardDragging(direction: Direction, ratio: Float) {
         if (direction == Direction.Right) {
@@ -450,7 +377,7 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
                 for (i in likedUserId.indices) {
                     if (currentlyDisplayedUserId.equals(likedUserId.get(i), ignoreCase = true)) {
                         //There is a Match set match break
-                        mainActivityModel.setMatched()
+                        //mainActivityModel.setMatched()
                         publishMatchNotification(
                             currentlyDisplayedUserId,
                             showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[0],
@@ -564,13 +491,17 @@ class ExplorePage : AppCompatActivity(), CardStackListener {
         notificationManager.notify(1, mBuilder.build())
     }
 
+
+
+
+
+
     override fun onResume() {
         super.onResume()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
             window.statusBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }
     }
 }
