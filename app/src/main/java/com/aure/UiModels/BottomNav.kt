@@ -20,17 +20,18 @@ import kotlin.math.abs
 
 internal typealias IBottomNavigationListener = (model: BottomNav.Model) -> Unit
 
+private const val ID_NOTIFICATION = 3
 @Suppress("MemberVisibilityCanBePrivate")
 class BottomNav : LinearLayout {
 
     var models = ArrayList<Model>()
     var cells = ArrayList<BottomNavIcon>()
         private set
-    private var callListenerWhenIsSelected = false
+    public var callListenerWhenIsSelected = false
 
     private var selectedId = -1
 
-    private var onClickedListener: IBottomNavigationListener = {}
+    public var onClickedListener: IBottomNavigationListener = {}
     private var onShowListener: IBottomNavigationListener = {}
     private var onReselectListener: IBottomNavigationListener = {}
 
@@ -229,11 +230,13 @@ class BottomNav : LinearLayout {
                 }
             }
             disableCell()
-            ll_cells.addView(this)
+            if(model.id != ID_NOTIFICATION) {
+                ll_cells.addView(this)
+            }
         }
+            cells.add(cell)
+            models.add(model)
 
-        cells.add(cell)
-        models.add(model)
     }
 
     private fun updateAllIfAllowDraw() {

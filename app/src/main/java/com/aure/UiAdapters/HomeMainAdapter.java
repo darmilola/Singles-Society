@@ -51,6 +51,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+
 public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
@@ -63,10 +67,16 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private static int TYPE_IMAGE = 2;
 
+    private Function0<Unit> visitProfileListener;
+
 
     public HomeMainAdapter(Context context, ArrayList<ShowCaseMainModel> showCaseMainModelArrayList){
         this.context = context;
         this.showCaseMainModelArrayList = showCaseMainModelArrayList;
+    }
+
+    public void setVisitProfileListener(@NotNull Function0<Unit> visitProfileListener) {
+        this.visitProfileListener = visitProfileListener;
     }
 
     @NonNull
@@ -139,6 +149,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return showCaseMainModelArrayList.size();
     }
 
+
     public class ShowcaseMainGeneralItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         RecyclerView showcaseRecyclerview;
@@ -160,6 +171,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public class ShowcaseImageItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         SliderView imageSlider;
+        CircleImageView accountProfileImage;
 
         public ShowcaseImageItemViewHolder(View ItemView){
             super(ItemView);
@@ -168,6 +180,17 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             imageSlider.getPagerIndicator().setElevation(50f);
             imageSlider.requestLayout();
             imageSlider.getPagerIndicator().requestLayout();
+            accountProfileImage = ItemView.findViewById(R.id.accountProfilePicture);
+
+            accountProfileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    visitProfileListener.invoke();
+                }
+            });
+
+
+
         }
 
         @Override
@@ -324,6 +347,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             boolean isStarted = false;
             boolean isLooping = false;
             private int playerProgress = 0;
+            private CircleImageView accountProfileImage;
 
             public CommunityPostItemViewHolder(ViewGroup parentViewGroup, View itemView) {
                 super(parentViewGroup, itemView);
@@ -341,7 +365,16 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 playPauseView.setVisibility(View.GONE);
                 playPauseView.setMinAndMaxFrame(0, 40);
                 playPauseView.resumeAnimation();
+                accountProfileImage = itemView.findViewById(R.id.accountProfilePicture);
 
+
+
+                accountProfileImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        visitProfileListener.invoke();
+                    }
+                });
 
                 setOnGestureListeners();
                 playPauseView.addAnimatorListener(new Animator.AnimatorListener() {

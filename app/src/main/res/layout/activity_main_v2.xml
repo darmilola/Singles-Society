@@ -26,6 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:orientation="horizontal"
                 android:id="@+id/main_info_toggle_layout"
                 android:gravity="center|left">
 
@@ -68,6 +69,7 @@
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
                     app:tint="#FA4375"
+                    android:id="@+id/notificationIcon"
                     android:src="@drawable/ring_icon"/>
 
             </LinearLayout>

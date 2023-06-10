@@ -5,18 +5,34 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_image_post_full_view.*
-import kotlinx.android.synthetic.main.community_post_engagement_view.*
+import com.aure.UiAdapters.ExploreSearchAdapter
+import com.aure.UiModels.ExploreItem
+import kotlinx.android.synthetic.main.activity_explore_search.*
 
-class VideoPostFullView : AppCompatActivity() {
+class ExploreSearch : AppCompatActivity() {
+
+
+    private var itemList: ArrayList<ExploreItem>  = arrayListOf()
+    private lateinit var itemAdapter: ExploreSearchAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video_post_full_view)
+        setContentView(R.layout.activity_explore_search)
+        populateView()
 
-
-        backButton.setOnClickListener {
+        exploreSearchBackButton.setOnClickListener {
             finish()
         }
+
+
+    }
+
+    private fun populateView(){
+        for (i in 0..50) {
+            itemList.add(ExploreItem())
+        }
+        itemAdapter = ExploreSearchAdapter(itemList,this)
+        exploreSearchRecyclerView.adapter = itemAdapter
     }
 
     override fun onResume() {

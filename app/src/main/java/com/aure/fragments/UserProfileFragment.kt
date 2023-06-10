@@ -19,10 +19,10 @@ import kotlinx.android.synthetic.main.profile_info_arena.*
 
 
 
-private const val ID_IMAGE_LIBRARY = 0
-private const val ID_VIDEO_LIBRARY = 1
-private const val ID_BOOKMARKS = 2
-private const val ID_DATING_PROFILE = 3
+private const val ID_IMAGE_LIBRARY = 5
+private const val ID_VIDEO_LIBRARY = 6
+private const val ID_BOOKMARKS = 7
+private const val ID_DATING_PROFILE = 8
 class UserProfileFragment : Fragment() {
 
 

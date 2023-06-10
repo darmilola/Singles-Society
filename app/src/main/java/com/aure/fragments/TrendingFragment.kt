@@ -1,5 +1,6 @@
 package com.aure.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.aure.ExploreSearch
 import com.aure.R
 import com.aure.UiAdapters.ExploreHeaderAdapter
 import com.aure.UiAdapters.ExploreItemAdapter
@@ -39,6 +41,10 @@ class TrendingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         populateView()
+
+        exploreSearchIcon.setOnClickListener {
+            context?.startActivity(Intent(requireActivity(),ExploreSearch::class.java))
+        }
     }
 
     private fun populateView(){

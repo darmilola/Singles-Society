@@ -5,14 +5,12 @@ import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.aure.UiModels.BottomNav
-import com.aure.fragments.ChatFragment
-import com.aure.fragments.HomeFragment
-import com.aure.fragments.TrendingFragment
-import com.aure.fragments.UserProfileFragment
+import com.aure.fragments.*
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_main_v2.*
 
@@ -23,7 +21,6 @@ private const val ID_NOTIFICATION = 3
 private const val ID_ACCOUNT = 4
 
 class MainAct2 : AppCompatActivity() {
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +49,7 @@ class MainAct2 : AppCompatActivity() {
                     BottomNav.Model(
                             ID_EXPLORE,
                             R.drawable.explore_ic,
-                            "Favorite"
+                            "Trending"
                     )
             )
             add(
@@ -66,17 +63,36 @@ class MainAct2 : AppCompatActivity() {
                     BottomNav.Model(
                             ID_ACCOUNT,
                             R.drawable.user_icon,
-                            "Notification"
+                            "Account"
                     )
             )
+            add(
+                BottomNav.Model(
+                    ID_NOTIFICATION,
+                    R.drawable.ring_icon,
+                    "Notification"
+                )
+            )
         }?.show(ID_HOME)
-        loadFragment(HomeFragment())
+        loadFragment(HomeFragment(visitProfileListener = {
+            loadFragment(VisitProfileFragment( visitProfileExitListener = {
+
+                supportFragmentManager.popBackStack()
+
+            }))
+        }))
         bottomNavigation?.setCount(ID_MESSAGE,"25")
 
         bottomNavigation.setOnClickMenuListener {
             when(it.id){
                 ID_HOME -> {
-                    loadFragment(HomeFragment())
+                    loadFragment(HomeFragment(visitProfileListener = {
+                        loadFragment(VisitProfileFragment( visitProfileExitListener = {
+
+                            supportFragmentManager.popBackStack()
+
+                        }))
+                    }))
                 }
                ID_EXPLORE ->{
                    loadFragment(TrendingFragment())
@@ -90,13 +106,39 @@ class MainAct2 : AppCompatActivity() {
             }
         }
 
+        notificationIcon.setOnClickListener {
+            bottomNavigation.onClickedListener(BottomNav.Model(
+                ID_NOTIFICATION,
+                R.drawable.ring_icon,
+                "Notification"
+            ))
+            loadFragment(NotificationFragment())
+        }
+
+
 
 
     }
 
+
     private fun loadFragment(fragment: Fragment){
+        if(fragment is NotificationFragment){
+            bottomNavigation.callListenerWhenIsSelected = true
+            notificationIcon.setImageResource(R.drawable.notification_clicked_icon)
+        }
+        else{
+            bottomNavigation.callListenerWhenIsSelected = false
+            notificationIcon.setImageResource(R.drawable.ring_icon)
+        }
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container,fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun removeFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.remove(fragment)
         transaction.commit()
     }
 
@@ -106,9 +148,9 @@ class MainAct2 : AppCompatActivity() {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
             window.statusBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }
     }
+
 
 
 }

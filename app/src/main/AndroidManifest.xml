@@ -19,6 +19,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ExploreSearch"
+            android:exported="false" />
+        <activity
             android:name=".DatingProfileFullView"
             android:exported="false" />
         <activity

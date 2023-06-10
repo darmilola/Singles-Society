@@ -40,7 +40,6 @@ import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
 import kotlinx.android.synthetic.main.error_page.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.matched_layout.*
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -57,7 +56,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 
-class HomeFragment : Fragment(), CardStackListener {
+class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(), CardStackListener {
 
     private val PREFERENCE_INT = 1
     var manager: CardStackLayoutManager? = null
@@ -159,7 +158,6 @@ class HomeFragment : Fragment(), CardStackListener {
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
             met_match_root.setVisibility(View.GONE)
-            already_matched_root.setVisibility(View.GONE)
             error_layout_root.setVisibility(View.GONE)
             mainActivityModel?.GetUserInfo()
         })
@@ -209,7 +207,6 @@ class HomeFragment : Fragment(), CardStackListener {
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
                 showcase_swipe_layout.setVisibility(View.GONE)
-                already_matched_root.setVisibility(View.GONE)
                 met_match_root.setVisibility(View.GONE)
                 error_layout_root.setVisibility(View.VISIBLE)
             }
@@ -226,7 +223,6 @@ class HomeFragment : Fragment(), CardStackListener {
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
-            already_matched_root.setVisibility(View.GONE)
             met_match_root.setVisibility(View.GONE)
             error_layout_root.setVisibility(View.GONE)
 
@@ -237,11 +233,8 @@ class HomeFragment : Fragment(), CardStackListener {
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
-            already_matched_root.setVisibility(View.GONE)
             met_match_root.setVisibility(View.GONE)
             error_layout_root.setVisibility(View.GONE)
-            already_matched_root.visibility = View.VISIBLE
-
         } else {
             val mainActivityModel2 = MainActivityModel(requireContext())
             mainActivityModel2.GetShowUserInfo()
@@ -328,7 +321,6 @@ class HomeFragment : Fragment(), CardStackListener {
                     empty_layout_root.setVisibility(View.GONE)
                     userShowcaseStack?.setVisibility(View.VISIBLE)
                     showcase_swipe_layout.setVisibility(View.VISIBLE)
-                    already_matched_root.setVisibility(View.GONE)
                     met_match_root.visibility = View.GONE
 
                     // if(!likeIds.isEmpty()) displayLikedNotification();
@@ -341,10 +333,8 @@ class HomeFragment : Fragment(), CardStackListener {
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     userShowcaseStack?.setVisibility(View.GONE)
                     showcase_swipe_layout.setVisibility(View.GONE)
-                    already_matched_root.setVisibility(View.GONE)
                     met_match_root.setVisibility(View.GONE)
                     error_layout_root.setVisibility(View.VISIBLE)
-                    already_matched_root.visibility = View.GONE
                 }
 
                 override fun onEmptyResponse() {
@@ -375,18 +365,11 @@ class HomeFragment : Fragment(), CardStackListener {
                     empty_layout_root.setVisibility(View.GONE)
                     userShowcaseStack?.setVisibility(View.VISIBLE)
                     showcase_swipe_layout.setVisibility(View.VISIBLE)
-                    already_matched_root.setVisibility(View.GONE)
                     met_match_root.visibility = View.GONE
-                //    empty_layout_root.setVisibility(View.VISIBLE)
-                //    complete_profile_root.setVisibility(View.GONE)
-               /*     loaderView.setVisibility(View.GONE)
-                    activity_main_main_view.setVisibility(View.VISIBLE)
-                    userShowcaseStack?.setVisibility(View.GONE)
-                    showcase_swipe_layout.setVisibility(View.GONE)
-                    already_matched_root.setVisibility(View.GONE)
-                    met_match_root.setVisibility(View.GONE)
-                    error_layout_root.setVisibility(View.GONE)
-                    already_matched_root.visibility = View.GONE*/
+
+                   homeMainAdapter!!.setVisitProfileListener{
+                           visitProfileListener?.invoke()
+                   }
                 }
             })
         }
@@ -475,10 +458,8 @@ class HomeFragment : Fragment(), CardStackListener {
                         activity_main_main_view.setVisibility(View.VISIBLE)
                         userShowcaseStack?.setVisibility(View.GONE)
                         showcase_swipe_layout.setVisibility(View.GONE)
-                        already_matched_root.setVisibility(View.GONE)
                         met_match_root.setVisibility(View.VISIBLE)
                         error_layout_root.setVisibility(View.GONE)
-                        already_matched_root.visibility = View.GONE
 
                         val preferences =
                             PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -497,10 +478,8 @@ class HomeFragment : Fragment(), CardStackListener {
                         activity_main_main_view.setVisibility(View.VISIBLE)
                         userShowcaseStack?.setVisibility(View.GONE)
                         showcase_swipe_layout.setVisibility(View.GONE)
-                        already_matched_root.setVisibility(View.GONE)
                         met_match_root.setVisibility(View.GONE)
                         error_layout_root.setVisibility(View.GONE)
-                        already_matched_root.visibility = View.GONE
                     }
 
                 }
@@ -515,10 +494,8 @@ class HomeFragment : Fragment(), CardStackListener {
                 activity_main_main_view.setVisibility(View.VISIBLE)
                 userShowcaseStack?.setVisibility(View.GONE)
                 showcase_swipe_layout.setVisibility(View.GONE)
-                already_matched_root.setVisibility(View.GONE)
                 met_match_root.setVisibility(View.GONE)
                 error_layout_root.setVisibility(View.GONE)
-                already_matched_root.visibility = View.GONE
 
             }
         }
@@ -529,10 +506,8 @@ class HomeFragment : Fragment(), CardStackListener {
             activity_main_main_view.setVisibility(View.VISIBLE)
             userShowcaseStack?.setVisibility(View.GONE)
             showcase_swipe_layout.setVisibility(View.GONE)
-            already_matched_root.setVisibility(View.GONE)
             met_match_root.setVisibility(View.GONE)
             error_layout_root.setVisibility(View.GONE)
-            already_matched_root.visibility = View.GONE
         }
     }
 
