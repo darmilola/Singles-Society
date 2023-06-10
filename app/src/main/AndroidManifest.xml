@@ -37,7 +37,7 @@
             android:name=".NewWelcome"
             android:exported="false" />
         <activity
-            android:name=".ExplorePage"
+            android:name=".Spaces"
             android:exported="false" />
         <activity
             android:name=".MainActivityV2"
@@ -150,6 +150,8 @@
         <activity
             android:name=".AdminProductDetails"
             android:screenOrientation="portrait" />
+        <activity android:name=".fragments.PostFullView"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".NotificationService"

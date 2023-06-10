@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.aure.ExplorePage
+import com.aure.Spaces
 import com.aure.R
 import com.aure.UiModels.ExploreItem
 
@@ -39,7 +39,7 @@ class ExploreSearchAdapter(val exploreItems: ArrayList<ExploreItem>?, val contex
                 ItemView.context.startActivity(
                     Intent(
                         ItemView.context,
-                        ExplorePage::class.java
+                        Spaces::class.java
                     )
                 )
             }

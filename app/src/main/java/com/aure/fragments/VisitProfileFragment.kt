@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_visit_profile.*
 
 private const val ID_IMAGE_LIBRARY = 9
 private const val ID_VIDEO_LIBRARY = 10
-class VisitProfileFragment(private var visitProfileExitListener: Function0<Unit>? = null) : Fragment() {
+class VisitProfileFragment(private var visitProfileExitListener: Function0<Unit>? = null, private val backButtonVisible: Boolean = true) : Fragment() {
 
 
 
@@ -60,6 +60,10 @@ class VisitProfileFragment(private var visitProfileExitListener: Function0<Unit>
                     loadFragment(VideoLibraryFragment())
                 }
             }
+        }
+
+        if(!backButtonVisible){
+            exitUserProfileVisit.visibility = View.GONE
         }
 
         exitUserProfileVisit.setOnClickListener {

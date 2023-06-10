@@ -44,9 +44,6 @@ import kotlinx.android.synthetic.main.activity_dating_profile_full_view.showcase
 import kotlinx.android.synthetic.main.activity_dating_profile_full_view.userShowcaseStack
 import kotlinx.android.synthetic.main.activity_dating_profile_full_view.user_swipe_left
 import kotlinx.android.synthetic.main.activity_dating_profile_full_view.user_swipe_right
-import kotlinx.android.synthetic.main.activity_explore_page.*
-import kotlinx.android.synthetic.main.activity_image_post_full_view.*
-import kotlinx.android.synthetic.main.activity_image_post_full_view.backButton
 import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
 import kotlinx.android.synthetic.main.error_page.*

@@ -2,31 +2,35 @@ package com.aure
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.aure.UiAdapters.HomeMainAdapter.ShowcaseImageSliderAdapter
-import com.aure.UiAdapters.HomeMainAdapter.SliderItem
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import com.smarteist.autoimageslider.SliderViewAdapter
-import kotlinx.android.synthetic.main.activity_image_post_full_view.*
+import kotlinx.android.synthetic.main.community_post_engagement_view.*
+import kotlinx.android.synthetic.main.fragment_image_post_full_view.*
 
-class ImagePostFullView : AppCompatActivity() {
+class ImagePostFullView(private var imagePostProfileVisitListener: Function0<Unit>? = null) : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_post_full_view)
 
-        var showcaseImageSliderAdapter: ShowcaseImageSliderAdapter = ShowcaseImageSliderAdapter(this)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_image_post_full_view, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var showcaseImageSliderAdapter: ShowcaseImageSliderAdapter = ShowcaseImageSliderAdapter(requireContext())
 
         for (i in 0..4) {
             showcaseImageSliderAdapter.addItem(SliderItem("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
@@ -42,9 +46,11 @@ class ImagePostFullView : AppCompatActivity() {
         imageSlider.setScrollTimeInSec(4) //set scroll delay in seconds :
         imageSlider.startAutoCycle()
 
-        backButton.setOnClickListener {
-            finish()
+        accountProfilePicture.setOnClickListener {
+              imagePostProfileVisitListener?.invoke()
         }
+
+
     }
 
 
@@ -106,16 +112,6 @@ class ImagePostFullView : AppCompatActivity() {
                 imageGifContainer = itemView.findViewById(R.id.iv_gif_container)
                 textViewDescription = itemView.findViewById(R.id.tv_auto_image_slider)
             }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }
     }
 }

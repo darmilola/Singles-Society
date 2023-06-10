@@ -5,12 +5,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
-import com.aure.ExplorePage
 import com.aure.R
 import com.aure.UiModels.VideoModel
-import com.aure.VideoPostFullView
+import com.aure.fragments.PostFullView
+import com.aure.fragments.viewTypeVideo
 
 
 class VideoLibraryAdapter(private val videoList: ArrayList<VideoModel>, val context: Context): RecyclerView.Adapter<VideoLibraryAdapter.ItemViewHolder>() {
@@ -32,7 +31,8 @@ class VideoLibraryAdapter(private val videoList: ArrayList<VideoModel>, val cont
    inner class ItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         init {
             ItemView.setOnClickListener {
-                context.startActivity(Intent(context, VideoPostFullView::class.java))
+                context.startActivity(Intent(context, PostFullView::class.java).putExtra("type",
+                    viewTypeVideo))
             }
         }
     }

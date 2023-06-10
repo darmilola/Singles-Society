@@ -136,11 +136,7 @@ class MainAct2 : AppCompatActivity() {
         transaction.commit()
     }
 
-    private fun removeFragment(fragment: Fragment){
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.remove(fragment)
-        transaction.commit()
-    }
+
 
     override fun onResume() {
         super.onResume()

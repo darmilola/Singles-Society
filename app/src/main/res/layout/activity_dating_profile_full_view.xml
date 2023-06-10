@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/special_activity_background"
-    tools:context=".ExplorePage">
+    tools:context=".Spaces">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -103,66 +103,6 @@
                             android:layout_height="match_parent"
                             android:gravity="center">
 
-                            <androidx.appcompat.widget.Toolbar
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                app:contentInsetStart="0dp"
-                                app:contentInsetEnd="0dp"
-                                app:contentInsetRight="0dp"
-                                app:contentInsetLeft="0dp"
-                                android:layout_marginTop="5dp"
-                                android:id="@+id/explore_toolbar">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="50dp"
-                                    android:weightSum="4"
-                                    android:orientation="horizontal">
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:id="@+id/backButton"
-                                        android:gravity="center|left">
-                                        <ImageView
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_marginLeft="16dp"
-                                            android:layout_gravity="center"
-                                            app:tint="@color/pink"
-                                            android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:orientation="horizontal"
-                                        android:gravity="center">
-
-
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:gravity="right">
-
-
-                                        <ImageView
-                                            android:layout_width="24dp"
-                                            android:layout_height="24dp"
-                                            android:layout_marginRight="16dp"
-                                            android:layout_gravity="center"
-                                            app:tint="@color/pink"
-                                            android:src="@drawable/overflow_menu_icon"/>
-
-
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </androidx.appcompat.widget.Toolbar>
-
                             <include layout="@layout/community_post_engagement_view"/>
 
                             <LinearLayout

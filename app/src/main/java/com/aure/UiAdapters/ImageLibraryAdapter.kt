@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aure.ExplorePage
-import com.aure.ImagePostFullView
 import com.aure.R
 import com.aure.UiModels.ImageModel
+import com.aure.fragments.PostFullView
+import com.aure.fragments.viewTypeImage
 
 class ImageLibraryAdapter(val imageList: ArrayList<ImageModel>,val context: Context): RecyclerView.Adapter<ImageLibraryAdapter.ItemViewHolder>() {
 
@@ -31,7 +31,9 @@ class ImageLibraryAdapter(val imageList: ArrayList<ImageModel>,val context: Cont
 
         init {
             ItemView.setOnClickListener {
-                context.startActivity(Intent(context, ImagePostFullView::class.java))
+                context.startActivity(Intent(context, PostFullView::class.java).putExtra("type",
+                    viewTypeImage
+                ))
             }
         }
 

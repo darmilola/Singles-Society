@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aure.*
 import com.aure.UiModels.BookmarksModel
+import com.aure.fragments.PostFullView
+import com.aure.fragments.viewTypeImage
+import com.aure.fragments.viewTypeVideo
 
 private const val TYPE_IMAGE = 1
 private const val TYPE_VIDEO = 2
@@ -72,7 +75,9 @@ class BookmarksAdapter(private val bookmarkList: ArrayList<BookmarksModel>, var 
     inner class BookMarkItemVideoViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         init {
             ItemView.setOnClickListener {
-                context.startActivity(Intent(context,VideoPostFullView::class.java))
+                context.startActivity(Intent(context,PostFullView::class.java).putExtra("type",
+                    viewTypeVideo
+                ))
             }
         }
     }
@@ -80,7 +85,9 @@ class BookmarksAdapter(private val bookmarkList: ArrayList<BookmarksModel>, var 
     inner class BookMarkItemImageViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         init {
             ItemView.setOnClickListener {
-                context.startActivity(Intent(context,ImagePostFullView::class.java))
+                context.startActivity(Intent(context, PostFullView::class.java).putExtra("type",
+                    viewTypeImage
+                ))
             }
         }
     }

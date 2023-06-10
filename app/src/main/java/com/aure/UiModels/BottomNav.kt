@@ -31,7 +31,7 @@ class BottomNav : LinearLayout {
 
     private var selectedId = -1
 
-    public var onClickedListener: IBottomNavigationListener = {}
+    var onClickedListener: IBottomNavigationListener = {}
     private var onShowListener: IBottomNavigationListener = {}
     private var onReselectListener: IBottomNavigationListener = {}
 

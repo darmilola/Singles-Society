@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aure.ExplorePage;
+import com.aure.Spaces;
 import com.aure.R;
 import com.aure.UiModels.ExploreItem;
 
@@ -52,7 +52,7 @@ public class ExploreItemAdapter extends RecyclerView.Adapter<ExploreItemAdapter.
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            context.startActivity(new Intent(context,ExplorePage.class));
+                            context.startActivity(new Intent(context, Spaces.class));
                         }
                     }
             );

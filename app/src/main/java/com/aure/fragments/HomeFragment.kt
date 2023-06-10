@@ -367,9 +367,6 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     showcase_swipe_layout.setVisibility(View.VISIBLE)
                     met_match_root.visibility = View.GONE
 
-                   homeMainAdapter!!.setVisitProfileListener{
-                           visitProfileListener?.invoke()
-                   }
                 }
             })
         }
@@ -389,6 +386,9 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
         manager?.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
         userShowcaseStack?.layoutManager = manager
         userShowcaseStack?.adapter = homeMainAdapter
+        homeMainAdapter!!.setVisitProfileListener{
+            visitProfileListener?.invoke()
+        }
     }
 
 
