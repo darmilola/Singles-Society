@@ -53,7 +53,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 
-class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(), CardStackListener {
+class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(), com.aure.Arvi.widget.CardStackListener {
 
     var manager: CardStackLayoutManager? = null
     var homeMainAdapter: HomeMainAdapter? = null
@@ -361,7 +361,7 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
         manager?.setScaleInterval(0.95f)
         manager?.setSwipeThreshold(0.5f)
         manager?.setMaxDegree(5.0f)
-        manager?.setDirections(Direction.HORIZONTAL)
+        manager?.setDirections(com.aure.Arvi.Direction.VERTICAL)
         manager?.setCanScrollHorizontal(true)
         manager?.setCanScrollVertical(false)
         manager?.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
@@ -375,16 +375,16 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
 
 
 
-    override fun onCardDragging(direction: Direction, ratio: Float) {
-        if (direction == Direction.Right) {
+    override fun onCardDragging(direction: com.aure.Arvi.Direction, ratio: Float) {
+        if (direction == com.aure.Arvi.Direction.Right) {
             isRightSwipe = true
-        } else if (direction == Direction.Left) {
+        } else if (direction == com.aure.Arvi.Direction.Left) {
             isRightSwipe = false
         } else {
         }
     }
 
-    override fun onCardSwiped(direction: Direction?) {
+    override fun onCardSwiped(direction: com.aure.Arvi.Direction?) {
         //showcaseMovementProgress.setProgress(10);
         //recyclerviewProgress = 0;
     }

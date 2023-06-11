@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import com.yuyakaido.android.cardstackview.Duration;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
-import com.yuyakaido.android.cardstackview.internal.CardStackState;
 
 public class CardStackSnapHelper extends SnapHelper {
 

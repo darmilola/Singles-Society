@@ -2,7 +2,6 @@ package com.aure.Arvi.widget;
 
 
 import android.content.Context;
-import android.graphics.PointF;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,11 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.aure.Arvi.Direction;
 import com.aure.R;
-import com.yuyakaido.android.cardstackview.CardStackListener;
-import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.RewindAnimationSetting;
 import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
-import com.yuyakaido.android.cardstackview.internal.CardStackState;
 import com.yuyakaido.android.cardstackview.internal.DisplayUtil;
 
 import java.util.List;
@@ -358,7 +354,7 @@ public class CardStackLayoutManager
 
     private void updateTranslation(View view) {
         view.setTranslationX(state.dx);
-        view.setTranslationY(state.dy);
+       if(state.dy < 0.0f) view.setTranslationY(state.dy);
     }
 
     private void updateTranslation(View view, int index) {

@@ -3,7 +3,7 @@ package com.aure.Arvi.widget;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.yuyakaido.android.cardstackview.Direction;
+import com.aure.Arvi.Direction;
 import com.yuyakaido.android.cardstackview.RewindAnimationSetting;
 import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;

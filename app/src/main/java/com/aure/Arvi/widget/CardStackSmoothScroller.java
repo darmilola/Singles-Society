@@ -5,10 +5,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.RewindAnimationSetting;
 import com.yuyakaido.android.cardstackview.internal.AnimationSetting;
-import com.yuyakaido.android.cardstackview.internal.CardStackState;
 
 public class CardStackSmoothScroller extends RecyclerView.SmoothScroller implements RecyclerView.SmoothScroller.ScrollVectorProvider {
 

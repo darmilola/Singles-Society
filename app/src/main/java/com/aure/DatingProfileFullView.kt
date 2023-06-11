@@ -22,13 +22,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aure.Arvi.widget.CardStackLayoutManager
+import com.aure.Arvi.widget.CardStackListener
 import com.aure.Arvi.widget.SwipeableMethod
 import com.aure.UiAdapters.HomeMainAdapter
 import com.aure.UiAdapters.ShowCaseAdapter
 import com.aure.UiAdapters.ViewProfileAdapter
 import com.aure.UiModels.*
 import com.google.android.material.button.MaterialButton
-import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.Duration
 import com.yuyakaido.android.cardstackview.StackFrom
@@ -326,7 +326,7 @@ class DatingProfileFullView : AppCompatActivity(), CardStackListener {
         manager?.setScaleInterval(0.95f)
         manager?.setSwipeThreshold(0.5f)
         manager?.setMaxDegree(5.0f)
-        manager?.setDirections(Direction.HORIZONTAL)
+        manager?.setDirections(com.aure.Arvi.Direction.VERTICAL)
         manager?.setCanScrollHorizontal(true)
         manager?.setCanScrollVertical(false)
         manager?.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
@@ -334,16 +334,16 @@ class DatingProfileFullView : AppCompatActivity(), CardStackListener {
         userShowcaseStack?.adapter = homeMainAdapter
     }
 
-    override fun onCardDragging(direction: Direction, ratio: Float) {
-        if (direction == Direction.Right) {
+    override fun onCardDragging(direction: com.aure.Arvi.Direction, ratio: Float) {
+        if (direction == com.aure.Arvi.Direction.Right) {
             isRightSwipe = true
-        } else if (direction == Direction.Left) {
+        } else if (direction == com.aure.Arvi.Direction.Left) {
             isRightSwipe = false
         } else {
         }
     }
 
-    override fun onCardSwiped(direction: Direction?) {
+    override fun onCardSwiped(direction: com.aure.Arvi.Direction?) {
         //showcaseMovementProgress.setProgress(10);
         //recyclerviewProgress = 0;
     }
