@@ -374,8 +374,6 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
 
     private fun initializeCardStack() {
         manager = CardStackLayoutManager(requireContext(), this)
-        manager?.setStackFrom(StackFrom.Bottom)
-        manager?.setTranslationInterval(6.0f)
         manager?.setVisibleCount(2)
         manager?.setScaleInterval(1.0f)
         manager?.setSwipeThreshold(0.2f)

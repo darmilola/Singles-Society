@@ -7,7 +7,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -34,6 +36,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.mackhartley.roundedprogressbar.RoundedProgressBar;
+import com.smarteist.autoimageslider.IndicatorView.PageIndicatorView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -46,6 +49,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -124,18 +129,11 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
        else if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
              ShowcaseImageItemViewHolder showcaseImageItemViewHolder = (ShowcaseImageItemViewHolder) holder;
             ShowcaseImageSliderAdapter showcaseImageSliderAdapter = new ShowcaseImageSliderAdapter(context);
-            ArrayList<SliderItem> imageSlides = new ArrayList<>();
             for(int i = 0; i < 5; i++){
                 showcaseImageSliderAdapter.addItem(new SliderItem("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"));
             }
-
             showcaseImageItemViewHolder.imageSlider.setSliderAdapter(showcaseImageSliderAdapter);
-            showcaseImageItemViewHolder.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-            showcaseImageItemViewHolder.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-            showcaseImageItemViewHolder.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
-            showcaseImageItemViewHolder.imageSlider.setIndicatorSelectedColor(Color.parseColor("#fa2d65"));
-            showcaseImageItemViewHolder.imageSlider.setIndicatorUnselectedColor(Color.GRAY);
-            showcaseImageItemViewHolder.imageSlider.setScrollTimeInSec(4); //set scroll delay in seconds :
+            showcaseImageItemViewHolder.scheduleEngagementViewDisappearance();
             showcaseImageItemViewHolder.imageSlider.startAutoCycle();
 
 
@@ -168,10 +166,16 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-    public class ShowcaseImageItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseImageItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnDragListener {
 
         SliderView imageSlider;
         CircleImageView accountProfileImage;
+        AlphaAnimation alphaAnim2;
+        FrameLayout engagementOverlay;
+        boolean isCancelled = false;
+        CardView imagePostCard;
+        ConstraintLayout navigationRoot;
+        ImageView arrowRight, arrowLeft;
 
         public ShowcaseImageItemViewHolder(View ItemView){
             super(ItemView);
@@ -180,7 +184,45 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             imageSlider.getPagerIndicator().setElevation(50f);
             imageSlider.requestLayout();
             imageSlider.getPagerIndicator().requestLayout();
+            imageSlider.setAutoCycle(true);
+            imageSlider.setIndicatorAnimation(IndicatorAnimationType.FILL);
+            imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+            imageSlider.setIndicatorSelectedColor(Color.parseColor("#fa2d65"));
+            imageSlider.setIndicatorUnselectedColor(Color.GRAY);
+            imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
             accountProfileImage = ItemView.findViewById(R.id.accountProfilePicture);
+            engagementOverlay = ItemView.findViewById(R.id.postEngagementOverlay);
+            imagePostCard = ItemView.findViewById(R.id.imagePostCard);
+            navigationRoot = ItemView.findViewById(R.id.navigationArrowRoot);
+            arrowRight = ItemView.findViewById(R.id.navigationArrowRight);
+            arrowLeft = ItemView.findViewById(R.id.navigationArrowLeft);
+            imagePostCard.requestFocusFromTouch();
+            imagePostCard.requestFocus();
+
+            imageSlider.setScrollTimeInSec(7);
+            navigationRoot.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    engagementOverlay.setVisibility(View.VISIBLE);
+                    scheduleEngagementViewDisappearance();
+                }
+            });
+
+            arrowLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageSlider.stopAutoCycle();
+                    imageSlider.slideToNextPosition();
+                }
+            });
+
+            arrowRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    imageSlider.stopAutoCycle();
+                    imageSlider.slideToPreviousPosition();
+                }
+            });
 
             accountProfileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -191,14 +233,58 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
+
+
+
         }
 
         @Override
         public void onClick(View view) {
+           engagementOverlay.setVisibility(View.VISIBLE);
+           scheduleEngagementViewDisappearance();
+        }
+
+        public void scheduleEngagementViewDisappearance() {
+
+            alphaAnim2 = new AlphaAnimation(1.0f, 0.0f);
+            alphaAnim2.setStartOffset(3000);
+            alphaAnim2.setDuration(2000);
+            alphaAnim2.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                public void onAnimationEnd(Animation animation) {
+
+
+                    if (isCancelled) {
+                        engagementOverlay.setVisibility(View.VISIBLE);
+                        isCancelled = false;
+                    } else {
+                        engagementOverlay.setVisibility(View.GONE);
+                        navigationRoot.setVisibility(View.VISIBLE);
+
+                    }
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            engagementOverlay.setAnimation(alphaAnim2);
 
         }
 
+
+        @Override
+        public boolean onDrag(View view, DragEvent dragEvent) {
+            return false;
+        }
     }
+
+
 
     @Override
     public int getItemViewType(int position) {

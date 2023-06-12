@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
     android:layout_marginTop="10dp">
 
     <androidx.cardview.widget.CardView
@@ -11,15 +12,20 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        app:cardElevation="0dp"
+        android:id="@+id/imagePostCard"
         app:cardCornerRadius="10dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 
 
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:elevation="4dp"
-                        android:background="@drawable/light_black_gradient"
+                        android:id="@+id/postEngagementOverlay"
+                        android:background="@drawable/community_post_gradient"
                         android:gravity="center">
 
                         <include layout="@layout/community_post_engagement_view"
@@ -36,16 +42,55 @@
                 app:sliderAutoCycleDirection="back_and_forth"
                 app:sliderAutoCycleEnabled="true"
                 app:sliderIndicatorAnimationDuration="600"
-                app:sliderIndicatorGravity="center_horizontal|top"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
                 app:sliderIndicatorMargin="15dp"
                 app:sliderIndicatorOrientation="horizontal"
-                app:sliderIndicatorPadding="3dp"
-                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorPadding="1dp"
+                app:sliderIndicatorRadius="1.5dp"
                 app:sliderIndicatorSelectedColor="#5A5A5A"
                 app:sliderIndicatorUnselectedColor="#FFF"
-                app:sliderScrollTimeInSec="1"
                 app:sliderStartAutoCycle="true"/>
 
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:visibility="gone"
+                android:id="@+id/navigationArrowRoot"
+                android:focusedByDefault="true"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:orientation="vertical">
+
+
+              <ImageView
+                  android:layout_width="16dp"
+                  android:layout_height="16dp"
+                  app:layout_constraintStart_toStartOf="parent"
+                  android:layout_marginLeft="10dp"
+                  app:tint="@color/pink"
+                  android:id="@+id/navigationArrowLeft"
+                  android:layout_marginBottom="10dp"
+                  android:src="@drawable/arrow_arrows_back_direction_left_icon"
+                  app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="10dp"
+                    android:rotation="180"
+                    android:id="@+id/navigationArrowRight"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/arrow_arrows_back_direction_left_icon"
+                    app:tint="@color/pink"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
 
 
