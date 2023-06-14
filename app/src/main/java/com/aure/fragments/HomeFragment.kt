@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 
-class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(){
+class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener{
 
     var homeMainAdapter: HomeMainAdapter? = null
     var societyModelArrayList = java.util.ArrayList<SocietyModel>()
@@ -163,7 +163,7 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     loaderView.setVisibility(View.GONE)
                     societyRecycler.setVisibility(View.VISIBLE)
                     met_match_root.visibility = View.GONE
-                    societyRecycler.layoutManager = scrollableLayoutManager
+                    societyRecycler.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
 
                     societyRecycler.adapter = homeMainAdapter
 
@@ -178,6 +178,13 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         societyRecycler.layoutManager = scrollableLayoutManager
                         societyRecycler.scrollToPosition(lastPosition)
                     }
+
+
+                    homeMainAdapter!!.setAddACommentClickListener {
+                        val commentingSection = CommentBottomSheet(this@HomeFragment)
+                        commentingSection.show(parentFragmentManager, "commentingSection")
+                    }
+
                     homeMainAdapter!!.setPostListener {
                         Toast.makeText(context,"post",Toast.LENGTH_SHORT).show()
                        // societyRecycler.layoutManager = scrollableLayoutManager
@@ -237,6 +244,11 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     }
                     homeMainAdapter!!.setPostListener {
 
+                    }
+
+                    homeMainAdapter!!.setAddACommentClickListener {
+                        val commentingSection = CommentBottomSheet(this@HomeFragment)
+                        commentingSection.show(parentFragmentManager, "commentingSection")
                     }
 
                     loaderView.setVisibility(View.GONE)
@@ -307,6 +319,11 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
 
                     }
 
+                    homeMainAdapter!!.setAddACommentClickListener {
+                        val commentingSection = CommentBottomSheet(this@HomeFragment)
+                        commentingSection.show(parentFragmentManager, "commentingSection")
+                    }
+
                     loaderView.setVisibility(View.GONE)
                     met_match_root.visibility = View.GONE
 
@@ -338,6 +355,10 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
         }
     }
 
+    override fun onProfileVisit() {
+        visitProfileListener?.invoke()
+    }
 
- }
+
+}
 

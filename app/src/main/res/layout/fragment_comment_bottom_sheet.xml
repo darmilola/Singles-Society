@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.CommentBottomSheet"
+    app:cardElevation="3dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/commentLayout"
+            android:layout_marginBottom="70dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/filled_full_circle"
+                android:backgroundTint="@color/lighter_text_color"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/dark_text_color"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:fontFamily="@font/avenirbold"
+                android:text="Add a comment (3,345)"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/lighter_text_color"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                tools:itemCount="20"
+                android:id="@+id/commentRecyclerView"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/post_comment_item"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+        <com.aure.ChatKit.messages.MessageInput
+            android:id="@+id/commentEditBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inputHint="Write your comment..."
+            app:attachmentButtonBackground="@color/transparent"
+            app:inputButtonBackground="@color/transparent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:minHeight="55dp"
+            android:layout_gravity="bottom"
+            app:inputTextSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:attachmentButtonHeight="28dp"
+            app:attachmentButtonWidth="28dp"
+            app:inputButtonIcon="@drawable/send_icon"
+            app:inputButtonHeight="28dp"
+            app:inputButtonWidth="28dp"
+            android:background="@drawable/filled_transparent_circle"
+            app:attachmentButtonIcon="@drawable/photo_picture_icon"
+            app:showAttachmentButton="true"/>
+    </FrameLayout>
+
+    </androidx.cardview.widget.CardView>

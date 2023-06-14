@@ -85,6 +85,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Function0<Unit> profileEmptyListener;
     private Function0<Unit> datingProfileListener;
+
+    private Function0<Unit> addACommentClickListener;
     private Function0<Unit> postListener;
     private CardStackAdapter cardStackAdapter;
 
@@ -100,6 +102,10 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setDatingProfileListener(Function0<Unit> datingProfileListener) {
         this.datingProfileListener = datingProfileListener;
+    }
+
+    public void setAddACommentClickListener(Function0<Unit> addACommentClickListener) {
+        this.addACommentClickListener = addACommentClickListener;
     }
 
     public void setProfileEmptyListener(Function0<Unit> profileEmptyListener) {
@@ -309,8 +315,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         FrameLayout engagementOverlay;
         boolean isCancelled = false;
         CardView imagePostCard;
-        ConstraintLayout navigationRoot;
-        ImageView arrowRight, arrowLeft;
+        TextView addAComment;
 
         public ShowcaseImageItemViewHolder(View ItemView){
             super(ItemView);
@@ -328,14 +333,11 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             accountProfileImage = ItemView.findViewById(R.id.accountProfilePicture);
             engagementOverlay = ItemView.findViewById(R.id.postEngagementOverlay);
             imagePostCard = ItemView.findViewById(R.id.imagePostCard);
-            navigationRoot = ItemView.findViewById(R.id.navigationArrowRoot);
-            arrowRight = ItemView.findViewById(R.id.navigationArrowRight);
-            arrowLeft = ItemView.findViewById(R.id.navigationArrowLeft);
+            addAComment = itemView.findViewById(R.id.societyPostAddAComment);
             imagePostCard.requestFocusFromTouch();
             imagePostCard.requestFocus();
-
             imageSlider.setScrollTimeInSec(7);
-            navigationRoot.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     engagementOverlay.setVisibility(View.VISIBLE);
@@ -343,19 +345,11 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
 
-            arrowLeft.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    imageSlider.stopAutoCycle();
-                    imageSlider.slideToNextPosition();
-                }
-            });
 
-            arrowRight.setOnClickListener(new View.OnClickListener() {
+            addAComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    imageSlider.stopAutoCycle();
-                    imageSlider.slideToPreviousPosition();
+                    addACommentClickListener.invoke();
                 }
             });
 
@@ -398,7 +392,6 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         isCancelled = false;
                     } else {
                         engagementOverlay.setVisibility(View.GONE);
-                        navigationRoot.setVisibility(View.VISIBLE);
 
                     }
                 }
@@ -568,6 +561,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             boolean isStarted = false;
             boolean isLooping = false;
             private int playerProgress = 0;
+            TextView addAComment;
             private CircleImageView accountProfileImage;
 
             public CommunityPostItemViewHolder(ViewGroup parentViewGroup, View itemView) {
@@ -583,10 +577,18 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 videoProgress = itemView.findViewById(R.id.video_progressbar);
                 progressToolLayout = itemView.findViewById(R.id.video_progress_layout);
                 controller = itemView.findViewById(R.id.video_controller);
+                addAComment = itemView.findViewById(R.id.societyPostAddAComment);
                 playPauseView.setVisibility(View.GONE);
                 playPauseView.setMinAndMaxFrame(0, 40);
                 playPauseView.resumeAnimation();
                 accountProfileImage = itemView.findViewById(R.id.accountProfilePicture);
+
+                addAComment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addACommentClickListener.invoke();
+                    }
+                });
 
 
 

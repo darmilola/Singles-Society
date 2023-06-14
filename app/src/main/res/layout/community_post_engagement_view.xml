@@ -120,6 +120,7 @@
                 android:textColor="@color/white"
                 android:maxLines="5"
                 android:ellipsize="end"
+                android:id="@+id/societyPostAddAComment"
                 android:layout_marginBottom="25dp"
                 android:fontFamily="@font/nunitomed"
                 android:text="Add a Comment (15)"/>

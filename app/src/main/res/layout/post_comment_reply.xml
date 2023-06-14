@@ -2,24 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:paddingBottom="10dp"
     android:paddingTop="5dp"
-    android:layout_weight="7">
+    android:layout_weight="8">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center|top"
         android:layout_weight="1">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/woman_official"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="7">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:layout_weight="1">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:id="@+id/userProfileImage"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/woman_official"/>
+        </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -33,15 +46,31 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:lineSpacingExtra="4dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:maxLines="5"
             android:ellipsize="end"
             android:maxLength="350"
-            android:fontFamily="sans-serif"
-            android:text="Lorem Ipsum is simply dummy text of the printing"/>
+            android:id="@+id/username"
+            android:fontFamily="@font/avenirbold"
+            android:text="\@Ore0_"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/dark_text_color"
+            android:maxLines="5"
+            android:ellipsize="end"
+            android:maxLength="350"
+            android:fontFamily="@font/nunitomed"
+            android:text="Lorem Ipsum is simply dummy tex simply dummy text of the printing"/>
+
+    </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

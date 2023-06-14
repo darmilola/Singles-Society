@@ -17,6 +17,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:id="@+id/userProfileImage"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/woman_official"/>
@@ -27,21 +28,63 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="6">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_gravity="left|center"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/username"
+                android:maxLength="20"
+                android:fontFamily="@font/avenirbold"
+                android:text="\@alexaOre0_"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp"
+                android:layout_gravity="right|center"
+                android:textColor="@color/light_text_color"
+                android:maxLines="5"
+                android:ellipsize="end"
+                android:layout_alignParentRight="true"
+                android:id="@+id/commentTime"
+                android:maxLength="10"
+                android:fontFamily="@font/avenirreg"
+                android:text="5 min"/>
+
+        </RelativeLayout>
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:lineSpacingExtra="4dp"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_text_color"
             android:maxLines="5"
             android:ellipsize="end"
             android:maxLength="350"
-            android:fontFamily="sans-serif"
-            android:text="Lorem Ipsum is simply dummy text of the printing"/>
+            android:fontFamily="@font/nunitomed"
+            android:text="Lorem Ipsum is simply dummy tex simply dummy text of the printing"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,31 +94,54 @@
             <ImageView
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                app:tint="@color/white"
+                app:tint="@color/black"
                 android:src="@drawable/reply"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:textSize="13sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/dark_text_color"
+                android:maxLines="5"
+                android:ellipsize="end"
+                android:id="@+id/commentReplyCount"
+                android:layout_marginLeft="4dp"
+                android:maxLength="350"
+                android:fontFamily="@font/avenirbold"
+                android:text="Reply (3)"/>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:tint="@color/black"
+                android:rotation="90"
+                android:id="@+id/commentReplyArrow"
+                android:src="@drawable/ic_iconfinder_chevron_right_4781843"/>
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                app:tint="@color/pink"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/like"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:textSize="13sp"
                 android:lineSpacingExtra="4dp"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_text_color"
                 android:maxLines="5"
                 android:ellipsize="end"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="3dp"
                 android:maxLength="350"
-                android:fontFamily="sans-serif-medium"
-                android:text="Reply"/>
+                android:fontFamily="@font/avenirbold"
+                android:text="(250)"/>
 
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/post_comment_reply"
-            android:layout_marginTop="5dp"
-            tools:itemCount="3"/>
 
     </LinearLayout>
 

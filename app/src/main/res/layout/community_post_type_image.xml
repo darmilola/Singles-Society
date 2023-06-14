@@ -51,45 +51,6 @@
                 app:sliderIndicatorUnselectedColor="#FFF"
                 app:sliderStartAutoCycle="true"/>
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:visibility="gone"
-                android:id="@+id/navigationArrowRoot"
-                android:focusedByDefault="true"
-                android:focusableInTouchMode="true"
-                android:focusable="true"
-                android:orientation="vertical">
-
-
-              <ImageView
-                  android:layout_width="16dp"
-                  android:layout_height="16dp"
-                  app:layout_constraintStart_toStartOf="parent"
-                  android:layout_marginLeft="10dp"
-                  app:tint="@color/pink"
-                  android:id="@+id/navigationArrowLeft"
-                  android:layout_marginBottom="10dp"
-                  android:src="@drawable/arrow_arrows_back_direction_left_icon"
-                  app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginRight="10dp"
-                    android:rotation="180"
-                    android:id="@+id/navigationArrowRight"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/arrow_arrows_back_direction_left_icon"
-                    app:tint="@color/pink"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
