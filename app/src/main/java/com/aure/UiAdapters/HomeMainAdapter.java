@@ -5,11 +5,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -22,13 +22,21 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.aure.Arvi.Config;
+import com.aure.Arvi.Direction;
 import com.aure.Arvi.util.misc.ExoPlayerUtils;
+import com.aure.Arvi.widget.CardStackLayoutManager;
+import com.aure.Arvi.widget.CardStackListener;
+import com.aure.Arvi.widget.PlayableCardStackView;
 import com.aure.Arvi.widget.PlayableItemViewHolder;
 import com.aure.Arvi.widget.PlaybackState;
+import com.aure.Arvi.widget.SwipeableMethod;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.Toast;
+
 import com.aure.OnSwipeTouchListener;
 import com.aure.R;
-import com.aure.UiModels.LinePagerIndicator;
-import com.aure.UiModels.ShowCaseMainModel;
+import com.aure.UiModels.MainActivityModel;
+import com.aure.UiModels.SocietyModel;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -36,11 +44,13 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.mackhartley.roundedprogressbar.RoundedProgressBar;
-import com.smarteist.autoimageslider.IndicatorView.PageIndicatorView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+import com.yuyakaido.android.cardstackview.Duration;
+import com.yuyakaido.android.cardstackview.StackFrom;
+import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 
 
 import java.util.ArrayList;
@@ -49,9 +59,9 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -64,24 +74,44 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     private Context context;
-    private ArrayList<ShowCaseMainModel> showCaseMainModelArrayList;
-    private ShowCaseAdapter showCaseAdapter;
-
+    private ArrayList<SocietyModel> societyModelArrayList;
     private static int TYPE_MAIN = 0;
     private static int TYPE_POST = 1;
 
     private static int TYPE_IMAGE = 2;
 
     private Function0<Unit> visitProfileListener;
+    private Function0<Unit> profileMatchedListener;
+
+    private Function0<Unit> profileEmptyListener;
+    private Function0<Unit> datingProfileListener;
+    private Function0<Unit> postListener;
+    private CardStackAdapter cardStackAdapter;
 
 
-    public HomeMainAdapter(Context context, ArrayList<ShowCaseMainModel> showCaseMainModelArrayList){
+    public HomeMainAdapter(Context context, ArrayList<SocietyModel> societyModelArrayList){
         this.context = context;
-        this.showCaseMainModelArrayList = showCaseMainModelArrayList;
+        this.societyModelArrayList = societyModelArrayList;
     }
 
     public void setVisitProfileListener(@NotNull Function0<Unit> visitProfileListener) {
         this.visitProfileListener = visitProfileListener;
+    }
+
+    public void setDatingProfileListener(Function0<Unit> datingProfileListener) {
+        this.datingProfileListener = datingProfileListener;
+    }
+
+    public void setProfileEmptyListener(Function0<Unit> profileEmptyListener) {
+        this.profileEmptyListener = profileEmptyListener;
+    }
+
+    public void setPostListener(Function0<Unit> postListener) {
+        this.postListener = postListener;
+    }
+
+    public void setProfileMatchedListener(Function0<Unit> profileMatchedListener) {
+        this.profileMatchedListener = profileMatchedListener;
     }
 
     @NonNull
@@ -89,8 +119,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         if(viewType == TYPE_MAIN){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.showcase_layout, parent, false);
-            return new ShowcaseMainGeneralItemViewHolder(view);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.showcase_stack_layout, parent, false);
+            return new ShowcaseItemViewHolder(view);
         }
 
         else if(viewType == TYPE_POST){
@@ -101,23 +131,112 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_image, parent, false);
             return new ShowcaseImageItemViewHolder(view);
         }
+        else {
 
-        return null;
+            return null;
+        }
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
-            ShowcaseMainGeneralItemViewHolder holder1 = (ShowcaseMainGeneralItemViewHolder)holder;
-            showCaseAdapter = new ShowCaseAdapter(context,showCaseMainModelArrayList.get(position).getShowCaseModelArrayList());
-            LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-            holder1.showcaseRecyclerview.setLayoutManager(layoutManager);
-            holder1.showcaseRecyclerview.setAdapter(showCaseAdapter);
+    public void onViewAttachedToWindow(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        if(holder instanceof ShowcaseItemViewHolder){
+            datingProfileListener.invoke();
         }
-       else if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_POST){
-               CommunityPostItemViewHolder communityPostItemViewHolder = (CommunityPostItemViewHolder) holder;
+        else{
+            postListener.invoke();
+        }
+    }
 
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        final String[] userProfileInPreview = {""};
+        final int[] cardPosition = {0};
+        if(societyModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
+            cardStackAdapter = new CardStackAdapter(societyModelArrayList.get(position).getUserProfileToPreview(),societyModelArrayList.get(position).getUsersLikedList(),context);
+            cardStackAdapter.setVisibleUserListener(new CardStackAdapter.VisibleUserListener() {
+                @Override
+                public void onUserVisible(String userId) {
+                    userProfileInPreview[0] = userId;
+                }
+            });
+
+            ((ShowcaseItemViewHolder) holder).swipeRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SwipeAnimationSetting setting = new SwipeAnimationSetting.Builder()
+                            .setDirection(com.yuyakaido.android.cardstackview.Direction.Right)
+                            .setDuration(Duration.Slow.duration)
+                            .setInterpolator(new AccelerateInterpolator())
+                            .build();
+                    ((ShowcaseItemViewHolder)holder).manager.setSwipeAnimationSetting(setting);
+                    ((ShowcaseItemViewHolder)holder).showcaseCardStackRecyclerview.swipe();
+                }
+            });
+
+
+            ((ShowcaseItemViewHolder) holder).swipeLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SwipeAnimationSetting setting = new SwipeAnimationSetting.Builder()
+                            .setDirection(com.yuyakaido.android.cardstackview.Direction.Left)
+                            .setDuration(Duration.Slow.duration)
+                            .setInterpolator(new AccelerateInterpolator())
+                            .build();
+                    ((ShowcaseItemViewHolder)holder).manager.setSwipeAnimationSetting(setting);
+                    ((ShowcaseItemViewHolder)holder).showcaseCardStackRecyclerview.swipe();
+                }
+            });
+
+            ((ShowcaseItemViewHolder) holder).showcaseCardStackRecyclerview.setAdapter(cardStackAdapter);
+            ((ShowcaseItemViewHolder) holder).manager.setListener(new CardStackListener() {
+                @Override
+                public void onCardDragging(Direction direction, float ratio) {
+                    ((ShowcaseItemViewHolder) holder).swipeLayout.setVisibility(View.GONE);
+                }
+                @Override
+                public void onCardSwiped(Direction direction) {
+                       if(direction == Direction.Right){
+                           MainActivityModel mainActivityModel = new MainActivityModel(userProfileInPreview[0],context);
+                           mainActivityModel.setLiked();
+                           profileMatchedListener.invoke();
+                       }
+
+                    if(cardPosition[0] == societyModelArrayList.get(position).getUserProfileToPreview().size()-1){
+                        profileEmptyListener.invoke();
+                    }
+
+                }
+
+                @Override
+                public void onCardRewound() {
+
+                }
+
+                @Override
+                public void onCardCanceled() {
+
+                }
+
+                @Override
+                public void onCardAppeared(View view, int position) {
+
+                }
+
+                @Override
+                public void onCardDisappeared(View view, int position) {
+                    cardPosition[0] = position;
+
+                }
+            });
+            ((ShowcaseItemViewHolder) holder).showcaseCardStackRecyclerview.requestLayout();
+
+        }
+       else if(societyModelArrayList.get(position).getItemViewType() == TYPE_POST){
+               CommunityPostItemViewHolder communityPostItemViewHolder = (CommunityPostItemViewHolder) holder;
+            postListener.invoke();
             communityPostItemViewHolder.setUrl("https://joy1.videvo.net/videvo_files/video/free/2016-12/large_watermarked/Code_flythough_loop_01_Videvo_preview.mp4");
             ImageRequest request = ImageRequest.fromUri("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
             DraweeController controller = Fresco.newDraweeControllerBuilder()
@@ -126,7 +245,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             (communityPostItemViewHolder).thumbnail.setController(controller);
             communityPostItemViewHolder.onStoppedState();
        }
-       else if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
+       else if(societyModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
+            postListener.invoke();
              ShowcaseImageItemViewHolder showcaseImageItemViewHolder = (ShowcaseImageItemViewHolder) holder;
             ShowcaseImageSliderAdapter showcaseImageSliderAdapter = new ShowcaseImageSliderAdapter(context);
             for(int i = 0; i < 5; i++){
@@ -144,25 +264,40 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return showCaseMainModelArrayList.size();
+        return societyModelArrayList.size();
     }
 
 
-    public class ShowcaseMainGeneralItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ShowcaseItemViewHolder extends RecyclerView.ViewHolder{
 
-        RecyclerView showcaseRecyclerview;
 
-        public ShowcaseMainGeneralItemViewHolder(View ItemView){
+        PlayableCardStackView showcaseCardStackRecyclerview;
+        CardStackLayoutManager manager;
+
+        LinearLayout swipeLayout, swipeLeft, rewound, swipeRight;
+
+
+
+        public ShowcaseItemViewHolder(View ItemView){
             super(ItemView);
-            showcaseRecyclerview = ItemView.findViewById(R.id.showcase_recyclerview);
-            showcaseRecyclerview.addItemDecoration(new LinePagerIndicator());
-            ItemView.setOnClickListener(this);
+            showcaseCardStackRecyclerview = ItemView.findViewById(R.id.showcaseCardStackView);
+            swipeLayout = ItemView.findViewById(R.id.showcase_swipe_layout);
+            swipeLeft = ItemView.findViewById(R.id.user_swipe_left);
+            rewound = ItemView.findViewById(R.id.user_rewind);
+            swipeRight = ItemView.findViewById(R.id.user_swipe_right);
+            manager = new CardStackLayoutManager(context);
+            manager.setVisibleCount(2);
+            manager.setScaleInterval(1.0f);
+            manager.setStackFrom(StackFrom.Top);
+            manager.setSwipeThreshold(0.2f);
+            manager.setMaxDegree(80.0f);
+            manager.setDirections(Direction.HORIZONTAL);
+            manager.setCanScrollHorizontal(true);
+            manager.setCanScrollVertical(false);
+            manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual);
+            showcaseCardStackRecyclerview.setLayoutManager(manager);
         }
 
-        @Override
-        public void onClick(View view) {
-
-        }
 
     }
 
@@ -288,13 +423,13 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemViewType(int position) {
-        if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
+        if(societyModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
             return TYPE_MAIN;
         }
-        else if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_POST){
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_POST){
             return TYPE_POST;
         }
-        else if(showCaseMainModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
             return TYPE_IMAGE;
         }
         else{

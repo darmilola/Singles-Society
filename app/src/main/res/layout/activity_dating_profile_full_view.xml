@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            android:id="@+id/activity_main_main_view">
+            android:id="@+id/container">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,15 +93,12 @@
             </LinearLayout>
 
 
-            <com.aure.Arvi.widget.PlayableCardStackView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/userShowcaseStack"/>
-            <include layout="@layout/emptyfilter_layout"/>
+                android:id="@+id/bookmarkedDatingProfiles"/>
             <include layout="@layout/activity_met_match_page"/>
-            <include layout="@layout/activity_complete_profile_prompt"/>
             <include layout="@layout/error_page"/>
-            <include layout="@layout/matched_layout"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

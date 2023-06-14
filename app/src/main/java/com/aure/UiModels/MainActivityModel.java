@@ -363,8 +363,8 @@ public class MainActivityModel {
             jsonObject.put("drinking",preferences.getString("drinking","d'ont drink"));
             jsonObject.put("smoking",preferences.getString("smoking","d'ont smoke"));
             jsonObject.put("language",preferences.getString("language","English"));
-            jsonObject.put("education",preferences.getString("education","Undergraduate"));
-            jsonObject.put("goal",preferences.getString("goal","Ready to marry in 1-2 years"));
+            jsonObject.put("education",preferences.getString("education","> Bachelors"));
+            jsonObject.put("goal",preferences.getString("goal","Not ready to marry"));
             jsonObject.put("max_age",Integer.parseInt(preferences.getString("max_age","70")));
             jsonObject.put("min_age",Integer.parseInt(preferences.getString("min_age","18")));
 

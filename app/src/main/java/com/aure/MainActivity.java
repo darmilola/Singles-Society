@@ -58,9 +58,8 @@ import com.aure.UiModels.CommunityPostModel;
 import com.aure.UiModels.MainActivityModel;
 import com.aure.UiModels.PaymentModel;
 import com.aure.UiModels.PreviewProfileModel;
-import com.aure.UiModels.ShowCaseMainModel;
+import com.aure.UiModels.SocietyModel;
 import com.aure.UiModels.ShowCaseModel;
-import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.button.MaterialButton;
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     CardStackView userShowcaseStack;
     CardStackLayoutManager manager;
     HomeMainAdapter homeMainAdapter;
-    ArrayList<ShowCaseMainModel> showCaseMainModelArrayList = new ArrayList<>();
+    ArrayList<SocietyModel> societyModelArrayList = new ArrayList<>();
 
     LinearLayout rightSwipeCard, leftSwipeCard;
     ActionBarDrawerToggle drawerToggle;
@@ -390,7 +389,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         rightSwipeCard = findViewById(R.id.user_swipe_right);
         userShowcaseStack = findViewById(R.id.showcase_main_recyclerview);
         toolbar = findViewById(R.id.activity_main_toolbar);
-        mainView = findViewById(R.id.activity_main_main_view);
+        mainView = findViewById(R.id.societyRecycler);
         progressBar = findViewById(R.id.loaderView);
         mainInfoToggleLayout = findViewById(R.id.main_info_toggle_layout);
 
@@ -501,7 +500,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                 public void onReady(ArrayList<PreviewProfileModel> previewProfileModels,ArrayList<String> likeIds) {
              MainActivity.this.previewProfileModels.clear();
                     MainActivity.this.likedUserId.clear();
-                    MainActivity.this.showCaseMainModelArrayList.clear();
+                    MainActivity.this.societyModelArrayList.clear();
                     MainActivity.this.likedUserId = likeIds;
                     MainActivity.this.previewProfileModels = previewProfileModels;
                     for (PreviewProfileModel previewProfileModel: previewProfileModels) {
@@ -774,7 +773,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                             break;
                         }
                     }
-                    if(!isMatched && position == showCaseMainModelArrayList.size()-1){
+                    if(!isMatched && position == societyModelArrayList.size()-1){
                         emptyLayoutRoot.setVisibility(View.GONE);
                         progressBar.setVisibility(View.GONE);
                         activityCaughtUpRoot.setVisibility(View.VISIBLE);
@@ -790,7 +789,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
                     }
              }
 
-          else if(position == showCaseMainModelArrayList.size()-1 && !isRightSwipe){
+          else if(position == societyModelArrayList.size()-1 && !isRightSwipe){
             //At the last position of the card
             emptyLayoutRoot.setVisibility(View.GONE);
             progressBar.setVisibility(View.GONE);

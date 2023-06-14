@@ -98,7 +98,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new ShowcaseAboutMeItemViewHolder(view);
         }
 
-
         if (viewType == SHOWCASE_TYPE_TAKE_ACTION) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_fav_report_block, parent, false);
             return new ShowcaseTakeActionItemViewHolder(view);
@@ -132,7 +131,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             }
             Glide.with(context)
-                    .load("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=260&h=650&dpr=2")
+                    .load("https://cdn.pixabay.com/photo/2023/05/30/10/18/wedding-8028163_1280.jpg")
                     .placeholder(R.drawable.profileplaceholder)
                     .error(R.drawable.profileplaceholder)
                     .into(showcaseMainItemViewHolder.imageView);

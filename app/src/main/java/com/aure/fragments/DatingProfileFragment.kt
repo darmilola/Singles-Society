@@ -2,38 +2,14 @@ package com.aure.fragments
 
 
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.aure.Arvi.widget.CardStackLayoutManager
-import com.aure.Arvi.widget.SwipeableMethod
-import com.aure.CompleteProfile
-import com.aure.MainActivity
 import com.aure.R
-import com.aure.UiAdapters.HomeMainAdapter
 import com.aure.UiAdapters.ShowCaseAdapter
-import com.aure.UiAdapters.ViewProfileAdapter
 import com.aure.UiModels.*
-import com.google.android.material.button.MaterialButton
-import io.socket.client.IO
-import jp.alessandro.android.iab.BillingApi
-import jp.alessandro.android.iab.BillingContext
-import jp.alessandro.android.iab.BillingProcessor
-import jp.alessandro.android.iab.handler.PurchaseHandler
-import jp.alessandro.android.iab.logger.SystemLogger
-import kotlinx.android.synthetic.main.activity_dating_profile_full_view.*
 import kotlinx.android.synthetic.main.fragment_dating_profile.*
 import kotlinx.android.synthetic.main.fragment_dating_profile.loaderView
 import kotlinx.android.synthetic.main.fragment_dating_profile.rootView
@@ -42,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_dating_profile.rootView
 class DatingProfileFragment : Fragment(){
 
     private var showCaseAdapter: ShowCaseAdapter? = null
-    private var showCaseMainModelArrayList = ArrayList<ShowCaseMainModel>()
     private var mainActivityModel: MainActivityModel? = null
 
     override fun onCreateView(
@@ -113,11 +88,7 @@ class DatingProfileFragment : Fragment(){
                     ShowCaseModel(imageStrings, 6, likeIds, previewProfileModel.userId)
                 showCaseModelArrayList.add(showCaseModel5)
 
-                val showCaseMainModel =
-                    ShowCaseMainModel(showCaseModelArrayList, 0, true)
-                showCaseMainModelArrayList.add(showCaseMainModel)
-
-                showCaseAdapter = ShowCaseAdapter(requireContext(), showCaseMainModelArrayList.get(0).showCaseModelArrayList)
+                showCaseAdapter = ShowCaseAdapter(requireContext(), showCaseModelArrayList)
                 showCaseAdapter!!.setUiNeedsAdjustment(true)
                 val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 userDatingProfileRecyclerview.setLayoutManager(layoutManager)

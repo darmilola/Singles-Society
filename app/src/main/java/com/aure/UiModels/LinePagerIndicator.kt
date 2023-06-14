@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import androidx.recyclerview.widget.RecyclerView.State
 
-class LinePagerIndicator: RecyclerView.ItemDecoration() {
+class LinePagerIndicator(val itemCount: Int = 0): RecyclerView.ItemDecoration() {
 
     private val dashIndicator = DashIndicator()
 
@@ -32,7 +32,7 @@ class LinePagerIndicator: RecyclerView.ItemDecoration() {
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: State) {
         super.onDrawOver(c, parent, state)
 
-        val itemCount = parent.adapter?.itemCount ?: return
+        val itemCount = this.itemCount
 
         dashIndicator.itemCount = itemCount
         val xPosition = dashIndicator.getX(parent)

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/special_activity_background"
+    android:layout_height="match_parent">
+
+    <com.aure.Arvi.widget.PlayableCardStackView
+        android:layout_width="match_parent"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:focusedByDefault="true"
+        android:id="@+id/showcaseCardStackView"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="bottom"
+        android:id="@+id/showcase_swipe_layout"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="20dp"
+        android:weightSum="3"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:gravity="left"
+            android:layout_weight="1">
+
+
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/user_swipe_left"
+                android:layout_marginLeft="30dp"
+                app:cardElevation="2dp"
+                android:gravity="center"
+                android:background="@drawable/main_action_circle"
+                app:cardCornerRadius="30dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/iconfinder_icon_close_round"
+                    android:tint="@color/white"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center|bottom"
+                android:id="@+id/user_rewind"
+                android:gravity="center"
+                android:background="@drawable/main_action_circle"
+                app:cardCornerRadius="30dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/rewind"
+                    android:tint="@color/white"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:gravity="right"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="right"
+                android:id="@+id/user_swipe_right"
+                android:layout_marginRight="30dp"
+                android:gravity="center"
+                android:background="@drawable/main_action_circle"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:tint="@color/white"
+                    android:src="@drawable/iconfinder_heart_favourite_favorite_love" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

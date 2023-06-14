@@ -1,41 +1,24 @@
 package com.aure.fragments
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
-import com.aure.Arvi.widget.CardStackLayoutManager
-import com.aure.Arvi.widget.SwipeableMethod
-import com.aure.CompleteProfile
-import com.aure.MainActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.aure.R
 import com.aure.UiAdapters.HomeMainAdapter
-import com.aure.UiModels.*
+import com.aure.UiModels.CommunityPostModel
+import com.aure.UiModels.MainActivityModel
 import com.aure.UiModels.MainActivityModel.ShowcaseInfoReadyListener
-import com.aure.UiModels.PaymentModel.PaymentListener
-import com.yuyakaido.android.cardstackview.*
-import io.socket.client.IO
-import jp.alessandro.android.iab.BillingApi
-import jp.alessandro.android.iab.BillingContext
-import jp.alessandro.android.iab.BillingProcessor
-import jp.alessandro.android.iab.handler.PurchaseHandler
-import jp.alessandro.android.iab.logger.SystemLogger
-import kotlinx.android.synthetic.main.activity_complete_profile_prompt.*
+import com.aure.UiModels.PreviewProfileModel
+import com.aure.UiModels.SocietyModel
+import com.pchmn.materialchips.R2.attr.layoutManager
 import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
 import kotlinx.android.synthetic.main.error_page.*
@@ -50,26 +33,16 @@ import nl.dionsegijn.konfetti.core.models.Size
 import nl.dionsegijn.konfetti.core.models.Size.Companion.LARGE
 import nl.dionsegijn.konfetti.core.models.Size.Companion.MEDIUM
 import nl.dionsegijn.konfetti.core.models.Size.Companion.SMALL
-import org.apache.commons.text.StringEscapeUtils
-import java.net.URISyntaxException
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 
-class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(), com.aure.Arvi.widget.CardStackListener {
+class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(){
 
-    private val PREFERENCE_INT = 1
-    var manager: CardStackLayoutManager? = null
     var homeMainAdapter: HomeMainAdapter? = null
-    var showCaseMainModelArrayList = java.util.ArrayList<ShowCaseMainModel>()
-    var likedUserId = java.util.ArrayList<String>()
-    var mPreviewProfileModels = ArrayList<PreviewProfileModel>()
-    var currentlyDisplayedUserId: String = ""
-    var isRightSwipe = false
+    var societyModelArrayList = java.util.ArrayList<SocietyModel>()
     var mainActivityModel: MainActivityModel? = null
-    private var mBillingProcessor: BillingProcessor? = null
-    private val TYPE_SHOWCASE = 102
-    private var isMatched = false
+    var lastPosition = RecyclerView.NO_POSITION
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -83,44 +56,8 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
         initView()
     }
 
-
-    private fun initBillingProcessor() {
-        val builder = BillingContext.Builder()
-                .setContext(requireContext()) // App context
-                .setPublicKeyBase64("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fDRqNLFSm7LYoCPZ/rG+8CpQXn/LCQNAxPtVRdt2ZNdpORpH0yvCm0vV8VOcSb6zWeM9s7dCt36wCLSJqllNw4fNkEWn/GcEV2iWNa3WT/I4JgDwstv4KGFq8FAYRA0Y+zICdvBUf833v/UuRWMAxUi2GfYmzJel+8uQtva1fzwHyzjRCYa1Od4F98IUebR0BfJ3Jp4KS3E5mr8GAuii61MxaR+n32YsEPC5gNCzkvpJO3PCbZr/XwiGG/l/sGPKQTEDapmLIhBOhnatwWj+Wmusww5RlsrEDwHnY6zRHQrwler1pW0IlqXzpyBDCKftGPa9N/o3KWof1WnUIGkXQIDAQAB") // Public key generated on the Google Play Console
-                .setApiVersion(BillingApi.VERSION_5) // It also supports version 5
-                .setLogger(SystemLogger())
-        mBillingProcessor = BillingProcessor(builder.build(), mPurchaseHandler)
-    }
-
-    private val mPurchaseHandler = PurchaseHandler { response ->
-        if (response.isSuccess) {
-            val purchase = response.purchase
-            val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-            val userEmail = preferences.getString("userEmail", "")
-            val paymentModel = PaymentModel(requireContext(), userEmail)
-            paymentModel.subscribe()
-            paymentModel.setPaymentListener(object : PaymentListener {
-                override fun onSuccess() {
-                    showAlert()
-                }
-
-                override fun onFailure() {
-                    Toast.makeText(requireContext(), "Error Occurred please try again", Toast.LENGTH_SHORT).show()
-                }
-            })
-        } else {
-
-            // Handle the error
-        }
-    }
-
-
-
-
     private fun initView() {
-        initBillingProcessor()
-        // Blurry.with(this).radius(25).sampling(2).onto(metMatchRoot);
+        PagerSnapHelper().attachToRecyclerView(societyRecycler)
         val size = ArrayList<Size>()
         size.add(LARGE)
         size.add(MEDIUM)
@@ -148,43 +85,15 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                 Rotation(),
                 Emitter(5, TimeUnit.MINUTES).perSecond(500))
         konfettiView.start(mParty)
-        //matchedStartChatting.setOnClickListener(View.OnClickListener { startActivity(Intent(requireContext(), MatchesActivity::class.java)) })
+
+
         error_page_retry.setOnClickListener(View.OnClickListener {
             empty_layout_root.setVisibility(View.GONE)
-          //  complete_profile_root.setVisibility(View.GONE)
             loaderView.setVisibility(View.VISIBLE)
-           // caught_up_visit_marketplace.setVisibility(View.GONE)
-            activity_main_main_view.setVisibility(View.GONE)
-            userShowcaseStack?.setVisibility(View.GONE)
-            showcase_swipe_layout.setVisibility(View.GONE)
-            met_match_root.setVisibility(View.GONE)
-            error_layout_root.setVisibility(View.GONE)
+            societyRecycler.setVisibility(View.GONE)
             mainActivityModel?.GetUserInfo()
         })
-        main_complete_profile_start_chatting.setOnClickListener(View.OnClickListener { startActivity(Intent(requireContext(), CompleteProfile::class.java)) })
 
-
-        user_swipe_left.setOnClickListener(View.OnClickListener {
-            isRightSwipe = false
-            val setting = SwipeAnimationSetting.Builder()
-                    .setDirection(Direction.Left)
-                    .setDuration(Duration.Slow.duration)
-                    .setInterpolator(AccelerateInterpolator())
-                    .build()
-            manager?.setSwipeAnimationSetting(setting)
-            userShowcaseStack?.swipe()
-        })
-
-        user_swipe_right.setOnClickListener(View.OnClickListener {
-            isRightSwipe = true
-            val setting = SwipeAnimationSetting.Builder()
-                    .setDirection(Direction.Right)
-                    .setDuration(Duration.Slow.duration)
-                    .setInterpolator(AccelerateInterpolator())
-                    .build()
-            manager?.setSwipeAnimationSetting(setting)
-            userShowcaseStack?.swipe()
-        })
         mainActivityModel = MainActivityModel(requireContext())
         mainActivityModel?.GetUserInfo()
         mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {
@@ -195,355 +104,240 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                 preferences.edit().putString("imageUrl", previewProfileModel.imageUrl).apply()
                 preferences.edit().putString("userId", previewProfileModel.userId).apply()
                 preferences.edit().putString("phonenumber", previewProfileModel.phonenumber).apply()
-
-                ParseUserResponse(previewProfileModel)
+                parseUserResponse()
             }
 
             override fun onError(message: String) {
-                Log.e("onError: ", message)
-                empty_layout_root.setVisibility(View.GONE)
-             //   complete_profile_root.setVisibility(View.GONE)
                 loaderView.setVisibility(View.GONE)
-                activity_main_main_view.setVisibility(View.VISIBLE)
-                userShowcaseStack?.setVisibility(View.GONE)
-                showcase_swipe_layout.setVisibility(View.GONE)
-                met_match_root.setVisibility(View.GONE)
+                societyRecycler.setVisibility(View.VISIBLE)
                 error_layout_root.setVisibility(View.VISIBLE)
             }
         })
     }
 
-
-    private fun ParseUserResponse(previewProfileModel: PreviewProfileModel) {
-        if (previewProfileModel.isProfileCompleted.equals("false", ignoreCase = true)) {
-
-            empty_layout_root.setVisibility(View.GONE)
-         //   complete_profile_root.setVisibility(View.VISIBLE)
-            loaderView.setVisibility(View.GONE)
-            activity_main_main_view.setVisibility(View.VISIBLE)
-            userShowcaseStack?.setVisibility(View.GONE)
-            showcase_swipe_layout.setVisibility(View.GONE)
-            met_match_root.setVisibility(View.GONE)
-            error_layout_root.setVisibility(View.GONE)
-
-        } else if (previewProfileModel.isMatched.equals("true", ignoreCase = true) && previewProfileModel.isSubscribed.equals("false", ignoreCase = true)) {
-            empty_layout_root.setVisibility(View.GONE)
-          //  complete_profile_root.setVisibility(View.GONE)
-            loaderView.setVisibility(View.GONE)
-            activity_main_main_view.setVisibility(View.VISIBLE)
-            userShowcaseStack?.setVisibility(View.GONE)
-            showcase_swipe_layout.setVisibility(View.GONE)
-            met_match_root.setVisibility(View.GONE)
-            error_layout_root.setVisibility(View.GONE)
-        } else {
+    private fun parseUserResponse() {
             val mainActivityModel2 = MainActivityModel(requireContext())
             mainActivityModel2.GetShowUserInfo()
             mainActivityModel2.setShowcaseInfoReadyListener(object : ShowcaseInfoReadyListener {
                 override fun onReady(previewProfileModels: ArrayList<PreviewProfileModel>, likeIds: ArrayList<String>) {
-                    mPreviewProfileModels.clear()
-                    mPreviewProfileModels = previewProfileModels
-                    Log.e("onReady: ", mPreviewProfileModels.size.toString())
-                    likedUserId.clear()
-                    showCaseMainModelArrayList.clear()
-                    likedUserId = likeIds
-                    for (previewProfileModel in previewProfileModels) {
-                        val showCaseModelArrayList = ArrayList<ShowCaseModel>()
-                        val mainStrings = ArrayList<String>()
-                        val quoteStrings = ArrayList<String>()
-                        val aboutStrings = ArrayList<String>()
-                        val careerStrings = ArrayList<String>()
-                        val imageStrings = ArrayList<String>()
-                        val goalStrings = ArrayList<String>()
-                        mainStrings.add(previewProfileModel.firstname)
-                        mainStrings.add(previewProfileModel.age.toString())
-                        mainStrings.add(previewProfileModel.city)
-                        mainStrings.add(previewProfileModel.occupation)
-                        mainStrings.add(previewProfileModel.image1Url)
-                        mainStrings.add(previewProfileModel.userId)
-                        val showCaseModel = ShowCaseModel(mainStrings, 1, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel)
-                        quoteStrings.add(previewProfileModel.quote)
-                        val showCaseModel1 = ShowCaseModel(quoteStrings, 2, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel1)
-                        val showCaseModel9 = ShowCaseModel(goalStrings, 9, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel9)
-                        aboutStrings.add(previewProfileModel.status)
-                        aboutStrings.add(previewProfileModel.smoking)
-                        aboutStrings.add(previewProfileModel.drinking)
-                        aboutStrings.add(previewProfileModel.language)
-                        aboutStrings.add(previewProfileModel.religion)
-                        aboutStrings.add(previewProfileModel.marriageGoals)
-                        val showCaseModel2 = ShowCaseModel(aboutStrings, 3, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel2)
-                        careerStrings.add(previewProfileModel.educationLevel)
-                        careerStrings.add(previewProfileModel.occupation)
-                        careerStrings.add(previewProfileModel.workplace)
-                        careerStrings.add(previewProfileModel.image2Url)
-                        val showCaseModel3 = ShowCaseModel(careerStrings, 4, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel3)
-
-                        // aboutTextStrings.add(previewProfileModel.getAbout());
-                        //ShowCaseModel showCaseModel4 = new ShowCaseModel(aboutTextStrings,5,likeIds);
-                        // showCaseModelArrayList.add(showCaseModel4);
-                        imageStrings.add(previewProfileModel.image3Url)
-                        val showCaseModel5 = ShowCaseModel(imageStrings, 6, likeIds, previewProfileModel.userId)
-                        showCaseModelArrayList.add(showCaseModel5)
-
-                        val showCaseMainModel =
-                            ShowCaseMainModel(showCaseModelArrayList, 0, true)
-                        showCaseMainModelArrayList.add(showCaseMainModel)
-
-                    }
-
-                    for (i in 0..4) {
+                    Log.e("onReady: "," Ready" )
+                    for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
-                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModel, 1)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                        val societyModel1 =
+                            SocietyModel(communityPostModel, 1)
+                        societyModelArrayList.add(societyModel1);
                     }
 
-                    for (i in 0..4) {
-                        val showCaseMainModel1 = ShowCaseMainModel(2)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                    for (i in 0..2) {
+                        val societyModel1 = SocietyModel(2)
+                        societyModelArrayList.add(societyModel1);
+                    }
+                    val moreProfiles: ArrayList<PreviewProfileModel> = ArrayList()
+
+                    for(profile in previewProfileModels){
+                        moreProfiles.add(profile)
+                        moreProfiles.add(profile)
+                        moreProfiles.add(profile)
+                        moreProfiles.add(profile)
+                    }
+                    val societyModelShowcase =  SocietyModel(moreProfiles,likeIds,0)
+
+                    societyModelArrayList.add(societyModelShowcase)
+
+                    for (i in 0..1) {
+                        val societyModel1 = SocietyModel(2)
+                        societyModelArrayList.add(societyModel1);
                     }
 
-                    Log.e("onReady: ", showCaseMainModelArrayList.size.toString() )
-
-                    showCaseMainModelArrayList.shuffle(Random(50))
 
                     homeMainAdapter =
                         HomeMainAdapter(
                             requireContext(),
-                            showCaseMainModelArrayList
+                            societyModelArrayList
                         )
-                    initializeCardStack()
-                    loaderView.setVisibility(View.GONE)
-                    activity_main_main_view.setVisibility(View.VISIBLE)
-                    empty_layout_root.setVisibility(View.GONE)
-                    userShowcaseStack?.setVisibility(View.VISIBLE)
-                    showcase_swipe_layout.setVisibility(View.VISIBLE)
-                    met_match_root.visibility = View.GONE
 
-                    // if(!likeIds.isEmpty()) displayLikedNotification();
+                    homeMainAdapter?.setVisitProfileListener {
+                        visitProfileListener?.invoke()
+                    }
+
+                    loaderView.setVisibility(View.GONE)
+                    societyRecycler.setVisibility(View.VISIBLE)
+                    met_match_root.visibility = View.GONE
+                    societyRecycler.layoutManager = scrollableLayoutManager
+
+                    societyRecycler.adapter = homeMainAdapter
+
+
+                    homeMainAdapter!!.setDatingProfileListener {
+                        Toast.makeText(context,"date",Toast.LENGTH_SHORT).show()
+                        //societyRecycler.layoutManager = scrollableLayoutManager
+
+                    }
+                    homeMainAdapter!!.setProfileEmptyListener {
+                        societyModelArrayList.removeAt(lastPosition)
+                        societyRecycler.layoutManager = scrollableLayoutManager
+                        societyRecycler.scrollToPosition(lastPosition)
+                    }
+                    homeMainAdapter!!.setPostListener {
+                        Toast.makeText(context,"post",Toast.LENGTH_SHORT).show()
+                       // societyRecycler.layoutManager = scrollableLayoutManager
+
+                    }
+                    homeMainAdapter!!.setProfileMatchedListener{
+                        loaderView.setVisibility(View.GONE)
+                        societyRecycler.setVisibility(View.GONE)
+                        met_match_root.setVisibility(View.VISIBLE)
+                        error_layout_root.setVisibility(View.GONE)
+                    }
+
+
+                    societyRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                            lastPosition = (societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                            if (lastPosition != RecyclerView.NO_POSITION){
+                               val viewType =  societyModelArrayList.get(lastPosition).itemViewType
+                                if (viewType == 0){
+                                    societyRecycler.layoutManager = unScrollableLayoutManager
+                                    societyRecycler.scrollToPosition(lastPosition)
+                                }
+                            }
+                        }
+                    })
+
                 }
 
+
                 override fun onError(message: String) {
-                    empty_layout_root.setVisibility(View.GONE)
-                //    complete_profile_root.setVisibility(View.GONE)
+                    Log.e("onError: ",message)
+                    for (i in 0..4) {
+                        val communityPostModel = CommunityPostModel()
+                        val societyModel1 =
+                            SocietyModel(communityPostModel, 1)
+                        societyModelArrayList.add(societyModel1);
+                    }
+
+                    for (i in 0..4) {
+                        val societyModel1 = SocietyModel(2)
+                        societyModelArrayList.add(societyModel1);
+                    }
+
+                   // val societyModelShowcase =  SocietyModel(previewProfileModels,likeIds,0)
+
+                  //  societyModelArrayList.add(societyModelShowcase)
+                    societyModelArrayList.shuffle(Random(50))
+
+                    homeMainAdapter =
+                        HomeMainAdapter(
+                            requireContext(),
+                            societyModelArrayList
+                        )
+
+                    homeMainAdapter?.setVisitProfileListener {
+                        visitProfileListener?.invoke()
+                    }
+                    homeMainAdapter!!.setPostListener {
+
+                    }
+
                     loaderView.setVisibility(View.GONE)
+                    societyRecycler.setVisibility(View.VISIBLE)
+                    met_match_root.visibility = View.GONE
+                    societyRecycler.layoutManager = unScrollableLayoutManager
+
+                    societyRecycler.adapter = homeMainAdapter
+
+                    homeMainAdapter!!.setDatingProfileListener {
+                          societyRecycler.isNestedScrollingEnabled = true
+                    }
+                    homeMainAdapter!!.setPostListener {
+                        societyRecycler.isNestedScrollingEnabled = false
+
+                    }
+                    homeMainAdapter!!.setDatingProfileListener {
+
+                    }
+                    homeMainAdapter!!.setProfileMatchedListener{
+                        loaderView.setVisibility(View.GONE)
+                        societyRecycler.setVisibility(View.GONE)
+                        met_match_root.setVisibility(View.VISIBLE)
+                        error_layout_root.setVisibility(View.GONE)
+                    }
+                  /*  loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
-                    userShowcaseStack?.setVisibility(View.GONE)
-                    showcase_swipe_layout.setVisibility(View.GONE)
                     met_match_root.setVisibility(View.GONE)
-                    error_layout_root.setVisibility(View.VISIBLE)
+                    error_layout_root.setVisibility(View.VISIBLE*/
                 }
 
                 override fun onEmptyResponse() {
+                    Log.e("onEmpty: "," Ready" )
 
                     for (i in 0..4) {
                         val communityPostModel = CommunityPostModel()
-                        val showCaseMainModel1 = ShowCaseMainModel(communityPostModel, 1)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                        val societyModel1 =
+                            SocietyModel(communityPostModel, 1)
+                        societyModelArrayList.add(societyModel1);
                     }
 
                     for (i in 0..4) {
-                        val showCaseMainModel1 = ShowCaseMainModel(2)
-                        showCaseMainModelArrayList.add(showCaseMainModel1);
+                        val societyModel1 = SocietyModel(2)
+                        societyModelArrayList.add(societyModel1);
                     }
 
-                    Log.e("onReady: ", showCaseMainModelArrayList.size.toString() )
+                    // val societyModelShowcase =  SocietyModel(previewProfileModels,likeIds,0)
 
-                    showCaseMainModelArrayList.shuffle(Random(50))
+                    //societyModelArrayList.add(societyModelShowcase)
+                    //societyModelArrayList.shuffle(Random(50))
 
                     homeMainAdapter =
                         HomeMainAdapter(
                             requireContext(),
-                            showCaseMainModelArrayList
+                            societyModelArrayList
                         )
-                    initializeCardStack()
+                    societyRecycler.setVisibility(View.VISIBLE)
+                    societyRecycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                    societyRecycler.adapter = homeMainAdapter
+
+                    homeMainAdapter?.setVisitProfileListener {
+                        visitProfileListener?.invoke()
+                    }
+                    homeMainAdapter!!.setDatingProfileListener {
+
+                    }
+                    homeMainAdapter!!.setPostListener {
+
+                    }
+
                     loaderView.setVisibility(View.GONE)
-                    activity_main_main_view.setVisibility(View.VISIBLE)
-                    empty_layout_root.setVisibility(View.GONE)
-                    userShowcaseStack?.setVisibility(View.VISIBLE)
-                    showcase_swipe_layout.setVisibility(View.VISIBLE)
                     met_match_root.visibility = View.GONE
 
-                }
-            })
-        }
-    }
+                    homeMainAdapter!!.setDatingProfileListener {
 
-    private fun initializeCardStack() {
-        manager = CardStackLayoutManager(requireContext(), this)
-        manager?.setVisibleCount(2)
-        manager?.setScaleInterval(1.0f)
-        manager?.setSwipeThreshold(0.2f)
-        manager?.setMaxDegree(80.0f)
-        manager?.setDirections(com.aure.Arvi.Direction.VERTICAL)
-        manager?.setCanScrollHorizontal(false)
-        manager?.setCanScrollVertical(true)
-        manager?.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
-        userShowcaseStack?.layoutManager = manager
-        userShowcaseStack?.adapter = homeMainAdapter
-        homeMainAdapter!!.setVisitProfileListener{
-            visitProfileListener?.invoke()
-        }
-    }
-
-
-
-    private fun showAlert() {
-        AlertDialog.Builder(requireContext())
-                .setTitle("Subscription successful")
-                .setMessage("You have successfully subscribed for Auratayya Premium, you can restart the App to activate more features") // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton("Okay") { dialog, which -> dialog.dismiss() }
-                .show()
-    }
-
-
-    override fun onCardDragging(direction: com.aure.Arvi.Direction, ratio: Float) {
-        if (direction == com.aure.Arvi.Direction.Right) {
-            isRightSwipe = true
-        } else if (direction == com.aure.Arvi.Direction.Left) {
-            isRightSwipe = false
-        } else {
-        }
-    }
-
-    override fun onCardSwiped(direction: com.aure.Arvi.Direction?) {
-        //showcaseMovementProgress.setProgress(10);
-        //recyclerviewProgress = 0;
-    }
-
-    override fun onCardRewound() {}
-
-    override fun onCardCanceled() {}
-
-    override fun onCardAppeared(view: View?, position: Int) {
-       if(showCaseMainModelArrayList[position].itemViewType == 1 || showCaseMainModelArrayList[position].itemViewType == 2){
-           showcase_swipe_layout.visibility = View.GONE
-       }
-        else if(isMatched){
-           showcase_swipe_layout.visibility = View.GONE
-        }
-        else{
-           showcase_swipe_layout.visibility = View.VISIBLE
-        }
-    }
-
-    override fun onCardDisappeared(view: View?, position: Int) {
-        if(showCaseMainModelArrayList.get(position).showCaseModelArrayList != null){
-            currentlyDisplayedUserId = showCaseMainModelArrayList[position].showCaseModelArrayList[0].userId
-            val mainActivityModel = MainActivityModel(currentlyDisplayedUserId, requireContext())
-            if (isRightSwipe) {
-                //set like to db
-                mainActivityModel.setLiked()
-                for (i in likedUserId.indices) {
-                    if (currentlyDisplayedUserId.equals(likedUserId.get(i), ignoreCase = true)) {
-                        //There is a Match set match break
-                        mainActivityModel.setMatched()
-                        publishMatchNotification(
-                            currentlyDisplayedUserId,
-                            showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[0],
-                            showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[4]
-                        )
-                        isMatched = true
-
-
-                        empty_layout_root.setVisibility(View.GONE)
-                        //   complete_profile_root.setVisibility(View.GONE)
+                    }
+                    homeMainAdapter!!.setProfileMatchedListener{
                         loaderView.setVisibility(View.GONE)
-                        activity_main_main_view.setVisibility(View.VISIBLE)
-                        userShowcaseStack?.setVisibility(View.GONE)
-                        showcase_swipe_layout.setVisibility(View.GONE)
+                        societyRecycler.setVisibility(View.GONE)
                         met_match_root.setVisibility(View.VISIBLE)
                         error_layout_root.setVisibility(View.GONE)
-
-                        val preferences =
-                            PreferenceManager.getDefaultSharedPreferences(requireContext())
-                        val imgUrl = preferences.getString("imageUrl", "")
-                        val uri = Uri.parse(showCaseMainModelArrayList[position].showCaseModelArrayList[0].modelInfoList[4])
-                        //  match_first_image.setImageURI(uri);
-                        val uri2 = Uri.parse(imgUrl)
-                        // match_second_image.setImageURI(uri2);
-                        break
-
-                    }
-                    else if(position == showCaseMainModelArrayList.size - 1){
-                        empty_layout_root.setVisibility(View.VISIBLE)
-                        //   complete_profile_root.setVisibility(View.GONE)
-                        loaderView.setVisibility(View.GONE)
-                        activity_main_main_view.setVisibility(View.VISIBLE)
-                        userShowcaseStack?.setVisibility(View.GONE)
-                        showcase_swipe_layout.setVisibility(View.GONE)
-                        met_match_root.setVisibility(View.GONE)
-                        error_layout_root.setVisibility(View.GONE)
                     }
 
                 }
-                if (position == showCaseMainModelArrayList.size - 1) {
 
 
-                }
-            } else if (position == showCaseMainModelArrayList.size - 1 && !isRightSwipe) {
-                empty_layout_root.setVisibility(View.VISIBLE)
-                //   complete_profile_root.setVisibility(View.GONE)
-                loaderView.setVisibility(View.GONE)
-                activity_main_main_view.setVisibility(View.VISIBLE)
-                userShowcaseStack?.setVisibility(View.GONE)
-                showcase_swipe_layout.setVisibility(View.GONE)
-                met_match_root.setVisibility(View.GONE)
-                error_layout_root.setVisibility(View.GONE)
-
-            }
+            })
         }
-        else if(showCaseMainModelArrayList.size -1 == position){
-            empty_layout_root.setVisibility(View.VISIBLE)
-            //   complete_profile_root.setVisibility(View.GONE)
-            loaderView.setVisibility(View.GONE)
-            activity_main_main_view.setVisibility(View.VISIBLE)
-            userShowcaseStack?.setVisibility(View.GONE)
-            showcase_swipe_layout.setVisibility(View.GONE)
-            met_match_root.setVisibility(View.GONE)
-            error_layout_root.setVisibility(View.GONE)
+
+    var unScrollableLayoutManager: LinearLayoutManager = object : LinearLayoutManager(context) {
+        override fun canScrollVertically(): Boolean {
+            return false
+        }
+    }
+
+    var scrollableLayoutManager: LinearLayoutManager = object : LinearLayoutManager(context) {
+        override fun canScrollVertically(): Boolean {
+            return true
         }
     }
 
 
+ }
 
-
-
-    private fun publishMatchNotification(receiverId: String, matchFirstname: String, matchImageUrl: String) {
-        try {
-            val mSocket = IO.socket("https://strong-swan-8610e4.netlify.app")
-            mSocket.connect()
-            mSocket.emit("match", receiverId, matchFirstname, matchImageUrl)
-        } catch (e: URISyntaxException) {
-            e.printStackTrace()
-        }
-    }
-
-
-    private fun displayLikedNotification() {
-        val message = "This List Contains a possible match"
-        val CHANNEL_ID = "AURATAYYA"
-        val mBuilder: NotificationCompat.Builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-                .setSmallIcon(R.drawable.iconfinder_usa)
-                .setContentText(StringEscapeUtils.unescapeJava(message))
-                .setAutoCancel(true)
-                .setOngoing(false)
-                .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.profileplaceholder))
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-        val resultIntent = Intent(requireContext(), MainActivity::class.java)
-        val resultPendingIntent = PendingIntent.getActivity(requireContext(), 0, resultIntent, 0)
-        mBuilder.setContentIntent(resultPendingIntent)
-        val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name: CharSequence = "AURATAYYA_MESSAGES"
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val notificationChannel = NotificationChannel(CHANNEL_ID, name, importance)
-            notificationManager.createNotificationChannel(notificationChannel)
-        }
-        notificationManager.notify(1, mBuilder.build())
-    }
-}

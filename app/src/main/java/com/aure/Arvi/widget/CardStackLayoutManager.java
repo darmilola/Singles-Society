@@ -38,6 +38,10 @@ public class CardStackLayoutManager
         this.listener = listener;
     }
 
+    public void setListener(CardStackListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
         return new RecyclerView.LayoutParams(
@@ -233,6 +237,7 @@ public class CardStackLayoutManager
     public CardStackListener getCardStackListener() {
         return listener;
     }
+
 
     void updateProportion(float x, float y) {
         if (getTopPosition() < getItemCount()) {
