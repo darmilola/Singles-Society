@@ -78,19 +78,28 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:weightSum="2"
             android:id="@+id/chat_payment_icon"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:gravity="right|center">
 
             <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/phone_icon"
-                android:tint="@color/light_text_color"/>
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_weight="1"
+                android:src="@drawable/video_call_icon"
+                app:tint="@color/lighter_text_color"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/thick_phone_icon"
+                app:tint="@color/lighter_text_color"/>
 
         </LinearLayout>
     </LinearLayout>
-
 
 
     <com.aure.ChatKit.messages.MessagesList
@@ -104,6 +113,9 @@
         app:layout_constraintTop_toBottomOf="@id/toolbarArena"
         app:layout_constraintBottom_toTopOf="@id/createArena"
         tools:listitem="@layout/item_incoming_text_message" />
+
+
+
 
 
 
@@ -128,15 +140,17 @@
             android:layout_marginRight="15dp"
             android:minHeight="55dp"
             app:inputTextSize="15sp"
+            app:emojiButtonIcon="@drawable/emoji_icon"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            app:attachmentButtonHeight="28dp"
-            app:attachmentButtonWidth="28dp"
-            app:inputButtonIcon="@drawable/send_icon"
-            app:inputButtonHeight="28dp"
-            app:inputButtonWidth="28dp"
+            app:attachmentButtonHeight="24dp"
+            app:attachmentButtonWidth="24dp"
+            app:inputButtonIcon="@drawable/send_filled_icon"
+            app:inputButtonHeight="32dp"
+            app:inputButtonWidth="32dp"
+            app:isInputViewTypeMessage="true"
             android:background="@drawable/filled_transparent_circle"
-            app:attachmentButtonIcon="@drawable/photo_picture_icon"
+            app:attachmentButtonIcon="@drawable/thick_camera_icon"
             app:showAttachmentButton="true"/>
 
     </LinearLayout>

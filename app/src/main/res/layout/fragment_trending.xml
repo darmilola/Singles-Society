@@ -108,6 +108,16 @@
                 android:backgroundTint="#FA4375"
                 android:background="@drawable/love_gradient">
 
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/add_icon"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:tint="#ddffffff" />
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -115,18 +125,7 @@
                     android:textSize="20sp"
                     android:gravity="center"
                     android:fontFamily="@font/nunitobold"
-                    android:text="Start A New Thread." />
-
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/add_icon"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="2dp"
-                    android:tint="#ddffffff" />
-
+                    android:text="Create New Space." />
 
             </LinearLayout>
 
@@ -138,7 +137,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:itemCount="6"
-            android:id="@+id/myCommunitiesRecyclerview"
+            android:id="@+id/mySpacesRecyclerview"
             android:layout_marginBottom="20dp"
             tools:listitem="@layout/explore_item"
             android:layout_marginTop="3dp"/>

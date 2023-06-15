@@ -39,6 +39,10 @@ import com.aure.R;
 import java.lang.reflect.Field;
 
 import androidx.core.view.ViewCompat;
+import androidx.emoji.widget.EmojiEditText;
+
+import hani.momanii.supernova_emoji_library.Actions.EmojIconActions;
+import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
 
 
 /**
@@ -48,9 +52,10 @@ import androidx.core.view.ViewCompat;
 public class MessageInput extends RelativeLayout
         implements View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
 
-    protected EditText messageInput;
+    protected EmojiconEditText messageInput;
     protected ImageView messageSendButton;
     protected ImageView attachmentButton;
+    protected ImageView emojiButton;
    // protected Space sendButtonSpace, attachmentButtonSpace;
 
     private CharSequence input;
@@ -69,11 +74,6 @@ public class MessageInput extends RelativeLayout
         }
     };
     private boolean lastFocus;
-
-    public MessageInput(Context context) {
-        super(context);
-        init(context);
-    }
 
     public MessageInput(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -188,9 +188,9 @@ public class MessageInput extends RelativeLayout
     }
 
     private void init(Context context, AttributeSet attrs) {
-        init(context);
         MessageInputStyle style = MessageInputStyle.parse(context, attrs);
-
+        Boolean isTypeMessage = style.getIsTypeMessage();
+        init(context,isTypeMessage);
         this.messageInput.setMaxLines(style.getInputMaxLines());
         this.messageInput.setHint(style.getInputHint());
         this.messageInput.setText(style.getInputText());
@@ -200,11 +200,19 @@ public class MessageInput extends RelativeLayout
         ViewCompat.setBackground(this.messageInput, style.getInputBackground());
         setCursor(style.getInputCursorDrawable());
 
-        this.attachmentButton.setVisibility(style.showAttachmentButton() ? VISIBLE : GONE);
-        this.attachmentButton.setImageDrawable(style.getAttachmentButtonIcon());
-        this.attachmentButton.getLayoutParams().width = style.getAttachmentButtonWidth();
-        this.attachmentButton.getLayoutParams().height = style.getAttachmentButtonHeight();
-        ViewCompat.setBackground(this.attachmentButton, style.getAttachmentButtonBackground());
+        if(isTypeMessage) {
+            this.attachmentButton.setVisibility(style.showAttachmentButton() ? VISIBLE : GONE);
+            this.attachmentButton.setImageDrawable(style.getAttachmentButtonIcon());
+            this.attachmentButton.getLayoutParams().width = style.getAttachmentButtonWidth();
+            this.attachmentButton.getLayoutParams().height = style.getAttachmentButtonHeight();
+            ViewCompat.setBackground(this.attachmentButton, style.getAttachmentButtonBackground());
+        }
+
+        this.emojiButton.setVisibility(style.showAttachmentButton() ? VISIBLE : GONE);
+        this.emojiButton.setImageDrawable(style.getEmojiButtonIcon());
+        this.emojiButton.getLayoutParams().width = style.getAttachmentButtonWidth();
+        this.emojiButton.getLayoutParams().height = style.getAttachmentButtonHeight();
+        ViewCompat.setBackground(this.emojiButton, style.getAttachmentButtonBackground());
 
      //   this.attachmentButtonSpace.setVisibility(style.showAttachmentButton() ? VISIBLE : GONE);
        // this.attachmentButtonSpace.getLayoutParams().width = style.getAttachmentButtonMargin();
@@ -229,19 +237,34 @@ public class MessageInput extends RelativeLayout
         this.delayTypingStatusMillis = style.getDelayTypingStatus();
     }
 
-    private void init(Context context) {
-        inflate(context, R.layout.view_message_input, this);
-        messageInput = (EditText) findViewById(R.id.messageInput);
+    private void init(Context context, Boolean isTypeMessage) {
+        View rootView = null;
+        if(isTypeMessage){
+            rootView = inflate(context, R.layout.view_message_input, this);
+        }
+        else{
+            rootView = inflate(context, R.layout.view_comment_input, this);
+        }
+
+        messageInput = findViewById(R.id.messageInput);
         messageSendButton =  findViewById(R.id.messageSendButton);
-        attachmentButton = findViewById(R.id.attachmentButton);
+        emojiButton = findViewById(R.id.emojiButton);
         //sendButtonSpace = (Space) findViewById(R.id.sendButtonSpace);
         //attachmentButtonSpace = (Space) findViewById(R.id.attachmentButtonSpace);
 
         messageSendButton.setOnClickListener(this);
-        attachmentButton.setOnClickListener(this);
+        if(isTypeMessage) {
+            attachmentButton = findViewById(R.id.attachmentButton);
+            attachmentButton.setOnClickListener(this);
+        }
         messageInput.addTextChangedListener(this);
-        messageInput.setText("");
         messageInput.setOnFocusChangeListener(this);
+
+            EmojIconActions emojIcon=new EmojIconActions(context,rootView,messageInput,emojiButton);
+            emojIcon.ShowEmojIcon();
+
+
+
     }
 
     private void setCursor(Drawable drawable) {

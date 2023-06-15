@@ -24,6 +24,7 @@
         <attr name="attachmentButtonDefaultBgDisabledColor" format="color|reference"/>
 
         <attr name="attachmentButtonIcon" format="reference"/>
+        <attr name="emojiButtonIcon" format="reference"/>
         <attr name="attachmentButtonDefaultIconColor" format="color|reference"/>
         <attr name="attachmentButtonDefaultIconPressedColor" format="color|reference"/>
         <attr name="attachmentButtonDefaultIconDisabledColor" format="color|reference"/>
@@ -36,6 +37,7 @@
         <attr name="inputHint" format="string"/>
 
         <attr name="inputText" format="string"/>
+        <attr name="isInputViewTypeMessage" format="boolean|reference"/>
         <attr name="inputTextSize" format="dimension|reference"/>
         <attr name="inputTextColor" format="color|reference"/>
         <attr name="inputHintColor" format="color|reference"/>

@@ -1,41 +1,67 @@
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@id/attachmentButton"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:src="@drawable/select_image"
-        android:tint="@color/light_text_color"
-        android:layout_centerVertical="true"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_margin="2dp"
+        android:id="@id/attachmentButtonSpace"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@id/attachmentButton"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_weight="1"
+            android:src="@drawable/select_image"
+            android:tint="@color/light_text_color" />
+
+        <ImageView
+            android:id="@id/emojiButton"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/select_image"
+            android:tint="@color/grey" />
+
+    </LinearLayout>
 
 
-    <EditText
+
+
+    <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
         android:id="@id/messageInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:textColor="@color/light_text_color"
         android:layout_toEndOf="@id/attachmentButtonSpace"
         android:layout_toLeftOf="@id/sendButtonSpace"
         android:layout_toRightOf="@id/attachmentButtonSpace"
-        android:layout_toStartOf="@id/sendButtonSpace"
-        android:inputType="textAutoCorrect|textAutoComplete|textMultiLine|textCapSentences"/>
+        android:layout_toStartOf="@id/sendButtonSpace"/>
 
-
-
-    <ImageView
-        android:id="@id/messageSendButton"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+    <LinearLayout
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentEnd="true"
-        android:padding="3dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:background="@drawable/filled_full_circle"
+        android:gravity="center"
+        android:backgroundTint="@color/pink"
+        android:layout_alignParentRight="true">
+        <ImageView
+            android:id="@id/messageSendButton"
+            android:layout_width="24dp"
+            android:padding="3dp"
+            android:src="@drawable/send_filled_icon"
+            android:layout_height="24dp"/>
+    </LinearLayout>
+
 
 </merge>

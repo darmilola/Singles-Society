@@ -49,6 +49,7 @@ class MessageInputStyle extends Style {
     private int attachmentButtonDefaultBgDisabledColor;
 
     private int attachmentButtonIcon;
+    private int emojiButtonIcon;
     private int attachmentButtonDefaultIconColor;
     private int attachmentButtonDefaultIconPressedColor;
     private int attachmentButtonDefaultIconDisabledColor;
@@ -89,6 +90,8 @@ class MessageInputStyle extends Style {
 
     private int delayTypingStatus;
 
+    private Boolean isTypeMessage = false;
+
     static MessageInputStyle parse(Context context, AttributeSet attrs) {
         MessageInputStyle style = new MessageInputStyle(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MessageInput);
@@ -104,6 +107,7 @@ class MessageInputStyle extends Style {
                 style.getColor(R.color.transparent));
 
         style.attachmentButtonIcon = typedArray.getResourceId(R.styleable.MessageInput_attachmentButtonIcon, -1);
+        style.emojiButtonIcon = typedArray.getResourceId(R.styleable.MessageInput_emojiButtonIcon, -1);
         style.attachmentButtonDefaultIconColor = typedArray.getColor(R.styleable.MessageInput_attachmentButtonDefaultIconColor,
                 style.getColor(R.color.pink));
         style.attachmentButtonDefaultIconPressedColor = typedArray.getColor(R.styleable.MessageInput_attachmentButtonDefaultIconPressedColor,
@@ -134,7 +138,7 @@ class MessageInputStyle extends Style {
         style.inputButtonWidth = typedArray.getDimensionPixelSize(R.styleable.MessageInput_inputButtonWidth, style.getDimension(R.dimen.input_button_width));
         style.inputButtonHeight = typedArray.getDimensionPixelSize(R.styleable.MessageInput_inputButtonHeight, style.getDimension(R.dimen.input_button_height));
         style.inputButtonMargin = typedArray.getDimensionPixelSize(R.styleable.MessageInput_inputButtonMargin, style.getDimension(R.dimen.input_button_margin));
-
+        style.isTypeMessage = typedArray.getBoolean(R.styleable.MessageInput_isInputViewTypeMessage,false);
         style.inputMaxLines = typedArray.getInt(R.styleable.MessageInput_inputMaxLines, DEFAULT_MAX_LINES);
         style.inputHint = typedArray.getString(R.styleable.MessageInput_inputHint);
         style.inputText = typedArray.getString(R.styleable.MessageInput_inputText);
@@ -201,6 +205,15 @@ class MessageInputStyle extends Style {
         }
     }
 
+    public Drawable getEmojiButtonIcon() {
+        if (attachmentButtonIcon == -1) {
+            return getSelector(attachmentButtonDefaultIconColor, attachmentButtonDefaultIconPressedColor,
+                    attachmentButtonDefaultIconDisabledColor, R.drawable.picture_icon);
+        } else {
+            return getDrawable(emojiButtonIcon);
+        }
+    }
+
     protected int getAttachmentButtonWidth() {
         return attachmentButtonWidth;
     }
@@ -230,7 +243,9 @@ class MessageInputStyle extends Style {
             return getDrawable(inputButtonIcon);
         }
     }
-
+    protected Boolean getIsTypeMessage(){
+        return isTypeMessage;
+    }
     protected int getInputButtonMargin() {
         return inputButtonMargin;
     }

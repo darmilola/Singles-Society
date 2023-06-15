@@ -76,6 +76,8 @@
             app:inputButtonIcon="@drawable/send_icon"
             app:inputButtonHeight="28dp"
             app:inputButtonWidth="28dp"
+            app:emojiButtonIcon="@drawable/emoji_icon"
+            app:isInputViewTypeMessage="false"
             android:background="@drawable/filled_transparent_circle"
             app:attachmentButtonIcon="@drawable/photo_picture_icon"
             app:showAttachmentButton="true"/>
