@@ -16,7 +16,7 @@
         app:contentInsetLeft="0dp"
         android:background="@color/special_activity_background"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/home_toolbar">
+        android:id="@+id/mainActivityToolbar">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -84,7 +84,7 @@
         android:id="@+id/container"
         android:layout_marginBottom="45dp"
         android:layout_marginTop="45dp"
-        app:layout_constraintTop_toBottomOf="@id/home_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/mainActivityToolbar"
         android:background="@color/special_activity_background"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         android:orientation="horizontal">
@@ -104,7 +104,7 @@
         app:ss_countBackgroundColor="#FA4375"
         app:ss_countTextColor="#ffffff"
         app:ss_defaultIconColor="#6200EE"
-        app:ss_iconTextColor="#838282"
+        app:ss_iconTextColor="#DA3C3A3A"
         app:ss_rippleColor="#2f424242"
         android:background="#f2f3f5"
         app:ss_iconTextSize="14sp"

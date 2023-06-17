@@ -86,6 +86,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Function0<Unit> profileMatchedListener;
 
     private Function0<Unit> profileEmptyListener;
+    private Function0<Unit> exitSpaceListener;
     private Function0<Unit> datingProfileListener;
 
     private Function0<Unit> onReadyToMoveUpListener;
@@ -99,6 +100,10 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public HomeMainAdapter(Context context, ArrayList<SocietyModel> societyModelArrayList){
         this.context = context;
         this.societyModelArrayList = societyModelArrayList;
+    }
+
+    public void setExitSpaceListener(Function0<Unit> exitSpaceListener) {
+        this.exitSpaceListener = exitSpaceListener;
     }
 
     public void setVisitProfileListener(@NotNull Function0<Unit> visitProfileListener) {
@@ -305,8 +310,16 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class SpacesHeaderItemViewholder extends RecyclerView.ViewHolder{
 
+        LinearLayout exitCta;
         public SpacesHeaderItemViewholder(View ItemView){
             super(ItemView);
+            exitCta = ItemView.findViewById(R.id.spaceExitCta);
+            exitCta.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    exitSpaceListener.invoke();
+                }
+            });
 
         }
     }

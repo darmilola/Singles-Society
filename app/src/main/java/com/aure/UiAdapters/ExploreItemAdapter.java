@@ -16,14 +16,22 @@ import com.aure.UiModels.ExploreItem;
 
 import java.util.ArrayList;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+
 public class ExploreItemAdapter extends RecyclerView.Adapter<ExploreItemAdapter.ItemViewholder> {
 
     ArrayList<ExploreItem> exploreItems;
+    private Function0<Unit> spacesClickedListener;
     Context context;
 
     public ExploreItemAdapter(ArrayList<ExploreItem> exploreItems, Context context) {
             this.exploreItems = exploreItems;
             this.context = context;
+    }
+
+    public void setSpacesClickedListener(Function0<Unit> spacesClickedListener) {
+        this.spacesClickedListener = spacesClickedListener;
     }
 
     @NonNull
@@ -52,7 +60,7 @@ public class ExploreItemAdapter extends RecyclerView.Adapter<ExploreItemAdapter.
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            context.startActivity(new Intent(context, Spaces.class));
+                            spacesClickedListener.invoke();
                         }
                     }
             );

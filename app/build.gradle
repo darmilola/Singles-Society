@@ -84,4 +84,5 @@ dependencies {
     implementation 'com.github.smarteist:autoimageslider:1.4.0-appcompat'
     implementation 'com.github.Mindinventory:AutoScrollCircularPagerView:0.0.2'
     implementation 'com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1'
+    implementation 'jp.wasabeef:blurry:4.0.1'
 }

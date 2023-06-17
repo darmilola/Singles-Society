@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/love_gradient"
+    android:weightSum="10"
+    android:orientation="vertical"
+    tools:context=".fragments.CreateNewSpaceFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="4"
+        android:layout_weight="0.8"
+        android:paddingTop="10dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:id="@+id/main_info_toggle_layout"
+            android:gravity="center|left">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:id="@+id/exitButton"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="16dp"
+                app:tint="@color/special_activity_background"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                app:tint="@color/special_activity_background"
+                android:src="@drawable/muzmatch"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="Singles"
+                android:textColor="@color/special_activity_background"
+                android:fontFamily="@font/kumelian"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right">
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9.2">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            app:cardBackgroundColor="@color/special_activity_background"
+            app:cardCornerRadius="5dp">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="20dp"
+                    android:text="Create New Space"
+                    android:textColor="@color/dark_text_color"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_marginLeft="16dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="5dp"
+                    android:lineSpacingExtra="5dp"
+                    android:text="Share your interests, curate content, host discussions, and more."
+                    android:layout_marginRight="16dp"
+                    android:textColor="@color/light_text_color"
+                    android:fontFamily="@font/nunitomed"
+                    android:layout_marginLeft="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="10dp"
+                    android:text="Name*"
+                    android:textColor="@color/dark_text_color"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:gravity="center|left"
+                    android:lineSpacingExtra="5dp"
+                    android:text="This can be changed in Space settings."
+                    android:layout_marginRight="16dp"
+                    android:textColor="@color/light_text_color"
+                    android:fontFamily="@font/nunitomed"
+                    android:layout_marginLeft="16dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textSize="15sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:hint="Some Nice Name.."
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/edittext_background"
+                    android:textColor="@color/dark_text_color"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"/>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="30dp"
+                    android:text="Description*"
+                    android:textColor="@color/dark_text_color"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:gravity="center|left"
+                    android:lineSpacingExtra="5dp"
+                    android:text="Include a few keywords to show people what to expect if they join."
+                    android:layout_marginRight="16dp"
+                    android:textColor="@color/light_text_color"
+                    android:fontFamily="@font/nunitomed"
+                    android:layout_marginLeft="16dp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:textSize="15sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="10dp"
+                    android:hint="Some Nice Description.."
+                    android:paddingLeft="10dp"
+                    android:maxLines="2"
+                    android:background="@drawable/edittext_background"
+                    android:textColor="@color/dark_text_color"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center|left"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:gravity="center|left"
+                        android:lineSpacingExtra="5dp"
+                        android:text="Private Space (only members can see who's in the Space and what they post)"
+                        android:textColor="@color/light_text_color"
+                        android:fontFamily="@font/nunitomed"
+                        android:layout_marginLeft="5dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="20dp"
+                    android:text="Cover Photo"
+                    android:textColor="@color/dark_text_color"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/upload_multimedia_icon"
+                    android:padding="60dp"
+                    android:background="@drawable/dotted_line_background"
+                    android:layout_marginLeft="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:gravity="center|left"
+                    android:layout_marginTop="30dp"
+                    android:text="Space Display Image"
+                    android:textColor="@color/dark_text_color"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:gravity="center|left"
+                    android:lineSpacingExtra="5dp"
+                    android:text="Image displayed for your Space in searches"
+                    android:layout_marginRight="16dp"
+                    android:textColor="@color/light_text_color"
+                    android:fontFamily="@font/nunitomed"
+                    android:layout_marginLeft="16dp"/>
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/upload_multimedia_icon"
+                    android:padding="60dp"
+                    android:background="@drawable/dotted_line_background"
+                    android:layout_marginLeft="16dp"/>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|top"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:background="@drawable/pink_outline_circle"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Create Space"
+                            android:textAllCaps="false"
+                            android:gravity="center"
+                            android:textSize="20sp"
+                            android:fontFamily="@font/nunitomed"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/pink"/>
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:lineSpacingExtra="5dp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="By Creating a space, you abide by the community standard"
+                        android:textColor="@color/light_text_color"
+                        android:fontFamily="@font/nunitomed"/>
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+          </ScrollView>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

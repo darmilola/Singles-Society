@@ -14,7 +14,7 @@ import com.aure.UiModels.ExploreItem
 import kotlinx.android.synthetic.main.fragment_trending.*
 
 
-class TrendingFragment : Fragment() {
+class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null) : Fragment() {
 
     private var itemList: ArrayList<ExploreItem>  = arrayListOf()
     private lateinit var itemView: View
@@ -41,6 +41,10 @@ class TrendingFragment : Fragment() {
         exploreSearchIcon.setOnClickListener {
             context?.startActivity(Intent(requireActivity(),ExploreSearch::class.java))
         }
+
+        createNewSpaceCta.setOnClickListener {
+            createSpaceListener?.invoke()
+        }
     }
 
     private fun populateView(){
@@ -48,6 +52,9 @@ class TrendingFragment : Fragment() {
             itemList.add(ExploreItem())
         }
         itemAdapter = ExploreItemAdapter(itemList,requireContext())
+        itemAdapter.setSpacesClickedListener {
+            enterSpaceListener?.invoke()
+        }
         exploreItemRecyclerview.adapter = itemAdapter
         mySpacesRecyclerview.adapter = itemAdapter
 

@@ -106,6 +106,7 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:backgroundTint="#FA4375"
+                android:id="@+id/createNewSpaceCta"
                 android:background="@drawable/love_gradient">
 
                 <ImageView

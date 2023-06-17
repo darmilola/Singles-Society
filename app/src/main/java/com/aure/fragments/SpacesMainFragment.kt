@@ -4,9 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -52,9 +50,13 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        exitSpaceButton.setOnClickListener {
+            exitSpaceListener?.invoke()
+        }
     }
 
     private fun initView() {
+        activity?.window?.statusBarColor = resources.getColor(R.color.special_activity_background)
         val size = ArrayList<Size>()
         size.add(Size.LARGE)
         size.add(Size.MEDIUM)
@@ -90,6 +92,7 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
             societyRecycler.setVisibility(View.GONE)
             mainActivityModel?.GetUserInfo()
         })
+
 
         mainActivityModel = MainActivityModel(requireContext())
         mainActivityModel?.GetUserInfo()
@@ -159,6 +162,10 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                     visitProfileListener?.invoke()
                 }
 
+                homeMainAdapter?.setExitSpaceListener {
+                     exitSpaceListener?.invoke()
+                }
+
                 loaderView.setVisibility(View.GONE)
                 societyRecycler.setVisibility(View.VISIBLE)
                 met_match_root.visibility = View.GONE
@@ -215,7 +222,11 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                             if (viewType == 0){
                                 (societyRecycler.layoutManager as NoScrollLinearLayoutManager).disableScrolling()
                             }
+                            else if(viewType == 3){
+                                spacesMainToolbar.visibility = View.GONE
+                            }
                             else{
+                                spacesMainToolbar.visibility = View.VISIBLE
                                 (societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
                             }
                         }

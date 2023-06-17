@@ -11,6 +11,7 @@ import android.util.TypedValue
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import com.aure.R
 
 /**
  * Created by 1HE on 2/23/2019.
@@ -47,6 +48,7 @@ internal object DrawableHelper {
     }
 
     fun changeColorDrawableRes(c: Context?, resDrawable: Int, color: Int): Drawable? {
+
         if (c == null)
             return null
 

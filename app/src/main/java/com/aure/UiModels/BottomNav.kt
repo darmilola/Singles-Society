@@ -21,6 +21,7 @@ import kotlin.math.abs
 internal typealias IBottomNavigationListener = (model: BottomNav.Model) -> Unit
 
 private const val ID_NOTIFICATION = 3
+private const val ID_CREATE = 5
 @Suppress("MemberVisibilityCanBePrivate")
 class BottomNav : LinearLayout {
 
@@ -212,6 +213,7 @@ class BottomNav : LinearLayout {
             iconTextColor = this@BottomNav.iconTextColor
             selectedIconTextColor = this@BottomNav.selectedIconTextColor
             iconTextSize = this@BottomNav.iconTextSize
+
             countTextColor = this@BottomNav.countTextColor
             countBackgroundColor = this@BottomNav.countBackgroundColor
             backgroundBottomColor = this@BottomNav.backgroundBottomColor
