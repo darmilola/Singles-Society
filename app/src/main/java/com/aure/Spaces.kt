@@ -19,16 +19,14 @@ class Spaces : AppCompatActivity(){
         setContentView(R.layout.activity_spaces)
         loadFragment(SpacesMainFragment(visitProfileListener = {
             loadFragment(VisitProfileFragment(null,false))
-        }))
-
-        spaceBackButton.setOnClickListener {
+        }, exitSpaceListener = {
             if (supportFragmentManager.backStackEntryCount == 1){
                 finish()
             }
             else{
                 supportFragmentManager.popBackStack()
             }
-        }
+        }))
     }
 
     override fun onResume() {

@@ -1,13 +1,13 @@
 package com.aure.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -17,8 +17,10 @@ import com.aure.UiModels.*
 import kotlinx.android.synthetic.main.activity_met_match_page.*
 import kotlinx.android.synthetic.main.emptyfilter_layout.*
 import kotlinx.android.synthetic.main.error_page.*
-import kotlinx.android.synthetic.main.fragment_home.societyRecycler
 import kotlinx.android.synthetic.main.fragment_home.loaderView
+import kotlinx.android.synthetic.main.fragment_home.societyRecycler
+import kotlinx.android.synthetic.main.fragment_spaces_main.*
+import kotlinx.android.synthetic.main.spaces_header_layout.*
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -30,12 +32,13 @@ import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 
-class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener{
+class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = null, private var exitSpaceListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener{
 
     var homeMainAdapter: HomeMainAdapter? = null
     var societyModelArrayList = java.util.ArrayList<SocietyModel>()
     var mainActivityModel: MainActivityModel? = null
     var lastPosition = RecyclerView.NO_POSITION
+    val layoutManager = NoScrollLinearLayoutManager(context)
 
 
     override fun onCreateView(
@@ -52,7 +55,6 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
     }
 
     private fun initView() {
-        PagerSnapHelper().attachToRecyclerView(societyRecycler)
         val size = ArrayList<Size>()
         size.add(Size.LARGE)
         size.add(Size.MEDIUM)
@@ -116,6 +118,7 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
         mainActivityModel2.setShowcaseInfoReadyListener(object :
             MainActivityModel.ShowcaseInfoReadyListener {
             override fun onReady(previewProfileModels: ArrayList<PreviewProfileModel>, likeIds: ArrayList<String>) {
+                societyModelArrayList.add(SocietyModel(3));
                 Log.e("onReady: "," Ready" )
                 for (i in 0..2) {
                     val communityPostModel = CommunityPostModel()
@@ -159,20 +162,19 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                 loaderView.setVisibility(View.GONE)
                 societyRecycler.setVisibility(View.VISIBLE)
                 met_match_root.visibility = View.GONE
-                societyRecycler.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
-
+                societyRecycler.layoutManager = layoutManager
                 societyRecycler.adapter = homeMainAdapter
+                PagerSnapHelper().attachToRecyclerView(societyRecycler)
 
 
                 homeMainAdapter!!.setDatingProfileListener {
-                    Toast.makeText(context,"date", Toast.LENGTH_SHORT).show()
-                    //societyRecycler.layoutManager = scrollableLayoutManager
 
                 }
+
                 homeMainAdapter!!.setProfileEmptyListener {
                     societyModelArrayList.removeAt(lastPosition)
-                    societyRecycler.layoutManager = scrollableLayoutManager
-                    societyRecycler.scrollToPosition(lastPosition)
+                   // societyRecycler.layoutManager = scrollableLayoutManager
+                    //societyRecycler.scrollToPosition(lastPosition)
                 }
 
 
@@ -182,10 +184,21 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                 }
 
                 homeMainAdapter!!.setPostListener {
-                    Toast.makeText(context,"post", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context,"post", Toast.LENGTH_SHORT).show()
                     // societyRecycler.layoutManager = scrollableLayoutManager
 
                 }
+
+                homeMainAdapter!!.setOnReadyToGoDownListener {
+                    (societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
+
+                }
+
+                homeMainAdapter!!.setOnReadyToMoveUpListener {
+                    (societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
+
+                }
+
                 homeMainAdapter!!.setProfileMatchedListener{
                     loaderView.setVisibility(View.GONE)
                     societyRecycler.setVisibility(View.GONE)
@@ -198,16 +211,19 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         lastPosition = (societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
                         if (lastPosition != RecyclerView.NO_POSITION){
-                            val viewType =  societyModelArrayList.get(lastPosition).itemViewType
+                            val viewType =  societyModelArrayList[lastPosition].itemViewType
                             if (viewType == 0){
-                                societyRecycler.layoutManager = unScrollableLayoutManager
-                                societyRecycler.scrollToPosition(lastPosition)
+                                (societyRecycler.layoutManager as NoScrollLinearLayoutManager).disableScrolling()
+                            }
+                            else{
+                                (societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
                             }
                         }
                     }
                 })
 
             }
+
 
 
             override fun onError(message: String) {
@@ -250,7 +266,7 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                 loaderView.setVisibility(View.GONE)
                 societyRecycler.setVisibility(View.VISIBLE)
                 met_match_root.visibility = View.GONE
-                societyRecycler.layoutManager = unScrollableLayoutManager
+               // societyRecycler.layoutManager = unScrollableLayoutManager
 
                 societyRecycler.adapter = homeMainAdapter
 
@@ -302,7 +318,7 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                         societyModelArrayList
                     )
                 societyRecycler.setVisibility(View.VISIBLE)
-                societyRecycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                societyRecycler.layoutManager = NoScrollLinearLayoutManager(context)
                 societyRecycler.adapter = homeMainAdapter
 
                 homeMainAdapter?.setVisitProfileListener {
@@ -349,6 +365,21 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
         override fun canScrollVertically(): Boolean {
             return true
         }
+    }
+
+    class NoScrollLinearLayoutManager(context: Context?) : LinearLayoutManager(context) {
+        private var scrollable = true
+
+        fun enableScrolling() {
+            scrollable = true
+        }
+
+        fun disableScrolling() {
+            scrollable = false
+        }
+
+        override fun canScrollVertically() =
+            super.canScrollVertically() && scrollable
     }
 
     override fun onProfileVisit() {

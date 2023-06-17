@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,6 +30,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.Item
     private ArrayList<ArrayList<ShowCaseModel>> showCaseMainList;
     private ShowCaseAdapter showCaseAdapter;
     private VisibleUserListener visibleUserListener;
+    private ScrollStateListener scrollStateListener;
     Context context;
 
     public CardStackAdapter(ArrayList<PreviewProfileModel> userProfileToPreview,ArrayList<String> usersLikedList, Context context) {
@@ -40,6 +42,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.Item
 
     public void setVisibleUserListener(VisibleUserListener visibleUserListener) {
         this.visibleUserListener = visibleUserListener;
+    }
+
+    public void setScrollStateListener(ScrollStateListener scrollStateListener) {
+        this.scrollStateListener = scrollStateListener;
     }
 
     @NonNull
@@ -57,6 +63,32 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.Item
         holder.showcaseRecyclerview.setAdapter(showCaseAdapter);
         holder.showcaseRecyclerview.addItemDecoration(new LinePagerIndicator(showCaseMainList.get(position).size()));
         visibleUserListener.onUserVisible(showCaseMainList.get(position).get(0).getUserId());
+
+        holder.showcaseRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    //reached end
+                   // Toast.makeText(context, "End Reached", Toast.LENGTH_SHORT).show();
+                    scrollStateListener.onReadyToGoDown();
+                }
+
+                if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    //reached top
+                   // Toast.makeText(context, "Top Reached", Toast.LENGTH_SHORT).show();
+                    scrollStateListener.onReadyToMoveUp();
+                }
+                if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
+                    //scrolling
+                }
+            }
+
+        });
     }
 
 
@@ -129,5 +161,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.Item
 
     public interface VisibleUserListener{
          void onUserVisible(String userId);
+    }
+
+    public interface ScrollStateListener{
+        void onReadyToMoveUp();
+        void onReadyToGoDown();
     }
 }

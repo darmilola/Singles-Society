@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/special_activity_background"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
 
 
     <com.airbnb.lottie.LottieAnimationView
@@ -20,14 +22,18 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
+        android:nestedScrollingEnabled="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/societyRecycler"/>
 
 
     <include layout="@layout/activity_met_match_page" android:visibility="gone"/>
     <include layout="@layout/error_page" android:visibility="gone"/>
+
 
 </LinearLayout>

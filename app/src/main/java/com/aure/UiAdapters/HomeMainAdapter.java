@@ -80,11 +80,16 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private static int TYPE_IMAGE = 2;
 
+    private static int TYPE_HEADER = 3;
+
     private Function0<Unit> visitProfileListener;
     private Function0<Unit> profileMatchedListener;
 
     private Function0<Unit> profileEmptyListener;
     private Function0<Unit> datingProfileListener;
+
+    private Function0<Unit> onReadyToMoveUpListener;
+    private Function0<Unit> onReadyToGoDownListener;
 
     private Function0<Unit> addACommentClickListener;
     private Function0<Unit> postListener;
@@ -106,6 +111,14 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setAddACommentClickListener(Function0<Unit> addACommentClickListener) {
         this.addACommentClickListener = addACommentClickListener;
+    }
+
+    public void setOnReadyToGoDownListener(Function0<Unit> onReadyToGoDownListener) {
+        this.onReadyToGoDownListener = onReadyToGoDownListener;
+    }
+
+    public void setOnReadyToMoveUpListener(Function0<Unit> onReadyToMoveUpListener) {
+        this.onReadyToMoveUpListener = onReadyToMoveUpListener;
     }
 
     public void setProfileEmptyListener(Function0<Unit> profileEmptyListener) {
@@ -137,6 +150,10 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_image, parent, false);
             return new ShowcaseImageItemViewHolder(view);
         }
+        else if(viewType == TYPE_HEADER){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spaces_header_layout, parent, false);
+            return new SpacesHeaderItemViewholder(view);
+        }
         else {
 
             return null;
@@ -166,6 +183,19 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onUserVisible(String userId) {
                     userProfileInPreview[0] = userId;
+                }
+            });
+            cardStackAdapter.setScrollStateListener(new CardStackAdapter.ScrollStateListener() {
+                @Override
+                public void onReadyToMoveUp() {
+                    onReadyToMoveUpListener.invoke();
+                    Toast.makeText(context, "Top Reached", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onReadyToGoDown() {
+                    onReadyToGoDownListener.invoke();
+                    Toast.makeText(context, "End Reached", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -200,7 +230,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((ShowcaseItemViewHolder) holder).manager.setListener(new CardStackListener() {
                 @Override
                 public void onCardDragging(Direction direction, float ratio) {
-                    ((ShowcaseItemViewHolder) holder).swipeLayout.setVisibility(View.GONE);
+                   // ((ShowcaseItemViewHolder) holder).swipeLayout.setVisibility(View.GONE);
                 }
                 @Override
                 public void onCardSwiped(Direction direction) {
@@ -273,6 +303,13 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return societyModelArrayList.size();
     }
 
+    public class SpacesHeaderItemViewholder extends RecyclerView.ViewHolder{
+
+        public SpacesHeaderItemViewholder(View ItemView){
+            super(ItemView);
+
+        }
+    }
 
     public class ShowcaseItemViewHolder extends RecyclerView.ViewHolder{
 
@@ -424,6 +461,9 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
             return TYPE_IMAGE;
+        }
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_HEADER){
+            return TYPE_HEADER;
         }
         else{
             return TYPE_POST;
