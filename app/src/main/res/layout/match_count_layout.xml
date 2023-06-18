@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/pink_outline_circle_thick"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:civ_border_width="2dp"
+        android:padding="2dp"
+        app:civ_border_color="@color/white"
+        android:src="@drawable/woman_official"
+        app:civ_border_overlay="true"
+        android:id="@+id/matches_imageview"
+        android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:backgroundTint="#6BFA2D65"
+        android:background="@drawable/pink_outline_circle_thick">
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#F0FFFFFF"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/avenirbold"
+            android:text="+50"/>
+
+
+    </LinearLayout>
+</FrameLayout>

@@ -45,7 +45,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
                     android:orientation="vertical"
                     android:background="@color/special_activity_background">
                     <TextView
@@ -60,16 +60,32 @@
                         android:fontFamily="@font/avenirmed"
                         android:textColor="@color/dark_text_color"/>
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="170dp"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:spanCount="5"
+                        android:layout_height="80dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="15dp"
-                        tools:itemCount="5"
-                        android:id="@+id/matches_recyclerview"
-                        tools:listitem="@layout/matches_item"/>
+                        android:scrollbars="none"
+                        android:layout_marginTop="15dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/match_count_layout"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:nestedScrollingEnabled="false"
+                                android:id="@+id/matches_recyclerview"
+                                tools:listitem="@layout/matches_item"/>
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+
+
+                    <include layout="@layout/search_layout"/>
 
                 </LinearLayout>
 
@@ -81,7 +97,7 @@
                     android:text="Messages"
                     android:textSize="20sp"
                     android:gravity="center"
-                    android:layout_marginTop="35dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="15dp"
                     android:layout_gravity="left"
                     android:fontFamily="@font/avenirmed"

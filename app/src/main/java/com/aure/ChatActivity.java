@@ -119,7 +119,6 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
     }
 
 
-
     private void performHttpRequest() {
 
         chatModel = new ChatModel(senderId, receiverId);
@@ -392,7 +391,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
     public void onResume() {
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }

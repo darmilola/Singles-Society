@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import android.widget.Space;
@@ -49,7 +50,7 @@ import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
  * Component for input outcoming messages
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class MessageInput extends RelativeLayout
+public class MessageInput extends LinearLayout
         implements View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
 
     protected EmojiconEditText messageInput;
@@ -243,7 +244,7 @@ public class MessageInput extends RelativeLayout
             rootView = inflate(context, R.layout.view_message_input, this);
         }
         else{
-            rootView = inflate(context, R.layout.view_comment_input, this);
+            //rootView = inflate(context, R.layout.view_comment_input, this);
         }
 
         messageInput = findViewById(R.id.messageInput);

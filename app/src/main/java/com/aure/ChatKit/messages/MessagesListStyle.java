@@ -122,9 +122,9 @@ class MessagesListStyle extends Style {
 
         style.incomingBubbleDrawable = typedArray.getResourceId(R.styleable.MessagesList_incomingBubbleDrawable, -1);
         style.incomingDefaultBubbleColor = typedArray.getColor(R.styleable.MessagesList_incomingDefaultBubbleColor,
-                style.getColor(R.color.white_two));
+                style.getColor(R.color.white));
         style.incomingDefaultBubblePressedColor = typedArray.getColor(R.styleable.MessagesList_incomingDefaultBubblePressedColor,
-                style.getColor(R.color.white_two));
+                style.getColor(R.color.white));
         style.incomingDefaultBubbleSelectedColor = typedArray.getColor(R.styleable.MessagesList_incomingDefaultBubbleSelectedColor,
                 style.getColor(R.color.cornflower_blue_two_24));
 
@@ -162,9 +162,9 @@ class MessagesListStyle extends Style {
 
         style.outcomingBubbleDrawable = typedArray.getResourceId(R.styleable.MessagesList_outcomingBubbleDrawable, -1);
         style.outcomingDefaultBubbleColor = typedArray.getColor(R.styleable.MessagesList_outcomingDefaultBubbleColor,
-                style.getColor(R.color.pink));
+                style.getColor(R.color.new_pink));
         style.outcomingDefaultBubblePressedColor = typedArray.getColor(R.styleable.MessagesList_outcomingDefaultBubblePressedColor,
-                style.getColor(R.color.pink));
+                style.getColor(R.color.new_pink));
         style.outcomingDefaultBubbleSelectedColor = typedArray.getColor(R.styleable.MessagesList_outcomingDefaultBubbleSelectedColor,
                 style.getColor(R.color.cornflower_blue_two_24));
 

@@ -98,8 +98,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         TextView displayName;
         TextView lastMessage;
         TextView timestamp;
-        TextView unreadCount;
-        LinearLayout unreadLayout;
 
         public MessagesViewholder(View ItemView){
             super(ItemView);
@@ -107,8 +105,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             displayName = ItemView.findViewById(R.id.message_connection_sender_name);
             lastMessage = ItemView.findViewById(R.id.message_connection_last_message);
             timestamp = ItemView.findViewById(R.id.message_connection_timestamp);
-            unreadCount = ItemView.findViewById(R.id.message_connection_unread_count);
-            unreadLayout = ItemView.findViewById(R.id.message_connection_unread_count_layout);
             ItemView.setOnClickListener(this);
         }
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:layout_marginLeft="8dp"
+    android:layout_marginLeft="15dp"
     android:layout_marginRight="8dp">
 
 
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:lineSpacingExtra="4dp"
-            android:fontFamily="@font/nunitoreg"
+            android:fontFamily="@font/nunitomed"
             android:textColor="@color/dark_text_color"/>
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/messageText"
             android:layout_marginLeft="8dp"
-            android:fontFamily="@font/avenir"
+            android:fontFamily="@font/nunitomed"
             android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
             app:layout_alignSelf="center"/>

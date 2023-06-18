@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="95dp"
-    android:gravity="center"
+    android:layout_height="90dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:background="@color/special_activity_background">
 
 
@@ -13,113 +14,96 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:minHeight="60dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="5dp"
-        android:weightSum="5">
+        android:weightSum="9">
+
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_weight="0.4">
+            android:layout_weight="2">
 
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:cardElevation="0dp"
-                android:scaleType="centerCrop"
-                app:cardCornerRadius="15dp"
-                android:src="@drawable/profileplaceholder">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/woman_official"
-                    android:id="@+id/message_connection_sender_profile_image"
-                    android:scaleType="centerCrop"/>
-            </androidx.cardview.widget.CardView>
-
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/woman_official"
+                android:id="@+id/message_connection_sender_profile_image"
+                android:scaleType="centerCrop"/>
 
 
         </LinearLayout>
 
+
+
+
+
+
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:layout_weight="4.4">
+            android:gravity="center"
+            android:layout_weight="6">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/nunitomed"
+                android:fontFamily="@font/nunitobold"
                 android:id="@+id/message_connection_sender_name"
                 android:text="Alisha Singh"
                 android:textColor="@color/new_dark_text_color"
-                android:textSize="17dp"
-                android:layout_marginBottom="1dp"/>
+                android:textSize="17sp"/>
 
             <TextView
                 android:id="@+id/message_connection_last_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:fontFamily="@font/nunitoreg"
-                android:maxLines="2"
-                android:layout_marginTop="-1dp"
-                android:lineSpacingExtra="2dp"
+                android:fontFamily="@font/nunitomed"
+                android:maxLines="1"
                 android:text="Also send files to yourself just select your own name from the owner fo the file then"
-                android:textColor="#939292"
-                android:textSize="16sp" />
+                android:textColor="@color/dark_text_color"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginRight="15dp"
-            android:layout_weight="0.3">
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1">
+
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/message_connection_unread_count_layout"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:backgroundTint="#72FA2D65"
+                android:background="@drawable/filled_circle"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:text="Aug 29"
+                android:text="10:35"
                 android:id="@+id/message_connection_timestamp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:gravity="center"
-                android:fontFamily="@font/avenirreg"
-                android:textColor="#969595"
-                android:textSize="14dp"/>
-
-            <LinearLayout
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="6dp"
-                android:id="@+id/message_connection_unread_count_layout"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:backgroundTint="#FA4375"
-                android:background="@drawable/direct_messages_unread_background">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:text="9+"
-                    android:padding="2dp"
-                    android:id="@+id/message_connection_unread_count"
-                    android:fontFamily="@font/avenirreg"
-                    android:textColor="@color/White"
-                    android:textSize="12dp"/>
-            </LinearLayout>
+                android:fontFamily="@font/avenirmed"
+                android:textColor="#989898"
+                android:textSize="13sp"/>
 
 
 
@@ -128,8 +112,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.8dp"
-        android:layout_marginLeft="40dp"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="7dp"
-        android:background="#F1F1F1" />
-</LinearLayout>
+        android:layout_marginBottom="5dp"
+        android:background="@color/light_gray" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,12 +48,8 @@ public class DirectMessagesAdapter extends RecyclerView.Adapter<DirectMessagesAd
         holder.lastMessage.setText(StringEscapeUtils.unescapeJava(messageConnectionModel.getLastMessage()));
         holder.timestamp.setText(messageConnectionModel.getTimestamp());
         holder.displayName.setText(messageConnectionModel.getReceiverFirstname()+" "+messageConnectionModel.getReceiverLastname());
-        if(messageConnectionModel.getUnreadCount() == 0){
-            holder.unreadLayout.setVisibility(View.GONE);
-        }
-        else{
-            holder.unreadCount.setText(Integer.toString(messageConnectionModel.getUnreadCount()));
-        }
+
+
         Glide.with(context)
                 .load(messageConnectionModel.getReceiverProfileImage())
                 .placeholder(R.drawable.profileplaceholder)
@@ -73,8 +69,6 @@ public class DirectMessagesAdapter extends RecyclerView.Adapter<DirectMessagesAd
        TextView displayName;
        TextView lastMessage;
        TextView timestamp;
-       TextView unreadCount;
-       LinearLayout unreadLayout;
 
         public itemViewHolder(View ItemView){
             super(ItemView);
@@ -82,8 +76,6 @@ public class DirectMessagesAdapter extends RecyclerView.Adapter<DirectMessagesAd
             displayName = ItemView.findViewById(R.id.message_connection_sender_name);
             lastMessage = ItemView.findViewById(R.id.message_connection_last_message);
             timestamp = ItemView.findViewById(R.id.message_connection_timestamp);
-            unreadCount = ItemView.findViewById(R.id.message_connection_unread_count);
-            unreadLayout = ItemView.findViewById(R.id.message_connection_unread_count_layout);
             ItemView.setOnClickListener(this);
         }
 
