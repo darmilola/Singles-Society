@@ -4,9 +4,11 @@ import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
@@ -35,7 +37,9 @@ import android.widget.Toast;
 
 import com.aure.OnSwipeTouchListener;
 import com.aure.R;
+import com.aure.SocietySwipeActivity;
 import com.aure.UiModels.MainActivityModel;
+import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.SocietyModel;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -62,6 +66,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -183,7 +189,9 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final String[] userProfileInPreview = {""};
         final int[] cardPosition = {0};
         if(societyModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
-            cardStackAdapter = new CardStackAdapter(societyModelArrayList.get(position).getUserProfileToPreview(),societyModelArrayList.get(position).getUsersLikedList(),context);
+            ArrayList<PreviewProfileModel> userProfileToPreview = societyModelArrayList.get(position).getUserProfileToPreview();
+            ArrayList<String> userLikedList = societyModelArrayList.get(position).getUsersLikedList();
+            cardStackAdapter = new CardStackAdapter(userProfileToPreview,userLikedList,context);
             cardStackAdapter.setVisibleUserListener(new CardStackAdapter.VisibleUserListener() {
                 @Override
                 public void onUserVisible(String userId) {
@@ -193,13 +201,13 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             cardStackAdapter.setScrollStateListener(new CardStackAdapter.ScrollStateListener() {
                 @Override
                 public void onReadyToMoveUp() {
-                    onReadyToMoveUpListener.invoke();
+                 //   onReadyToMoveUpListener.invoke();
                     Toast.makeText(context, "Top Reached", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onReadyToGoDown() {
-                    onReadyToGoDownListener.invoke();
+                  //  onReadyToGoDownListener.invoke();
                     Toast.makeText(context, "End Reached", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -217,6 +225,24 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
 
+            ((ShowcaseItemViewHolder) holder).goFullView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, SocietySwipeActivity.class);
+                    intent.putParcelableArrayListExtra("userProfileToPreview", (ArrayList<? extends Parcelable>) userProfileToPreview);
+                    intent.putStringArrayListExtra("userLikedList", userLikedList);
+                    intent.putExtra("transitionName", ViewCompat.getTransitionName(((ShowcaseItemViewHolder) holder).itemView));
+
+
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            (Activity) context,
+                            holder.itemView,
+                            ViewCompat.getTransitionName(holder.itemView));
+
+
+                    context.startActivity(intent,options.toBundle());
+                }
+            });
 
             ((ShowcaseItemViewHolder) holder).swipeLeft.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -330,7 +356,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         PlayableCardStackView showcaseCardStackRecyclerview;
         CardStackLayoutManager manager;
 
-        LinearLayout swipeLayout, swipeLeft, rewound, swipeRight;
+        LinearLayout swipeLayout, swipeLeft, rewound, swipeRight, goFullView;
 
 
 
@@ -341,6 +367,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             swipeLeft = ItemView.findViewById(R.id.user_swipe_left);
             rewound = ItemView.findViewById(R.id.user_rewind);
             swipeRight = ItemView.findViewById(R.id.user_swipe_right);
+            goFullView = ItemView.findViewById(R.id.cardStackGoFullView);
             manager = new CardStackLayoutManager(context);
             manager.setVisibleCount(2);
             manager.setScaleInterval(1.0f);

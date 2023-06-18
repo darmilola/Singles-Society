@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rootView"
     android:background="@color/special_activity_background"
     tools:context=".MainActivityV2">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         app:contentInsetStart="0dp"
         app:contentInsetEnd="0dp"
         app:contentInsetRight="0dp"
@@ -31,6 +32,17 @@
                 android:gravity="center|left">
 
 
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
+                    app:tint="#FA4375"
+                    android:id="@+id/navigationBack"
+                    android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -46,14 +58,14 @@
                     app:tint="#FA4375"
                     android:src="@drawable/muzmatch"/>
 
-                 <TextView
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:textSize="25dp"
-                     android:text="Singles"
-                     android:textColor="#FA4375"
-                     android:fontFamily="@font/kumelian"
-                     android:layout_marginLeft="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25dp"
+                    android:text="Singles"
+                    android:textColor="#FA4375"
+                    android:fontFamily="@font/kumelian"
+                    android:layout_marginLeft="5dp"/>
 
             </LinearLayout>
             <LinearLayout
@@ -61,55 +73,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="right">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="16dp"
-                    app:tint="#FA4375"
-                    android:id="@+id/notificationIcon"
-                    android:src="@drawable/ring_icon"/>
-
             </LinearLayout>
 
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container"
-        android:layout_marginBottom="45dp"
-        android:layout_marginTop="45dp"
-        app:layout_constraintTop_toBottomOf="@id/mainActivityToolbar"
-        android:background="@color/special_activity_background"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-
-
-    <com.aure.UiModels.BottomNav
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom"
-        app:ss_backgroundBottomColor="@color/black"
-        app:ss_circleColor="#FA4375"
-        app:ss_waveHeight="1"
-        app:layout_constraintTop_toBottomOf="@id/container"
-        app:ss_countBackgroundColor="#FA4375"
-        app:ss_countTextColor="#ffffff"
-        app:ss_defaultIconColor="#6200EE"
-        app:ss_iconTextColor="#7C7B7B"
-        app:ss_rippleColor="#2f424242"
-        android:background="@color/special_activity_background"
-        app:ss_iconTextSize="14sp"
-        app:ss_selectedIconColor="#FA4375"
-        app:ss_selectedIconTextColor="#FA4375"
-        app:ss_shadowColor="@color/deep_yellow" />
+    <include layout="@layout/showcase_stack_layout" android:layout_height="match_parent" android:layout_width="match_parent" android:layout_marginTop="45dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

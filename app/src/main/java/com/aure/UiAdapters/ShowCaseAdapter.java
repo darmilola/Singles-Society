@@ -123,7 +123,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(showCaseModel.getShowcaseType() == 1){
             ShowcaseMainItemViewHolder showcaseMainItemViewHolder = (ShowcaseMainItemViewHolder) holder;
             //showcaseMainItemViewHolder.nameAge.setText(showCaseModel.getModelInfoList().get(0)+", "+showCaseModel.getModelInfoList().get(1));
-            showcaseMainItemViewHolder.city.setText(showCaseModel.getModelInfoList().get(2));
             showcaseMainItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(3));
             for(String id: showCaseModel.getLikeList()){
                 if(id.equalsIgnoreCase(showCaseModel.getModelInfoList().get(5))){
@@ -225,14 +224,13 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public class ShowcaseMainItemViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-        TextView city,nameAge;
+        TextView nameAge;
         Chip occupation;
         ConstraintLayout potentialMatch;
         LinearLayout viewRoot;
         public ShowcaseMainItemViewHolder(View ItemView){
             super(ItemView);
             imageView = ItemView.findViewById(R.id.type_main_image);
-            city = ItemView.findViewById(R.id.type_main_city);
             nameAge = ItemView.findViewById(R.id.type_main_name_age);
             occupation = ItemView.findViewById(R.id.type_main_occupation);
             potentialMatch = ItemView.findViewById(R.id.potential_match);

@@ -204,8 +204,8 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                             if (lastPosition != RecyclerView.NO_POSITION){
                                val viewType =  societyModelArrayList.get(lastPosition).itemViewType
                                 if (viewType == 0){
-                                    societyRecycler.layoutManager = unScrollableLayoutManager
-                                    societyRecycler.scrollToPosition(lastPosition)
+                                 //   societyRecycler.layoutManager = unScrollableLayoutManager
+                                   // societyRecycler.scrollToPosition(lastPosition)
                                 }
                             }
                         }

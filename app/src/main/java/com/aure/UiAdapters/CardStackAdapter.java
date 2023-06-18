@@ -61,7 +61,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.Item
         LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
         holder.showcaseRecyclerview.setLayoutManager(layoutManager);
         holder.showcaseRecyclerview.setAdapter(showCaseAdapter);
-        holder.showcaseRecyclerview.addItemDecoration(new LinePagerIndicator(showCaseMainList.get(position).size()));
+        //holder.showcaseRecyclerview.addItemDecoration(new LinePagerIndicator(showCaseMainList.get(position).size()));
         visibleUserListener.onUserVisible(showCaseMainList.get(position).get(0).getUserId());
 
         holder.showcaseRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -75,13 +75,13 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.Item
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     //reached end
                    // Toast.makeText(context, "End Reached", Toast.LENGTH_SHORT).show();
-                    scrollStateListener.onReadyToGoDown();
+                  //  scrollStateListener.onReadyToGoDown();
                 }
 
                 if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
                     //reached top
                    // Toast.makeText(context, "Top Reached", Toast.LENGTH_SHORT).show();
-                    scrollStateListener.onReadyToMoveUp();
+                  //  scrollStateListener.onReadyToMoveUp();
                 }
                 if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
                     //scrolling

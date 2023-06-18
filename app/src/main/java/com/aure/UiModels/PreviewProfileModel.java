@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +25,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class PreviewProfileModel {
+public class PreviewProfileModel implements Parcelable {
 
     private String firstname,about,status,language,city,occupation,marriageGoals,educationLevel,workplace,drinking,smoking,gender,quote,religion;
     private int age;
@@ -96,6 +98,88 @@ public class PreviewProfileModel {
     public PreviewProfileModel(Context context){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         userEmail = preferences.getString("userEmail","");
+    }
+
+    protected PreviewProfileModel(Parcel in) {
+        firstname = in.readString();
+        about = in.readString();
+        status = in.readString();
+        language = in.readString();
+        city = in.readString();
+        occupation = in.readString();
+        marriageGoals = in.readString();
+        educationLevel = in.readString();
+        workplace = in.readString();
+        drinking = in.readString();
+        smoking = in.readString();
+        gender = in.readString();
+        quote = in.readString();
+        religion = in.readString();
+        age = in.readInt();
+        isProfileCompleted = in.readString();
+        isSubscribed = in.readString();
+        lastname = in.readString();
+        imageUrl = in.readString();
+        phonenumber = in.readString();
+        baseUrl = in.readString();
+        getProfileUrl = in.readString();
+        image1Url = in.readString();
+        image2Url = in.readString();
+        image3Url = in.readString();
+        userEmail = in.readString();
+        userId = in.readString();
+        isMatched = in.readString();
+        likeIds = in.createStringArrayList();
+    }
+
+    public static final Creator<PreviewProfileModel> CREATOR = new Creator<PreviewProfileModel>() {
+        @Override
+        public PreviewProfileModel createFromParcel(Parcel in) {
+            return new PreviewProfileModel(in);
+        }
+
+        @Override
+        public PreviewProfileModel[] newArray(int size) {
+            return new PreviewProfileModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(firstname);
+        parcel.writeString(about);
+        parcel.writeString(status);
+        parcel.writeString(language);
+        parcel.writeString(city);
+        parcel.writeString(occupation);
+        parcel.writeString(marriageGoals);
+        parcel.writeString(educationLevel);
+        parcel.writeString(workplace);
+        parcel.writeString(drinking);
+        parcel.writeString(smoking);
+        parcel.writeString(gender);
+        parcel.writeString(quote);
+        parcel.writeString(religion);
+        parcel.writeInt(age);
+        parcel.writeString(isProfileCompleted);
+        parcel.writeString(isSubscribed);
+        parcel.writeString(lastname);
+        parcel.writeString(imageUrl);
+        parcel.writeString(phonenumber);
+        parcel.writeString(baseUrl);
+        parcel.writeString(getProfileUrl);
+        parcel.writeString(image1Url);
+        parcel.writeString(image2Url);
+        parcel.writeString(image3Url);
+        parcel.writeString(userEmail);
+        parcel.writeString(userId);
+        parcel.writeString(isMatched);
+        parcel.writeStringList(likeIds);
     }
 
     public interface InfoReadyListener{

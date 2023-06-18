@@ -19,6 +19,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SocietySwipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ExploreSearch"
             android:exported="false" />
         <activity
@@ -150,8 +153,9 @@
         <activity
             android:name=".AdminProductDetails"
             android:screenOrientation="portrait" />
-        <activity android:name=".fragments.PostFullView"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".fragments.PostFullView"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".NotificationService"

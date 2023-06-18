@@ -32,7 +32,7 @@
                     android:elevation="2dp"
                     android:orientation="vertical"
                     android:gravity="center|bottom"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="80dp"
                     android:background="@drawable/mblack_gradient"
                     android:layout_gravity="bottom">
 
@@ -41,7 +41,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:layout_gravity="left"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="20dp"
                         android:id="@+id/type_main_name_age"
                         android:textColor="#DDFFFFFF"
@@ -50,21 +50,6 @@
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:text="Alisha, 25"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:id="@+id/type_main_city"
-                        android:textColor="#DDFFFFFF"
-                        android:textSize="18dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/nunitoreg"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:text="Chibok"/>
 
                     <com.google.android.flexbox.FlexboxLayout
                         android:layout_width="match_parent"
@@ -73,7 +58,7 @@
                         android:orientation="horizontal"
                         app:flexWrap="wrap"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="5dp"
                         app:justifyContent="flex_start">
 
                         <com.google.android.material.chip.Chip
@@ -103,29 +88,28 @@
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginRight="20dp"
                         android:textColor="@color/light_gray"
                         android:textSize="12sp"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="15dp"
                         android:fontFamily="@font/avenir"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:text="BIO"/>
+                        android:text="About"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginRight="40dp"
                         android:textColor="#DDFFFFFF"
                         android:textSize="17sp"
                         android:justificationMode="none"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="40dp"
-                        android:fontFamily="@font/nunitoreg"
-                        android:maxLines="4"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/nunitomed"
+                        android:maxLines="2"
                         android:lineSpacingExtra="7dp"
                         android:ellipsize="end"
                         android:text="Am going to write a little about myself here just incase you care to know a little about me Am going to write a little about myself here just incase you care to know a little about me"/>
