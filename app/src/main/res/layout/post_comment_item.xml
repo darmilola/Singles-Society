@@ -72,17 +72,19 @@
         </RelativeLayout>
 
 
-        <TextView
+        <com.SinglesSociety.SocialText.RichTextController.RTEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:id="@+id/postCommentText"
             android:layout_marginLeft="5dp"
             android:textSize="14sp"
             android:lineSpacingExtra="4dp"
             android:layout_marginTop="3dp"
+            android:background="@color/transparent"
+            android:editable="false"
             android:textColor="@color/dark_text_color"
-            android:fontFamily="@font/manropesemibold"
-            android:text="Lorem Ipsum is simply dummy tex simply dummy text of the printing"/>
+            android:fontFamily="@font/manropesemibold"/>
 
         <LinearLayout
             android:layout_width="match_parent"

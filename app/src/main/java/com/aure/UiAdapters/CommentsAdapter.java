@@ -9,6 +9,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.SinglesSociety.SocialText.RichTextController.RTEditText;
+import com.SinglesSociety.SocialText.RichTextController.RTextView;
+import com.SinglesSociety.SocialText.RichTextController.api.format.RTFormat;
+import com.SinglesSociety.SocialText.RichTextController.api.format.RTHtml;
+import com.SinglesSociety.SocialText.RichTextController.api.format.RTPlainText;
+import com.SinglesSociety.SocialText.RichTextController.api.format.RTSpanned;
+import com.SinglesSociety.SocialText.RichTextController.api.format.RTText;
+import com.SinglesSociety.SocialText.RichTextController.spans.MentionSpan;
 import com.aure.R;
 import com.aure.UiModels.CommentModel;
 import com.aure.UiModels.CommentReplyModel;
@@ -66,6 +74,8 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
     public class CommentViewHolder extends ParentViewHolder {
 
         private TextView replyText;
+
+        private RTEditText commentText;
         private ImageView replyArrow;
         private ImageView profileImage;
         private TextView username;
@@ -75,6 +85,9 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
             replyArrow = itemView.findViewById(R.id.commentReplyArrow);
             profileImage = itemView.findViewById(R.id.userProfileImage);
             username = itemView.findViewById(R.id.username);
+            commentText = itemView.findViewById(R.id.postCommentText);
+            commentText.setRichTextEditing(true,true);
+            commentText.setText(new RTHtml("<p>Hello, this is Dami first post on the new social App am working on, follow me @dami or also tag #dami</p>").convertTo(RTFormat.HTML));
 
             replyArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
