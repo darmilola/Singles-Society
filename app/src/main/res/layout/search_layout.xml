@@ -40,11 +40,11 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:hint="Search"
-                android:textSize="18sp"
+                android:hint="Search..."
+                android:textSize="16sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/manropemedium"
+                android:fontFamily="@font/manropesemibold"
                 android:textColorHint="@color/light_text_color"
                 android:background="@color/full_transparency"/>
 

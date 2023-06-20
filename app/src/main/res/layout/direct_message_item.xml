@@ -54,22 +54,24 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/nunitobold"
+                android:fontFamily="@font/manropebold"
                 android:id="@+id/message_connection_sender_name"
                 android:text="Alisha Singh"
                 android:textColor="@color/new_dark_text_color"
-                android:textSize="17sp"/>
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/message_connection_last_message"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:fontFamily="@font/manropemedium"
-                android:maxLines="1"
+                android:layout_marginTop="4dp"
+                android:maxLines="2"
                 android:text="Also send files to yourself just select your own name from the owner fo the file then"
-                android:textColor="@color/dark_text_color"
-                android:textSize="15sp" />
+                android:fontFamily="@font/manropesemibold"
+                android:textColor="@color/light_text_color"
+                android:lineSpacingExtra="2dp"
+                android:textSize="15sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -89,7 +91,7 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:backgroundTint="#72FA2D65"
+                android:backgroundTint="#723CC171"
                 android:background="@drawable/filled_circle"/>
 
             <TextView
