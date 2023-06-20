@@ -68,14 +68,14 @@
                         app:ss_waveHeight="1"
                         app:ss_countBackgroundColor="#FA4375"
                         app:ss_countTextColor="#ffffff"
-                        app:ss_defaultIconColor="#6200EE"
+                        app:ss_defaultIconColor="#838282"
                         app:ss_iconTextColor="#838282"
                         app:ss_rippleColor="#2f424242"
                         android:background="#f2f3f5"
                         app:ss_iconTextSize="14sp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        app:ss_selectedIconColor="#FA4375"
+                        app:ss_selectedIconColor="@color/new_pink"
                         app:ss_selectedIconTextColor="#FA4375"
                         app:ss_shadowColor="@color/deep_yellow"/>
 

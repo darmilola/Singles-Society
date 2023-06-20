@@ -115,7 +115,7 @@ class BottomNav : LinearLayout {
     private lateinit var bezierView: BezierView
 
     init {
-        heightCell = dip(context, 60) // bottom navigation height
+        heightCell = dip(context, 100) // bottom navigation height
     }
 
     constructor(context: Context) : super(context) {
@@ -164,10 +164,10 @@ class BottomNav : LinearLayout {
     private fun initializeViews() {
         ll_cells = LinearLayout(context)
         ll_cells.apply {
-            val params = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heightCell)
+            val params = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dip(context,80))
             params.gravity = Gravity.CENTER
-            params.leftMargin = dip(context,30)
-            params.rightMargin = dip(context,30)
+            params.leftMargin = dip(context,20)
+            params.rightMargin = dip(context,20)
             layoutParams = params
             backgroundBottomColor
             orientation = LinearLayout.HORIZONTAL
@@ -177,7 +177,7 @@ class BottomNav : LinearLayout {
 
         bezierView = BezierView(context)
         bezierView.apply {
-            layoutParams = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (heightCell))
+            layoutParams = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (dip(context,80)))
             color = backgroundBottomColor
             shadowColor = this@BottomNav.shadowColor
         }
@@ -202,7 +202,7 @@ class BottomNav : LinearLayout {
         val cell = BottomNavIcon(context)
         cell.apply {
             val params = LinearLayout.LayoutParams(0, heightCell, 0.5f)
-            params.gravity = Gravity.CENTER
+            params.gravity = Gravity.TOP
             layoutParams = params
             icon = model.icon
             iconText = model.text
@@ -220,9 +220,8 @@ class BottomNav : LinearLayout {
             countTypeface = this@BottomNav.countTypeface
             rippleColor = this@BottomNav.rippleColor
             onClickListener = {
-                if (isShowing(model.id)) // added for https://github.com/shetmobile/MeowBottomNavigation/issues/39
+                if (isShowing(model.id))
                     onReselectListener(model)
-
                 if (!cell.isEnabledCell && !isAnimating) {
                     show(model.id)
                     onClickedListener(model)
@@ -235,6 +234,19 @@ class BottomNav : LinearLayout {
             if(model.id != ID_NOTIFICATION) {
                 ll_cells.addView(this)
             }
+            if(model.id == ID_CREATE){
+                cell.apply {
+                    val params = LinearLayout.LayoutParams(0, dip(context,80), 1f)
+                    params.gravity = Gravity.CENTER
+                    layoutParams = params
+                    iconSize = dip(context, 70)
+                    isEnabledCell = true
+                    isCenterButton = true
+                    defaultIconColor = resources.getColor(R.color.new_pink)
+                }
+                enableCell(true)
+            }
+            //enableCell(true)
         }
             cells.add(cell)
             models.add(model)
@@ -315,13 +327,20 @@ class BottomNav : LinearLayout {
             val cell = cells[i]
             if (model.id == id) {
                 anim(cell, id)
-                cell.enableCell()
+                cell.enableCell(true)
                 onShowListener(model)
             } else {
                 cell.disableCell()
             }
         }
         selectedId = id
+    }
+
+    private fun enableCenterButton(cell: BottomNavIcon?){
+        cell?.apply {
+            isCenterButton = true
+            iconColor = resources.getColor(R.color.new_pink)
+        }
     }
 
     fun isShowing(id: Int): Boolean {

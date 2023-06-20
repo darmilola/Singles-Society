@@ -226,7 +226,7 @@
                             android:textColorHint="@color/lighter_text_color"
                             android:textColor="@color/dark_gray"
                             android:textSize="17sp"
-                            android:fontFamily="@font/nunitomed" />
+                            android:fontFamily="@font/manropemedium" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -253,7 +253,7 @@
                             android:textColorHint="@color/lighter_text_color"
                             android:textColor="@color/dark_gray"
                             android:textSize="17sp"
-                            android:fontFamily="@font/nunitomed" />
+                            android:fontFamily="@font/manropemedium" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -279,7 +279,7 @@
                         android:inputType="text"
                         android:maxLines="1"
                         android:textSize="17sp"
-                        android:fontFamily="@font/nunitomed"
+                        android:fontFamily="@font/manropemedium"
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -309,7 +309,7 @@
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray"
                         android:textSize="17sp"
-                        android:fontFamily="@font/nunitomed"/>
+                        android:fontFamily="@font/manropemedium"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -320,7 +320,7 @@
                     android:padding="5dp"
                     android:gravity="left"
                     android:textSize="12sp"
-                    android:fontFamily="@font/nunitomed"
+                    android:fontFamily="@font/manropemedium"
                     android:textColor="#838485"/>
 
 
@@ -342,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        android:fontFamily="@font/nunitomed"
+                        android:fontFamily="@font/manropemedium"
                         android:text="Sign Up"/>
                 </LinearLayout>
 

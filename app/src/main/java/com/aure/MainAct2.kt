@@ -48,35 +48,35 @@ class MainAct2 : AppCompatActivity() {
             add(
                     BottomNav.Model(
                             ID_HOME,
-                            R.drawable.fire_icon,
+                            R.drawable.fire_simple_icon,
                             "Home"
                     )
             )
             add(
                     BottomNav.Model(
                             ID_EXPLORE,
-                            R.drawable.explore_ic,
+                            R.drawable.explore_outline,
                             "Trending"
                     )
             )
             add(
                 BottomNav.Model(
                     ID_CREATE,
-                    R.drawable.post_icon,
+                    R.drawable.plus_circle_fill_icon,
                     "Create"
                 )
             )
             add(
                     BottomNav.Model(
                             ID_MESSAGE,
-                            R.drawable.chat_icon,
+                            R.drawable.chat_bubble_empty_icon,
                             "Chat"
                     )
             )
             add(
                     BottomNav.Model(
                             ID_ACCOUNT,
-                            R.drawable.user_icon,
+                            R.drawable.person_icon,
                             "Account"
                     )
             )

@@ -110,7 +110,7 @@
                     android:text="Share your interests, curate content, host discussions, and more."
                     android:layout_marginRight="16dp"
                     android:textColor="@color/light_text_color"
-                    android:fontFamily="@font/nunitomed"
+                    android:fontFamily="@font/manropemedium"
                     android:layout_marginLeft="16dp"/>
 
                 <TextView
@@ -133,7 +133,7 @@
                     android:text="This can be changed in Space settings."
                     android:layout_marginRight="16dp"
                     android:textColor="@color/light_text_color"
-                    android:fontFamily="@font/nunitomed"
+                    android:fontFamily="@font/manropemedium"
                     android:layout_marginLeft="16dp"/>
 
                 <EditText
@@ -173,7 +173,7 @@
                     android:text="Include a few keywords to show people what to expect if they join."
                     android:layout_marginRight="16dp"
                     android:textColor="@color/light_text_color"
-                    android:fontFamily="@font/nunitomed"
+                    android:fontFamily="@font/manropemedium"
                     android:layout_marginLeft="16dp"/>
 
                 <EditText
@@ -213,7 +213,7 @@
                         android:lineSpacingExtra="5dp"
                         android:text="Private Space (only members can see who's in the Space and what they post)"
                         android:textColor="@color/light_text_color"
-                        android:fontFamily="@font/nunitomed"
+                        android:fontFamily="@font/manropemedium"
                         android:layout_marginLeft="5dp"/>
 
                 </LinearLayout>
@@ -259,7 +259,7 @@
                     android:text="Image displayed for your Space in searches"
                     android:layout_marginRight="16dp"
                     android:textColor="@color/light_text_color"
-                    android:fontFamily="@font/nunitomed"
+                    android:fontFamily="@font/manropemedium"
                     android:layout_marginLeft="16dp"/>
                 <ImageView
                     android:layout_width="150dp"
@@ -294,7 +294,7 @@
                             android:textAllCaps="false"
                             android:gravity="center"
                             android:textSize="20sp"
-                            android:fontFamily="@font/nunitomed"
+                            android:fontFamily="@font/manropemedium"
                             android:paddingBottom="10dp"
                             android:textColor="@color/pink"/>
 
@@ -311,7 +311,7 @@
                         android:layout_marginBottom="20dp"
                         android:text="By Creating a space, you abide by the community standard"
                         android:textColor="@color/light_text_color"
-                        android:fontFamily="@font/nunitomed"/>
+                        android:fontFamily="@font/manropemedium"/>
 
                 </LinearLayout>
 

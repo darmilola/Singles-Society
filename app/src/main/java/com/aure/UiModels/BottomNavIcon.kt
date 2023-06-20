@@ -40,6 +40,18 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
             if (allowDraw)
                 iv.color = if (isEnabledCell) selectedIconColor else defaultIconColor
         }
+
+
+
+    var iconColor = Color.parseColor("#fa2d65")
+        set(value) {
+           field = value
+            if (isCenterButton) {
+                iv.color = iconColor
+                progress = 1f
+            }
+        }
+
     var circleColor = 0
         set(value) {
             field = value
@@ -112,7 +124,7 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
             }
         }
 
-    private var iconSize = dip(context, 48)
+    var iconSize = dip(context, 48)
         set(value) {
             field = value
             if (allowDraw) {
@@ -163,7 +175,14 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
             Log.e("TAG","height is ${containerView.layoutParams.height} ${dip(context, 18)}")
             //fl.y = (1f - progress) * dip(context, 18) + dip(context, -2)
 
-            iv.color = if (progress == 1f) selectedIconColor else iconTextColor
+            iv.color = if (progress == 1f){
+                selectedIconColor
+            }
+            else if(isCenterButton){
+                selectedIconColor
+            }else{
+                defaultIconColor
+            }
          //   tv.setTextColor(if (progress == 1f) selectedIconTextColor else defaultIconColor)
            // val scale = (1f - progress) * (-0.2f) + 1f
             //iv.scaleX = scale
@@ -196,6 +215,8 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
                 }
             }
         }
+
+    var isCenterButton = false
 
     var onClickListener: () -> Unit = {}
         set(value) {

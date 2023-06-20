@@ -44,7 +44,7 @@
                 android:textSize="18sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/nunitomed"
+                android:fontFamily="@font/manropemedium"
                 android:textColorHint="@color/light_text_color"
                 android:background="@color/full_transparency"/>
 

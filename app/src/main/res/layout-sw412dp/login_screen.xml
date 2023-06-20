@@ -220,7 +220,7 @@
                         android:inputType="text"
                         android:maxLines="1"
                         android:textSize="17sp"
-                        android:fontFamily="@font/nunitomed"
+                        android:fontFamily="@font/manropemedium"
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -250,7 +250,7 @@
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray"
                         android:textSize="17sp"
-                        android:fontFamily="@font/nunitomed"/>
+                        android:fontFamily="@font/manropemedium"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 

@@ -31,7 +31,7 @@
         android:gravity="center"
         android:text="Mario Dedivanovic"
         android:textSize="20sp"
-        android:fontFamily="@font/nunitomed"
+        android:fontFamily="@font/manropemedium"
         android:textColor="@color/dark_text_color"
         android:maxLines="1"
         android:ellipsize="end"/>
@@ -45,7 +45,7 @@
         android:gravity="center"
         android:text="Los Angeles, California"
         android:textSize="15sp"
-        android:fontFamily="@font/nunitomed"
+        android:fontFamily="@font/manropemedium"
         android:textColor="@color/light_text_color"
         android:maxLines="1"
         android:ellipsize="end"/>
@@ -75,7 +75,7 @@
             android:text="link.tree/daemwilolae"
             android:textSize="14sp"
             android:linksClickable="true"
-            android:fontFamily="@font/nunitomed"
+            android:fontFamily="@font/manropemedium"
             android:textColor="#5A70F4"
             android:maxLines="1"
             android:ellipsize="end"/>
@@ -120,7 +120,7 @@
                 android:gravity="center"
                 android:text="Posts"
                 android:textSize="15sp"
-                android:fontFamily="@font/nunitomed"
+                android:fontFamily="@font/manropemedium"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -163,7 +163,7 @@
                 android:gravity="center"
                 android:text="Followers"
                 android:textSize="15sp"
-                android:fontFamily="@font/nunitomed"
+                android:fontFamily="@font/manropemedium"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -205,7 +205,7 @@
                 android:gravity="center"
                 android:text="Following"
                 android:textSize="15sp"
-                android:fontFamily="@font/nunitomed"
+                android:fontFamily="@font/manropemedium"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>

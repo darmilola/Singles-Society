@@ -44,7 +44,7 @@
             android:ellipsize="end"
             android:textColor="@color/light_text_color"
             android:textSize="14sp"
-            android:fontFamily="@font/nunitomed"
+            android:fontFamily="@font/manropemedium"
             android:lineSpacingExtra="7dp"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"/>
 
@@ -103,7 +103,7 @@
                 android:ellipsize="end"
                 android:textColor="@color/dark_text_color"
                 android:textSize="14sp"
-                android:fontFamily="@font/nunitomed"
+                android:fontFamily="@font/manropemedium"
                 android:lineSpacingExtra="7dp"
                 android:text="Dami, Alicia and 250k more"/>
 
@@ -124,7 +124,7 @@
         android:layout_gravity="center|right"
         android:layout_marginRight="55dp"
         android:textColor="@color/pink"
-        android:fontFamily="@font/nunitomed"
+        android:fontFamily="@font/manropemedium"
         android:textSize="14sp"
         android:background="@drawable/pink_outline_circle"/>
 

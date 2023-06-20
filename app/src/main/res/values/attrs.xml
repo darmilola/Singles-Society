@@ -244,6 +244,7 @@
         <attr format="string" name="ss_iconTextTypeface"/>
         <attr format="color" name="ss_iconTextColor"/>
         <attr format="color" name="ss_selectedIconTextColor"/>
+        <attr format="color" name="ss_centerButtonBackgroundColor"/>
         <attr format="dimension" name="ss_iconTextSize"/>
         <attr format="integer" name="ss_waveHeight"/>
         <attr format="color" name="ss_backgroundBottomColor"/>

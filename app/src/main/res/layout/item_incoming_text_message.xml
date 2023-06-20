@@ -24,9 +24,9 @@
             android:id="@id/messageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:lineSpacingExtra="4dp"
-            android:fontFamily="@font/nunitomed"
+            android:textSize="13sp"
+            android:lineSpacingExtra="3dp"
+            android:fontFamily="@font/manropemedium"
             android:textColor="@color/dark_text_color"/>
 
         <TextView
@@ -35,9 +35,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/messageText"
             android:layout_marginLeft="8dp"
-            android:fontFamily="@font/nunitomed"
             android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
+            android:fontFamily="@font/manropemedium"
+            android:textSize="10sp"
             app:layout_alignSelf="center"/>
 
     </com.google.android.flexbox.FlexboxLayout>

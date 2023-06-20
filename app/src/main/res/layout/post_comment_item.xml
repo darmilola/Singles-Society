@@ -77,13 +77,13 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:lineSpacingExtra="4dp"
             android:textColor="@color/dark_text_color"
             android:maxLines="5"
             android:ellipsize="end"
             android:maxLength="350"
-            android:fontFamily="@font/nunitomed"
+            android:fontFamily="@font/manropemedium"
             android:text="Lorem Ipsum is simply dummy tex simply dummy text of the printing"/>
 
         <LinearLayout

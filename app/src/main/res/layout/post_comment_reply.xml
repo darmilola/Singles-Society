@@ -67,7 +67,7 @@
             android:maxLines="5"
             android:ellipsize="end"
             android:maxLength="350"
-            android:fontFamily="@font/nunitomed"
+            android:fontFamily="@font/manropemedium"
             android:text="Lorem Ipsum is simply dummy tex simply dummy text of the printing"/>
 
     </LinearLayout>

@@ -108,7 +108,7 @@
                         android:textSize="17sp"
                         android:justificationMode="none"
                         android:layout_marginTop="5dp"
-                        android:fontFamily="@font/nunitomed"
+                        android:fontFamily="@font/manropemedium"
                         android:maxLines="2"
                         android:lineSpacingExtra="7dp"
                         android:ellipsize="end"

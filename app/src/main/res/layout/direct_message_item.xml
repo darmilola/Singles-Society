@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:fontFamily="@font/nunitomed"
+                android:fontFamily="@font/manropemedium"
                 android:maxLines="1"
                 android:text="Also send files to yourself just select your own name from the owner fo the file then"
                 android:textColor="@color/dark_text_color"
