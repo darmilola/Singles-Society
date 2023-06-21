@@ -70,11 +70,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Supplier;
+
+import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
+
 /**
 
  * The actual rich text editor (extending android.widget.EditText).
  */
-public class RTEditText extends AppCompatEditText implements TextWatcher, SpanWatcher, LinkSpanListener, MentionSpan.MentionSpanListener, HashTagSpan.HashTagSpanListener, ReferenceSpan.ReferenceSpanListener {
+public class RTEditText extends EmojiconEditText implements TextWatcher, SpanWatcher, LinkSpanListener, MentionSpan.MentionSpanListener, HashTagSpan.HashTagSpanListener, ReferenceSpan.ReferenceSpanListener {
 
 
     // don't allow any formatting in text mode
@@ -139,7 +142,7 @@ public class RTEditText extends AppCompatEditText implements TextWatcher, SpanWa
     private ColorStateList hashtagColors;
     @NonNull private ColorStateList mentionColors;
     ForegroundColorSpan foregroundSpan;
-    MentionHashTagListener mentionHashTagListener;
+    MentionHashTagListener mentionHashTagListener = null;
     int hashTagIsComing = 0;
     int mentionIsComing = 0;
 
@@ -467,7 +470,7 @@ public class RTEditText extends AppCompatEditText implements TextWatcher, SpanWa
     /* TextWatcher */
     public synchronized void onTextChanged(CharSequence s, int start, int before, int count) {
 
-        if (s.length() == 0) {
+        if (s.length() == 0 || mentionHashTagListener == null) {
             return;
         }
         if(start < s.length()){

@@ -134,34 +134,15 @@ public class RTextView extends AppCompatTextView implements LinkSpan.LinkSpanLis
         SpannableString spannableString = new SpannableString(text);
         Matcher tagMatcher = Pattern.compile("#([A-Za-z0-9_-]+)").matcher(text);
 
-        int i = 0;
         while (tagMatcher.find()) {
-            int j = i + 1;
-            i = j;
-            RTTextViewHashTagsSpan RTTextViewHashTagsSpan = new RTTextViewHashTagsSpan(ContextCompat.getColor(getContext(), R.color.hashtag_color)) {
-                @Override
-                public void onClick(@NonNull View widget) {
-
-                    if(hashTagClickedListener != null)hashTagClickedListener.onHashTagClicked(("(text.subSequence(tagMatcher.start(),tagMatcher.end()))).toString()"));
-                }
-            };
-
+            RTTextViewHashTagsSpan RTTextViewHashTagsSpan = new RTTextViewHashTagsSpan(ContextCompat.getColor(getContext(), R.color.hashtag_color), tagMatcher.group());
             spannableString.setSpan(RTTextViewHashTagsSpan, tagMatcher.start(), tagMatcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         }
         Matcher mentionMatcher = Pattern.compile("@([A-Za-z0-9_-\\u00A0]+)").matcher(text);
 
-        int k = -1;
         while (mentionMatcher.find()) {
-            int l = k + 1;
-            k = l;
-            RTTextViewMentionsSpan rtTextViewMentionsSpan = new RTTextViewMentionsSpan(ContextCompat.getColor(getContext(), R.color.mention_color)) {
-                @Override
-                public void onClick(@NonNull View widget) {
-
-                    if(mentionClickedListener != null && mentionMatcher.find()) mentionClickedListener.onMentionClicked((text.subSequence(mentionMatcher.start(),mentionMatcher.end()).toString()));
-                }
-            };
+            RTTextViewMentionsSpan rtTextViewMentionsSpan = new RTTextViewMentionsSpan(ContextCompat.getColor(getContext(), R.color.mention_color), mentionMatcher.group());
             spannableString.setSpan(rtTextViewMentionsSpan, mentionMatcher.start(), mentionMatcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         }
@@ -170,12 +151,19 @@ public class RTextView extends AppCompatTextView implements LinkSpan.LinkSpanLis
 
 
 
-    public abstract class RTTextViewHashTagsSpan extends ClickableSpan{
+    public  class RTTextViewHashTagsSpan extends ClickableSpan{
 
         private int mNormalTextColor;
+        private String hashtagText;
 
-        public RTTextViewHashTagsSpan(int normalTextColor){
+        public RTTextViewHashTagsSpan(int normalTextColor, String hashtagText){
             this.mNormalTextColor = normalTextColor;
+            this.hashtagText = hashtagText;
+        }
+
+        @Override
+        public void onClick(@NonNull View view) {
+            hashTagClickedListener.onHashTagClicked((hashtagText));
         }
 
         @Override
@@ -185,12 +173,18 @@ public class RTextView extends AppCompatTextView implements LinkSpan.LinkSpanLis
             ds.setColor(mNormalTextColor);
         }
     }
-    public abstract class RTTextViewMentionsSpan extends ClickableSpan{
-        private boolean mIsPressed;
+    public  class RTTextViewMentionsSpan extends ClickableSpan{
         private int mNormalTextColor;
+        private String mentionText;
 
-        public RTTextViewMentionsSpan(int normalTextColor){
+        public RTTextViewMentionsSpan(int normalTextColor, String mentionText){
             this.mNormalTextColor = normalTextColor;
+            this.mentionText = mentionText;
+        }
+
+        @Override
+        public void onClick(@NonNull View view) {
+            mentionClickedListener.onMentionClicked(mentionText);
         }
 
         @Override

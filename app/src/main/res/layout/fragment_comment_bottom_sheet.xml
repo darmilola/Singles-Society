@@ -75,7 +75,7 @@
             app:inputButtonIcon="@drawable/send_filled_icon"
             app:inputButtonHeight="32dp"
             app:inputButtonWidth="32dp"
-            app:isInputViewTypeMessage="true"
+            app:isInputViewTypeMessage="false"
             app:attachmentButtonIcon="@drawable/plus_circled_icon"
             app:showAttachmentButton="true"/>
     </FrameLayout>

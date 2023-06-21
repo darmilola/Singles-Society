@@ -11,7 +11,7 @@
     <solid android:color="#FA4375"/>
 
 
-    <stroke android:color="#f2f2f3" android:width="2dp"/>
+    <stroke android:color="@color/special_activity_background" android:width="2dp"/>
 
 
 

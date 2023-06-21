@@ -91,7 +91,7 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
             commentText.setHashTagClickedListener(this);
             commentText.setMentionClickedListener(this);
 
-            commentText.setText(new RTPlainText("Hello, this is Dami first post on the new social App am working on, follow me @GodIsGreat or also tag #InterveneInMyFinances"));
+            commentText.setText(new RTPlainText("Hello, this is #Dami#first#post #o n #the @new@social App am working on, follow me @GodIsGreat or also tag #InterveneInMyFinances"));
 
             replyArrow.setOnClickListener(new View.OnClickListener() {
                 @Override

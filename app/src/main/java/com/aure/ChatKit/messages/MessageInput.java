@@ -35,6 +35,8 @@ import android.widget.Space;
 import android.widget.TextView;
 
 
+import com.SinglesSociety.SocialText.RichTextController.MentionHashTagListener;
+import com.SinglesSociety.SocialText.RichTextController.RTEditText;
 import com.aure.R;
 
 import java.lang.reflect.Field;
@@ -53,7 +55,7 @@ import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
 public class MessageInput extends LinearLayout
         implements View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
 
-    protected EmojiconEditText messageInput;
+    protected RTEditText messageInput;
     protected ImageView messageSendButton;
     protected ImageView attachmentButton;
     protected ImageView emojiButton;
@@ -244,14 +246,51 @@ public class MessageInput extends LinearLayout
             rootView = inflate(context, R.layout.view_message_input, this);
         }
         else{
-            //rootView = inflate(context, R.layout.view_comment_input, this);
+            rootView = inflate(context, R.layout.view_message_input_type_comment, this);
         }
 
         messageInput = findViewById(R.id.messageInput);
         messageSendButton =  findViewById(R.id.messageSendButton);
         emojiButton = findViewById(R.id.emojiButton);
-        //sendButtonSpace = (Space) findViewById(R.id.sendButtonSpace);
-        //attachmentButtonSpace = (Space) findViewById(R.id.attachmentButtonSpace);
+
+        if(isTypeMessage) {
+            messageInput.setRichTextEditing(false, false);
+            messageInput.setMentionHashTagListener(null);
+        }
+        else {
+
+            messageInput.setMentionHashTagListener(new MentionHashTagListener() {
+                @Override
+                public void onMentioning(CharSequence sequence) {
+
+                }
+
+                @Override
+                public void onHashTagging(CharSequence sequence) {
+
+                }
+
+                @Override
+                public void onStopMentioning() {
+
+                }
+
+                @Override
+                public void onStopHashTags() {
+
+                }
+
+                @Override
+                public void onMentionStarted() {
+
+                }
+
+                @Override
+                public void onHashTagsStarted() {
+
+                }
+            });
+        }
 
         messageSendButton.setOnClickListener(this);
         if(isTypeMessage) {
@@ -261,8 +300,8 @@ public class MessageInput extends LinearLayout
         messageInput.addTextChangedListener(this);
         messageInput.setOnFocusChangeListener(this);
 
-            EmojIconActions emojIcon=new EmojIconActions(context,rootView,messageInput,emojiButton);
-            emojIcon.ShowEmojIcon();
+            EmojIconActions emojiIcon=new EmojIconActions(context,rootView,messageInput,emojiButton);
+            emojiIcon.ShowEmojIcon();
 
 
 

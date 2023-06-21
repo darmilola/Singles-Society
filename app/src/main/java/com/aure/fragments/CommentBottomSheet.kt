@@ -1,10 +1,11 @@
 package com.aure.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.SinglesSociety.SocialText.RichTextController.RTEditText
+import com.SinglesSociety.SocialText.RichTextController.RTManager
 import com.aure.R
 import com.aure.UiAdapters.CommentsAdapter
 import com.aure.UiModels.CommentModel
@@ -43,6 +44,10 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
             commentActionListener.onProfileVisit()
             dismiss()
         }
+
+    }
+
+    private fun initRTEdittextView(){
 
     }
 

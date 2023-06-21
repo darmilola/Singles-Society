@@ -46,10 +46,10 @@
                 android:minWidth="23dp"
                 android:textDirection="ltr"
                 android:background="@drawable/unread_background"
-                android:textSize="10dp"
+                android:textSize="9sp"
                 android:layout_marginRight="2dp"
                 android:visibility="gone"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="@font/manropesemibold"
                 tools:ignore="RtlHardcoded,SpUsage" />
         </FrameLayout>
 
