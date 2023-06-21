@@ -72,7 +72,7 @@
         </RelativeLayout>
 
 
-        <com.SinglesSociety.SocialText.RichTextController.RTEditText
+        <com.SinglesSociety.SocialText.RichTextController.RTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"

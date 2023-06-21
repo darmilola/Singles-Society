@@ -19,11 +19,14 @@ package com.SinglesSociety.SocialText.RichTextController;
 import android.content.Context;
 
 import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.SinglesSociety.SocialText.RichTextController.api.format.RTFormat;
@@ -35,7 +38,12 @@ import com.SinglesSociety.SocialText.RichTextController.spans.MentionSpan;
 import com.SinglesSociety.SocialText.RichTextController.spans.ReferenceSpan;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
 
@@ -108,57 +116,58 @@ public class RTextView extends AppCompatTextView implements LinkSpan.LinkSpanLis
     }
 
     public Spannable cloneSpannable(String mText) {
-
         String text = mText;
         return new ClonedSpannableString(text != null ? text : "");
     }
 
     public void setText(RTText rtText){
         if(rtText.getFormat()instanceof RTFormat.Html){
-
-                RTText rtSpanned = rtText.convertTo(RTFormat.SPANNED);
-                super.setText(rtSpanned.getText(),BufferType.SPANNABLE);
-
+            RTText rtSpanned = rtText.convertTo(RTFormat.SPANNED);
+            super.setText(rtSpanned.getText(),BufferType.SPANNABLE);
+        }
+        else {
+            SpannableString spannableString = detectHashtagsAndMention(rtText.getText());
+            super.setText(spannableString);
         }
     }
-   /* private SpannableString clickHashTags(CharSequence text){
+    private SpannableString detectHashtagsAndMention(CharSequence text){
         SpannableString spannableString = new SpannableString(text);
         Matcher tagMatcher = Pattern.compile("#([A-Za-z0-9_-]+)").matcher(text);
 
-           int i = 0;
-           while (tagMatcher.find()) {
-               int j = i + 1;
-               i = j;
-               RTTextViewHashTagsSpan RTTextViewHashTagsSpan = new RTTextViewHashTagsSpan(ContextCompat.getColor(getContext(), R.color.blue)) {
-                   @Override
-                   public void onClick(@NonNull View widget) {
+        int i = 0;
+        while (tagMatcher.find()) {
+            int j = i + 1;
+            i = j;
+            RTTextViewHashTagsSpan RTTextViewHashTagsSpan = new RTTextViewHashTagsSpan(ContextCompat.getColor(getContext(), R.color.hashtag_color)) {
+                @Override
+                public void onClick(@NonNull View widget) {
 
-                       hashTagClickedListener.onHashTagClicked(j);
-                   }
-               };
+                    if(hashTagClickedListener != null)hashTagClickedListener.onHashTagClicked(("(text.subSequence(tagMatcher.start(),tagMatcher.end()))).toString()"));
+                }
+            };
 
-               spannableString.setSpan(RTTextViewHashTagsSpan, tagMatcher.start(), tagMatcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(RTTextViewHashTagsSpan, tagMatcher.start(), tagMatcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-           }
-               Matcher mentionMatcher = Pattern.compile("@([A-Za-z0-9_-\\u00A0]+)").matcher(text);
+        }
+        Matcher mentionMatcher = Pattern.compile("@([A-Za-z0-9_-\\u00A0]+)").matcher(text);
 
-                 int k = -1;
-                 while (mentionMatcher.find()) {
-                     int l = k + 1;
-                     k = l;
-                     RTTextViewMentionsSpan rtTextViewMentionsSpan = new RTTextViewMentionsSpan(ContextCompat.getColor(getContext(), R.color.blue)) {
-                         @Override
-                         public void onClick(@NonNull View widget) {
+        int k = -1;
+        while (mentionMatcher.find()) {
+            int l = k + 1;
+            k = l;
+            RTTextViewMentionsSpan rtTextViewMentionsSpan = new RTTextViewMentionsSpan(ContextCompat.getColor(getContext(), R.color.mention_color)) {
+                @Override
+                public void onClick(@NonNull View widget) {
 
-                             if(mentionClickedListener != null) mentionClickedListener.onMentionClicked(l);
-                             //Toast.makeText(getContext(), "Mention at position "+Integer.toString(l), Toast.LENGTH_SHORT).show();
-                         }
-                     };
-                     spannableString.setSpan(rtTextViewMentionsSpan, mentionMatcher.start(), mentionMatcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    if(mentionClickedListener != null && mentionMatcher.find()) mentionClickedListener.onMentionClicked((text.subSequence(mentionMatcher.start(),mentionMatcher.end()).toString()));
+                }
+            };
+            spannableString.setSpan(rtTextViewMentionsSpan, mentionMatcher.start(), mentionMatcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-                 }
-                 return spannableString;
-    }*/
+        }
+        return spannableString;
+    }
+
 
 
     public abstract class RTTextViewHashTagsSpan extends ClickableSpan{

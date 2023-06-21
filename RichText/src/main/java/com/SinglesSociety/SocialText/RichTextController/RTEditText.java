@@ -593,13 +593,13 @@ public class RTEditText extends AppCompatEditText implements TextWatcher, SpanWa
 
     private void authHashTagColor(Spannable spannable,String s, int start, int end){
 
-        spannable.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),R.color.mention_hashtag_color)),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),R.color.hashtag_color)),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     }
 
     private void authMentionTagColor(Spannable spannable,String s, int start, int end){
 
-        spannable.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),R.color.mention_hashtag_color)),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(),R.color.mention_color)),start,end,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     }
 

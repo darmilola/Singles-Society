@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.SinglesSociety.SocialText.RichTextController.MentionHashTagListener;
 import com.SinglesSociety.SocialText.RichTextController.RTEditText;
 import com.SinglesSociety.SocialText.RichTextController.RTextView;
 import com.SinglesSociety.SocialText.RichTextController.api.format.RTFormat;
@@ -71,11 +73,11 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
 
     }
 
-    public class CommentViewHolder extends ParentViewHolder {
+    public class CommentViewHolder extends ParentViewHolder implements RTextView.HashTagClickedListener, RTextView.MentionClickedListener {
 
         private TextView replyText;
 
-        private RTEditText commentText;
+        private RTextView commentText;
         private ImageView replyArrow;
         private ImageView profileImage;
         private TextView username;
@@ -86,8 +88,10 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
             profileImage = itemView.findViewById(R.id.userProfileImage);
             username = itemView.findViewById(R.id.username);
             commentText = itemView.findViewById(R.id.postCommentText);
-            commentText.setRichTextEditing(true,true);
-            commentText.setText(new RTHtml("<p>Hello, this is Dami first post on the new social App am working on, follow me @dami or also tag #dami</p>").convertTo(RTFormat.HTML));
+            commentText.setHashTagClickedListener(this);
+            commentText.setMentionClickedListener(this);
+
+            commentText.setText(new RTPlainText("Hello, this is Dami first post on the new social App am working on, follow me @GodIsGreat or also tag #InterveneInMyFinances"));
 
             replyArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,6 +134,15 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
             return false;
         }
 
+        @Override
+        public void onMentionClicked(String mentionJson) {
+            Toast.makeText(context, mentionJson, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onHashTagClicked(String hashtagText) {
+            Toast.makeText(context, hashtagText, Toast.LENGTH_SHORT).show();
+        }
     }
 
 
