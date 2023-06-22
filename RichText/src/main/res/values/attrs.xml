@@ -9,6 +9,8 @@
         <attr name="setHorizontalScrollMarginLeft" format="dimension|reference"/>
         <attr name="setHorizontalScrollMarginRight" format="dimension|reference"/>
         <attr name="setBoldActionSrc" format="reference"/>
+        <attr name="setMentionActionSrc" format="reference"/>
+        <attr name="setHashTagActionSrc" format="reference"/>
         <attr name="setItalicizeActionSrc" format="reference"/>
         <attr name="setStrikeActionSrc" format="reference"/>
         <attr name="setLinkActionSrc" format="reference"/>

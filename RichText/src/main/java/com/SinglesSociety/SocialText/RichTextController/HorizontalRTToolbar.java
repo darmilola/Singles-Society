@@ -29,6 +29,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -63,6 +64,7 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
     public ImageView mBold;
     public ImageView mItalicize;
     public ImageView mStrike;
+    public ImageView hashTag, mention;
     public ImageView mLink;
     public ImageView mBullet;
     public ImageView mNumbers;
@@ -80,6 +82,8 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
     float horizontalScrollMarginLeft = 0;
     float horizontalScrollMarginRight = 0;
     Drawable boldActionDrawable;
+
+    Drawable mentionActionDrawable, hashtagActionDrawable;
     Drawable italicizeActionDrawable;
     Drawable strikeActionDrawable;
     Drawable linkActionDrawable;
@@ -93,7 +97,7 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
     int actionButtonSelectedSrcTint;
     float actionButtonPadding = 0;
     float actionButtonSize = 0;
-    SortedSet<RTTypeface> fonts;
+    FrameLayout actionBackground;
 
 
     // ****************************************** Initialize Methods *******************************************
@@ -139,6 +143,8 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
             horizontalScrollMarginRight = a.getDimension(R.styleable.ctr_setHorizontalScrollMarginRight, 0);
             horizontalScrollMarginLeft = a.getDimension(R.styleable.ctr_setHorizontalScrollMarginLeft, 0);
             boldActionDrawable = a.getDrawable(R.styleable.ctr_setBoldActionSrc);
+            mentionActionDrawable = a.getDrawable(R.styleable.ctr_setMentionActionSrc);
+            hashtagActionDrawable = a.getDrawable(R.styleable.ctr_setHashTagActionSrc);
             italicizeActionDrawable = a.getDrawable(R.styleable.ctr_setItalicizeActionSrc);
             strikeActionDrawable = a.getDrawable(R.styleable.ctr_setStrikeActionSrc);
             linkActionDrawable = a.getDrawable(R.styleable.ctr_setLinkActionSrc);
@@ -159,23 +165,25 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
 
     protected void inflateAndBindView() {
 
-        fonts = FontManager.getFonts(getContext());
-        Log.e("size of fonts", String.valueOf(fonts.size()));
-
        View view;
         LayoutInflater inflater = LayoutInflater.from(getContext());
         view = inflater.inflate(R.layout.editor_layout, this, true);
         mBold = view.findViewById(R.id.bold_action);
+
         mBullet = view.findViewById(R.id.bullet_action);
         mItalicize = view.findViewById(R.id.italics_action);
         mLink = view.findViewById(R.id.link_action);
         mNumbers = view.findViewById(R.id.numbers_action);
         mStrike = view.findViewById(R.id.strike_action);
+        hashTag = view.findViewById(R.id.hashtagAction);
+        mention = view.findViewById(R.id.mentionAction);
         mSizeInc = view.findViewById(R.id.size_increase_action);
         mBold.setImageDrawable(boldActionDrawable);
         mSizeInc.setImageDrawable(sizeIncActionDrawable);
         mBullet.setImageDrawable(bulletActionDrawable);
         mItalicize.setImageDrawable(italicizeActionDrawable);
+        hashTag.setImageDrawable(hashtagActionDrawable);
+        mention.setImageDrawable(mentionActionDrawable);
         mLink.setImageDrawable(linkActionDrawable);
         mNumbers.setImageDrawable(numberActionDrawable);
         mStrike.setImageDrawable(strikeActionDrawable);
@@ -187,6 +195,7 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
         mLink.setBackground(unSelectedActionBackground);
         mNumbers.setBackground(unSelectedActionBackground);
         editorScrollView = view.findViewById(R.id.editor_scrollview);
+        actionBackground = view.findViewById(R.id.actionBackground);
         mBold.setOnClickListener(this);
         mBullet.setOnClickListener(this);
         mItalicize.setOnClickListener(this);
@@ -201,70 +210,6 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
         mItalicize.setColorFilter(actionButtonTint);
         mBullet.setColorFilter(actionButtonTint);
         mStrike.setColorFilter(actionButtonTint);
-
-
-        if (actionButtonPadding != 0) {
-            int dpPadding = (int) PixelsToDp(actionButtonPadding, getContext());
-            mBold.setPadding(dpPadding, dpPadding, dpPadding, dpPadding);
-            mItalicize.setPadding(dpPadding, dpPadding, dpPadding, dpPadding);
-            mStrike.setPadding(dpPadding, dpPadding, dpPadding, dpPadding);
-            mLink.setPadding(dpPadding, dpPadding, dpPadding, dpPadding);
-            mBullet.setPadding(dpPadding, dpPadding, dpPadding, dpPadding);
-            mNumbers.setPadding(dpPadding, dpPadding, dpPadding, dpPadding);
-            mSizeInc.setPadding(dpPadding,dpPadding,dpPadding,dpPadding);
-        }
-
-        if (actionButtonSize != 0) {
-            int dpSize = (int) PixelsToDp(actionButtonSize, getContext());
-            mBold.getLayoutParams().height = dpSize;
-            mBold.getLayoutParams().width = dpSize;
-            mItalicize.getLayoutParams().height = dpSize;
-            mItalicize.getLayoutParams().width = dpSize;
-            mStrike.getLayoutParams().height = dpSize;
-            mStrike.getLayoutParams().width = dpSize;// mStrike.requestLayout();
-            mLink.getLayoutParams().height = dpSize;
-            mLink.getLayoutParams().width = dpSize; //mLink.requestLayout();
-            mBullet.getLayoutParams().height = dpSize;
-            mBullet.getLayoutParams().width = dpSize; //mBullet.requestLayout();
-            mNumbers.getLayoutParams().height = dpSize;
-            mNumbers.getLayoutParams().width = dpSize; //mNumbers.requestLayout();
-            mSizeInc.getLayoutParams().height = dpSize;
-            mSizeInc.getLayoutParams().width = dpSize;
-            editorScrollView.requestLayout();
-        }
-
-
-        if (horizontalScrollMarginLeft != 0) {
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) editorScrollView.getLayoutParams();
-            params.leftMargin = (int) PixelsToDp(horizontalScrollMarginLeft, getContext());
-            editorScrollView.requestLayout();
-        }
-
-        if (horizontalScrollMarginRight != 0) {
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) editorScrollView.getLayoutParams();
-            params.rightMargin = (int) PixelsToDp(horizontalScrollMarginRight, getContext());
-            editorScrollView.requestLayout();
-        }
-        if (horizontalScrollMarginTop != 0) {
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) editorScrollView.getLayoutParams();
-            params.topMargin = (int) PixelsToDp(horizontalScrollMarginTop, getContext());
-            editorScrollView.requestLayout();
-        }
-        if (horizontalScrollMarginBottom != 0) {
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) editorScrollView.getLayoutParams();
-            params.bottomMargin = (int) PixelsToDp(horizontalScrollMarginBottom, getContext());
-            editorScrollView.requestLayout();
-        }
-        if (horizontalScrollHeight != 0) {
-
-            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) editorScrollView.getLayoutParams();
-            params.height = (int) PixelsToDp(horizontalScrollHeight, getContext());
-            editorScrollView.requestLayout();
-        }
     }
 
     // ****************************************** RTToolbar Methods *******************************************

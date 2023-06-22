@@ -108,7 +108,8 @@ class MainAct2 : AppCompatActivity() {
                         }))
                     }))
                 }
-               ID_EXPLORE ->{
+                ID_CREATE -> startActivity(Intent(this,CreatePostActivity::class.java))
+                ID_EXPLORE ->{
                    loadFragment(TrendingFragment(
                        enterSpaceListener = {
                            adjustLayoutParams(true)
