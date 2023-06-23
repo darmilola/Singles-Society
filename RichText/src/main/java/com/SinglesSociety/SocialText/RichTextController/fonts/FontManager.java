@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.util.Log;
 
 
 import com.SinglesSociety.SocialText.RichTextController.utils.io.FilenameUtils;
@@ -136,6 +137,8 @@ public class FontManager {
                         if (fontName == null) {
                             fontName = getFileName(filePath);
                         }
+                        Log.e("name ", fontName);
+                        Log.e("path ", filePath);
                         ASSET_FONTS_BY_NAME.put(fontName, filePath);
                     }
                 }

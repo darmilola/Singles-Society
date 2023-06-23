@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorPrimary">@color/special_activity_background</color>
+    <color name="colorPrimary">@color/pink</color>
     <color name="colorPrimaryDark">@color/special_activity_background</color>
     <color name="colorAccent">#e8415f</color>
     <color name="colorSecondary">@color/special_activity_background</color>

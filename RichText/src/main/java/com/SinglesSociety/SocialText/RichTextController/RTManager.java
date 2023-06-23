@@ -31,6 +31,7 @@ import android.view.animation.Animation.AnimationListener;
 import com.SinglesSociety.SocialText.RichTextController.api.RTApi;
 import com.SinglesSociety.SocialText.RichTextController.converter.tagsoup.util.StringEscapeUtils;
 import com.SinglesSociety.SocialText.RichTextController.effects.AbsoluteSizeEffect;
+import com.SinglesSociety.SocialText.RichTextController.effects.BoldEffect;
 import com.SinglesSociety.SocialText.RichTextController.effects.BulletEffect;
 import com.SinglesSociety.SocialText.RichTextController.effects.Effect;
 import com.SinglesSociety.SocialText.RichTextController.effects.Effects;
@@ -382,7 +383,7 @@ public class RTManager implements RTEditTextListener,RTToolbarListener{
 
     @Override
     /* @inheritDoc */
-    public <V, C extends RTSpan<V>> void onEffectSelected(Effect<V, C> effect, V value) {
+    public <V, C extends RTSpan<V>> void  onEffectSelected(Effect<V, C> effect, V value) {
         RTEditText editor = getActiveEditor();
         if (editor != null) {
             editor.applyEffect(effect, value);
@@ -528,8 +529,7 @@ public class RTManager implements RTEditTextListener,RTToolbarListener{
                     isItalic = true;
                 } else if (effect instanceof UnderlineEffect) {
                     isUnderLine = true;
-                } else if (effect instanceof TypefaceEffect) {
-                    typefaces = Effects.TYPEFACE.valuesInSelection(editor);
+                } else if (effect instanceof BoldEffect) {
                     isBold = true;
                 }else if (effect instanceof StrikethroughEffect) {
                     isStrikethrough = true;
@@ -553,20 +553,8 @@ public class RTManager implements RTEditTextListener,RTToolbarListener{
             toolbar.setStrikethrough(isStrikethrough);
             toolbar.setBullet(isBullet);
             toolbar.setNumber(isNumber);
+            toolbar.setBold(isBold);
 
-
-           if(isBold){
-
-
-               if(typefaces.get(0).getName().equalsIgnoreCase("Air Soft W00 Regular")){
-
-                   toolbar.setBold(false);
-               }
-               else{
-
-                   toolbar.setBold(true);
-               }
-           }
 
             if(isSizeInc) {
 

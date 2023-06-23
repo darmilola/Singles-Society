@@ -42,6 +42,7 @@ class CreatePostTypeText : Fragment() {
         createPostRTManager!!.registerToolbar(createPostToolbarLayout, createPostToolbar)
         createPostRTManager!!.registerEditor(editView, true)
         editView!!.setRichTextEditing(true, true)
+        createPostToolbar.applyDefaultFont()
         exitButton.setOnClickListener {
             activity?.finish()
         }

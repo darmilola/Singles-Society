@@ -210,6 +210,8 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
         mItalicize.setColorFilter(actionButtonTint);
         mBullet.setColorFilter(actionButtonTint);
         mStrike.setColorFilter(actionButtonTint);
+        FontManager.getFonts(getContext());
+
     }
 
     // ****************************************** RTToolbar Methods *******************************************
@@ -392,6 +394,12 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
     // ****************************************** Item Selected Methods *******************************************
 
 
+    public void applyDefaultFont(){
+        mListener.onEffectSelected(Effects.BOLD, false);
+        setBoldChecked(false);
+        authBackground(mBold,false);
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -400,24 +408,13 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
 
             int id = v.getId();
             if (id == R.id.bold_action) {
-
-                if(isBoldChecked){
-
-                    RTTypeface typeface = FontManager.getTypeface("Air Soft W00 Regular");
-                    mListener.onEffectSelected(Effects.TYPEFACE,typeface);
-                    setBoldChecked(isBoldChecked);
-                    authBackground(mBold,!isBoldChecked());
-
-                } else{
-
-                    RTTypeface typeface = FontManager.getTypeface("Air W00 Semibold");
-                    mListener.onEffectSelected(Effects.TYPEFACE, typeface);
                     setBoldChecked(!isBoldChecked);
                     authBackground(mBold, isBoldChecked());
+                    mListener.onEffectSelected(Effects.BOLD, isBoldChecked);
+                    mListener.onEffectSelected(Effects.FONTSIZE,dpToPx(27));
                 }
 
-
-                } else if (id == R.id.italics_action) {
+            else if (id == R.id.italics_action) {
 
                 setItalicsChecked(!isItalicsChecked);
                 authBackground(mItalicize, isItalicsChecked());
