@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.util.Log;
@@ -30,6 +29,7 @@ import com.aure.Arvi.widget.CardStackLayoutManager;
 import com.aure.Arvi.widget.CardStackListener;
 import com.aure.Arvi.widget.PlayableCardStackView;
 import com.aure.Arvi.widget.PlayableItemViewHolder;
+import com.aure.Arvi.widget.PlayableItemsRecyclerView;
 import com.aure.Arvi.widget.PlaybackState;
 import com.aure.Arvi.widget.SwipeableMethod;
 import android.view.animation.AccelerateInterpolator;
@@ -38,6 +38,7 @@ import android.widget.Toast;
 import com.aure.OnSwipeTouchListener;
 import com.aure.R;
 import com.aure.SocietySwipeActivity;
+import com.aure.UiModels.CommunityPostTypeTextAttachmentModel;
 import com.aure.UiModels.MainActivityModel;
 import com.aure.UiModels.PreviewProfileModel;
 import com.aure.UiModels.SocietyModel;
@@ -63,9 +64,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,11 +81,14 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Context context;
     private ArrayList<SocietyModel> societyModelArrayList;
     private static int TYPE_MAIN = 0;
-    private static int TYPE_POST = 1;
+    private static int TYPE_VIDEO = 1;
 
     private static int TYPE_IMAGE = 2;
 
     private static int TYPE_HEADER = 3;
+
+    private static int TYPE_TEXT = 4;
+
 
     private Function0<Unit> visitProfileListener;
     private Function0<Unit> profileMatchedListener;
@@ -153,9 +155,14 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return new ShowcaseItemViewHolder(view);
         }
 
-        else if(viewType == TYPE_POST){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post, parent, false);
-            return new CommunityPostItemViewHolder(parent, view);
+        else if(viewType == TYPE_TEXT){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_text, parent, false);
+            return new TextPostItemViewHolder(view);
+        }
+
+        else if(viewType == TYPE_VIDEO){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_video, parent, false);
+            return new CommunityPostItemTypeVideoViewHolder(parent, view);
         }
         else if(viewType == TYPE_IMAGE){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_image, parent, false);
@@ -301,16 +308,16 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((ShowcaseItemViewHolder) holder).showcaseCardStackRecyclerview.requestLayout();
 
         }
-       else if(societyModelArrayList.get(position).getItemViewType() == TYPE_POST){
-               CommunityPostItemViewHolder communityPostItemViewHolder = (CommunityPostItemViewHolder) holder;
+       else if(societyModelArrayList.get(position).getItemViewType() == TYPE_VIDEO){
+               CommunityPostItemTypeVideoViewHolder communityPostItemTypeVideoViewHolder = (CommunityPostItemTypeVideoViewHolder) holder;
             postListener.invoke();
-            communityPostItemViewHolder.setUrl("https://joy1.videvo.net/videvo_files/video/free/2016-12/large_watermarked/Code_flythough_loop_01_Videvo_preview.mp4");
+            communityPostItemTypeVideoViewHolder.setUrl("https://joy1.videvo.net/videvo_files/video/free/2016-12/large_watermarked/Code_flythough_loop_01_Videvo_preview.mp4");
             ImageRequest request = ImageRequest.fromUri("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                     .setImageRequest(request)
-                    .setOldController((communityPostItemViewHolder).thumbnail.getController()).build();
-            (communityPostItemViewHolder).thumbnail.setController(controller);
-            communityPostItemViewHolder.onStoppedState();
+                    .setOldController((communityPostItemTypeVideoViewHolder).thumbnail.getController()).build();
+            (communityPostItemTypeVideoViewHolder).thumbnail.setController(controller);
+            communityPostItemTypeVideoViewHolder.onStoppedState();
        }
        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
             postListener.invoke();
@@ -348,6 +355,55 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
 
         }
+    }
+
+
+
+    public class TextPostItemViewHolder extends RecyclerView.ViewHolder{
+
+
+        PlayableItemsRecyclerView attachmentView;
+        LinearLayout commentLayout;
+        TextView commentCount;
+
+
+
+        public TextPostItemViewHolder(View ItemView){
+            super(ItemView);
+            attachmentView = ItemView.findViewById(R.id.postAttachmentRecyclerView);
+            CommunityPostTypeTextAttachmentModel attachmentModel = new CommunityPostTypeTextAttachmentModel(1);
+            CommunityPostTypeTextAttachmentModel attachmentModel2 = new CommunityPostTypeTextAttachmentModel(2);
+            CommunityPostTypeTextAttachmentModel attachmentModel3 = new CommunityPostTypeTextAttachmentModel(3);
+
+            ArrayList<CommunityPostTypeTextAttachmentModel> attachmentModels = new ArrayList<>();
+            attachmentModels.add(attachmentModel);
+            attachmentModels.add(attachmentModel2);
+            attachmentModels.add(attachmentModel3);
+            commentCount = ItemView.findViewById(R.id.commentCount);
+            commentLayout = ItemView.findViewById(R.id.commentLayout);
+
+            commentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addACommentClickListener.invoke();
+                }
+            });
+
+            commentCount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addACommentClickListener.invoke();
+                }
+            });
+
+            attachmentView.setAdapter(new CommunityPostTypeTextAttachmentAdapter(attachmentModels,context));
+
+
+
+
+        }
+
+
     }
 
     public class ShowcaseItemViewHolder extends RecyclerView.ViewHolder{
@@ -496,8 +552,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(societyModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
             return TYPE_MAIN;
         }
-        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_POST){
-            return TYPE_POST;
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_VIDEO){
+            return TYPE_VIDEO;
         }
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
             return TYPE_IMAGE;
@@ -505,8 +561,11 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_HEADER){
             return TYPE_HEADER;
         }
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_TEXT){
+            return TYPE_TEXT;
+        }
         else{
-            return TYPE_POST;
+            return TYPE_VIDEO;
         }
 
 
@@ -617,7 +676,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
-        public class CommunityPostItemViewHolder extends PlayableItemViewHolder implements View.OnClickListener {
+        public class CommunityPostItemTypeVideoViewHolder extends PlayableItemViewHolder implements View.OnClickListener {
 
             RelativeLayout transparentOverlay;
             FrameLayout touchArea;
@@ -644,7 +703,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             TextView addAComment;
             private CircleImageView accountProfileImage;
 
-            public CommunityPostItemViewHolder(ViewGroup parentViewGroup, View itemView) {
+            public CommunityPostItemTypeVideoViewHolder(ViewGroup parentViewGroup, View itemView) {
                 super(parentViewGroup, itemView);
                 this.config = new Config.Builder().cache(ExoPlayerUtils.getCache(context)).build();
                 player = itemView.findViewById(R.id.player_view);

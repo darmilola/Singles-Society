@@ -14,10 +14,52 @@
             android:orientation="horizontal"
             android:id="@+id/editor_scrollview">
 
+
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/actionBackground"
+                android:background="@drawable/circle_primary_background">
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitXY"
+                    android:tint="#000000"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_background"
+                    android:id="@+id/hashtagAction"
+                    android:src="@drawable/ic_action_bullet"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/actionBackground"
+                android:background="@drawable/circle_primary_background">
+
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitXY"
+                    android:tint="#D5000000"
+                    android:layout_gravity="center"
+                    android:background="@drawable/transparent_background"
+                    android:id="@+id/mentionAction"
+                    android:src="@drawable/ic_action_bullet"/>
+
+            </FrameLayout>
+
+
             <FrameLayout
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:id="@+id/actionBackground"
+                android:visibility="gone"
                 android:background="@drawable/circle_primary_background">
 
                 <ImageView
@@ -136,45 +178,6 @@
                     android:src="@drawable/ic_action_bullet"/>
 
             </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:id="@+id/actionBackground"
-                android:background="@drawable/circle_primary_background">
-
-                <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:scaleType="fitXY"
-                    android:tint="#000000"
-                    android:layout_gravity="center"
-                    android:background="@drawable/transparent_background"
-                    android:id="@+id/hashtagAction"
-                    android:src="@drawable/ic_action_bullet"/>
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="15dp"
-                android:id="@+id/actionBackground"
-                android:background="@drawable/circle_primary_background">
-
-                <ImageButton
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:scaleType="fitXY"
-                    android:tint="#D5000000"
-                    android:layout_gravity="center"
-                    android:background="@drawable/transparent_background"
-                    android:id="@+id/mentionAction"
-                    android:src="@drawable/ic_action_bullet"/>
-
-            </FrameLayout>
-
 
             <FrameLayout
                 android:layout_width="30dp"

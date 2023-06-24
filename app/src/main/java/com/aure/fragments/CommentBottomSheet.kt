@@ -47,11 +47,6 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
 
     }
 
-    private fun initRTEdittextView(){
-
-    }
-
-
     interface CommentActionListener{
          fun onProfileVisit()
     }

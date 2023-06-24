@@ -449,13 +449,15 @@ public class HorizontalRTToolbar extends LinearLayout implements RTToolbar, View
                 if(isSizeIncChecked()){
 
                     mListener.onEffectSelected(Effects.FONTSIZE,dpToPx(17));
+                    mListener.onEffectSelected(Effects.BOLD, false);
                     setmSizeIncChecked(isSizeIncChecked);
                     authBackground(mSizeInc,!isSizeIncChecked());
 
                 }
                 else {
 
-                    mListener.onEffectSelected(Effects.FONTSIZE, dpToPx(22));
+                    mListener.onEffectSelected(Effects.FONTSIZE, dpToPx(23));
+                    mListener.onEffectSelected(Effects.BOLD, true);
                     setmSizeIncChecked(!isSizeIncChecked);
                     authBackground(mSizeInc, isSizeIncChecked());
 

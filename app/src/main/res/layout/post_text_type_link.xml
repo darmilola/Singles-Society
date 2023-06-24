@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/special_activity_background">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@color/dark_text_color"
+        android:id="@+id/linkImage"
+        app:layout_constraintBottom_toTopOf="@id/linkText"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/african_american_business_woman_by_window"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/linkText"
+        android:paddingLeft="10dp"
+        android:gravity="center|left"
+        android:paddingRight="10dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/linkImage"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="12sp"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/manropeextrabold"
+            android:text="A hamster left behind in Bolton Cube fire has been safely reunited with owners"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/dark_text_color"
+            android:fontFamily="@font/manropesemibold"
+            android:text="He's a very lucky hamster our roger"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

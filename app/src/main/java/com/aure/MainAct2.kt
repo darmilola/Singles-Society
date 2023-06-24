@@ -161,8 +161,7 @@ class MainAct2 : AppCompatActivity() {
             mainActivityToolbar.visibility = View.GONE
         }
         else{
-            mainActivityToolbar.visibility = View.VISIBLE
-            params.topMargin = LayoutUtils().convertDpToPixel(55, context = this).toInt()
+
         }
         container.layoutParams = params
 

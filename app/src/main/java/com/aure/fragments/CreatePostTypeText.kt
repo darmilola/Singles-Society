@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.SinglesSociety.SocialText.RichTextController.MentionHashTagListener
 import com.SinglesSociety.SocialText.RichTextController.RTManager
 import com.SinglesSociety.SocialText.RichTextController.api.RTApi
 import com.SinglesSociety.SocialText.RichTextController.api.RTProxyImpl
@@ -47,13 +47,20 @@ class CreatePostTypeText : Fragment() {
             activity?.finish()
         }
 
+        editView.setMentionHashTagListener(object : MentionHashTagListener {
+            override fun onMentioning(sequence: CharSequence) {}
+            override fun onHashTagging(sequence: CharSequence) {}
+            override fun onStopMentioning() {}
+            override fun onStopHashTags() {}
+            override fun onMentionStarted() {}
+            override fun onHashTagsStarted() {}
+        })
+
     }
 
     override fun onResume() {
         super.onResume()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            //getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             activity?.window?.decorView?.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
             activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         }

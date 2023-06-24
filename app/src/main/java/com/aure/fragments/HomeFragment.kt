@@ -129,6 +129,12 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     }
 
                     for (i in 0..2) {
+                        val societyModel1 =
+                            SocietyModel(4)
+                        societyModelArrayList.add(societyModel1);
+                    }
+
+                    for (i in 0..2) {
                         val societyModel1 = SocietyModel(2)
                         societyModelArrayList.add(societyModel1);
                     }
