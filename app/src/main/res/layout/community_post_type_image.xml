@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,7 +12,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:id="@+id/imagePostCard"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="5dp">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

@@ -222,21 +222,28 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
 
                 override fun onError(message: String) {
                     Log.e("onError: ",message)
-                    for (i in 0..4) {
+                    for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
                         val societyModel1 =
                             SocietyModel(communityPostModel, 1)
                         societyModelArrayList.add(societyModel1);
                     }
 
-                    for (i in 0..4) {
+                    for (i in 0..2) {
+                        val societyModel1 =
+                            SocietyModel(4)
+                        societyModelArrayList.add(societyModel1);
+                    }
+
+                    for (i in 0..2) {
+                        val societyModel1 = SocietyModel(2)
+                        societyModelArrayList.add(societyModel1);
+                    }
+                    for (i in 0..1) {
                         val societyModel1 = SocietyModel(2)
                         societyModelArrayList.add(societyModel1);
                     }
 
-                   // val societyModelShowcase =  SocietyModel(previewProfileModels,likeIds,0)
-
-                  //  societyModelArrayList.add(societyModelShowcase)
                     societyModelArrayList.shuffle(Random(50))
 
                     homeMainAdapter =

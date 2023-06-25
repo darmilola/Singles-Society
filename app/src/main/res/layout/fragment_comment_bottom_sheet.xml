@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent">
+        android:background="@color/white">
 
 
         <LinearLayout
@@ -24,6 +24,7 @@
                 android:layout_width="50dp"
                 android:layout_height="5dp"
                 android:layout_marginTop="10dp"
+                android:id="@+id/dragHandler"
                 android:background="@drawable/filled_full_circle"
                 android:backgroundTint="@color/lighter_text_color"
                 android:layout_gravity="center"/>
@@ -66,9 +67,9 @@
             app:inputButtonBackground="@color/transparent"
             android:minHeight="55dp"
             app:inputTextSize="15sp"
+            android:gravity="center"
             app:emojiButtonIcon="@drawable/emoji_icon"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="5dp"
             app:attachmentButtonHeight="32dp"
             android:layout_gravity="bottom"
             app:attachmentButtonWidth="32dp"

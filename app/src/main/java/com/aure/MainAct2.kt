@@ -122,9 +122,9 @@ class MainAct2 : AppCompatActivity() {
                            }))
                        },
                        createSpaceListener = {
-                           adjustLayoutParamsForCreateSpace(true)
+                         //  adjustLayoutParamsForCreateSpace(true)
                            loadFragment(CreateNewSpaceFragment( createSpaceExitListener = {
-                               adjustLayoutParamsForCreateSpace(false)
+                           //    adjustLayoutParamsForCreateSpace(false)
                                supportFragmentManager.popBackStack()
 
                            }))
@@ -167,7 +167,7 @@ class MainAct2 : AppCompatActivity() {
 
     }
 
-    private fun adjustLayoutParamsForCreateSpace(adjust: Boolean){
+   /* private fun adjustLayoutParamsForCreateSpace(adjust: Boolean){
         val params: ViewGroup.MarginLayoutParams = container.layoutParams as ViewGroup.MarginLayoutParams
         if(adjust){
             params.topMargin = 0
@@ -192,7 +192,7 @@ class MainAct2 : AppCompatActivity() {
         }
         container.layoutParams = params
 
-    }
+    }*/
 
 
 
@@ -228,8 +228,8 @@ class MainAct2 : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.white)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.white)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
     }

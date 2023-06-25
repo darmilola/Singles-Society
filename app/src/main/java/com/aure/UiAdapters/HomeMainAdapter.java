@@ -474,7 +474,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onClick(View view) {
                     engagementOverlay.setVisibility(View.VISIBLE);
-                    scheduleEngagementViewDisappearance();
+                   // scheduleEngagementViewDisappearance();
                 }
             });
 
@@ -503,7 +503,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @Override
         public void onClick(View view) {
            engagementOverlay.setVisibility(View.VISIBLE);
-           scheduleEngagementViewDisappearance();
+         //  scheduleEngagementViewDisappearance();
         }
 
         public void scheduleEngagementViewDisappearance() {
@@ -820,7 +820,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             // progressToolLayout.setVisibility(View.VISIBLE);
                             playPauseView.setVisibility(View.VISIBLE);
                             //  playPauseLayout.setVisibility(View.VISIBLE);
-                            scheduleVideoProgressToolDisappearance();
+                        //    scheduleVideoProgressToolDisappearance();
 
                         }
 
@@ -949,7 +949,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             private void onReadyState() {
                 if (isStarted && !isPaused) {
                     isStarted = false;
-                    scheduleVideoProgressToolDisappearance();
+                  //  scheduleVideoProgressToolDisappearance();
                 }
                 Log.e("ready", "onReadyState: ");
                 isReady = true;

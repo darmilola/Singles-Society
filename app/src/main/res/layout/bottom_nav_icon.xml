@@ -42,15 +42,13 @@
                 android:layout_gravity="right"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:layout_marginBottom="2dp"
                 android:minWidth="23dp"
                 android:textDirection="ltr"
                 android:background="@drawable/unread_background"
                 android:textSize="9sp"
                 android:layout_marginRight="2dp"
                 android:visibility="gone"
-                android:fontFamily="@font/manropesemibold"
-                tools:ignore="RtlHardcoded,SpUsage" />
+                android:fontFamily="@font/manropesemibold"/>
         </FrameLayout>
 
     </LinearLayout>
