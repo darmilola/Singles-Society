@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="260dp"
-    android:background="@color/special_activity_background"
+    android:layout_height="240dp"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    app:cardCornerRadius="7dp"
+    android:layout_height="230dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="0dp"
-    android:layout_marginRight="7dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
     android:layout_marginBottom="3dp"
-    android:layout_marginTop="4dp">
-
+    android:layout_marginTop="3dp">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,20 +22,72 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/interacial_friends"/>
-
-        <TextView
+            android:src="@drawable/asian_lady"/>
+        <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Coffee date"
-            android:gravity="center|left|bottom"
-            android:textSize="25sp"
+            android:background="@drawable/mblack_gradient"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:paddingLeft="10dp"
-            android:fontFamily="@font/avenirbold"
-            android:paddingBottom="15dp"
-            android:maxLines="2"
-            android:background="@drawable/full_light_black_gradient"
-            android:textColor="#ddffffff"/>
+            android:paddingRight="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is the Default Space on Single Society Created for every one"
+                android:gravity="center|left|bottom"
+                android:textSize="16sp"
+                android:layout_gravity="bottom"
+                android:id="@+id/eventTitle"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@id/eventCreator"
+                android:fontFamily="@font/manropeextrabold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="#E8E6E6"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="bottom"
+                android:id="@+id/eventCreator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:gravity="left|center">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:civ_border_width="0.5dp"
+                    android:id="@+id/accountProfilePicture"
+                    app:layout_constraintEnd_toStartOf="@id/accountInfoRoot"
+                    app:civ_border_color="#FA4375"
+                    android:src="@drawable/woman_official"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Singles Society"
+                    android:maxLines="1"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:textColor="#E8E6E6"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/manropebold"/>
+
+            </LinearLayout>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </FrameLayout>
 
@@ -47,6 +99,7 @@
         android:background="@drawable/unread_background"
         android:gravity="center"
         android:textSize="11sp"
+        android:visibility="gone"
         android:layout_gravity="right|top"
         android:paddingBottom="3dp"
         android:text="25"

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.aure.ExploreSearch
 import com.aure.R
 import com.aure.UiAdapters.ExploreItemAdapter
+import com.aure.UiAdapters.ExploreLiveAdapter
 import com.aure.UiAdapters.TrendingHeaderAdapter
 import com.aure.UiModels.ExploreItem
 import kotlinx.android.synthetic.main.fragment_trending.*
@@ -21,7 +22,9 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     private lateinit var itemAdapter: ExploreItemAdapter
 
     private val images = ArrayList<Int>().apply {
-        add(R.drawable.ml)
+        add(R.drawable.asian_lady)
+        add(R.drawable.asian_lady)
+        add(R.drawable.asian_lady)
     }
 
     private val headerAdapter by lazy { TrendingHeaderAdapter() }
@@ -38,9 +41,9 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         super.onViewCreated(view, savedInstanceState)
         populateView()
 
-        exploreSearchIcon.setOnClickListener {
+       /* exploreSearchIcon.setOnClickListener {
             context?.startActivity(Intent(requireActivity(),ExploreSearch::class.java))
-        }
+        }*/
 
         createNewSpaceCta.setOnClickListener {
             createSpaceListener?.invoke()
@@ -48,7 +51,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     }
 
     private fun populateView(){
-        for (i in 0..5) {
+        for (i in 0..3) {
             itemList.add(ExploreItem())
         }
         itemAdapter = ExploreItemAdapter(itemList,requireContext())
@@ -57,6 +60,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         }
         exploreItemRecyclerview.adapter = itemAdapter
         mySpacesRecyclerview.adapter = itemAdapter
+        exploreUpcomingLiveRecyclerview.adapter = ExploreLiveAdapter(itemList)
 
         exploreHeader.setAdapter(headerAdapter)
         exploreHeader.setItems(images)

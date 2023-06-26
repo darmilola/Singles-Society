@@ -83,7 +83,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="#D8777676"
+            app:tint="@color/light_text_color"
             android:src="@drawable/overflow_menu_icon"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,7 +96,7 @@
         android:layout_marginRight="10dp"
         android:id="@+id/postTextView"
         android:lineSpacingExtra="5dp"
-        android:textColor="@color/dark_text_color"
+        android:textColor="@color/new_dark_text_color"
         android:textSize="15sp"
         android:fontFamily="@font/manropesemibold"
         android:maxLines="5"
@@ -136,7 +136,7 @@
             android:text="20k Likes"
             android:textSize="12sp"
             android:layout_marginLeft="5dp"
-            android:textColor="#A13C3A3A"
+            android:textColor="@color/light_text_color"
             android:fontFamily="@font/avenirbold"/>
 
         <TextView
@@ -149,7 +149,7 @@
             android:textSize="12sp"
             android:id="@+id/commentCount"
             android:layout_marginLeft="5dp"
-            android:textColor="#A13C3A3A"
+            android:textColor="@color/light_text_color"
             android:fontFamily="@font/avenirbold"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -200,7 +200,7 @@
                 android:layout_marginLeft="7dp"
                 android:textSize="13sp"
                 android:fontFamily="@font/avenirbold"
-                android:textColor="#A13C3A3A"/>
+                android:textColor="@color/light_text_color"/>
 
         </LinearLayout>
 
@@ -229,7 +229,7 @@
                 android:layout_marginLeft="7dp"
                 android:textSize="13sp"
                 android:fontFamily="@font/avenirbold"
-                android:textColor="#A13C3A3A"/>
+                android:textColor="@color/light_text_color"/>
 
         </LinearLayout>
 
@@ -257,7 +257,7 @@
                 android:layout_marginLeft="7dp"
                 android:textSize="13sp"
                 android:fontFamily="@font/avenirbold"
-                android:textColor="#A13C3A3A"/>
+                android:textColor="@color/light_text_color"/>
 
         </LinearLayout>
 

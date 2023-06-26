@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@id/container"
         app:ss_countBackgroundColor="#FA4375"
         app:ss_countTextColor="#ffffff"
-        app:ss_defaultIconColor="#7C7B7B"
+        app:ss_defaultIconColor="#333131"
         app:layout_constraintBottom_toBottomOf="parent"
         app:ss_iconTextColor="#7C7B7B"
         app:ss_rippleColor="#2f424242"

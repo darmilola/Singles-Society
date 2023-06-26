@@ -22,6 +22,8 @@ internal typealias IBottomNavigationListener = (model: BottomNav.Model) -> Unit
 
 private const val ID_NOTIFICATION = 3
 private const val ID_CREATE = 5
+private const val ID_EXPLORE = 1
+private const val ID_MESSAGE = 2
 @Suppress("MemberVisibilityCanBePrivate")
 class BottomNav : LinearLayout {
 
@@ -236,8 +238,9 @@ class BottomNav : LinearLayout {
             }
             if(model.id == ID_CREATE){
                 cell.apply {
-                    val params = LinearLayout.LayoutParams(0, dip(context,80), 1f)
+                    val params = LinearLayout.LayoutParams(0, dip(context,80), 0.8f)
                     params.gravity = Gravity.CENTER
+                    params.topMargin = dip(context,2)
                     layoutParams = params
                     iconSize = dip(context, 70)
                     isEnabledCell = true
@@ -245,6 +248,23 @@ class BottomNav : LinearLayout {
                     defaultIconColor = resources.getColor(R.color.new_pink)
                 }
                 enableCell(true)
+            }
+            if(model.id == ID_EXPLORE){
+                cell.apply {
+                    val params = LinearLayout.LayoutParams(0, heightCell, 0.6f)
+                    params.gravity = Gravity.TOP
+                    params.topMargin = dip(context,-5)
+                    layoutParams = params
+                    iconSize = dip(context, 60)
+                }
+            }
+            if(model.id == ID_MESSAGE){
+                cell.apply {
+                    val params = LinearLayout.LayoutParams(0, heightCell, 0.6f)
+                    params.gravity = Gravity.TOP
+                    params.topMargin = dip(context,5)
+                    layoutParams = params
+                }
             }
             //enableCell(true)
         }

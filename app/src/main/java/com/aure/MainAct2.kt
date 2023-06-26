@@ -48,14 +48,14 @@ class MainAct2 : AppCompatActivity() {
             add(
                     BottomNav.Model(
                             ID_HOME,
-                            R.drawable.fire_simple_icon,
+                            R.drawable.hot_trending_icon,
                             "Home"
                     )
             )
             add(
                     BottomNav.Model(
                             ID_EXPLORE,
-                            R.drawable.explore_outline,
+                            R.drawable.navigate_circle_outline_icon,
                             "Trending"
                     )
             )
