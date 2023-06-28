@@ -105,7 +105,7 @@
         app:layout_constraintTop_toBottomOf="@id/profileArea"/>
 
 
-    <com.aure.Arvi.widget.PlayableItemsRecyclerView
+    <com.singlesSociety.Arvi.widget.PlayableItemsRecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

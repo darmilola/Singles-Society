@@ -8,7 +8,7 @@
 
 
 
-    <com.aure.Arvi.widget.PlayableCardStackView
+    <com.singlesSociety.Arvi.widget.PlayableCardStackView
         android:layout_width="match_parent"
         android:focusableInTouchMode="true"
         android:focusable="true"

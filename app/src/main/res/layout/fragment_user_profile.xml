@@ -45,7 +45,7 @@
                 android:layout_height="70dp"
                 app:layout_collapseMode="pin" >
 
-             <com.aure.UiModels.BottomNav
+             <com.singlesSociety.UiModels.BottomNav
                     android:id="@+id/userProfileNavigation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

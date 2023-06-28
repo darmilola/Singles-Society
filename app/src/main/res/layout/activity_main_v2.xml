@@ -102,7 +102,7 @@
     </LinearLayout>
 
 
-    <com.aure.UiModels.BottomNav
+    <com.singlesSociety.UiModels.BottomNav
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="60dp"

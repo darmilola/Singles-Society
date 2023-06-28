@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#F4F4F4">
 
-    <com.aure.UiModels.Utils.BlurLayout
+    <com.singlesSociety.UiModels.Utils.BlurLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -133,10 +133,10 @@
 
         </LinearLayout>
         </LinearLayout>
-    </com.aure.UiModels.Utils.BlurLayout>
+    </com.singlesSociety.UiModels.Utils.BlurLayout>
 
 
-    <com.aure.ChatKit.messages.MessagesList
+    <com.singlesSociety.ChatKit.messages.MessagesList
         android:id="@+id/messagesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -163,7 +163,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@drawable/chatkit_ui_create_background">
 
-        <com.aure.ChatKit.messages.MessageInput
+        <com.singlesSociety.ChatKit.messages.MessageInput
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

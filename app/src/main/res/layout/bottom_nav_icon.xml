@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:elevation="6dp">
 
-            <com.aure.UiModels.CellImageView
+            <com.singlesSociety.UiModels.CellImageView
                 android:id="@+id/iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
