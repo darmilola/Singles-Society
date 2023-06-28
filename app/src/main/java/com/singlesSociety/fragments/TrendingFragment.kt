@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pchmn.materialchips.R2.attr.maxHeight
 import com.pchmn.materialchips.model.Chip
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
@@ -99,20 +100,26 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     }
 
 
-    fun setHeightToXPercentage(activity: Activity, view: View, fraction: Double) {
+    private fun setHeightToXPercentage(activity: Activity, view: View, fraction: Double) {
         val metrics = DisplayMetrics()
         activity.windowManager.defaultDisplay.getMetrics(metrics)
         val maxHeight = metrics.heightPixels - (metrics.heightPixels * fraction).toInt()
 
         val layoutParams = view.layoutParams
-        layoutParams.height = maxHeight
+        if(fraction < 0) {
+             layoutParams.height = LayoutParams.WRAP_CONTENT
+        }
+        else{
+             layoutParams.height = maxHeight
+        }
         layoutParams.width = LayoutParams.MATCH_PARENT
         view.layoutParams = layoutParams
+        view.requestLayout()
     }
 
     private fun populateForYouPosts(){
 
-        setHeightToXPercentage(requireActivity(),forYouRoot, 0.18)
+        setHeightToXPercentage(requireActivity(),forYouRoot, 0.07)
         var societyModelArrayList = ArrayList<SocietyModel>()
             val communityPostModel = CommunityPostModel()
             val societyModel1 =
