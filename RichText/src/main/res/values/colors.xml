@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="hashtag_color">#FF2196F3</color>
+    <color name="mention_color">#FA4375</color>
+    <color name="light_primary">#FDF9FD</color>
+    <color name="background_color">#7A7A7A</color>
+    <color name="bg_pink">#fa2d65</color>
+
+</resources>
+

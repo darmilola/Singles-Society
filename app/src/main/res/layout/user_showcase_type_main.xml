@@ -13,7 +13,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         app:cardElevation="0dp"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="5dp">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -45,8 +45,8 @@
                         android:layout_marginRight="20dp"
                         android:id="@+id/type_main_name_age"
                         android:textColor="#DDFFFFFF"
-                        android:textSize="23sp"
-                        android:fontFamily="@font/nunitoreg"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/manropesemibold"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:text="Alisha, 25"/>
@@ -81,7 +81,7 @@
                             app:chipIconVisible="true"
                             app:chipSurfaceColor="@color/full_transparency"
                             app:chipBackgroundColor="@color/full_transparency"
-                            android:fontFamily="@font/avenirreg"/>
+                            android:fontFamily="@font/manropesemibold"/>
                     </com.google.android.flexbox.FlexboxLayout>
                     <TextView
                         android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                         android:textColor="@color/light_gray"
                         android:textSize="12sp"
                         android:layout_marginTop="15dp"
-                        android:fontFamily="@font/avenir"
+                        android:fontFamily="@font/manropemedium"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:text="About"/>
@@ -104,14 +104,15 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="40dp"
-                        android:textColor="#DDFFFFFF"
-                        android:textSize="17sp"
+                        android:textSize="15sp"
+                        android:lineSpacingExtra="5dp"
                         android:justificationMode="none"
                         android:layout_marginTop="5dp"
-                        android:fontFamily="@font/manropemedium"
-                        android:maxLines="2"
-                        android:lineSpacingExtra="7dp"
+                        android:textColor="#C4FFFFFF"
                         android:ellipsize="end"
+                        android:layout_marginBottom="15dp"
+                        android:maxLines="3"
+                        android:fontFamily="@font/manropesemibold"
                         android:text="Am going to write a little about myself here just incase you care to know a little about me Am going to write a little about myself here just incase you care to know a little about me"/>
                 </LinearLayout>
         </FrameLayout>

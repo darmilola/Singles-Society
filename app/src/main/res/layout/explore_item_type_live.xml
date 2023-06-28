@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/asian_lady"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/mblack_gradient"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center|left"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_gravity="top">
+
+                    <LinearLayout
+                        android:layout_width="45dp"
+                        android:layout_height="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/filled_circle"
+                        android:backgroundTint="@color/new_pink"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            app:tint="#E8E6E6"
+                            android:layout_marginRight="1dp"
+                            android:src="@drawable/people_outline_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9k"
+                            android:fontFamily="@font/manropemedium"
+                            android:textColor="#E8E6E6"
+                            android:layout_marginLeft="1dp"
+                            android:textSize="10sp"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/filled_circle"
+                        android:backgroundTint="@color/white"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            app:tint="@color/dark_text_color"
+                            android:src="@drawable/bookmark_icon"/>
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New Arrival Upgrade your setup now"
+                    android:gravity="center|left|bottom"
+                    android:textSize="16sp"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/eventTitle"
+                    android:layout_marginBottom="5dp"
+                    app:layout_constraintBottom_toTopOf="@id/eventCreator"
+                    android:fontFamily="@font/manropeextrabold"
+                    android:maxLines="4"
+                    android:ellipsize="end"
+                    android:textColor="#E8E6E6"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/eventCreator"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="left|center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:civ_border_width="0.5dp"
+                        android:id="@+id/accountProfilePicture"
+                        app:layout_constraintEnd_toStartOf="@id/accountInfoRoot"
+                        app:civ_border_color="#FA4375"
+                        android:src="@drawable/woman_official"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Zaynab Sayiddah A."
+                        android:maxLines="1"
+                        android:layout_marginLeft="5dp"
+                        android:ellipsize="end"
+                        android:textColor="#E8E6E6"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/manropebold"/>
+
+                </LinearLayout>
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </FrameLayout>
+
+
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:background="@drawable/unread_background"
+        android:gravity="center"
+        android:textSize="11sp"
+        android:visibility="gone"
+        android:layout_gravity="right|top"
+        android:paddingBottom="3dp"
+        android:text="25"
+        android:fontFamily="@font/nunitoreg"
+        android:textColor="@color/white"/>
+</FrameLayout>

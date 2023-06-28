@@ -45,7 +45,7 @@
                 android:layout_height="70dp"
                 app:layout_collapseMode="pin" >
 
-             <com.aure.UiModels.BottomNav
+             <com.singlesSociety.UiModels.BottomNav
                     android:id="@+id/userProfileNavigation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -58,7 +58,7 @@
                     app:ss_defaultIconColor="#838282"
                     app:ss_iconTextColor="#838282"
                     app:ss_rippleColor="#2f424242"
-                    android:background="#f2f3f5"
+                    android:background="@color/special_activity_background"
                     app:ss_iconTextSize="14sp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"

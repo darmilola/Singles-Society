@@ -8,6 +8,7 @@
         android:color="#FA4375">
 
     </stroke>
+    <solid android:color="@color/transparent"/>
     <corners
         android:radius="70dp">
     </corners>

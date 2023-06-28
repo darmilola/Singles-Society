@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorPrimary">#132a39</color>
-    <color name="colorPrimaryDark">#132a39</color>
+    <color name="colorPrimary">@color/pink</color>
+    <color name="colorPrimaryDark">@color/white</color>
     <color name="colorAccent">#e8415f</color>
-    <color name="colorSecondary">#132a39</color>
+    <color name="colorSecondary">@color/white</color>
     <color name="White">#ffffff</color>
     <color name="grey">#80000000</color>
     <color name="transparent">#00000000</color>
@@ -29,7 +29,7 @@
     <color name="white">#ffffff</color>
     <color name="white60">#a0ffffff</color>
     <color name="white_two">#efefef</color>
-    <color name="special_activity_background">#efefef</color>
+    <color name="special_activity_background">#F4F4F4</color>
     <color name="white_three">#ebebeb</color>
     <color name="white_four">#e0e0e0</color>
     <color name="white_five">#dadada</color>

@@ -8,12 +8,12 @@
 
 
 
-    <com.aure.Arvi.widget.PlayableCardStackView
+    <com.singlesSociety.Arvi.widget.PlayableCardStackView
         android:layout_width="match_parent"
         android:focusableInTouchMode="true"
         android:focusable="true"
         android:focusedByDefault="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/showcaseCardStackView"
         android:layout_height="match_parent"/>
 

@@ -66,25 +66,24 @@
                 android:layout_alignParentRight="true"
                 android:id="@+id/commentTime"
                 android:maxLength="10"
-                android:fontFamily="@font/avenirreg"
+                android:fontFamily="@font/manropemedium"
                 android:text="5 min"/>
 
         </RelativeLayout>
 
 
-        <TextView
+        <com.SinglesSociety.SocialText.RichTextController.RTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
+            android:id="@+id/postCommentText"
             android:layout_marginLeft="5dp"
-            android:textSize="14sp"
+            android:layout_marginTop="3dp"
+            android:background="@color/transparent"
+            android:textSize="15sp"
             android:lineSpacingExtra="4dp"
             android:textColor="@color/dark_text_color"
-            android:maxLines="5"
-            android:ellipsize="end"
-            android:maxLength="350"
-            android:fontFamily="@font/manropemedium"
-            android:text="Lorem Ipsum is simply dummy tex simply dummy text of the printing"/>
+            android:fontFamily="@font/manropesemibold"/>
 
         <LinearLayout
             android:layout_width="match_parent"

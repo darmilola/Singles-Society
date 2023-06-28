@@ -24,7 +24,7 @@
             android:layout_gravity="center"
             android:elevation="6dp">
 
-            <com.aure.UiModels.CellImageView
+            <com.singlesSociety.UiModels.CellImageView
                 android:id="@+id/iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,15 +42,13 @@
                 android:layout_gravity="right"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:layout_marginBottom="2dp"
                 android:minWidth="23dp"
                 android:textDirection="ltr"
                 android:background="@drawable/unread_background"
-                android:textSize="10dp"
+                android:textSize="9sp"
                 android:layout_marginRight="2dp"
                 android:visibility="gone"
-                android:fontFamily="sans-serif-medium"
-                tools:ignore="RtlHardcoded,SpUsage" />
+                android:fontFamily="@font/manropesemibold"/>
         </FrameLayout>
 
     </LinearLayout>

@@ -7,7 +7,7 @@
     android:layout_marginTop="10dp">
 
 
-    <com.aure.Arvi.widget.PlayableItemsRecyclerView
+    <com.singlesSociety.Arvi.widget.PlayableItemsRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/user_showcase_type_career"

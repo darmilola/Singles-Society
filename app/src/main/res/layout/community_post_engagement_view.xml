@@ -42,9 +42,9 @@
                 android:text="Zaynab Sayiddah A."
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@color/white"
+                android:textColor="#E8E6E6"
                 android:textSize="14sp"
-                android:fontFamily="@font/manropemedium"/>
+                android:fontFamily="@font/manropebold"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -53,9 +53,10 @@
                 android:text="\@The Space Name Goes here"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="#DCFFFFFF"
+                android:layout_marginTop="2dp"
+                android:textColor="#D5E8E6E6"
                 android:textSize="12sp"
-                android:fontFamily="@font/manropemedium"/>
+                android:fontFamily="@font/manropesemibold"/>
 
         </LinearLayout>
 
@@ -66,9 +67,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="#D8888787"
+            app:tint="#D5E8E6E6"
             android:layout_marginRight="10dp"
-            android:src="@drawable/flag_icon"/>
+            android:src="@drawable/overflow_menu_icon"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -101,13 +102,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="14sp"
-                android:lineSpacingExtra="5dp"
-                android:textColor="#DDFFFFFF"
                 android:ellipsize="end"
                 android:layout_marginBottom="15dp"
                 android:maxLines="3"
-                android:fontFamily="@font/manropemedium"
+                android:textColor="#E8E6E6"
+                android:lineSpacingExtra="5dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/manropesemibold"
                 android:text="On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."/>
 
 
@@ -118,123 +119,15 @@
                 android:layout_marginRight="5dp"
                 android:textSize="13sp"
                 android:lineSpacingExtra="4dp"
-                android:textColor="@color/white"
+                android:textColor="#D5E8E6E6"
                 android:maxLines="5"
                 android:ellipsize="end"
                 android:id="@+id/societyPostAddAComment"
                 android:layout_marginBottom="25dp"
-                android:fontFamily="@font/manropemedium"
-                android:text="Add a Comment (15)"/>
+                android:fontFamily="@font/avenirbold"
+                android:text="Add a comment (15)"/>
 
         </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/engagement_box_layout"
-            android:visibility="gone"
-            android:background="@drawable/dark_black_gradient">
-
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/comment_box_layout">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:textSize="16sp"
-                    android:lineSpacingExtra="4dp"
-                    android:textColor="@color/white"
-                    android:paddingTop="120dp"
-                    android:maxLines="20"
-                    android:fontFamily="@font/avenir"
-                    android:text="On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains. On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:textSize="12sp"
-                    android:lineSpacingExtra="4dp"
-                    android:textColor="@color/white"
-                    android:maxLines="5"
-                    android:ellipsize="end"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:maxLength="350"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Comments (3)"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/post_comment_item"/>
-
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-
-
-
-
-        <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:layout_marginLeft="10dp"
-           android:minHeight="45dp"
-           android:layout_marginRight="10dp"
-           android:layout_marginBottom="10dp"
-           android:id="@+id/comment_box_layout"
-           android:visibility="gone"
-           android:layout_gravity="bottom"
-           app:layout_constraintBottom_toBottomOf="parent"
-           android:background="@drawable/comment_section"
-           android:weightSum="6">
-
-           <EditText
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="5"
-               android:hint="Your Comment..."
-               android:paddingLeft="15dp"
-               android:textColorHint="#9FD5D4D4"
-               android:paddingRight="15dp"
-               android:paddingBottom="5dp"
-               android:paddingTop="15dp"
-               android:textColor="@color/white"
-               android:textSize="15sp"
-               android:lineSpacingExtra="2sp"
-               android:text=""
-               android:background="@color/transparent"
-               android:id="@+id/composeComment"/>
-
-           <ImageView
-               android:layout_width="0dp"
-               android:layout_height="35dp"
-               android:id="@+id/sendComment"
-               app:tint="#FA4375"
-               android:layout_gravity="bottom"
-               android:src="@drawable/ic_send"
-               android:layout_marginBottom="5dp"
-               android:layout_weight="1"/>
-
-       </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -259,13 +152,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="450"
-            android:textColor="@color/white"
+            android:textColor="#D5E8E6E6"
             android:layout_marginTop="3dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="10dp"
             android:textSize="12sp"
-            android:fontFamily="@font/manropemedium"/>
+            android:fontFamily="@font/avenirbold"/>
 
 
         <ImageView
@@ -279,20 +172,20 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="450"
-            android:textColor="@color/white"
+            android:textColor="#D5E8E6E6"
             android:layout_marginTop="3dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:textSize="12sp"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/manropemedium"/>
+            android:fontFamily="@font/avenirbold"/>
 
         <ImageView
             android:layout_width="23dp"
             android:layout_height="23dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            app:tint="@color/white"
+            app:tint="#D5E8E6E6"
             android:src="@drawable/bookmark"/>
 
     </LinearLayout>
