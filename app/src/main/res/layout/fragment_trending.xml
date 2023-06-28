@@ -174,17 +174,15 @@
             android:layout_marginTop="10dp"/>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/forYouConstraintRoot"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:id="@+id/forYouRoot">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/forYouTitleLayout">
 
                 <TextView
@@ -213,67 +211,87 @@
                     android:background="#6AB9B9B9"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
 
-            <com.google.android.material.chip.ChipGroup
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:singleLine="true"
+        android:id="@+id/exploreForYouChipGroup"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        app:checkedChip="@id/followed"
+        app:layout_constraintTop_toBottomOf="@id/forYouTitleLayout">
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:textStartPadding="10dp"
+            app:textEndPadding="10dp"
+            android:id="@+id/followed"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:textColor="@color/dark_text_color"
+            android:textAppearance="@style/ChipsTheme"
+            android:text="Followed"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:textStartPadding="10dp"
+            app:textEndPadding="10dp"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:id="@+id/trending"
+            android:textColor="@color/dark_text_color"
+            android:textAppearance="@style/ChipsTheme"
+            android:text="Trending"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:textStartPadding="10dp"
+            app:textEndPadding="10dp"
+            android:id="@+id/first"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:textColor="@color/dark_text_color"
+            android:textAppearance="@style/ChipsTheme"
+            android:text="First Category"/>
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:textStartPadding="10dp"
+            app:textEndPadding="10dp"
+            android:id="@+id/second"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:textColor="@color/dark_text_color"
+            android:textAppearance="@style/ChipsTheme"
+            android:text="Second Category"/>
+
+
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+
+
+</HorizontalScrollView>
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:singleLine="true"
-                app:singleSelection="true"
-                app:layout_constraintTop_toBottomOf="@id/forYouTitleLayout">
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="Followed"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="Trending"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="First Category"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="Second Category"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/exploreForYouRecyclerView"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"/>
 
 
+        </LinearLayout>
 
-
-            </com.google.android.material.chip.ChipGroup>
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:nestedScrollingEnabled="false"
-            android:id="@+id/exploreForYouRecyclerView"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"/>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

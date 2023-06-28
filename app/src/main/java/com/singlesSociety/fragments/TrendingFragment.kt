@@ -1,14 +1,18 @@
 package com.singlesSociety.fragments
 
+import android.app.ActionBar.LayoutParams
+import android.app.Activity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.pchmn.materialchips.model.Chip
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
 import com.singlesSociety.uiAdapters.ExploreLiveAdapter
@@ -53,9 +57,23 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         createNewSpaceCta.setOnClickListener {
             createSpaceListener?.invoke()
         }
+
+        exploreForYouChipGroup.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == R.id.followed){
+                populateForYouPosts()
+            }
+            else{
+                populateForYouEvents()
+                setHeightToXPercentage(requireActivity(),forYouRoot, -0.08)
+                Toast.makeText(context,group.checkedChipId.toString(),Toast.LENGTH_SHORT).show()
+                exploreForYouRecyclerView.requestLayout()
+            }
+
+        }
     }
 
     private fun populateView(){
+        var itemList = ArrayList<ExploreItem>()
         populateForYouPosts()
         populateFeaturedEvents()
         for (i in 0..3) {
@@ -80,15 +98,26 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
 
     }
 
+
+    fun setHeightToXPercentage(activity: Activity, view: View, fraction: Double) {
+        val metrics = DisplayMetrics()
+        activity.windowManager.defaultDisplay.getMetrics(metrics)
+        val maxHeight = metrics.heightPixels - (metrics.heightPixels * fraction).toInt()
+
+        val layoutParams = view.layoutParams
+        layoutParams.height = maxHeight
+        layoutParams.width = LayoutParams.MATCH_PARENT
+        view.layoutParams = layoutParams
+    }
+
     private fun populateForYouPosts(){
 
+        setHeightToXPercentage(requireActivity(),forYouRoot, 0.18)
         var societyModelArrayList = ArrayList<SocietyModel>()
-        for (i in 0..4) {
             val communityPostModel = CommunityPostModel()
             val societyModel1 =
                 SocietyModel(communityPostModel, 1)
             societyModelArrayList.add(societyModel1);
-        }
 
 
       val homeMainAdapter =
@@ -96,11 +125,12 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
                 requireContext(),
                 societyModelArrayList
             )
-        exploreForYouRecyclerView.visibility = View.VISIBLE
+
         exploreForYouRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
             RecyclerView.VERTICAL,false)
         exploreForYouRecyclerView.adapter = homeMainAdapter
-        PagerSnapHelper().attachToRecyclerView(exploreForYouRecyclerView)
+        exploreForYouRecyclerView.requestLayout()
+
 
         homeMainAdapter?.setVisitProfileListener {
             visitProfileListener?.invoke()
@@ -159,7 +189,8 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     }
 
     private fun populateForYouEvents(){
-        for (i in 0..3) {
+        var itemList = ArrayList<ExploreItem>()
+        for (i in 0..5) {
             itemList.add(ExploreItem())
         }
         itemAdapter = ExploreCommunityAdapter(
@@ -173,6 +204,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     }
 
     private fun populateFeaturedEvents(){
+        var itemList = ArrayList<ExploreItem>()
         for (i in 0..3) {
             itemList.add(ExploreItem())
         }
@@ -186,7 +218,9 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         featuredRecyclerView.visibility = View.VISIBLE
     }
 
+
     private fun populateForYouCommunity(){
+        var itemList = ArrayList<ExploreItem>()
         for (i in 0..3) {
             itemList.add(ExploreItem())
         }
@@ -205,6 +239,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     }
 
     private fun populateFeaturedCommunity(){
+        var itemList = ArrayList<ExploreItem>()
         for (i in 0..3) {
             itemList.add(ExploreItem())
         }
