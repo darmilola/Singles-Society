@@ -43,137 +43,150 @@
 
     </androidx.cardview.widget.CardView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:id="@+id/forYouDiscoverRoot">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Discover"
-                android:id="@+id/exploreDiscover"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textColor="@color/dark_text_color"
-                android:layout_gravity="left"
-                android:textSize="20sp"
-                android:fontFamily="@font/kumelianbold"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Discover"
+                    android:id="@+id/exploreForYouDiscover"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/dark_text_color"
+                    android:layout_gravity="left"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/kumelianbold"/>
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/exploreDiscoverViewAll"
-                app:layout_constraintLeft_toRightOf="@id/exploreDiscover"
-                android:background="#6AB9B9B9"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/exploreForYouDiscoverViewAll"
+                    app:layout_constraintLeft_toRightOf="@id/exploreForYouDiscover"
+                    android:background="#6AB9B9B9"/>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginRight="7dp"
-                android:text="View all"
-                android:padding="8dp"
-                android:backgroundTint="#97FA4375"
-                android:id="@+id/exploreDiscoverViewAll"
-                android:background="@drawable/pink_outline_circle"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="#B5FA4375"
-                android:textSize="10sp"
-                android:fontFamily="@font/manropebold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="2dp"
+                    android:text="View all"
+                    android:padding="8dp"
+                    android:backgroundTint="#97FA4375"
+                    android:id="@+id/exploreForYouDiscoverViewAll"
+                    android:background="@drawable/pink_outline_circle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="#B5FA4375"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/manropebold"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:itemCount="2"
-            android:id="@+id/exploreItemRecyclerview"
-            android:layout_marginBottom="20dp"
-            tools:listitem="@layout/explore_item"
-            android:layout_marginTop="10dp"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="wrap_content"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Upcoming"
-                android:id="@+id/exploreUpcomingLive"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textColor="@color/dark_text_color"
-                android:layout_gravity="left"
-                android:textSize="20sp"
-                android:fontFamily="@font/kumelianbold"/>
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:singleLine="true"
+                    android:id="@+id/exploreDiscoverChipGroup"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed"
+                    app:layout_constraintTop_toBottomOf="@id/forYouTitleLayout">
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/followed"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="Followed"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/trending"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="Trending"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/first"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/second"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="Second Category"/>
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/exploreUpcomingLiveViewAll"
-                app:layout_constraintLeft_toRightOf="@id/exploreUpcomingLive"
-                android:background="#6AB9B9B9"/>
+
+                </com.google.android.material.chip.ChipGroup>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginRight="7dp"
-                android:text="View all"
-                android:padding="8dp"
-                android:backgroundTint="#97FA4375"
-                android:id="@+id/exploreUpcomingLiveViewAll"
-                android:background="@drawable/pink_outline_circle"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="#B5FA4375"
-                android:textSize="10sp"
-                android:fontFamily="@font/manropebold"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
 
+            <me.relex.circleindicator.CircleIndicator2
+                android:id="@+id/forYouDiscoverIndicator"
+                android:layout_width="match_parent"
+                app:ci_drawable="@drawable/pink_radius"
+                android:layout_height="15dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:itemCount="2"
-            android:id="@+id/exploreUpcomingLiveRecyclerview"
-            android:layout_marginBottom="20dp"
-            tools:listitem="@layout/explore_item_type_live"
-            android:layout_marginTop="10dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/exploreDiscoverRecyclerView"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"/>
 
 
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -183,7 +196,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/forYouTitleLayout">
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:weightSum="2">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -204,11 +219,174 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/exploreForYouViewAll"
                     app:layout_constraintLeft_toRightOf="@id/exploreForYou"
                     android:background="#6AB9B9B9"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="2dp"
+                    android:text="View all"
+                    android:padding="8dp"
+                    android:backgroundTint="#97FA4375"
+                    android:id="@+id/exploreForYouViewAll"
+                    android:background="@drawable/pink_outline_circle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="#B5FA4375"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/manropebold"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:singleLine="true"
+                    android:id="@+id/exploreForYouChipGroup"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed"
+                    app:layout_constraintTop_toBottomOf="@id/forYouTitleLayout">
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/followed"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="Followed"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:id="@+id/trending"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="Trending"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/first"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/second"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/dark_text_color"
+                        android:textAppearance="@style/ChipsTheme"
+                        android:text="Second Category"/>
+
+
+
+                </com.google.android.material.chip.ChipGroup>
+
+
+
+            </HorizontalScrollView>
+
+            <me.relex.circleindicator.CircleIndicator2
+                android:id="@+id/forYouIndicator"
+                android:layout_width="match_parent"
+                app:ci_drawable="@drawable/pink_radius"
+                android:layout_height="15dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/exploreForYouRecyclerView"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/forYouEventsRoot">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Events"
+                    android:id="@+id/exploreForYouEvents"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/dark_text_color"
+                    android:layout_gravity="left"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/kumelianbold"/>
+
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/exploreForYouEventsViewAll"
+                    app:layout_constraintLeft_toRightOf="@id/exploreForYouEvents"
+                    android:background="#6AB9B9B9"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="2dp"
+                    android:text="View all"
+                    android:padding="8dp"
+                    android:backgroundTint="#97FA4375"
+                    android:id="@+id/exploreForYouEventsViewAll"
+                    android:background="@drawable/pink_outline_circle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="#B5FA4375"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/manropebold"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 <HorizontalScrollView
@@ -220,7 +398,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:singleLine="true"
-        android:id="@+id/exploreForYouChipGroup"
+        android:id="@+id/exploreForYouEventsChipGroup"
         app:singleSelection="true"
         app:selectionRequired="true"
         app:checkedChip="@id/followed"
@@ -272,12 +450,17 @@
 
 
 
-
     </com.google.android.material.chip.ChipGroup>
 
 
 
 </HorizontalScrollView>
+
+            <me.relex.circleindicator.CircleIndicator2
+                android:id="@+id/forYouEventsIndicator"
+                android:layout_width="match_parent"
+                app:ci_drawable="@drawable/pink_radius"
+                android:layout_height="15dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -285,7 +468,7 @@
                 android:orientation="vertical"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:id="@+id/exploreForYouRecyclerView"
+                android:id="@+id/exploreForYouEventsRecyclerView"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"/>
 
@@ -294,161 +477,7 @@
 
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/featuredTitleLayout">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Featured"
-                    android:id="@+id/featured"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/dark_text_color"
-                    android:layout_gravity="left"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/kumelianbold"/>
-
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/featured"
-                    android:background="#6AB9B9B9"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:singleLine="true"
-                app:singleSelection="true"
-                app:layout_constraintTop_toBottomOf="@id/featuredTitleLayout">
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="Category 1"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="Category 2"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="Category 3"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:textStartPadding="10dp"
-                    app:textEndPadding="10dp"
-                    android:textColor="@color/dark_text_color"
-                    android:textAppearance="@style/ChipsTheme"
-                    android:text="Category 2"/>
-
-
-
-
-            </com.google.android.material.chip.ChipGroup>
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:itemCount="2"
-            android:id="@+id/featuredRecyclerView"
-            android:layout_marginBottom="20dp"
-            tools:listitem="@layout/explore_item_type_live"
-            android:layout_marginTop="10dp"/>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            app:cardElevation="0dp"
-            android:visibility="gone"
-            app:cardCornerRadius="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:backgroundTint="#FA4375"
-                android:id="@+id/createNewSpaceCta"
-                android:background="@drawable/love_gradient">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/add_icon"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="2dp"
-                    android:tint="#ddffffff" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="#ddffffff"
-                    android:textSize="20sp"
-                    android:gravity="center"
-                    android:fontFamily="@font/nunitobold"
-                    android:text="Create New Space." />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            android:visibility="gone"
-            tools:itemCount="6"
-            android:id="@+id/mySpacesRecyclerview"
-            android:layout_marginBottom="20dp"
-            tools:listitem="@layout/explore_item"
-            android:layout_marginTop="3dp"/>
 
     </LinearLayout>
 

@@ -87,4 +87,5 @@ dependencies {
     implementation 'com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1'
     implementation 'jp.wasabeef:blurry:4.0.1'
     implementation  'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'me.relex:circleindicator:2.1.6'
 }
