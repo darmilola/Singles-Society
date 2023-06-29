@@ -60,7 +60,6 @@
                 app:textStartPadding="10dp"
                 app:textEndPadding="10dp"
                 android:textColor="@color/dark_text_color"
-                android:textAppearance="@style/ChipsTheme"
                 android:text="Followed"/>
 
             <com.google.android.material.chip.Chip
@@ -69,7 +68,6 @@
                 app:textStartPadding="10dp"
                 app:textEndPadding="10dp"
                 android:textColor="@color/dark_text_color"
-                android:textAppearance="@style/ChipsTheme"
                 android:text="Trending"/>
 
             <com.google.android.material.chip.Chip
@@ -78,7 +76,6 @@
                 app:textStartPadding="10dp"
                 app:textEndPadding="10dp"
                 android:textColor="@color/dark_text_color"
-                android:textAppearance="@style/ChipsTheme"
                 android:text="First Category"/>
 
             <com.google.android.material.chip.Chip
@@ -87,7 +84,6 @@
                 app:textStartPadding="10dp"
                 app:textEndPadding="10dp"
                 android:textColor="@color/dark_text_color"
-                android:textAppearance="@style/ChipsTheme"
                 android:text="Second Category"/>
         </com.google.android.material.chip.ChipGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>

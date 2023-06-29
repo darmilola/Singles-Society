@@ -97,14 +97,15 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="#B5FA4375"
-                    android:textSize="10sp"
-                    android:fontFamily="@font/manropebold"/>
+                    android:textColor="@color/new_pink"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/manropesemibold"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
@@ -123,9 +124,7 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:id="@+id/followed"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
+                        android:textColor="@color/chip_text_color"
                         android:text="Followed"/>
 
                     <com.google.android.material.chip.Chip
@@ -133,10 +132,8 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/chip_text_color"
                         android:id="@+id/trending"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
                         android:text="Trending"/>
 
                     <com.google.android.material.chip.Chip
@@ -144,10 +141,8 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
                         android:id="@+id/first"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
                         android:text="First Category"/>
 
                     <com.google.android.material.chip.Chip
@@ -156,9 +151,7 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:id="@+id/second"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
+                        android:textColor="@color/chip_text_color"
                         android:text="Second Category"/>
 
 
@@ -240,14 +233,15 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="#B5FA4375"
-                    android:textSize="10sp"
-                    android:fontFamily="@font/manropebold"/>
+                    android:textColor="@color/new_pink"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/manropesemibold"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
@@ -266,9 +260,7 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:id="@+id/followed"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
+                        android:textColor="@color/chip_text_color"
                         android:text="Followed"/>
 
                     <com.google.android.material.chip.Chip
@@ -276,10 +268,8 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:textColor="@color/chip_text_color"
                         android:id="@+id/trending"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
                         android:text="Trending"/>
 
                     <com.google.android.material.chip.Chip
@@ -287,10 +277,8 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
                         android:id="@+id/first"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
                         android:text="First Category"/>
 
                     <com.google.android.material.chip.Chip
@@ -299,12 +287,8 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:id="@+id/second"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:textColor="@color/dark_text_color"
-                        android:textAppearance="@style/ChipsTheme"
+                        android:textColor="@color/chip_text_color"
                         android:text="Second Category"/>
-
-
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -384,73 +368,66 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="#B5FA4375"
-                    android:textSize="10sp"
-                    android:fontFamily="@font/manropebold"/>
+                    android:textColor="@color/new_pink"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/manropesemibold"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-<HorizontalScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="none">
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none">
 
-    <com.google.android.material.chip.ChipGroup
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:singleLine="true"
-        android:id="@+id/exploreForYouEventsChipGroup"
-        app:singleSelection="true"
-        app:selectionRequired="true"
-        app:checkedChip="@id/followed"
-        app:layout_constraintTop_toBottomOf="@id/forYouTitleLayout">
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:singleLine="true"
+                    android:id="@+id/exploreEventsChipGroup"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed"
+                    app:layout_constraintTop_toBottomOf="@id/forYouTitleLayout">
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:textStartPadding="10dp"
-            app:textEndPadding="10dp"
-            android:id="@+id/followed"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:textColor="@color/dark_text_color"
-            android:textAppearance="@style/ChipsTheme"
-            android:text="Followed"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/followed"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Followed"/>
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:textStartPadding="10dp"
-            app:textEndPadding="10dp"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:id="@+id/trending"
-            android:textColor="@color/dark_text_color"
-            android:textAppearance="@style/ChipsTheme"
-            android:text="Trending"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:id="@+id/trending"
+                        android:text="Trending"/>
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:textStartPadding="10dp"
-            app:textEndPadding="10dp"
-            android:id="@+id/first"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:textColor="@color/dark_text_color"
-            android:textAppearance="@style/ChipsTheme"
-            android:text="First Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:id="@+id/first"
+                        android:text="First Category"/>
 
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            app:textStartPadding="10dp"
-            app:textEndPadding="10dp"
-            android:id="@+id/second"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:textColor="@color/dark_text_color"
-            android:textAppearance="@style/ChipsTheme"
-            android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:id="@+id/second"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
 
 
 
-    </com.google.android.material.chip.ChipGroup>
+                </com.google.android.material.chip.ChipGroup>
 
 
 
