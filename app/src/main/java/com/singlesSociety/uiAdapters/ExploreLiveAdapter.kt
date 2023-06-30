@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.ExploreItem
 
-class ExploreLiveAdapter(val exploreItemList: ArrayList<ExploreItem>): RecyclerView.Adapter<ExploreLiveAdapter.ItemViewholder>() {
+class ExploreLiveAdapter(val exploreItemList: ArrayList<ExploreItem>, private var visitEventListener: Function0<Unit>? = null): RecyclerView.Adapter<ExploreLiveAdapter.ItemViewholder>() {
     
-    override fun onBindViewHolder(holder: ItemViewholder, position: Int) {}
+    override fun onBindViewHolder(holder: ItemViewholder, position: Int) {
+         holder.itemView.setOnClickListener {
+             visitEventListener?.invoke()
+         }
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,5 +28,7 @@ class ExploreLiveAdapter(val exploreItemList: ArrayList<ExploreItem>): RecyclerV
         return exploreItemList.size
     }
 
-    class ItemViewholder(ItemView: View) : RecyclerView.ViewHolder(ItemView)
+    class ItemViewholder(ItemView: View) : RecyclerView.ViewHolder(ItemView){
+
+    }
 }

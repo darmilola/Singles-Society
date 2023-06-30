@@ -23,7 +23,7 @@ import com.singlesSociety.uiAdapters.TrendingHeaderAdapter
 import kotlinx.android.synthetic.main.fragment_trending.*
 
 
-class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null, private var visitProfileListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener {
+class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null, private var visitProfileListener: Function0<Unit>? = null, private var visitEventListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener {
 
     private var itemList: ArrayList<ExploreItem>  = arrayListOf()
     private lateinit var itemView: View
@@ -235,7 +235,9 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
             requireContext()
         )
         exploreForYouRecyclerView.visibility = View.GONE
-        exploreForYouRecyclerView.adapter = ExploreLiveAdapter(itemList)
+        exploreForYouRecyclerView.adapter = ExploreLiveAdapter(itemList, visitEventListener = {
+            visitEventListener?.invoke()
+        })
         exploreForYouRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
         exploreForYouRecyclerView.visibility = View.VISIBLE
     }
@@ -251,7 +253,9 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
             itemList,
             requireContext()
         )
-        exploreDiscoverRecyclerView.adapter = ExploreLiveAdapter(itemList)
+        exploreDiscoverRecyclerView.adapter = ExploreLiveAdapter(itemList, visitEventListener = {
+            visitEventListener?.invoke()
+        })
         exploreDiscoverRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
     }
 

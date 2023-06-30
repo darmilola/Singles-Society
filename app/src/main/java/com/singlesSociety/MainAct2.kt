@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.singlesSociety.UiModels.BottomNav
 import com.singlesSociety.fragments.*
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.singlesSociety.UiModels.dip
 import kotlinx.android.synthetic.main.activity_main_v2.*
 import kotlinx.android.synthetic.main.activity_main_v2.notificationIcon
 
@@ -109,7 +111,7 @@ class MainAct2 : AppCompatActivity() {
                 ID_EXPLORE ->{
                    loadFragment(TrendingFragment(
                        enterSpaceListener = {
-                           adjustLayoutParams(true)
+                           adjustLayoutParams(true, true, true)
                            loadFragment(SpacesMainFragment(visitProfileListener = {
                                loadFragment(VisitProfileFragment(null,true))
                            }, exitSpaceListener = {
@@ -125,7 +127,15 @@ class MainAct2 : AppCompatActivity() {
                                supportFragmentManager.popBackStack()
 
                            }))
+                       },
+                       visitEventListener = {
+                           adjustLayoutParams(true, true, true)
+                           loadFragment(EventLandingPageFragment( eventLandingExitListener = {
+                               adjustLayoutParams(false)
+                               supportFragmentManager.popBackStack()
+                           }))
                        }
+
                    ))
                }
                ID_MESSAGE -> {
@@ -151,14 +161,20 @@ class MainAct2 : AppCompatActivity() {
 
     }
 
-    private fun adjustLayoutParams(adjust: Boolean){
+    private fun adjustLayoutParams(adjustView: Boolean, adjustToolbar: Boolean = false, adjustBottombar: Boolean = false){
         val params: ViewGroup.MarginLayoutParams = container.layoutParams as ViewGroup.MarginLayoutParams
-        if(adjust){
+        if(adjustToolbar && adjustView){
             params.topMargin = 0
             mainActivityToolbar.visibility = View.GONE
-        }
-        else{
 
+        }
+        if(adjustBottombar && adjustView){
+            bottomNavigation.visibility = View.GONE
+            params.bottomMargin = 0
+        }
+        else if(!adjustView){
+            bottomNavigation.visibility = View.VISIBLE
+            mainActivityToolbar.visibility = View.VISIBLE
         }
         container.layoutParams = params
 
@@ -193,19 +209,8 @@ class MainAct2 : AppCompatActivity() {
 
 
 
-    private fun clearLightStatusBar(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            var flags = activity.window.decorView.systemUiVisibility // get current flag
-            flags =
-                flags xor View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR // use XOR here for remove LIGHT_STATUS_BAR from flags
-            activity.window.decorView.systemUiVisibility = flags
-        }
-    }
 
     private fun loadFragment(fragment: Fragment){
-        if((fragment !is SpacesMainFragment) && (fragment !is CreateNewSpaceFragment) ){
-            adjustLayoutParams(false)
-        }
         if(fragment is NotificationFragment){
             bottomNavigation.callListenerWhenIsSelected = true
             notificationIcon.setImageResource(R.drawable.notification_clicked_icon)
