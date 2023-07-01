@@ -16,16 +16,15 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.*
-import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
-import com.singlesSociety.uiAdapters.ExploreLiveAdapter
-import com.singlesSociety.uiAdapters.HomeMainAdapter
-import com.singlesSociety.uiAdapters.TrendingHeaderAdapter
+import com.singlesSociety.uiAdapters.*
 import kotlinx.android.synthetic.main.fragment_trending.*
 
 
 class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null, private var visitProfileListener: Function0<Unit>? = null, private var visitEventListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener {
 
     private var itemList: ArrayList<ExploreItem>  = arrayListOf()
+    private var hashtagList: ArrayList<PopularHashtagModel>  = arrayListOf()
+    private var hashtagAdapter: HashtagAdapter? = null
     private lateinit var itemView: View
     private lateinit var itemAdapter: ExploreCommunityAdapter
     private var snapHelper: SnapHelper? = null
@@ -82,10 +81,30 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         }
     }
 
+    private fun populatePopularHashtags(){
+        val popularHashtagModel1 = PopularHashtagModel("",true)
+        val popularHashtagModel2 = PopularHashtagModel("",true)
+        val popularHashtagModel3 = PopularHashtagModel("",false)
+        val popularHashtagModel4 = PopularHashtagModel("",true)
+        val popularHashtagModel5 = PopularHashtagModel("",false)
+        val popularHashtagModel6 = PopularHashtagModel("",false)
+        hashtagList.add(popularHashtagModel1)
+        hashtagList.add(popularHashtagModel2)
+        hashtagList.add(popularHashtagModel3)
+        hashtagList.add(popularHashtagModel4)
+        hashtagList.add(popularHashtagModel5)
+        hashtagList.add(popularHashtagModel6)
+
+        hashtagAdapter = HashtagAdapter(hashtagList)
+        explorePopularHashtagRecyclerView.adapter = hashtagAdapter
+
+    }
+
     private fun populateView(){
         var itemList = ArrayList<ExploreItem>()
         populateForYouPosts()
         populateDiscoverPosts()
+        populatePopularHashtags()
         populateEvents()
         for (i in 0..3) {
             itemList.add(ExploreItem())
