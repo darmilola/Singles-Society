@@ -90,40 +90,48 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="7dp">
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                app:tint="@color/black"
-                android:src="@drawable/reply"/>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="3dp"
-                android:textSize="13sp"
-                android:lineSpacingExtra="4dp"
-                android:textColor="@color/dark_text_color"
-                android:maxLines="5"
-                android:ellipsize="end"
-                android:id="@+id/commentReplyCount"
-                android:layout_marginLeft="4dp"
-                android:maxLength="350"
-                android:fontFamily="@font/avenirbold"
-                android:text="Reply (3)"/>
+                android:orientation="horizontal"
+                android:id="@+id/commentReplyLayout"
+                android:layout_marginRight="15dp">
 
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                app:tint="@color/black"
-                android:rotation="90"
-                android:id="@+id/commentReplyArrow"
-                android:src="@drawable/ic_iconfinder_chevron_right_4781843"/>
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/black"
+                    android:src="@drawable/reply"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:textSize="13sp"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="@color/dark_text_color"
+                    android:maxLines="5"
+                    android:ellipsize="end"
+                    android:id="@+id/commentReplyCount"
+                    android:layout_marginLeft="4dp"
+                    android:maxLength="350"
+                    android:fontFamily="@font/avenirbold"
+                    android:text="Reply (3)"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/black"
+                    android:rotation="90"
+                    android:id="@+id/commentReplyArrow"
+                    android:src="@drawable/ic_iconfinder_chevron_right_4781843"/>
+
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 app:tint="@color/pink"
-                android:layout_marginLeft="15dp"
                 android:src="@drawable/like"/>
 
             <TextView

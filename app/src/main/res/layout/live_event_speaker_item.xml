@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="110dp"
+    android:layout_height="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:layout_marginLeft="10dp"
+    app:cardElevation="0dp"
+    android:layout_marginRight="10dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/woman_official"
+        android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="10sp"
+            android:textColor="@color/new_dark_text_color"
+            android:text="Gustavo"
+            android:fontFamily="@font/manropebold"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:background="@drawable/event_speaker_background"/>
+
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

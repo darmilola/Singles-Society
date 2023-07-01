@@ -44,7 +44,7 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
         for (i in 1..10){
             commentList.add(CommentModel(commentReplyModelList,1))
         }
-        val adapter = CommentsAdapter(requireContext(),commentList)
+        val adapter = CommentsAdapter(requireContext(),commentList, true)
         commentRecyclerView.adapter = adapter
 
         adapter.setCommentProfileVisitListener {
@@ -53,29 +53,10 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
         }
 
 
-        val behavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(view.parent as View)
 
-        behavior.addBottomSheetCallback(object :BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                        if(newState == BottomSheetBehavior.STATE_EXPANDED){
-                          // makeBottomSheetShowFullScreen()
-                        }
-                else{
-                           // dragHandler.visibility = View.VISIBLE
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
-            }
-        })
 
     }
 
-    private fun makeBottomSheetShowFullScreen(){
-        dragHandler.visibility = View.INVISIBLE
-
-    }
 
     interface CommentActionListener{
          fun onProfileVisit()

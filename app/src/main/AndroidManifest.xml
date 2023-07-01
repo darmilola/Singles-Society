@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name="com.singlesSociety.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,40 +19,43 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.singlesSociety.CreatePostActivity"
+            android:name=".LiveEventActivity"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.SocietySwipeActivity"
+            android:name=".CreatePostActivity"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.ExploreSearch"
+            android:name=".SocietySwipeActivity"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.DatingProfileFullView"
+            android:name=".ExploreSearch"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.VideoPostFullView"
+            android:name=".DatingProfileFullView"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.ImagePostFullView"
+            android:name=".VideoPostFullView"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.GetResetPasswordLink"
+            android:name=".ImagePostFullView"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.NewWelcome"
+            android:name=".GetResetPasswordLink"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.Spaces"
+            android:name=".NewWelcome"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.MainActivityV2"
+            android:name=".Spaces"
             android:exported="false" />
         <activity
-            android:name="com.singlesSociety.VerificationEmail"
+            android:name=".MainActivityV2"
+            android:exported="false" />
+        <activity
+            android:name=".VerificationEmail"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity android:name="com.singlesSociety.ResetPassword">
+        <activity android:name=".ResetPassword">
             <intent-filter android:label="@string/app_name">
                 <action
                     android:name="android.intent.action.VIEW"
@@ -67,19 +70,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.singlesSociety.MyListingDetails"
+            android:name=".MyListingDetails"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.UserListingDetails"
+            android:name=".UserListingDetails"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.Counselling"
+            android:name=".Counselling"
             android:screenOrientation="portrait"
             android:theme="@style/Light_Status_Bar" />
         <activity
-            android:name="com.singlesSociety.SplashScreen"
+            android:name=".SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -88,80 +91,80 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.singlesSociety.ChatFullImage"
+            android:name=".ChatFullImage"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.ChatActivity"
+            android:name=".ChatActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.CaughtUpActivity"
+            android:name=".CaughtUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.PreferenceFilter"
+            android:name=".PreferenceFilter"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.ProfileImageCrop"
+            android:name=".ProfileImageCrop"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.TakeActionOnProfile"
+            android:name=".TakeActionOnProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.CompleteProfilePrompt"
+            android:name=".CompleteProfilePrompt"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.MetMatchPage"
+            android:name=".MetMatchPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.AddListing"
+            android:name=".AddListing"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.MyListings"
+            android:name=".MyListings"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.MyAccountActivity"
+            android:name=".MyAccountActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.SignUpWithEmail"
+            android:name=".SignUpWithEmail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.ConnectWithEmail"
+            android:name=".ConnectWithEmail"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.WelcomeActivity"
+            android:name=".WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.PreviewProfile"
+            android:name=".PreviewProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.CompleteProfile"
+            android:name=".CompleteProfile"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.MarketPlaceDetailView"
+            android:name=".MarketPlaceDetailView"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.ProductDetails"
+            android:name=".ProductDetails"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.Marketplace"
+            android:name=".Marketplace"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.MatchesActivity"
+            android:name=".MatchesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.MainAct2"
+            android:name=".MainAct2"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.AdminProductDetails"
+            android:name=".AdminProductDetails"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.singlesSociety.fragments.PostFullView"
+            android:name=".fragments.PostFullView"
             android:screenOrientation="portrait" />
 
         <service
-            android:name="com.singlesSociety.NotificationService"
+            android:name=".NotificationService"
             android:enabled="true"
             android:exported="true" />
     </application>

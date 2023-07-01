@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,13 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
     private Context context;
     private ArrayList<CommentModel> commentModelList;
     private Function0<Unit> commentProfileVisitListener;
+    private Boolean isTypePost;
 
-      public CommentsAdapter(Context context, ArrayList<CommentModel> commentModelList){
+      public CommentsAdapter(Context context, ArrayList<CommentModel> commentModelList, Boolean isTypePost){
                 super(commentModelList);
                 this.context = context;
                 this.commentModelList = commentModelList;
+                this.isTypePost = isTypePost;
                 mInflater = LayoutInflater.from(context);
       }
 
@@ -74,6 +77,7 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
         private ImageView replyArrow;
         private ImageView profileImage;
         private TextView username;
+        private LinearLayout replyLayout;
         public CommentViewHolder(View itemView) {
             super(itemView);
             replyText = itemView.findViewById(R.id.commentReplyCount);
@@ -81,8 +85,17 @@ public class CommentsAdapter extends ExpandableRecyclerAdapter<CommentModel, Com
             profileImage = itemView.findViewById(R.id.userProfileImage);
             username = itemView.findViewById(R.id.username);
             commentText = itemView.findViewById(R.id.postCommentText);
+            replyLayout = itemView.findViewById(R.id.commentReplyLayout);
             commentText.setHashTagClickedListener(this);
             commentText.setMentionClickedListener(this);
+
+
+            if(isTypePost) {
+                replyLayout.setVisibility(View.VISIBLE);
+            }
+            else{
+                replyLayout.setVisibility(View.GONE);
+            }
 
             commentText.setText(new RTPlainText("Hello, this is #Dami#first#post #o n #the @new@social App am working on, follow me @GodIsGreat or also tag #InterveneInMyFinances"));
 
