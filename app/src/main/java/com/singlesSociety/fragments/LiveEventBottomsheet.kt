@@ -3,12 +3,14 @@ package com.singlesSociety.fragments
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import android.widget.AbsListView
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -59,13 +61,43 @@ class LiveEventBottomsheet() : BottomSheetDialogFragment() {
         mLayoutManager.reverseLayout = true
         mLayoutManager.stackFromEnd = true
         commentRecyclerView.layoutManager = mLayoutManager
-        ViewCompat.setNestedScrollingEnabled(commentRecyclerView, true);
+
 
 
         val behavior: BottomSheetBehavior<*> = BottomSheetBehavior.from(view?.parent as View)
         behavior.peekHeight = dip(requireContext(),190)
         behavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
+        commentBottomsheetRootView.setOnTouchListener(OnTouchListener { v, event ->
+            isCancelable = false
+            behavior.peekHeight = dip(requireContext(),190)
+            true
+        })
+
+        commentRecyclerView.setOnTouchListener(OnTouchListener { v, event ->
+            isCancelable = false
+            behavior.peekHeight = -1
+            false
+        })
+
+
+        commentRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if(dy != 0) {
+                  isCancelable = false
+                  behavior.peekHeight = -1
+               }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    isCancelable = false
+                    behavior.peekHeight = dip(requireContext(),190)
+                }
+            }
+        })
 
          behavior.addBottomSheetCallback(object :BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {

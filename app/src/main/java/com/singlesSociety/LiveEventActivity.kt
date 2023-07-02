@@ -15,7 +15,6 @@ class LiveEventActivity : AppCompatActivity() {
         supportActionBar?.hide();
 
         val commentingSection = LiveEventBottomsheet()
-        commentingSection.isCancelable = false
         commentingSection.show(supportFragmentManager, "commentingSection")
     }
 }
