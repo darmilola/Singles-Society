@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This is a container for paragraph spans and their meta information that will be processed later
+ * This is a fragmentContainer for paragraph spans and their meta information that will be processed later
  * (added to or removed from a Spannable).
  */
 class ParagraphSpanProcessor<V extends Object> {

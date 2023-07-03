@@ -251,7 +251,7 @@ public class RTManager implements RTEditTextListener,RTToolbarListener{
      * Must be called from the ui thread.
      *
      * @param toolbarContainer The ViewGroup containing the toolbar.
-     *                         This container is used to show/hide the toolbar if needed (e.g. if the RTEditText field loses/gains focus).
+     *                         This fragmentContainer is used to show/hide the toolbar if needed (e.g. if the RTEditText field loses/gains focus).
      *                         We can't use the toolbar itself because there could be multiple and they could be embedded in a complex layout hierarchy.
      * @param toolbar          The toolbar to register.
      */

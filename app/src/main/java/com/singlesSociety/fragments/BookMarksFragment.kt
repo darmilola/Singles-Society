@@ -8,19 +8,21 @@ import android.view.ViewGroup
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.BookmarksAdapter
 import com.singlesSociety.UiModels.BookmarksModel
-import kotlinx.android.synthetic.main.fragment_book_marks.*
+import com.singlesSociety.databinding.FragmentBookMarksBinding
 
 
 class BookMarksFragment : Fragment() {
 
     var bookmarkList = ArrayList<BookmarksModel>()
     var bookmarksAdapter: BookmarksAdapter? = null
+    private lateinit var viewBinding: FragmentBookMarksBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_book_marks, container, false)
+        viewBinding = FragmentBookMarksBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +39,7 @@ class BookMarksFragment : Fragment() {
 
         }
         bookmarksAdapter = BookmarksAdapter(bookmarkList,requireContext())
-        bookmarksRecyclerView.adapter = bookmarksAdapter
+        viewBinding.bookmarksRecyclerView.adapter = bookmarksAdapter
     }
 
 }

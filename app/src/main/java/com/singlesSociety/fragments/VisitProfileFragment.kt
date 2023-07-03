@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.BottomNav
-import kotlinx.android.synthetic.main.fragment_visit_profile.*
+import com.singlesSociety.databinding.FragmentVisitProfileBinding
 
 
 private const val ID_IMAGE_LIBRARY = 9
@@ -15,13 +15,15 @@ private const val ID_VIDEO_LIBRARY = 10
 class VisitProfileFragment(private var visitProfileExitListener: Function0<Unit>? = null, private val backButtonVisible: Boolean = true) : Fragment() {
 
 
+    private lateinit var viewBinding: FragmentVisitProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_visit_profile, container, false)
+        viewBinding = FragmentVisitProfileBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +33,7 @@ class VisitProfileFragment(private var visitProfileExitListener: Function0<Unit>
 
     private fun initView() {
 
-        visitProfileNavigation?.apply {
+        viewBinding.visitProfileNavigation?.apply {
 
             add(
                 BottomNav.Model(
@@ -51,7 +53,7 @@ class VisitProfileFragment(private var visitProfileExitListener: Function0<Unit>
 
         loadFragment(ImageLibraryFragment())
 
-        visitProfileNavigation.setOnClickMenuListener {
+        viewBinding.visitProfileNavigation.setOnClickMenuListener {
             when (it.id) {
                 ID_IMAGE_LIBRARY -> {
                     loadFragment(ImageLibraryFragment())
@@ -63,10 +65,10 @@ class VisitProfileFragment(private var visitProfileExitListener: Function0<Unit>
         }
 
         if(!backButtonVisible){
-            exitUserProfileVisit.visibility = View.GONE
+            viewBinding.exitUserProfileVisit.visibility = View.GONE
         }
 
-        exitUserProfileVisit.setOnClickListener {
+        viewBinding.exitUserProfileVisit.setOnClickListener {
               visitProfileExitListener?.invoke()
         }
 

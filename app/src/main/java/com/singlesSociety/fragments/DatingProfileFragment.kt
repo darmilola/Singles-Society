@@ -10,21 +10,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.ShowCaseAdapter
 import com.singlesSociety.UiModels.*
-import kotlinx.android.synthetic.main.fragment_dating_profile.*
-import kotlinx.android.synthetic.main.fragment_dating_profile.loaderView
-import kotlinx.android.synthetic.main.fragment_dating_profile.rootView
+import com.singlesSociety.databinding.FragmentDatingProfileBinding
 
 
 class DatingProfileFragment : Fragment(){
 
     private var showCaseAdapter: ShowCaseAdapter? = null
     private var mainActivityModel: MainActivityModel? = null
+    private lateinit var viewBinding: FragmentDatingProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_dating_profile, container, false)
+        viewBinding = FragmentDatingProfileBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,8 +41,8 @@ class DatingProfileFragment : Fragment(){
                 previewProfileModel: PreviewProfileModel,
                 likeIds: ArrayList<String>
             ) {
-                loaderView.visibility = View.GONE
-                rootView.visibility = View.VISIBLE
+                viewBinding.loaderView.visibility = View.GONE
+                viewBinding.rootView.visibility = View.VISIBLE
                 val showCaseModelArrayList = ArrayList<ShowCaseModel>()
                 val mainStrings = ArrayList<String>()
                 val quoteStrings = ArrayList<String>()
@@ -91,8 +91,8 @@ class DatingProfileFragment : Fragment(){
                 showCaseAdapter = ShowCaseAdapter(requireContext(), showCaseModelArrayList)
                 showCaseAdapter!!.setUiNeedsAdjustment(true)
                 val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                userDatingProfileRecyclerview.setLayoutManager(layoutManager)
-                userDatingProfileRecyclerview.setAdapter(showCaseAdapter)
+                viewBinding.userDatingProfileRecyclerview.setLayoutManager(layoutManager)
+                viewBinding.userDatingProfileRecyclerview.setAdapter(showCaseAdapter)
 
             }
 

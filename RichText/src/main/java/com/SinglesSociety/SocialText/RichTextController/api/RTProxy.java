@@ -84,8 +84,8 @@ public interface RTProxy {
     public void openDialogFragment(String fragmentTag, DialogFragment fragment);
 
     /**
-     * Remove an existing fragment. If it was added to a container, its view is
-     * also removed from that container.
+     * Remove an existing fragment. If it was added to a fragmentContainer, its view is
+     * also removed from that fragmentContainer.
      *
      * @param fragmentTag The tag of the fragment to remove.
      */

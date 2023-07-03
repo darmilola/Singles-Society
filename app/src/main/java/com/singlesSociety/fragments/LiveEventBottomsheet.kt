@@ -15,24 +15,24 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.singlesSociety.UiModels.*
+import com.singlesSociety.databinding.LiveEventBottomsheetBinding
 import com.singlesSociety.uiAdapters.CommentsAdapter
 import com.singlesSociety.uiAdapters.EventSpeakerAdapter
-import kotlinx.android.synthetic.main.fragment_comment_bottom_sheet.*
-import kotlinx.android.synthetic.main.live_event_bottomsheet.*
-import kotlinx.android.synthetic.main.live_event_bottomsheet.commentRecyclerView
 
 
 class LiveEventBottomsheet() : BottomSheetDialogFragment() {
 
     private var speakersList = ArrayList<EventSpeakerModel>()
     private var commentList: ArrayList<CommentModel> = ArrayList()
+    private lateinit var viewBinding: LiveEventBottomsheetBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(com.singlesSociety.R.layout.live_event_bottomsheet, container, false)
+        viewBinding = LiveEventBottomsheetBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ class LiveEventBottomsheet() : BottomSheetDialogFragment() {
         for(i in 1.. 6){
             speakersList.add(EventSpeakerModel())
         }
-        eventSpeakerRecyclerview.adapter = EventSpeakerAdapter(speakersList)
+        viewBinding.eventSpeakerRecyclerview.adapter = EventSpeakerAdapter(speakersList)
 
 
         for (i in 1..10){
@@ -56,11 +56,11 @@ class LiveEventBottomsheet() : BottomSheetDialogFragment() {
         }
 
         val adapter = CommentsAdapter(requireContext(),commentList, false)
-        commentRecyclerView.adapter = adapter
+        viewBinding.commentRecyclerView.adapter = adapter
         val mLayoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         mLayoutManager.reverseLayout = true
         mLayoutManager.stackFromEnd = true
-        commentRecyclerView.layoutManager = mLayoutManager
+        viewBinding.commentRecyclerView.layoutManager = mLayoutManager
 
 
 
@@ -68,20 +68,20 @@ class LiveEventBottomsheet() : BottomSheetDialogFragment() {
         behavior.peekHeight = dip(requireContext(),190)
         behavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
-        commentBottomsheetRootView.setOnTouchListener(OnTouchListener { v, event ->
+        viewBinding.commentBottomsheetRootView.setOnTouchListener(OnTouchListener { v, event ->
             isCancelable = false
             behavior.peekHeight = dip(requireContext(),190)
             true
         })
 
-        commentRecyclerView.setOnTouchListener(OnTouchListener { v, event ->
+        viewBinding.commentRecyclerView.setOnTouchListener(OnTouchListener { v, event ->
             isCancelable = false
             behavior.peekHeight = -1
             false
         })
 
 
-        commentRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        viewBinding.commentRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if(dy != 0) {

@@ -65,7 +65,7 @@
                android:textSize="16sp"
                android:gravity="center"
                android:fontFamily="@font/avenirbold"
-               android:text="Add a comment (3,345)"/>
+               android:text="Discussions (3,345)"/>
 
            <View
                android:layout_width="match_parent"

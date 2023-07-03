@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.ImageLibraryAdapter
 import com.singlesSociety.UiModels.ImageModel
-import kotlinx.android.synthetic.main.fragment_image_library.*
+import com.singlesSociety.databinding.FragmentImageLibraryBinding
 
 
 class ImageLibraryFragment : Fragment() {
@@ -16,11 +16,13 @@ class ImageLibraryFragment : Fragment() {
     var imageList = ArrayList<ImageModel>()
     var imagesAdapter: ImageLibraryAdapter? = null
     var imageModel: ImageModel = ImageModel()
+    private lateinit var viewBinding: FragmentImageLibraryBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_image_library, container, false)
+        viewBinding = FragmentImageLibraryBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +33,7 @@ class ImageLibraryFragment : Fragment() {
 
         }
         imagesAdapter = ImageLibraryAdapter(imageList,requireContext())
-        imagesRecyclerView.adapter = imagesAdapter
+        viewBinding.imagesRecyclerView.adapter = imagesAdapter
     }
 
 }

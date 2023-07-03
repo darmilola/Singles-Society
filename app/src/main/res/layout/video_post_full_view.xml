@@ -103,7 +103,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center">
 
-                            <include layout="@layout/community_post_engagement_view"/>
+                            <include layout="@layout/community_post_engagement_view" android:id="@+id/postEngagementOverlay"/>
 
                             <LinearLayout
                                 android:id="@+id/video_play_pause_layout"

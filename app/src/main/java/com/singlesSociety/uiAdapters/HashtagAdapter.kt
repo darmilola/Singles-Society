@@ -3,19 +3,19 @@ package com.singlesSociety.uiAdapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.PopularHashtagModel
-import kotlinx.android.synthetic.main.trending_hashtags.view.*
 
 class HashtagAdapter(private val hashtagList: ArrayList<PopularHashtagModel>) : RecyclerView.Adapter<HashtagAdapter.ItemViewHolder>() {
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             if(hashtagList[position].isGrowing){
-                holder.itemView.hashtagTrending.setImageResource(R.drawable.trend_up_icon)
+                holder.itemView.findViewById<ImageView>(R.id.hashtagTrending).setImageResource(R.drawable.trend_up_icon)
             }
         else{
-                holder.itemView.hashtagTrending.setImageResource(R.drawable.trend_down_icon)
+                holder.itemView.findViewById<ImageView>(R.id.hashtagTrending).setImageResource(R.drawable.trend_down_icon)
         }
     }
 

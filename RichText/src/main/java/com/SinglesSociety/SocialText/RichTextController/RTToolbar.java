@@ -50,9 +50,9 @@ public interface RTToolbar {
     int getId();
 
     /**
-     * This is merely a way to store the container in which the toolbar is shown
+     * This is merely a way to store the fragmentContainer in which the toolbar is shown
      * since we might need to hide/show the toolbar which happens by
-     * hiding/showing the container.
+     * hiding/showing the fragmentContainer.
      *
      * @param toolbarContainer The ViewGroup that contains this RTToolbar.
      */

@@ -7,20 +7,22 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.singlesSociety.uiAdapters.ExploreSearchAdapter
 import com.singlesSociety.UiModels.ExploreItem
-import kotlinx.android.synthetic.main.activity_explore_search.*
+import com.singlesSociety.databinding.ActivityExploreSearchBinding
 
 class ExploreSearch : AppCompatActivity() {
 
 
     private var itemList: ArrayList<ExploreItem>  = arrayListOf()
     private lateinit var itemAdapter: ExploreSearchAdapter
+    private lateinit var viewBinding: ActivityExploreSearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_explore_search)
+        viewBinding = ActivityExploreSearchBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         populateView()
 
-        exploreSearchBackButton.setOnClickListener {
+        viewBinding.exploreSearchBackButton.setOnClickListener {
             finish()
         }
 
@@ -32,7 +34,7 @@ class ExploreSearch : AppCompatActivity() {
             itemList.add(ExploreItem())
         }
         itemAdapter = ExploreSearchAdapter(itemList,this)
-        exploreSearchRecyclerView.adapter = itemAdapter
+        viewBinding.exploreSearchRecyclerView.adapter = itemAdapter
     }
 
     override fun onResume() {

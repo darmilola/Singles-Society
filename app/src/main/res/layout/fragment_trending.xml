@@ -334,7 +334,6 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
-                        android:id="@+id/followed"
                         android:textColor="@color/chip_text_color"
                         android:text="Followed"/>
 
@@ -344,7 +343,6 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:textColor="@color/chip_text_color"
-                        android:id="@+id/trending"
                         android:text="Trending"/>
 
                     <com.google.android.material.chip.Chip
@@ -353,7 +351,6 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:textColor="@color/chip_text_color"
-                        android:id="@+id/first"
                         android:text="First Category"/>
 
                     <com.google.android.material.chip.Chip
@@ -361,7 +358,6 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
-                        android:id="@+id/second"
                         android:textColor="@color/chip_text_color"
                         android:text="Second Category"/>
 
@@ -469,7 +465,6 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
-                        android:id="@+id/followed"
                         android:textColor="@color/chip_text_color"
                         android:text="Followed"/>
 
@@ -479,7 +474,6 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:textColor="@color/chip_text_color"
-                        android:id="@+id/trending"
                         android:text="Trending"/>
 
                     <com.google.android.material.chip.Chip
@@ -488,7 +482,6 @@
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
                         android:textColor="@color/chip_text_color"
-                        android:id="@+id/first"
                         android:text="First Category"/>
 
                     <com.google.android.material.chip.Chip
@@ -496,7 +489,6 @@
                         android:layout_height="50dp"
                         app:textStartPadding="10dp"
                         app:textEndPadding="10dp"
-                        android:id="@+id/second"
                         android:textColor="@color/chip_text_color"
                         android:text="Second Category"/>
 

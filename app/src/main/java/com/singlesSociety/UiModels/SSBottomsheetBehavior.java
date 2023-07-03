@@ -767,8 +767,8 @@ public class SSBottomsheetBehavior<V extends View> extends CoordinatorLayout.Beh
 
     /**
      * @return whether the height of the expanded sheet is determined by the height of its contents,
-     *     or if it is expanded in two stages (half the height of the parent container, full height of
-     *     parent container).
+     *     or if it is expanded in two stages (half the height of the parent fragmentContainer, full height of
+     *     parent fragmentContainer).
      */
     public boolean isFitToContents() {
         return fitToContents;
@@ -776,8 +776,8 @@ public class SSBottomsheetBehavior<V extends View> extends CoordinatorLayout.Beh
 
     /**
      * Sets whether the height of the expanded sheet is determined by the height of its contents, or
-     * if it is expanded in two stages (half the height of the parent container, full height of parent
-     * container). Default value is true.
+     * if it is expanded in two stages (half the height of the parent fragmentContainer, full height of parent
+     * fragmentContainer). Default value is true.
      *
      * @param fitToContents whether or not to fit the expanded sheet to its contents.
      */

@@ -12,15 +12,15 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.singlesSociety.R
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.bottom_nav_icon.view.*
 
 
 @Suppress("unused")
-class BottomNavIcon : RelativeLayout, LayoutContainer {
+class BottomNavIcon : RelativeLayout {
 
     companion object {
         const val EMPTY_VALUE = "empty"
@@ -30,13 +30,13 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw)
-                iv.color = if (!isEnabledCell) defaultIconColor else selectedIconColor
+                containerView.findViewById<CellImageView>(R.id.iv).color = if (!isEnabledCell) defaultIconColor else selectedIconColor
         }
     var selectedIconColor = Color.parseColor("#00C957")
         set(value) {
             field = value
             if (allowDraw)
-                iv.color = if (isEnabledCell) selectedIconColor else defaultIconColor
+                containerView.findViewById<CellImageView>(R.id.iv).color = if (isEnabledCell) selectedIconColor else defaultIconColor
         }
 
 
@@ -45,7 +45,7 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
         set(value) {
            field = value
             if (isCenterButton) {
-                iv.color = iconColor
+                containerView.findViewById<CellImageView>(R.id.iv).color = iconColor
                 progress = 1f
             }
         }
@@ -61,7 +61,7 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw)
-                iv.resource = value
+                containerView.findViewById<CellImageView>(R.id.iv).resource = value
         }
 
     var iconText = ""
@@ -107,17 +107,17 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
             field = value
             if (allowDraw) {
                 if (count != null && count == EMPTY_VALUE) {
-                    tv_count.text = ""
-                    tv_count.visibility = View.INVISIBLE
+                    containerView.findViewById<TextView>(R.id.tv_count).text = ""
+                    containerView.findViewById<TextView>(R.id.tv_count).visibility = View.INVISIBLE
                 } else {
                     if (count != null && count?.length ?: 0 >= 3) {
                         field = count?.substring(0, 1) + ".."
                     }
-                    tv_count.text = count
-                    tv_count.visibility = View.VISIBLE
+                    containerView.findViewById<TextView>(R.id.tv_count).text = count
+                    containerView.findViewById<TextView>(R.id.tv_count).visibility = View.VISIBLE
                     val scale = if (count?.isEmpty() == true) 0.5f else 1f
-                    tv_count.scaleX = scale
-                    tv_count.scaleY = scale
+                    containerView.findViewById<TextView>(R.id.tv_count).scaleX = scale
+                    containerView.findViewById<TextView>(R.id.tv_count).scaleY = scale
                 }
             }
         }
@@ -126,9 +126,9 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw) {
-                iv.size = value
-                iv.pivotX = iconSize / 2f
-                iv.pivotY = iconSize / 2f
+                containerView.findViewById<CellImageView>(R.id.iv).size = value
+                containerView.findViewById<CellImageView>(R.id.iv).pivotX = iconSize / 2f
+                containerView.findViewById<CellImageView>(R.id.iv).pivotY = iconSize / 2f
             }
         }
 
@@ -136,7 +136,7 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw)
-                tv_count.setTextColor(field)
+                containerView.findViewById<TextView>(R.id.tv_count).setTextColor(field)
         }
 
     var countBackgroundColor = 0
@@ -154,7 +154,7 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw && field != null)
-                tv_count.typeface = field
+                containerView.findViewById<TextView>(R.id.tv_count).typeface = field
         }
 
     var rippleColor = 0
@@ -173,7 +173,7 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
             Log.e("TAG","height is ${containerView.layoutParams.height} ${dip(context, 18)}")
             //fl.y = (1f - progress) * dip(context, 18) + dip(context, -2)
 
-            iv.color = if (progress == 1f){
+            containerView.findViewById<CellImageView>(R.id.iv).color = if (progress == 1f){
                 selectedIconColor
             }
             else if(isCenterButton){
@@ -206,10 +206,10 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
             d.setColor(circleColor)
             d.shape = GradientDrawable.OVAL
             if (Build.VERSION.SDK_INT >= 21 && !isEnabledCell) {
-                fl.background = RippleDrawable(ColorStateList.valueOf(rippleColor), null, d)
+                containerView.findViewById<LinearLayout>(R.id.fl).background = RippleDrawable(ColorStateList.valueOf(rippleColor), null, d)
             } else {
-                fl.runAfterDelay(200) {
-                    fl.setBackgroundColor(Color.TRANSPARENT)
+                containerView.findViewById<LinearLayout>(R.id.fl).runAfterDelay(200) {
+                    containerView.findViewById<LinearLayout>(R.id.fl).setBackgroundColor(Color.TRANSPARENT)
                 }
             }
         }
@@ -219,12 +219,12 @@ class BottomNavIcon : RelativeLayout, LayoutContainer {
     var onClickListener: () -> Unit = {}
         set(value) {
             field = value
-            fl?.setOnClickListener {
+            containerView.findViewById<LinearLayout>(R.id.fl)?.setOnClickListener {
                 onClickListener()
             }
         }
 
-    override lateinit var containerView: View
+    private lateinit var containerView: View
     private var allowDraw = false
 
     constructor(context: Context) : super(context) {

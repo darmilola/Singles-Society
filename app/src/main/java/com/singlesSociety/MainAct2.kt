@@ -1,22 +1,18 @@
 package com.singlesSociety
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.singlesSociety.UiModels.BottomNav
 import com.singlesSociety.fragments.*
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.singlesSociety.UiModels.dip
-import kotlinx.android.synthetic.main.activity_main_v2.*
-import kotlinx.android.synthetic.main.activity_main_v2.notificationIcon
+import com.singlesSociety.databinding.ActivityMainV2Binding
 
 
 private const val ID_HOME = 0
@@ -29,10 +25,12 @@ private const val ID_CREATE = 5
 class MainAct2 : AppCompatActivity() {
 
 
+    private lateinit var viewBinding: ActivityMainV2Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Fresco.initialize(this)
-        setContentView(R.layout.activity_main_v2)
+        viewBinding = ActivityMainV2Binding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
 
          val userEmail: String? = intent.getStringExtra("email")
@@ -42,7 +40,7 @@ class MainAct2 : AppCompatActivity() {
          val preferences = PreferenceManager.getDefaultSharedPreferences(this)
          preferences.edit().putString("userEmail", userEmail).apply()
 
-        bottomNavigation?.apply {
+        viewBinding.bottomNavigation?.apply {
 
             add(
                     BottomNav.Model(
@@ -94,9 +92,9 @@ class MainAct2 : AppCompatActivity() {
 
             }))
         }))
-        bottomNavigation?.setCount(ID_MESSAGE,"25")
+        viewBinding.bottomNavigation?.setCount(ID_MESSAGE,"25")
 
-        bottomNavigation.setOnClickMenuListener {
+        viewBinding.bottomNavigation.setOnClickMenuListener {
             when(it.id){
                 ID_HOME -> {
                     loadFragment(HomeFragment(visitProfileListener = {
@@ -147,8 +145,8 @@ class MainAct2 : AppCompatActivity() {
             }
         }
 
-        notificationIcon.setOnClickListener {
-            bottomNavigation.onClickedListener(BottomNav.Model(
+        viewBinding.notificationIcon.setOnClickListener {
+            viewBinding.bottomNavigation.onClickedListener(BottomNav.Model(
                 ID_NOTIFICATION,
                 R.drawable.ring_icon,
                 "Notification"
@@ -162,26 +160,26 @@ class MainAct2 : AppCompatActivity() {
     }
 
     private fun adjustLayoutParams(adjustView: Boolean, adjustToolbar: Boolean = false, adjustBottombar: Boolean = false){
-        val params: ViewGroup.MarginLayoutParams = container.layoutParams as ViewGroup.MarginLayoutParams
+        val params: ViewGroup.MarginLayoutParams = viewBinding.fragmentContainer.layoutParams as ViewGroup.MarginLayoutParams
         if(adjustToolbar && adjustView){
             params.topMargin = 0
-            mainActivityToolbar.visibility = View.GONE
+            viewBinding.mainActivityToolbar.visibility = View.GONE
 
         }
         if(adjustBottombar && adjustView){
-            bottomNavigation.visibility = View.GONE
+            viewBinding.bottomNavigation.visibility = View.GONE
             params.bottomMargin = 0
         }
         else if(!adjustView){
-            bottomNavigation.visibility = View.VISIBLE
-            mainActivityToolbar.visibility = View.VISIBLE
+            viewBinding.bottomNavigation.visibility = View.VISIBLE
+            viewBinding.mainActivityToolbar.visibility = View.VISIBLE
         }
-        container.layoutParams = params
+        viewBinding.fragmentContainer.layoutParams = params
 
     }
 
    /* private fun adjustLayoutParamsForCreateSpace(adjust: Boolean){
-        val params: ViewGroup.MarginLayoutParams = container.layoutParams as ViewGroup.MarginLayoutParams
+        val params: ViewGroup.MarginLayoutParams = fragmentContainer.layoutParams as ViewGroup.MarginLayoutParams
         if(adjust){
             params.topMargin = 0
             params.bottomMargin = 0
@@ -203,7 +201,7 @@ class MainAct2 : AppCompatActivity() {
             params.bottomMargin = LayoutUtils().convertDpToPixel(55, context = this).toInt()
             clearLightStatusBar(activity = this)
         }
-        container.layoutParams = params
+        fragmentContainer.layoutParams = params
 
     }*/
 
@@ -212,16 +210,15 @@ class MainAct2 : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment){
         if(fragment is NotificationFragment){
-            bottomNavigation.callListenerWhenIsSelected = true
-            notificationIcon.setImageResource(R.drawable.notification_clicked_icon)
+            viewBinding.bottomNavigation.callListenerWhenIsSelected = true
+            viewBinding.notificationIcon.setImageResource(R.drawable.notification_clicked_icon)
         }
         else{
-            bottomNavigation.callListenerWhenIsSelected = false
-            notificationIcon.setImageResource(R.drawable.ring_icon)
+            viewBinding.bottomNavigation.callListenerWhenIsSelected = false
+            viewBinding.notificationIcon.setImageResource(R.drawable.ring_icon)
         }
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
-        transaction.addToBackStack(null)
+        transaction.replace(R.id.fragmentContainer,fragment)
         transaction.commit()
     }
 

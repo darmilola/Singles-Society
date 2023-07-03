@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.offline.DownloadService.start
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.HomeMainAdapter
 import com.singlesSociety.UiModels.CommunityPostModel
@@ -18,10 +19,7 @@ import com.singlesSociety.UiModels.MainActivityModel
 import com.singlesSociety.UiModels.MainActivityModel.ShowcaseInfoReadyListener
 import com.singlesSociety.UiModels.PreviewProfileModel
 import com.singlesSociety.UiModels.SocietyModel
-import kotlinx.android.synthetic.main.activity_met_match_page.*
-import kotlinx.android.synthetic.main.emptyfilter_layout.*
-import kotlinx.android.synthetic.main.error_page.*
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.singlesSociety.databinding.FragmentHomeBinding
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -42,12 +40,14 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
     var societyModelArrayList = ArrayList<SocietyModel>()
     var mainActivityModel: MainActivityModel? = null
     var lastPosition = RecyclerView.NO_POSITION
+    private lateinit var viewBinding: FragmentHomeBinding
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        viewBinding = FragmentHomeBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +56,7 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
     }
 
     private fun initView() {
-        PagerSnapHelper().attachToRecyclerView(societyRecycler)
+        PagerSnapHelper().attachToRecyclerView(viewBinding.societyRecycler)
         val size = ArrayList<Size>()
         size.add(LARGE)
         size.add(MEDIUM)
@@ -83,15 +83,9 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                 0,
                 Rotation(),
                 Emitter(5, TimeUnit.MINUTES).perSecond(500))
-        konfettiView.start(mParty)
+        viewBinding.konfettiView.konfettiView.start(mParty)
 
 
-        error_page_retry.setOnClickListener(View.OnClickListener {
-            empty_layout_root.setVisibility(View.GONE)
-            loaderView.setVisibility(View.VISIBLE)
-            societyRecycler.setVisibility(View.GONE)
-            mainActivityModel?.GetUserInfo()
-        })
 
         mainActivityModel = MainActivityModel(requireContext())
         mainActivityModel?.GetUserInfo()
@@ -107,9 +101,8 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
             }
 
             override fun onError(message: String) {
-                loaderView.setVisibility(View.GONE)
-                societyRecycler.setVisibility(View.VISIBLE)
-                error_layout_root.setVisibility(View.VISIBLE)
+                viewBinding.loaderView.setVisibility(View.GONE)
+                viewBinding.societyRecycler.setVisibility(View.VISIBLE)
             }
         })
     }
@@ -165,12 +158,11 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         visitProfileListener?.invoke()
                     }
 
-                    loaderView.setVisibility(View.GONE)
-                    societyRecycler.setVisibility(View.VISIBLE)
-                    met_match_root.visibility = View.GONE
-                    societyRecycler.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+                    viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.societyRecycler.setVisibility(View.VISIBLE)
+                    viewBinding.societyRecycler.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
 
-                    societyRecycler.adapter = homeMainAdapter
+                    viewBinding.societyRecycler.adapter = homeMainAdapter
 
 
                     homeMainAdapter!!.setDatingProfileListener {
@@ -180,8 +172,8 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     }
                     homeMainAdapter!!.setProfileEmptyListener {
                         societyModelArrayList.removeAt(lastPosition)
-                        societyRecycler.layoutManager = scrollableLayoutManager
-                        societyRecycler.scrollToPosition(lastPosition)
+                        viewBinding.societyRecycler.layoutManager = scrollableLayoutManager
+                        viewBinding.societyRecycler.scrollToPosition(lastPosition)
                     }
 
 
@@ -196,16 +188,16 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
 
                     }
                     homeMainAdapter!!.setProfileMatchedListener{
-                        loaderView.setVisibility(View.GONE)
-                        societyRecycler.setVisibility(View.GONE)
-                        met_match_root.setVisibility(View.VISIBLE)
-                        error_layout_root.setVisibility(View.GONE)
+                        viewBinding.loaderView.setVisibility(View.GONE)
+                        viewBinding.societyRecycler.setVisibility(View.GONE)
+                        viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
+
                     }
 
 
-                    societyRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    viewBinding.societyRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                            lastPosition = (societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                            lastPosition = (viewBinding.societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
                             if (lastPosition != RecyclerView.NO_POSITION){
                                val viewType =  societyModelArrayList.get(lastPosition).itemViewType
                                 if (viewType == 0){
@@ -263,28 +255,27 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         commentingSection.show(parentFragmentManager, "commentingSection")
                     }
 
-                    loaderView.setVisibility(View.GONE)
-                    societyRecycler.setVisibility(View.VISIBLE)
-                    met_match_root.visibility = View.GONE
-                    societyRecycler.layoutManager = unScrollableLayoutManager
+                    viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.societyRecycler.setVisibility(View.VISIBLE)
+                    viewBinding.konfettiView.metMatchRoot.visibility = View.GONE
+                    viewBinding.societyRecycler.layoutManager = unScrollableLayoutManager
 
-                    societyRecycler.adapter = homeMainAdapter
+                    viewBinding.societyRecycler.adapter = homeMainAdapter
 
                     homeMainAdapter!!.setDatingProfileListener {
-                          societyRecycler.isNestedScrollingEnabled = true
+                        viewBinding.societyRecycler.isNestedScrollingEnabled = true
                     }
                     homeMainAdapter!!.setPostListener {
-                        societyRecycler.isNestedScrollingEnabled = false
+                        viewBinding.societyRecycler.isNestedScrollingEnabled = false
 
                     }
                     homeMainAdapter!!.setDatingProfileListener {
 
                     }
                     homeMainAdapter!!.setProfileMatchedListener{
-                        loaderView.setVisibility(View.GONE)
-                        societyRecycler.setVisibility(View.GONE)
-                        met_match_root.setVisibility(View.VISIBLE)
-                        error_layout_root.setVisibility(View.GONE)
+                        viewBinding.loaderView.setVisibility(View.GONE)
+                        viewBinding.societyRecycler.setVisibility(View.GONE)
+                        viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
                     }
                   /*  loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
@@ -317,9 +308,9 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                             requireContext(),
                             societyModelArrayList
                         )
-                    societyRecycler.setVisibility(View.VISIBLE)
-                    societyRecycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
-                    societyRecycler.adapter = homeMainAdapter
+                    viewBinding.societyRecycler.setVisibility(View.VISIBLE)
+                    viewBinding.societyRecycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
+                    viewBinding.societyRecycler.adapter = homeMainAdapter
 
                     homeMainAdapter?.setVisitProfileListener {
                         visitProfileListener?.invoke()
@@ -336,17 +327,16 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         commentingSection.show(parentFragmentManager, "commentingSection")
                     }
 
-                    loaderView.setVisibility(View.GONE)
-                    met_match_root.visibility = View.GONE
+                    viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.konfettiView.metMatchRoot.visibility = View.GONE
 
                     homeMainAdapter!!.setDatingProfileListener {
 
                     }
                     homeMainAdapter!!.setProfileMatchedListener{
-                        loaderView.setVisibility(View.GONE)
-                        societyRecycler.setVisibility(View.GONE)
-                        met_match_root.setVisibility(View.VISIBLE)
-                        error_layout_root.setVisibility(View.GONE)
+                        viewBinding.loaderView.setVisibility(View.GONE)
+                        viewBinding.societyRecycler.setVisibility(View.GONE)
+                        viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
                     }
 
                 }

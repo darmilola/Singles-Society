@@ -9,16 +9,18 @@ import androidx.fragment.app.Fragment
 import com.singlesSociety.ImagePostFullView
 import com.singlesSociety.R
 import com.singlesSociety.VideoPostFullView
-import kotlinx.android.synthetic.main.post_full_view.*
+import com.singlesSociety.databinding.PostFullViewBinding
 
 const val viewTypeVideo = 1
 const val viewTypeImage = 2
 class PostFullView : AppCompatActivity() {
 
+    private lateinit var viewBinding: PostFullViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.post_full_view)
+        viewBinding = PostFullViewBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         if(intent.extras?.get("type") == viewTypeVideo){
             loadFragment(VideoPostFullView( videoPostProfileVisitListener = {
                 finish()
@@ -30,7 +32,7 @@ class PostFullView : AppCompatActivity() {
             }))
         }
 
-        backButton.setOnClickListener {
+        viewBinding.backButton.setOnClickListener {
             finish()
         }
     }

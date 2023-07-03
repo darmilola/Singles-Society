@@ -13,11 +13,7 @@ import com.singlesSociety.Arvi.widget.CardStackLayoutManager
 import com.singlesSociety.uiAdapters.HomeMainAdapter
 import com.singlesSociety.uiAdapters.ViewProfileAdapter
 import com.singlesSociety.UiModels.*
-import kotlinx.android.synthetic.main.activity_dating_profile_full_view.*
-import kotlinx.android.synthetic.main.activity_dating_profile_full_view.loaderView
-import kotlinx.android.synthetic.main.activity_met_match_page.*
-import kotlinx.android.synthetic.main.error_page.*
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.singlesSociety.databinding.ActivityDatingProfileFullViewBinding
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -38,12 +34,14 @@ class DatingProfileFullView : AppCompatActivity(){
     var homeMainAdapter: HomeMainAdapter? = null
     var societyModelArrayList = ArrayList<SocietyModel>()
     var mainActivityModel: MainActivityModel? = null
+    private lateinit var viewBinding: ActivityDatingProfileFullViewBinding
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dating_profile_full_view)
+        viewBinding = ActivityDatingProfileFullViewBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         initView()
     }
 
@@ -75,19 +73,10 @@ class DatingProfileFullView : AppCompatActivity(){
             0,
             Rotation(),
             Emitter(5, TimeUnit.MINUTES).perSecond(500))
-        konfettiView.start(mParty)
-        error_page_retry.setOnClickListener(View.OnClickListener {
-            loaderView.setVisibility(View.VISIBLE)
-            societyRecycler.setVisibility(View.GONE)
-            bookmarkedDatingProfiles?.setVisibility(View.GONE)
-            showcase_swipe_layout.setVisibility(View.GONE)
-            met_match_root.setVisibility(View.GONE)
-            error_layout_root.setVisibility(View.GONE)
-            mainActivityModel?.GetUserInfo()
-        })
 
 
-        explorePageBackButton.setOnClickListener {
+
+        viewBinding.explorePageBackButton.setOnClickListener {
             finish()
         }
 
@@ -101,14 +90,10 @@ class DatingProfileFullView : AppCompatActivity(){
                 parseUserResponse()
             }
 
-            override fun onError(message: String) {
-                loaderView.setVisibility(View.GONE)
-                societyRecycler.setVisibility(View.VISIBLE)
-                bookmarkedDatingProfiles?.setVisibility(View.GONE)
-                showcase_swipe_layout.setVisibility(View.GONE)
-                met_match_root.setVisibility(View.GONE)
-                error_layout_root.setVisibility(View.VISIBLE)
+            override fun onError(message: String?) {
+                TODO("Not yet implemented")
             }
+
         })
     }
 
@@ -131,30 +116,24 @@ class DatingProfileFullView : AppCompatActivity(){
                         societyModelArrayList
                     )
 
-                loaderView.setVisibility(View.GONE)
-                societyRecycler.setVisibility(View.VISIBLE)
-                met_match_root.visibility = View.GONE
-                bookmarkedDatingProfiles.layoutManager = LinearLayoutManager(this@DatingProfileFullView,RecyclerView.VERTICAL,false)
-                bookmarkedDatingProfiles.adapter = homeMainAdapter
+                viewBinding.loaderView.setVisibility(View.GONE)
+                viewBinding.bookmarkedDatingProfiles.layoutManager = LinearLayoutManager(this@DatingProfileFullView,RecyclerView.VERTICAL,false)
+                viewBinding.bookmarkedDatingProfiles.adapter = homeMainAdapter
 
                 homeMainAdapter!!.setDatingProfileListener {
 
                 }
 
                 homeMainAdapter!!.setProfileMatchedListener{
-                    loaderView.setVisibility(View.GONE)
-                    societyRecycler.setVisibility(View.GONE)
-                    met_match_root.setVisibility(View.VISIBLE)
-                    error_layout_root.setVisibility(View.GONE)
+                    viewBinding.loaderView.setVisibility(View.GONE)
+
                 }
             }
 
-            override fun onError(message: String) {
-                loaderView.setVisibility(View.GONE)
-                societyRecycler.setVisibility(View.VISIBLE)
-                met_match_root.setVisibility(View.GONE)
-                error_layout_root.setVisibility(View.VISIBLE)
+            override fun onError(message: String?) {
+                TODO("Not yet implemented")
             }
+
 
             override fun onEmptyResponse() {
 

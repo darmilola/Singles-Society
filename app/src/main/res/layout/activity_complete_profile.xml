@@ -45,8 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:id="@+id/complete_profile_root_layout"
-        android:visibility="gone">
+        android:id="@+id/complete_profile_root_layout">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -271,6 +270,19 @@
                </LinearLayout>
            </RelativeLayout>
 
+           <TextView
+               android:id="@+id/city_select_textview"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginLeft="10dp"
+               android:ellipsize="end"
+               android:fontFamily="@font/airreg"
+               android:gravity="left|center"
+               android:maxLines="1"
+               android:text="New Brunswick"
+               android:textColor="#07A03A"
+               android:textSize="14dp" />
+
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="45dp">
@@ -426,18 +438,7 @@
                        android:fontFamily="@font/airreg"
                        android:layout_marginLeft="10dp"
                        android:textColor="@color/colorPrimary"/>
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:text="New Brunswick"
-                       android:gravity="left|center"
-                       android:maxLines="1"
-                       android:ellipsize="end"
-                       android:id="@+id/city_select_textview"
-                       android:textSize="14dp"
-                       android:fontFamily="@font/airreg"
-                       android:layout_marginLeft="10dp"
-                       android:textColor="#07A03A"/>
+
                </LinearLayout>
 
                <LinearLayout

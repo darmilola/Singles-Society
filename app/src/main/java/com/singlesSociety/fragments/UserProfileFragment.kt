@@ -10,8 +10,7 @@ import android.view.ViewGroup
 import com.singlesSociety.NewWelcome
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.BottomNav
-import kotlinx.android.synthetic.main.fragment_user_profile.*
-import kotlinx.android.synthetic.main.profile_info_arena.*
+import com.singlesSociety.databinding.FragmentUserProfileBinding
 
 
 
@@ -22,11 +21,13 @@ private const val ID_DATING_PROFILE = 8
 class UserProfileFragment : Fragment() {
 
 
+    private lateinit var viewBinding: FragmentUserProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_user_profile, container, false)
+        viewBinding = FragmentUserProfileBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,14 +35,14 @@ class UserProfileFragment : Fragment() {
 
         initView()
 
-        logOutCta.setOnClickListener {
+        viewBinding.profileInfoArena.logOutCta.setOnClickListener {
             logOut()
         }
     }
 
     private fun initView() {
 
-        userProfileNavigation?.apply {
+        viewBinding.userProfileNavigation?.apply {
 
             add(
                 BottomNav.Model(
@@ -74,7 +75,7 @@ class UserProfileFragment : Fragment() {
         }?.show(ID_IMAGE_LIBRARY)
         loadFragment(ImageLibraryFragment())
 
-        userProfileNavigation.setOnClickMenuListener {
+        viewBinding.userProfileNavigation.setOnClickMenuListener {
             when (it.id) {
                 ID_IMAGE_LIBRARY -> {
                     loadFragment(ImageLibraryFragment())

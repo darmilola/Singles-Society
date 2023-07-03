@@ -15,39 +15,41 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import kotlinx.android.synthetic.main.activity_new_welcome.*
+import com.singlesSociety.databinding.ActivityNewWelcomeBinding
 
 
 class NewWelcome : AppCompatActivity() {
 
 
     private val GC_SIGN_IN = 1
+    private lateinit var viewBinding: ActivityNewWelcomeBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_welcome)
+        viewBinding = ActivityNewWelcomeBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         initView()
     }
 
     private fun initView() {
 
-        googleSignIn.setOnClickListener(
+        viewBinding.googleSignIn.setOnClickListener(
             View.OnClickListener { startGoogleSignIn() })
-        emailSignIn.setOnClickListener(View.OnClickListener {
+        viewBinding.emailSignIn.setOnClickListener(View.OnClickListener {
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this@NewWelcome,
-                (welcomePeople as View?)!!, "welcomePeople"
+                (viewBinding.welcomePeople as View?)!!, "welcomePeople"
             )
             val intent = Intent(this, ConnectWithEmail::class.java)
             startActivity(intent,options.toBundle())
         })
-        getStarted.setOnClickListener(View.OnClickListener {
+        viewBinding.getStarted.setOnClickListener(View.OnClickListener {
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this@NewWelcome,
-                (welcomePeople as View?)!!, "welcomePeople"
+                (viewBinding.welcomePeople as View?)!!, "welcomePeople"
             )
             val intent = Intent(this, SignUpWithEmail::class.java)
             startActivity(intent, options.toBundle())

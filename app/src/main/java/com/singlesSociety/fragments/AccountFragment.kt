@@ -9,22 +9,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.singlesSociety.R
 import com.singlesSociety.WelcomeActivity
-import kotlinx.android.synthetic.main.profile_info_arena.*
+import com.singlesSociety.databinding.ActivityMyAccountBinding
+import com.singlesSociety.databinding.FragmentAccountBinding
 
 class AccountFragment : Fragment() {
 
 
+    private lateinit var viewBinding: FragmentAccountBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false)
+        viewBinding = FragmentAccountBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        logOutCta.setOnClickListener {
-            logOut()
-        }
+
     }
 
     private fun logOut() {

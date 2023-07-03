@@ -17,7 +17,7 @@ class CreatePostActivity : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container,fragment)
+        transaction.replace(R.id.fragmentContainer,fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

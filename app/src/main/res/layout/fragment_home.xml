@@ -27,7 +27,7 @@
         android:id="@+id/societyRecycler"/>
 
 
-    <include layout="@layout/activity_met_match_page" android:visibility="gone"/>
+    <include layout="@layout/activity_met_match_page" android:visibility="gone" android:id="@+id/konfettiView"/>
     <include layout="@layout/error_page" android:visibility="gone"/>
 
 </LinearLayout>

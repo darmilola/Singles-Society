@@ -15,28 +15,29 @@ import com.singlesSociety.uiAdapters.CardStackAdapter
 import com.singlesSociety.uiAdapters.CardStackAdapter.VisibleUserListener
 import com.singlesSociety.UiModels.MainActivityModel
 import com.singlesSociety.UiModels.PreviewProfileModel
+import com.singlesSociety.databinding.ActivitySocietySwipeBinding
 import com.yuyakaido.android.cardstackview.Duration
 import com.yuyakaido.android.cardstackview.StackFrom
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting
-import kotlinx.android.synthetic.main.activity_society_swipe.*
-import kotlinx.android.synthetic.main.showcase_stack_layout.*
 
 class SocietySwipeActivity : AppCompatActivity() {
     lateinit var manager: CardStackLayoutManager
+    private lateinit var viewBinding: ActivitySocietySwipeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_society_swipe)
+        viewBinding = ActivitySocietySwipeBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         supportPostponeEnterTransition()
         initView()
     }
 
     private fun initView(){
 
-        navigationBack.setOnClickListener {
+        viewBinding.navigationBack.setOnClickListener {
             finishAfterTransition()
         }
 
-        cardStackGoFullView.visibility = View.GONE
+        viewBinding.showCaseStackLayout.cardStackGoFullView.visibility = View.GONE
         manager = CardStackLayoutManager(this)
         manager.setVisibleCount(2)
         manager.setScaleInterval(1.0f)
@@ -47,12 +48,12 @@ class SocietySwipeActivity : AppCompatActivity() {
         manager.setCanScrollHorizontal(true)
         manager.setCanScrollVertical(false)
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
-        showcaseCardStackView.setLayoutManager(manager)
+        viewBinding.showCaseStackLayout.showcaseCardStackView.setLayoutManager(manager)
         val userProfileToPreview: ArrayList<PreviewProfileModel> = intent.getParcelableArrayListExtra<Parcelable>("userProfileToPreview") as ArrayList<PreviewProfileModel>
         val userLikedList: ArrayList<String> = intent.getStringArrayListExtra("userLikedList") as ArrayList<String>
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val imageTransitionName: String? = intent.extras?.getString("transitionName")
-            rootView.setTransitionName(imageTransitionName)
+            viewBinding.rootView.setTransitionName(imageTransitionName)
         }
         val userProfileInPreview = arrayOf("")
 
@@ -62,28 +63,28 @@ class SocietySwipeActivity : AppCompatActivity() {
         })
 
 
-      user_swipe_right.setOnClickListener {
+        viewBinding.showCaseStackLayout.userSwipeRight.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(com.yuyakaido.android.cardstackview.Direction.Right)
                 .setDuration(Duration.Slow.duration)
                 .setInterpolator(AccelerateInterpolator())
                 .build()
            manager.setSwipeAnimationSetting(setting)
-              showcaseCardStackView.swipe()
+            viewBinding.showCaseStackLayout.showcaseCardStackView.swipe()
         }
 
 
-        user_swipe_left.setOnClickListener {
+        viewBinding.showCaseStackLayout.userSwipeLeft.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(com.yuyakaido.android.cardstackview.Direction.Left)
                 .setDuration(Duration.Slow.duration)
                 .setInterpolator(AccelerateInterpolator())
                 .build()
             manager.setSwipeAnimationSetting(setting)
-            showcaseCardStackView.swipe()
+            viewBinding.showCaseStackLayout.showcaseCardStackView.swipe()
         }
 
-        showcaseCardStackView.adapter = cardStackAdapter
+        viewBinding.showCaseStackLayout.showcaseCardStackView.adapter = cardStackAdapter
         manager.setListener(object : CardStackListener {
             override fun onCardDragging(direction: Direction, ratio: Float) {
                 // ((ShowcaseItemViewHolder) holder).swipeLayout.setVisibility(View.GONE);

@@ -10,21 +10,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.singlesSociety.databinding.FragmentImageLibraryBinding
+import com.singlesSociety.databinding.FragmentImagePostFullViewBinding
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import com.smarteist.autoimageslider.SliderViewAdapter
-import kotlinx.android.synthetic.main.community_post_engagement_view.*
-import kotlinx.android.synthetic.main.fragment_image_post_full_view.*
 
 class ImagePostFullView(private var imagePostProfileVisitListener: Function0<Unit>? = null) : Fragment() {
 
 
+    private lateinit var viewBinding: FragmentImagePostFullViewBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_image_post_full_view, container, false)
+        viewBinding = FragmentImagePostFullViewBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,17 +38,17 @@ class ImagePostFullView(private var imagePostProfileVisitListener: Function0<Uni
             showcaseImageSliderAdapter.addItem(SliderItem("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
         }
 
-        imageSlider.setSliderAdapter(showcaseImageSliderAdapter)
-        imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM) //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        viewBinding.imageSlider.setSliderAdapter(showcaseImageSliderAdapter)
+        viewBinding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM) //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
 
-        imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
-        imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH)
-        imageSlider.setIndicatorSelectedColor(Color.parseColor("#fa2d65"))
-        imageSlider.setIndicatorUnselectedColor(Color.GRAY)
-        imageSlider.setScrollTimeInSec(4) //set scroll delay in seconds :
-        imageSlider.startAutoCycle()
+        viewBinding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+        viewBinding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH)
+        viewBinding.imageSlider.setIndicatorSelectedColor(Color.parseColor("#fa2d65"))
+        viewBinding.imageSlider.setIndicatorUnselectedColor(Color.GRAY)
+        viewBinding.imageSlider.setScrollTimeInSec(4) //set scroll delay in seconds :
+        viewBinding.imageSlider.startAutoCycle()
 
-        accountProfilePicture.setOnClickListener {
+        viewBinding.postEngagementOverlay.accountProfilePicture.setOnClickListener {
               imagePostProfileVisitListener?.invoke()
         }
 

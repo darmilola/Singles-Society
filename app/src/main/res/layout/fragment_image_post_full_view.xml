@@ -29,6 +29,7 @@
             android:gravity="center">
             <include layout="@layout/community_post_engagement_view"
                 android:layout_width="match_parent"
+                android:id="@+id/postEngagementOverlay"
                 android:layout_height="match_parent" />
 
         </FrameLayout>

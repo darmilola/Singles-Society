@@ -13,20 +13,22 @@ import com.singlesSociety.UiModels.CommentModel
 import com.singlesSociety.UiModels.CommentReplyModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.fragment_comment_bottom_sheet.*
+import com.singlesSociety.databinding.FragmentCommentBottomSheetBinding
 
 
 class CommentBottomSheet(var commentActionListener: CommentActionListener) : BottomSheetDialogFragment() {
 
     var commentReplyModelList: ArrayList<CommentReplyModel> = ArrayList()
     var commentList: ArrayList<CommentModel> = ArrayList()
+    private lateinit var viewBinding: FragmentCommentBottomSheetBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_comment_bottom_sheet, container, false)
+        viewBinding = FragmentCommentBottomSheetBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +47,7 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
             commentList.add(CommentModel(commentReplyModelList,1))
         }
         val adapter = CommentsAdapter(requireContext(),commentList, true)
-        commentRecyclerView.adapter = adapter
+        viewBinding.commentRecyclerView.adapter = adapter
 
         adapter.setCommentProfileVisitListener {
             commentActionListener.onProfileVisit()

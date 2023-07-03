@@ -1,3 +1,5 @@
 include ':app'
-rootProject.name='Aure'
+rootProject.name='SinglesSociety'
 include ':RichText'
+include ':SSSeekBar'
+include ':Widgets'

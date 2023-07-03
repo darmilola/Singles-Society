@@ -12,13 +12,14 @@ import com.SinglesSociety.SocialText.RichTextController.RTManager
 import com.SinglesSociety.SocialText.RichTextController.api.RTApi
 import com.SinglesSociety.SocialText.RichTextController.api.RTProxyImpl
 import com.singlesSociety.R
-import kotlinx.android.synthetic.main.fragment_create_post_type_text.*
+import com.singlesSociety.databinding.FragmentCreatePostTypeTextBinding
 
 
 class CreatePostTypeText : Fragment() {
 
     private var createPostRTManager: RTManager? = null
     private var rtApi: RTApi? = null
+    private lateinit var viewBinding: FragmentCreatePostTypeTextBinding
 
 
 
@@ -27,7 +28,8 @@ class CreatePostTypeText : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_post_type_text, container, false)
+        viewBinding = FragmentCreatePostTypeTextBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
 
@@ -39,15 +41,15 @@ class CreatePostTypeText : Fragment() {
     private fun initView(){
         rtApi = RTApi(context, RTProxyImpl(activity))
         createPostRTManager = RTManager(rtApi)
-        createPostRTManager!!.registerToolbar(createPostToolbarLayout, createPostToolbar)
-        createPostRTManager!!.registerEditor(editView, true)
-        editView!!.setRichTextEditing(true, true)
-        createPostToolbar.applyDefaultFont()
-        exitButton.setOnClickListener {
+        createPostRTManager!!.registerToolbar(viewBinding.createPostToolbarLayout, viewBinding.createPostToolbar)
+        createPostRTManager!!.registerEditor(viewBinding.editView, true)
+        viewBinding.editView!!.setRichTextEditing(true, true)
+        viewBinding.createPostToolbar.applyDefaultFont()
+        viewBinding.exitButton.setOnClickListener {
             activity?.finish()
         }
 
-        editView.setMentionHashTagListener(object : MentionHashTagListener {
+        viewBinding.editView.setMentionHashTagListener(object : MentionHashTagListener {
             override fun onMentioning(sequence: CharSequence) {}
             override fun onHashTagging(sequence: CharSequence) {}
             override fun onStopMentioning() {}

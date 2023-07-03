@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.VideoLibraryAdapter
 import com.singlesSociety.UiModels.VideoModel
-import kotlinx.android.synthetic.main.fragment_video_library.*
+import com.singlesSociety.databinding.FragmentVideoLibraryBinding
 
 
 class VideoLibraryFragment : Fragment() {
@@ -16,12 +16,14 @@ class VideoLibraryFragment : Fragment() {
     var videoList = ArrayList<VideoModel>()
     var videoAdapter: VideoLibraryAdapter? = null
     var videoModel: VideoModel = VideoModel()
+    private lateinit var viewBinding: FragmentVideoLibraryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_video_library, container, false)
+        viewBinding = FragmentVideoLibraryBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,7 +34,7 @@ class VideoLibraryFragment : Fragment() {
 
         }
         videoAdapter = VideoLibraryAdapter(videoList,requireContext())
-        videosRecyclerView.adapter = videoAdapter
+        viewBinding.videosRecyclerView.adapter = videoAdapter
     }
 
 }

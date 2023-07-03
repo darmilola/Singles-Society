@@ -21,7 +21,7 @@ import android.graphics.Typeface;
 import java.util.Locale;
 
 /**
- * This is a container class for a android.graphics.Typeface and the font name.
+ * This is a fragmentContainer class for a android.graphics.Typeface and the font name.
  */
 public class RTTypeface implements Comparable<RTTypeface> {
 

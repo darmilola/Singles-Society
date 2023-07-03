@@ -12,12 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.HomeMainAdapter
 import com.singlesSociety.UiModels.*
-import kotlinx.android.synthetic.main.activity_met_match_page.*
-import kotlinx.android.synthetic.main.emptyfilter_layout.*
-import kotlinx.android.synthetic.main.error_page.*
-import kotlinx.android.synthetic.main.fragment_home.loaderView
-import kotlinx.android.synthetic.main.fragment_home.societyRecycler
-import kotlinx.android.synthetic.main.fragment_spaces_main.*
+import com.singlesSociety.databinding.FragmentSpacesMainBinding
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -36,6 +31,7 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
     var mainActivityModel: MainActivityModel? = null
     var lastPosition = RecyclerView.NO_POSITION
     val layoutManager = NoScrollLinearLayoutManager(context)
+    private lateinit var viewBinding: FragmentSpacesMainBinding
 
 
     override fun onCreateView(
@@ -43,13 +39,14 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_spaces_main, container, false)
+        viewBinding = FragmentSpacesMainBinding.inflate(layoutInflater)
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        exitSpaceButton.setOnClickListener {
+        viewBinding.exitSpaceButton.setOnClickListener {
             exitSpaceListener?.invoke()
         }
     }
@@ -82,15 +79,7 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
             0,
             Rotation(),
             Emitter(5, TimeUnit.MINUTES).perSecond(500))
-        konfettiView.start(mParty)
 
-
-        error_page_retry.setOnClickListener(View.OnClickListener {
-            empty_layout_root.setVisibility(View.GONE)
-            loaderView.setVisibility(View.VISIBLE)
-            societyRecycler.setVisibility(View.GONE)
-            mainActivityModel?.GetUserInfo()
-        })
 
 
         mainActivityModel = MainActivityModel(requireContext())
@@ -107,9 +96,8 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
             }
 
             override fun onError(message: String) {
-                loaderView.setVisibility(View.GONE)
-                societyRecycler.setVisibility(View.VISIBLE)
-                error_layout_root.setVisibility(View.VISIBLE)
+                viewBinding.loaderView.setVisibility(View.GONE)
+                viewBinding.societyRecycler.setVisibility(View.VISIBLE)
             }
         })
     }
@@ -171,12 +159,11 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                      exitSpaceListener?.invoke()
                 }
 
-                loaderView.setVisibility(View.GONE)
-                societyRecycler.setVisibility(View.VISIBLE)
-                met_match_root.visibility = View.GONE
-                societyRecycler.layoutManager = layoutManager
-                societyRecycler.adapter = homeMainAdapter
-                PagerSnapHelper().attachToRecyclerView(societyRecycler)
+                viewBinding.loaderView.setVisibility(View.GONE)
+                viewBinding.societyRecycler.setVisibility(View.VISIBLE)
+                viewBinding.societyRecycler.layoutManager = layoutManager
+                viewBinding.societyRecycler.adapter = homeMainAdapter
+                PagerSnapHelper().attachToRecyclerView(viewBinding.societyRecycler)
 
 
                 homeMainAdapter!!.setDatingProfileListener {
@@ -202,37 +189,35 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                 }
 
                 homeMainAdapter!!.setOnReadyToGoDownListener {
-                    (societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
+                    (viewBinding.societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
 
                 }
 
                 homeMainAdapter!!.setOnReadyToMoveUpListener {
-                    (societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
+                    (viewBinding.societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
 
                 }
 
                 homeMainAdapter!!.setProfileMatchedListener{
-                    loaderView.setVisibility(View.GONE)
-                    societyRecycler.setVisibility(View.GONE)
-                    met_match_root.setVisibility(View.VISIBLE)
-                    error_layout_root.setVisibility(View.GONE)
+                    viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.societyRecycler.setVisibility(View.GONE)
                 }
 
 
-                societyRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                viewBinding.societyRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        lastPosition = (societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                        lastPosition = (viewBinding.societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
                         if (lastPosition != RecyclerView.NO_POSITION){
                             val viewType =  societyModelArrayList[lastPosition].itemViewType
                             if (viewType == 0){
-                                (societyRecycler.layoutManager as NoScrollLinearLayoutManager).disableScrolling()
+                                (viewBinding.societyRecycler.layoutManager as NoScrollLinearLayoutManager).disableScrolling()
                             }
                             else if(viewType == 3){
-                                spacesMainToolbar.visibility = View.GONE
+                                viewBinding.spacesMainToolbar.visibility = View.GONE
                             }
                             else{
-                                spacesMainToolbar.visibility = View.VISIBLE
-                                (societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
+                                viewBinding.spacesMainToolbar.visibility = View.VISIBLE
+                                (viewBinding.societyRecycler.layoutManager as NoScrollLinearLayoutManager).enableScrolling()
                             }
                         }
                     }
@@ -279,28 +264,25 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                     commentingSection.show(parentFragmentManager, "commentingSection")
                 }
 
-                loaderView.setVisibility(View.GONE)
-                societyRecycler.setVisibility(View.VISIBLE)
-                met_match_root.visibility = View.GONE
+                viewBinding.loaderView.setVisibility(View.GONE)
+                viewBinding.societyRecycler.setVisibility(View.VISIBLE)
                // societyRecycler.layoutManager = unScrollableLayoutManager
 
-                societyRecycler.adapter = homeMainAdapter
+                viewBinding.societyRecycler.adapter = homeMainAdapter
 
                 homeMainAdapter!!.setDatingProfileListener {
-                    societyRecycler.isNestedScrollingEnabled = true
+                    viewBinding.societyRecycler.isNestedScrollingEnabled = true
                 }
                 homeMainAdapter!!.setPostListener {
-                    societyRecycler.isNestedScrollingEnabled = false
+                    viewBinding.societyRecycler.isNestedScrollingEnabled = false
 
                 }
                 homeMainAdapter!!.setDatingProfileListener {
 
                 }
                 homeMainAdapter!!.setProfileMatchedListener{
-                    loaderView.setVisibility(View.GONE)
-                    societyRecycler.setVisibility(View.GONE)
-                    met_match_root.setVisibility(View.VISIBLE)
-                    error_layout_root.setVisibility(View.GONE)
+                    viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.societyRecycler.setVisibility(View.GONE)
                 }
                 /*  loaderView.setVisibility(View.GONE)
                   activity_main_main_view.setVisibility(View.VISIBLE)
@@ -333,9 +315,9 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                         requireContext(),
                         societyModelArrayList
                     )
-                societyRecycler.setVisibility(View.VISIBLE)
-                societyRecycler.layoutManager = NoScrollLinearLayoutManager(context)
-                societyRecycler.adapter = homeMainAdapter
+                viewBinding.societyRecycler.setVisibility(View.VISIBLE)
+                viewBinding.societyRecycler.layoutManager = NoScrollLinearLayoutManager(context)
+                viewBinding.societyRecycler.adapter = homeMainAdapter
 
                 homeMainAdapter?.setVisitProfileListener {
                     visitProfileListener?.invoke()
@@ -352,17 +334,14 @@ class SpacesMainFragment(private var visitProfileListener: Function0<Unit>? = nu
                     commentingSection.show(parentFragmentManager, "commentingSection")
                 }
 
-                loaderView.setVisibility(View.GONE)
-                met_match_root.visibility = View.GONE
+                viewBinding.loaderView.setVisibility(View.GONE)
 
                 homeMainAdapter!!.setDatingProfileListener {
 
                 }
                 homeMainAdapter!!.setProfileMatchedListener{
-                    loaderView.setVisibility(View.GONE)
-                    societyRecycler.setVisibility(View.GONE)
-                    met_match_root.setVisibility(View.VISIBLE)
-                    error_layout_root.setVisibility(View.GONE)
+                    viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.societyRecycler.setVisibility(View.GONE)
                 }
 
             }
