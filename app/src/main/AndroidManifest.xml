@@ -79,10 +79,6 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Counselling"
-            android:screenOrientation="portrait"
-            android:theme="@style/Light_Status_Bar" />
-        <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait"
             android:exported="true">

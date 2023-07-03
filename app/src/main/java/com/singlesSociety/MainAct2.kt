@@ -13,6 +13,7 @@ import com.singlesSociety.UiModels.BottomNav
 import com.singlesSociety.fragments.*
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.singlesSociety.databinding.ActivityMainV2Binding
+import com.ss.widgets.SSProfileBottomSheetDialog
 
 
 private const val ID_HOME = 0
@@ -140,7 +141,7 @@ class MainAct2 : AppCompatActivity() {
                    loadFragment(ChatFragment())
                }
               ID_ACCOUNT -> {
-                   loadFragment(UserProfileFragment())
+                   loadFragment(SSProfileBottomSheetDialog())
               }
             }
         }

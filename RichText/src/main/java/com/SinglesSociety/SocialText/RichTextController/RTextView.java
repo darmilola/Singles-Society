@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.SinglesSociety.SocialText.R;
 import com.SinglesSociety.SocialText.RichTextController.api.format.RTFormat;
 import com.SinglesSociety.SocialText.RichTextController.api.format.RTText;
 import com.SinglesSociety.SocialText.RichTextController.converter.tagsoup.util.StringEscapeUtils;

@@ -39,6 +39,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.SinglesSociety.SocialText.R;
 import com.SinglesSociety.SocialText.RichTextController.api.format.RTEditable;
 import com.SinglesSociety.SocialText.RichTextController.api.format.RTFormat;
 import com.SinglesSociety.SocialText.RichTextController.api.format.RTHtml;

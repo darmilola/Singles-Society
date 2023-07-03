@@ -29,7 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 
-
+import com.SinglesSociety.SocialText.R;
 import com.SinglesSociety.SocialText.RichTextController.utils.Helper;
 import com.SinglesSociety.SocialText.RichTextController.utils.validator.EmailValidator;
 import com.SinglesSociety.SocialText.RichTextController.utils.validator.UrlValidator;

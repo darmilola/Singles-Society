@@ -33,6 +33,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.SinglesSociety.SocialText.R;
 import com.SinglesSociety.SocialText.RichTextController.effects.Effects;
 import com.SinglesSociety.SocialText.RichTextController.fonts.FontManager;
 import com.SinglesSociety.SocialText.RichTextController.fonts.RTTypeface;
