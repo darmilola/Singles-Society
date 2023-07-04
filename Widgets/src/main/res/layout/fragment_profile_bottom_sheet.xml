@@ -112,6 +112,8 @@
                     android:id="@+id/petsChipGroup"
                     app:singleSelection="true"
                     android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -196,8 +198,14 @@
                         android:textColor="@color/chip_text_color"
                         android:text="Second Categ"/>
 
-
                 </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+
 
             </LinearLayout>
 
