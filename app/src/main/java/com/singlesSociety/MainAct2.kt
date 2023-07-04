@@ -147,12 +147,13 @@ class MainAct2 : AppCompatActivity() {
         }
 
         viewBinding.notificationIcon.setOnClickListener {
-            viewBinding.bottomNavigation.onClickedListener(BottomNav.Model(
+           /* viewBinding.bottomNavigation.onClickedListener(BottomNav.Model(
                 ID_NOTIFICATION,
                 R.drawable.ring_icon,
                 "Notification"
             ))
-            loadFragment(NotificationFragment())
+            loadFragment(NotificationFragment())*/
+            startActivity(Intent(this, CompleteProfile::class.java))
         }
 
 

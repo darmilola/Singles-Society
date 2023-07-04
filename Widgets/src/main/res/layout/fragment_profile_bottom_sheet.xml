@@ -2,13 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="3dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
+
 
 
         <LinearLayout
@@ -209,7 +209,830 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="How often do you workout?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="How often do you Drink?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Smoking?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What is your Religion?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What is your Language?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What is your Marriage Goal?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What is your Gender?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:tint="@color/light_text_color"
+                        android:src="@drawable/ic_iconfinder_settings"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What is your Education level?"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/new_dark_text_color"
+                        android:fontFamily="@font/avenirbold"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingVertical="-4dp"
+                    app:chipSpacingHorizontal="7dp"
+                    app:selectionRequired="true"
+                    app:checkedChip="@id/followed">
+
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="First Category"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Okay"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Category"/>
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Firstategory"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        app:textStartPadding="10dp"
+                        app:textEndPadding="10dp"
+                        android:textColor="@color/chip_text_color"
+                        android:text="Second Categ"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E6E5E5"
+                    android:layout_marginTop="15dp"/>
+            </LinearLayout>
+
+
+
+
+
         </LinearLayout>
-    </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.cardview.widget.CardView>
