@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.singlesSociety.UiModels.BottomNav
 import com.singlesSociety.fragments.*
@@ -78,13 +79,13 @@ class MainAct2 : AppCompatActivity() {
                             "Account"
                     )
             )
-            add(
+          /*  add(
                 BottomNav.Model(
                     ID_NOTIFICATION,
                     R.drawable.ring_icon,
                     "Notification"
                 )
-            )
+            )*/
         }?.show(ID_HOME)
         loadFragment(HomeFragment(visitProfileListener = {
             loadFragment(VisitProfileFragment( visitProfileExitListener = {
@@ -98,6 +99,7 @@ class MainAct2 : AppCompatActivity() {
         viewBinding.bottomNavigation.setOnClickMenuListener {
             when(it.id){
                 ID_HOME -> {
+                    displayTopBarActionButton(true, false)
                     loadFragment(HomeFragment(visitProfileListener = {
                         loadFragment(VisitProfileFragment( visitProfileExitListener = {
 
@@ -108,6 +110,7 @@ class MainAct2 : AppCompatActivity() {
                 }
                 ID_CREATE -> startActivity(Intent(this,CreatePostActivity::class.java))
                 ID_EXPLORE ->{
+                  displayTopBarActionButton(true, false)
                    loadFragment(TrendingFragment(
                        enterSpaceListener = {
                            adjustLayoutParams(true, true, true)
@@ -138,9 +141,11 @@ class MainAct2 : AppCompatActivity() {
                    ))
                }
                ID_MESSAGE -> {
+                   displayTopBarActionButton(false, false)
                    loadFragment(ChatFragment())
                }
               ID_ACCOUNT -> {
+                  displayTopBarActionButton(true, true)
                    loadFragment(UserProfileFragment())
               }
             }
@@ -159,6 +164,31 @@ class MainAct2 : AppCompatActivity() {
 
 
 
+    }
+
+    private fun displayTopBarActionButton(value: Boolean = false, isUserProfileFragment: Boolean = false){
+        viewBinding.notificationIcon.isVisible = value
+        viewBinding.searchEverywhere.isVisible = value
+
+        if(isUserProfileFragment){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.settings_icon,applicationContext.theme))
+                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.adjust_icon,applicationContext.theme))
+            } else {
+                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.settings_icon))
+                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.adjust_icon))
+            }
+
+        }
+        else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.ring_icon,applicationContext.theme))
+                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.search_icon,applicationContext.theme))
+            } else {
+                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.ring_icon))
+                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.search_icon))
+            }
+        }
     }
 
     private fun adjustLayoutParams(adjustView: Boolean, adjustToolbar: Boolean = false, adjustBottombar: Boolean = false){
@@ -187,7 +217,7 @@ class MainAct2 : AppCompatActivity() {
             viewBinding.bottomNavigation.callListenerWhenIsSelected = true
             viewBinding.notificationIcon.setImageResource(R.drawable.notification_clicked_icon)
         }
-        else{
+        else if(fragment !is UserProfileFragment){
             viewBinding.bottomNavigation.callListenerWhenIsSelected = false
             viewBinding.notificationIcon.setImageResource(R.drawable.ring_icon)
         }

@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/videosRecyclerView"
     app:spanCount="3"
+    android:background="@color/white"
     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
     tools:context=".fragments.ImageLibraryFragment">
 

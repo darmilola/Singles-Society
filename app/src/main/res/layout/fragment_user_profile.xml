@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/special_activity_background"
+    android:background="@color/white"
     tools:context=".fragments.UserProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,13 +16,13 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/special_activity_background"
+            android:background="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="@color/special_activity_background">
+            app:contentScrim="@color/white">
           <androidx.appcompat.widget.Toolbar
               app:layout_collapseMode="pin"
               android:layout_width="match_parent"
-              android:layout_height="70dp"/>
+              android:layout_height="50dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,10 +40,10 @@
                 android:layout_width="match_parent"
                 android:layout_gravity="bottom"
                 app:contentInsetStart="0dp"
-                android:background="@color/special_activity_background"
+                android:background="@color/white"
                 app:contentInsetEnd="0dp"
                 android:elevation="0dp"
-                android:layout_height="70dp"
+                android:layout_height="50dp"
                 app:layout_collapseMode="pin" >
 
              <com.singlesSociety.UiModels.BottomNav
@@ -59,7 +59,7 @@
                     app:ss_defaultIconColor="#838282"
                     app:ss_iconTextColor="#838282"
                     app:ss_rippleColor="#2f424242"
-                    android:background="@color/special_activity_background"
+                    android:background="@color/white"
                     app:ss_iconTextSize="14sp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
@@ -77,8 +77,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/special_activity_background"
-        android:backgroundTint="@color/special_activity_background"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
       <LinearLayout

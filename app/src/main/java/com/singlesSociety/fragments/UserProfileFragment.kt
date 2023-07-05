@@ -17,7 +17,7 @@ import com.singlesSociety.databinding.FragmentUserProfileBinding
 private const val ID_IMAGE_LIBRARY = 9
 private const val ID_VIDEO_LIBRARY = 6
 private const val ID_BOOKMARKS = 7
-private const val ID_DATING_PROFILE = 8
+private const val ID_TEXT_LIBRARY = 8
 class UserProfileFragment : Fragment() {
 
 
@@ -35,9 +35,6 @@ class UserProfileFragment : Fragment() {
 
         initView()
 
-        viewBinding.profileInfoArena.logOutCta.setOnClickListener {
-            logOut()
-        }
     }
 
     private fun initView() {
@@ -47,28 +44,21 @@ class UserProfileFragment : Fragment() {
             add(
                 BottomNav.Model(
                      ID_IMAGE_LIBRARY,
-                    R.drawable.pictures,
+                    R.drawable.photos_icon,
                     "ImageLibrary"
                 )
             )
             add(
                 BottomNav.Model(
                      ID_VIDEO_LIBRARY,
-                    R.drawable.play_circle_icon,
+                    R.drawable.play_right_icon,
                     "videoLibrary"
                 )
             )
             add(
                 BottomNav.Model(
-                     ID_BOOKMARKS,
-                    R.drawable.bookmark,
-                    "Bookmarks"
-                )
-            )
-            add(
-                BottomNav.Model(
-                    ID_DATING_PROFILE,
-                    R.drawable.dating_smartphone_man_icon,
+                    ID_TEXT_LIBRARY,
+                    R.drawable.write_icon,
                     "datingProfile"
                 )
             )
@@ -86,8 +76,8 @@ class UserProfileFragment : Fragment() {
                  ID_BOOKMARKS -> {
                     loadFragment(BookMarksFragment())
                 }
-                 ID_DATING_PROFILE -> {
-                    loadFragment(DatingProfileFragment())
+                 ID_TEXT_LIBRARY -> {
+                    loadFragment(TextLibraryFragment())
                 }
             }
         }
