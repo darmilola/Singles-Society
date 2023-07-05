@@ -61,7 +61,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Lifestyle"
+                android:text="Basics"
                 android:textColor="@color/new_dark_text_color"
                 android:fontFamily="@font/avenirbold"
                 android:textSize="23sp"/>
@@ -87,13 +87,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/cute_feline_kitten_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -220,13 +221,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/exercise_training_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -322,13 +325,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/cocktail_party_leisure_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -423,13 +428,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/pipe_puff_smoke_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -526,13 +533,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/christian_church_religion_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -628,13 +637,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/language_line_icon_logos_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -730,13 +741,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/target_arrow_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -833,13 +846,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/man_woman_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -936,13 +951,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="5dp"
                         android:tint="@color/light_text_color"
-                        android:src="@drawable/ic_iconfinder_settings"/>
+                        android:src="@drawable/academy_college_icon"/>
 
                     <TextView
                         android:layout_width="match_parent"

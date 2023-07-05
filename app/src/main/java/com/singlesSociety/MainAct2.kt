@@ -141,7 +141,7 @@ class MainAct2 : AppCompatActivity() {
                    loadFragment(ChatFragment())
                }
               ID_ACCOUNT -> {
-                   loadFragment(SSProfileBottomSheetDialog())
+                   loadFragment(UserProfileFragment())
               }
             }
         }
@@ -179,34 +179,6 @@ class MainAct2 : AppCompatActivity() {
         viewBinding.fragmentContainer.layoutParams = params
 
     }
-
-   /* private fun adjustLayoutParamsForCreateSpace(adjust: Boolean){
-        val params: ViewGroup.MarginLayoutParams = fragmentContainer.layoutParams as ViewGroup.MarginLayoutParams
-        if(adjust){
-            params.topMargin = 0
-            params.bottomMargin = 0
-            mainActivityToolbar.visibility = View.GONE
-            bottomNavigation.visibility = View.GONE
-            window.statusBarColor = resources.getColor(R.color.pink)
-            window.navigationBarColor = resources.getColor(R.color.new_pink)
-            notificationIcon.visibility = View.GONE
-            window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-        }
-        else{
-            window.statusBarColor = resources.getColor(R.color.special_activity_background)
-            window.navigationBarColor = resources.getColor(R.color.special_activity_background)
-            mainActivityToolbar.visibility = View.VISIBLE
-            bottomNavigation.visibility = View.VISIBLE
-            notificationIcon.visibility = View.VISIBLE
-            params.topMargin = LayoutUtils().convertDpToPixel(55, context = this).toInt()
-            params.bottomMargin = LayoutUtils().convertDpToPixel(55, context = this).toInt()
-            clearLightStatusBar(activity = this)
-        }
-        fragmentContainer.layoutParams = params
-
-    }*/
-
 
 
 
