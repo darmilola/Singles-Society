@@ -9,7 +9,7 @@
     android:background="@color/white">
 
 
-    <include layout="@layout/user_profile_image_layout_design"/>
+    <include layout="@layout/user_profile_image_layout_design" android:id="@+id/profileInfoImageArena"/>
 
     <TextView
         android:layout_width="match_parent"

@@ -11,7 +11,6 @@
         android:layout_gravity="center"
         app:cpb_roundedCorner="true"
         android:elevation="2dp"
-
         app:cpb_foregroundProgressWidth="12"
         app:cpb_backgroundProgressColor="#C6C4C4"
         app:cpb_foregroundProgressColor="@color/new_pink"
@@ -33,12 +32,13 @@
     <LinearLayout
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
         android:elevation="5dp"
         android:layout_gravity="top|right"
         android:gravity="center"
         app:cardElevation="0dp"
+        android:id="@+id/profileInfoEditProfile"
         android:backgroundTint="@color/white"
         android:background="@drawable/filled_circle"
         app:cardCornerRadius="70dp">

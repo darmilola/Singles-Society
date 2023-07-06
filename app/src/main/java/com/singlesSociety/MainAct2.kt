@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.singlesSociety.UiModels.BottomNav
 import com.singlesSociety.fragments.*
 import com.facebook.drawee.backends.pipeline.Fresco
+import com.pchmn.materialchips.R2
 import com.singlesSociety.databinding.ActivityMainV2Binding
 import com.ss.widgets.SSProfileBottomSheetDialog
 
@@ -79,13 +80,13 @@ class MainAct2 : AppCompatActivity() {
                             "Account"
                     )
             )
-          /*  add(
+            add(
                 BottomNav.Model(
                     ID_NOTIFICATION,
                     R.drawable.ring_icon,
                     "Notification"
                 )
-            )*/
+            )
         }?.show(ID_HOME)
         loadFragment(HomeFragment(visitProfileListener = {
             loadFragment(VisitProfileFragment( visitProfileExitListener = {
@@ -152,13 +153,28 @@ class MainAct2 : AppCompatActivity() {
         }
 
         viewBinding.notificationIcon.setOnClickListener {
-           /* viewBinding.bottomNavigation.onClickedListener(BottomNav.Model(
-                ID_NOTIFICATION,
-                R.drawable.ring_icon,
-                "Notification"
-            ))
-            loadFragment(NotificationFragment())*/
-            startActivity(Intent(this, CompleteProfile::class.java))
+
+            if(it.id == R.id.fl){
+                startActivity(Intent(this, SettingsActivity::class.java))
+            }
+            else{
+
+                viewBinding.bottomNavigation.onClickedListener(BottomNav.Model(
+                    ID_NOTIFICATION,
+                    R.drawable.ring_icon,
+                    "Notification"
+                ))
+                viewBinding.bottomNavigation.show(ID_NOTIFICATION)
+                loadFragment(NotificationFragment())
+
+            }
+
+        }
+
+        viewBinding.searchEverywhere.setOnClickListener {
+               if(it.id == R.id.fl){
+                   startActivity(Intent(this, PreferencesActivity::class.java))
+               }
         }
 
 
@@ -171,23 +187,17 @@ class MainAct2 : AppCompatActivity() {
         viewBinding.searchEverywhere.isVisible = value
 
         if(isUserProfileFragment){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.settings_icon,applicationContext.theme))
-                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.adjust_icon,applicationContext.theme))
-            } else {
-                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.settings_icon))
-                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.adjust_icon))
-            }
+            viewBinding.searchEverywhere.id = R.id.fl
+            viewBinding.notificationIcon.id = R.id.fl
+            viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.settings_icon,applicationContext.theme))
+            viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.adjust_icon,applicationContext.theme))
 
         }
         else{
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.ring_icon,applicationContext.theme))
-                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.search_icon,applicationContext.theme))
-            } else {
-                viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.ring_icon))
-                viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.search_icon))
-            }
+            viewBinding.searchEverywhere.id = R.id.tv_count
+            viewBinding.notificationIcon.id = R.id.tv_count
+            viewBinding.notificationIcon.setImageDrawable(resources.getDrawable(R.drawable.ring_icon,applicationContext.theme))
+            viewBinding.searchEverywhere.setImageDrawable(resources.getDrawable(R.drawable.search_icon,applicationContext.theme))
         }
     }
 

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
-    android:background="@color/special_activity_background"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,7 +22,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/profileplaceholder"/>
+                android:src="@drawable/woman_official"/>
 
         </LinearLayout>
         <LinearLayout
@@ -33,11 +33,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|left|top"
-                android:textSize="16sp"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
                 android:textColor="@color/dark_text_color"
-                android:lineSpacingExtra="2dp"
-                android:fontFamily="@font/nunitoreg"
+                android:fontFamily="@font/manropesemibold"
                 android:text="Is simply dummy text of the printing and typesetting industry"/>
 
             <LinearLayout
@@ -48,28 +47,28 @@
                 android:layout_marginTop="5dp">
 
                 <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    app:tint="@color/new_pink"
-                    android:layout_marginBottom="2dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/like"/>
+                    android:tint="@color/pink"
+                    android:src="@drawable/love_favorites_icon"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="15sp"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/light_text_color"
-                    android:lineSpacingExtra="2dp"
-                    android:fontFamily="@font/nunitoreg"
-                    android:text="16 Hours Ago"/>
+                    android:textSize="15sp"
+                    android:gravity="center|left"
+                    android:lineSpacingExtra="4dp"
+                    android:text="16 hours Ago"
+                    android:fontFamily="@font/manropesemibold"/>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/lighter_text_color"/>
 
 

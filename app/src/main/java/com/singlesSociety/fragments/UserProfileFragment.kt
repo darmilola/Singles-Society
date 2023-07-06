@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.singlesSociety.CompleteProfile
 import com.singlesSociety.NewWelcome
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.BottomNav
@@ -25,7 +26,7 @@ class UserProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewBinding = FragmentUserProfileBinding.inflate(layoutInflater)
         return viewBinding.root
     }
@@ -39,26 +40,30 @@ class UserProfileFragment : Fragment() {
 
     private fun initView() {
 
-        viewBinding.userProfileNavigation?.apply {
+        viewBinding.profileInfoArena.profileInfoImageArena.profileInfoEditProfile.setOnClickListener {
+            startActivity(Intent(requireContext(),CompleteProfile::class.java))
+        }
+
+        viewBinding.userProfileNavigation.apply {
 
             add(
                 BottomNav.Model(
-                     ID_IMAGE_LIBRARY,
-                    R.drawable.photos_icon,
+                    ID_IMAGE_LIBRARY,
+                    R.drawable.picture_icon,
                     "ImageLibrary"
                 )
             )
             add(
                 BottomNav.Model(
-                     ID_VIDEO_LIBRARY,
-                    R.drawable.play_right_icon,
+                    ID_VIDEO_LIBRARY,
+                    R.drawable.social_video_icon,
                     "videoLibrary"
                 )
             )
             add(
                 BottomNav.Model(
                     ID_TEXT_LIBRARY,
-                    R.drawable.write_icon,
+                    R.drawable.text_icon,
                     "datingProfile"
                 )
             )
