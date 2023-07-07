@@ -56,7 +56,7 @@ class CommunityPostTypeTextAttachmentAdapter(private val attachmentList: ArrayLi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == ATTACHMENT_TYPE_IMAGE) {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.post_text_image_attachment, parent, false)
+                .inflate(R.layout.post_text_image_attachment_v2, parent, false)
             return AttachmentPictureItemViewHolder(view)
         }
         if (viewType == ATTACHMENT_TYPE_LINK) {

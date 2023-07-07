@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/woman_gb"/>
+            android:src="@drawable/african_american_business_woman_by_window"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

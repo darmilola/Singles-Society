@@ -44,8 +44,7 @@ class TextLibraryAdapter(private val postList: ArrayList<NonMediaPostModel>,priv
             val attachmentModel3 = CommunityPostTypeTextAttachmentModel(3)
             val attachmentModels = java.util.ArrayList<CommunityPostTypeTextAttachmentModel>()
             attachmentModels.add(attachmentModel)
-            attachmentModels.add(attachmentModel2)
-            attachmentModels.add(attachmentModel3)
+
             commentCount = ItemView.findViewById(R.id.commentCount)
             commentLayout = ItemView.findViewById(R.id.commentLayout)
             attachmentView.adapter =

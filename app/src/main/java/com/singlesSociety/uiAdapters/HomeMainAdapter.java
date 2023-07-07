@@ -156,7 +156,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         else if(viewType == TYPE_TEXT){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_text, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_text_v2, parent, false);
             return new TextPostItemViewHolder(view);
         }
 
@@ -377,6 +377,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             ArrayList<CommunityPostTypeTextAttachmentModel> attachmentModels = new ArrayList<>();
             attachmentModels.add(attachmentModel);
+            attachmentModels.add(attachmentModel);
+            attachmentModels.add(attachmentModel);
             attachmentModels.add(attachmentModel2);
             attachmentModels.add(attachmentModel3);
             commentCount = ItemView.findViewById(R.id.commentCount);
@@ -396,6 +398,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
 
+            attachmentView.setHasFixedSize(true);
             attachmentView.setAdapter(new CommunityPostTypeTextAttachmentAdapter(attachmentModels,context));
 
 

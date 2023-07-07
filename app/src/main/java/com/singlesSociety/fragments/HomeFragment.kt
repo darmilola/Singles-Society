@@ -56,7 +56,6 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
     }
 
     private fun initView() {
-        PagerSnapHelper().attachToRecyclerView(viewBinding.societyRecycler)
         val size = ArrayList<Size>()
         size.add(LARGE)
         size.add(MEDIUM)
