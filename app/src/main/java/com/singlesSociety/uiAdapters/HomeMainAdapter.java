@@ -391,12 +391,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
 
-            commentCount.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    addACommentClickListener.invoke();
-                }
-            });
+
 
             attachmentView.setHasFixedSize(true);
             attachmentView.setAdapter(new CommunityPostTypeTextAttachmentAdapter(attachmentModels,context));

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/special_activity_background"
     tools:context=".MainActivityV2">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,7 +15,7 @@
         android:layout_gravity="top"
         app:contentInsetRight="0dp"
         app:contentInsetLeft="0dp"
-        android:background="@color/white"
+        android:background="@color/special_activity_background"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/mainActivityToolbar">
         <LinearLayout
@@ -113,12 +113,12 @@
         app:ss_waveHeight="1"
         app:layout_constraintTop_toBottomOf="@id/fragmentContainer"
         app:ss_countBackgroundColor="#FA4375"
-        app:ss_countTextColor="#ffffff"
+        app:ss_countTextColor="@color/special_activity_background"
         app:ss_defaultIconColor="#333131"
         app:layout_constraintBottom_toBottomOf="parent"
         app:ss_iconTextColor="#7C7B7B"
         app:ss_rippleColor="#2f424242"
-        android:background="@color/white"
+        android:background="@color/special_activity_background"
         app:ss_iconTextSize="14sp"
         app:ss_selectedIconColor="#FA4375"
         app:ss_selectedIconTextColor="#FA4375"

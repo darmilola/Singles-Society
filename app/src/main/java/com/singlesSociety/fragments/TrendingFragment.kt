@@ -58,32 +58,17 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
 
 
 
-        viewBinding.exploreForYouChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            if (checkedId == R.id.followed){
-                populateForYouPosts()
-            }
-            else{
-                populateForYouEvents()
-                setHeightToXPercentage(requireActivity(),viewBinding.forYouRoot, -0.08)
-                Toast.makeText(context,group.checkedChipId.toString(),Toast.LENGTH_SHORT).show()
-                viewBinding.exploreForYouRecyclerView.requestLayout()
-            }
-
-        }
-
         viewBinding.exploreDiscoverChipGroup.setOnCheckedChangeListener { group, checkedId ->
             if (checkedId == R.id.followed){
                 populateDiscoverPosts()
             }
             else{
                 populateDiscoverEvents()
-                setHeightToXPercentage(requireActivity(),viewBinding.forYouDiscoverRoot, -0.08)
-                Toast.makeText(context,group.checkedChipId.toString(),Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun populatePopularHashtags(){
+ /*   private fun populatePopularHashtags(){
         val popularHashtagModel1 = PopularHashtagModel("",true)
         val popularHashtagModel2 = PopularHashtagModel("",true)
         val popularHashtagModel3 = PopularHashtagModel("",false)
@@ -98,15 +83,12 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         hashtagList.add(popularHashtagModel6)
 
         hashtagAdapter = HashtagAdapter(hashtagList)
-        viewBinding.explorePopularHashtagRecyclerView.adapter = hashtagAdapter
-
-    }
+    }*/
 
     private fun populateView(){
         var itemList = ArrayList<ExploreItem>()
         populateForYouPosts()
         populateDiscoverPosts()
-        populatePopularHashtags()
         populateEvents()
         for (i in 0..3) {
             itemList.add(ExploreItem())
@@ -125,26 +107,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     }
 
 
-    private fun setHeightToXPercentage(activity: Activity, view: View, fraction: Double) {
-        val metrics = DisplayMetrics()
-        activity.windowManager.defaultDisplay.getMetrics(metrics)
-        val maxHeight = metrics.heightPixels - (metrics.heightPixels * fraction).toInt()
-
-        val layoutParams = view.layoutParams
-        if(fraction < 0) {
-             layoutParams.height = LayoutParams.WRAP_CONTENT
-        }
-        else{
-             layoutParams.height = maxHeight
-        }
-        layoutParams.width = LayoutParams.MATCH_PARENT
-        view.layoutParams = layoutParams
-        view.requestLayout()
-    }
-
     private fun populateForYouPosts(){
-        viewBinding.forYouIndicator.visibility  = View.VISIBLE
-        setHeightToXPercentage(requireActivity(),viewBinding.forYouRoot, 0.07)
         var societyModelArrayList = ArrayList<SocietyModel>()
             val communityPostModel = CommunityPostModel()
             val societyModel1 =
@@ -160,22 +123,6 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
                 requireContext(),
                 societyModelArrayList
             )
-
-        viewBinding.exploreForYouRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
-            RecyclerView.HORIZONTAL,false)
-        viewBinding.exploreForYouRecyclerView.adapter = homeMainAdapter
-        viewBinding.exploreForYouRecyclerView.requestLayout()
-         if (snapHelper != null){
-
-         }
-        else{
-             snapHelper =  PagerSnapHelper()
-             (snapHelper as PagerSnapHelper).attachToRecyclerView(viewBinding.exploreForYouRecyclerView)
-             viewBinding.forYouIndicator.attachToRecyclerView(viewBinding.exploreForYouRecyclerView,
-                 snapHelper as PagerSnapHelper
-             )
-             homeMainAdapter.registerAdapterDataObserver(viewBinding.forYouIndicator.adapterDataObserver);
-        }
 
         homeMainAdapter?.setVisitProfileListener {
             visitProfileListener?.invoke()
@@ -195,16 +142,14 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
 
 
     private fun populateDiscoverPosts(){
-        viewBinding.forYouDiscoverIndicator.visibility  = View.VISIBLE
-        setHeightToXPercentage(requireActivity(),viewBinding.forYouDiscoverRoot, 0.07)
         var societyModelArrayList = ArrayList<SocietyModel>()
         val communityPostModel = CommunityPostModel()
         val societyModel1 =
-            SocietyModel(communityPostModel, 1)
+            SocietyModel(communityPostModel, 4)
         societyModelArrayList.add(societyModel1);
-        societyModelArrayList.add(SocietyModel(communityPostModel, 2));
-        societyModelArrayList.add(SocietyModel(communityPostModel, 1));
-        societyModelArrayList.add(SocietyModel(communityPostModel, 1));
+        societyModelArrayList.add(SocietyModel(communityPostModel, 4));
+        societyModelArrayList.add(SocietyModel(communityPostModel, 4));
+        societyModelArrayList.add(SocietyModel(communityPostModel, 4));
 
 
         val homeMainAdapter =
@@ -214,19 +159,9 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
             )
 
         viewBinding.exploreDiscoverRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
-            RecyclerView.HORIZONTAL,false)
+            RecyclerView.VERTICAL,false)
         viewBinding.exploreDiscoverRecyclerView.adapter = homeMainAdapter
-        if (discoverSnapHelper != null){
 
-        }
-        else{
-            discoverSnapHelper =  PagerSnapHelper()
-            (discoverSnapHelper as PagerSnapHelper).attachToRecyclerView(viewBinding.exploreDiscoverRecyclerView)
-            viewBinding.forYouDiscoverIndicator.attachToRecyclerView(viewBinding.exploreDiscoverRecyclerView,
-                discoverSnapHelper as PagerSnapHelper
-            )
-            homeMainAdapter.registerAdapterDataObserver(viewBinding.forYouDiscoverIndicator.adapterDataObserver);
-        }
 
         homeMainAdapter?.setVisitProfileListener {
             visitProfileListener?.invoke()
@@ -245,27 +180,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
 
 
 
-    private fun populateForYouEvents(){
-        viewBinding.forYouIndicator.visibility  = View.GONE
-        var itemList = ArrayList<ExploreItem>()
-        for (i in 0..5) {
-            itemList.add(ExploreItem())
-        }
-        itemAdapter = ExploreCommunityAdapter(
-            itemList,
-            requireContext()
-        )
-        viewBinding.exploreForYouRecyclerView.visibility = View.GONE
-        viewBinding.exploreForYouRecyclerView.adapter = ExploreLiveAdapter(itemList, visitEventListener = {
-            visitEventListener?.invoke()
-        })
-        viewBinding.exploreForYouRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
-        viewBinding.exploreForYouRecyclerView.visibility = View.VISIBLE
-    }
-
-
     private fun populateDiscoverEvents(){
-        viewBinding.forYouDiscoverIndicator.visibility  = View.GONE
         var itemList = ArrayList<ExploreItem>()
         for (i in 0..5) {
             itemList.add(ExploreItem())
@@ -290,10 +205,6 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
             itemList,
             requireContext()
         )
-        viewBinding.exploreForYouEventsRecyclerView.visibility = View.GONE
-        viewBinding.exploreForYouEventsRecyclerView.adapter = ExploreLiveAdapter(itemList)
-        viewBinding.exploreForYouEventsRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
-        viewBinding.exploreForYouEventsRecyclerView.visibility = View.VISIBLE
     }
 
 

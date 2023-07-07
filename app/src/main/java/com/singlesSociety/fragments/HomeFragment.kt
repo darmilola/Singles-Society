@@ -112,12 +112,12 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
             mainActivityModel2.setShowcaseInfoReadyListener(object : ShowcaseInfoReadyListener {
                 override fun onReady(previewProfileModels: ArrayList<PreviewProfileModel>, likeIds: ArrayList<String>) {
                     Log.e("onReady: "," Ready" )
-                    for (i in 0..2) {
+                   /* for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
                         val societyModel1 =
                             SocietyModel(communityPostModel, 1)
                         societyModelArrayList.add(societyModel1);
-                    }
+                    }*/
 
                     for (i in 0..2) {
                         val societyModel1 =
@@ -125,10 +125,10 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         societyModelArrayList.add(societyModel1);
                     }
 
-                    for (i in 0..2) {
+                  /*  for (i in 0..2) {
                         val societyModel1 = SocietyModel(2)
                         societyModelArrayList.add(societyModel1);
-                    }
+                    }*/
                     val moreProfiles: ArrayList<PreviewProfileModel> = ArrayList()
 
                     for(profile in previewProfileModels){
@@ -140,11 +140,6 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     val societyModelShowcase =  SocietyModel(moreProfiles,likeIds,0)
 
                     societyModelArrayList.add(societyModelShowcase)
-
-                    for (i in 0..1) {
-                        val societyModel1 = SocietyModel(2)
-                        societyModelArrayList.add(societyModel1);
-                    }
 
 
                     homeMainAdapter =

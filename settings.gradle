@@ -1,5 +1,4 @@
 include ':app'
 rootProject.name='SinglesSociety'
 include ':RichText'
-include ':SSSeekBar'
 include ':Widgets'
