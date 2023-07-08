@@ -39,7 +39,7 @@
         android:gravity="center"
         app:cardElevation="0dp"
         android:id="@+id/profileInfoEditProfile"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/special_activity_background"
         android:background="@drawable/filled_circle"
         app:cardCornerRadius="70dp">
         <ImageView
@@ -61,7 +61,7 @@
         android:textAllCaps="true"
         android:text="Complete Profile"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/special_activity_background"
         android:textSize="12sp"
         android:fontFamily="@font/manropeextrabold"
         android:background="@drawable/filled_circle"

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center|top"
     android:paddingBottom="10dp"
-    android:background="@color/white">
+    android:background="@color/special_activity_background">
 
 
     <include layout="@layout/user_profile_image_layout_design" android:id="@+id/profileInfoImageArena"/>

@@ -3,14 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F4F4F4">
+    android:background="#E8E7E7">
 
-    <com.singlesSociety.UiModels.Utils.BlurLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbarArena"
-        android:background="@drawable/chat_ui_tool_background">
+        android:backgroundTint="@color/white"
+        android:background="@color/white">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -133,15 +134,13 @@
 
         </LinearLayout>
         </LinearLayout>
-    </com.singlesSociety.UiModels.Utils.BlurLayout>
+    </LinearLayout>
 
 
     <com.singlesSociety.ChatKit.messages.MessagesList
         android:id="@+id/messagesList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="67dp"
-        android:layout_marginBottom="92dp"
+        android:layout_height="0dp"
         app:outcomingTextColor="@color/white"
         app:outcomingDefaultBubbleColor="#FA4375"
         app:layout_constraintTop_toBottomOf="@id/toolbarArena"
@@ -161,7 +160,7 @@
         android:minHeight="75dp"
         android:id="@+id/createArena"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/chatkit_ui_create_background">
+        android:background="@color/white">
 
         <com.singlesSociety.ChatKit.messages.MessageInput
             android:id="@+id/input"

@@ -51,10 +51,8 @@ class SocietySwipeActivity : AppCompatActivity() {
         viewBinding.showCaseStackLayout.showcaseCardStackView.setLayoutManager(manager)
         val userProfileToPreview: ArrayList<PreviewProfileModel> = intent.getParcelableArrayListExtra<Parcelable>("userProfileToPreview") as ArrayList<PreviewProfileModel>
         val userLikedList: ArrayList<String> = intent.getStringArrayListExtra("userLikedList") as ArrayList<String>
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val imageTransitionName: String? = intent.extras?.getString("transitionName")
-            viewBinding.rootView.setTransitionName(imageTransitionName)
-        }
+        val imageTransitionName: String? = intent.extras?.getString("transitionName")
+        viewBinding.rootView.setTransitionName(imageTransitionName)
         val userProfileInPreview = arrayOf("")
 
         val cardStackAdapter = CardStackAdapter(userProfileToPreview, userLikedList, this)

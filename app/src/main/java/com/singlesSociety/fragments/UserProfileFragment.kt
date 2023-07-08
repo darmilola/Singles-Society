@@ -15,10 +15,10 @@ import com.singlesSociety.databinding.FragmentUserProfileBinding
 
 
 
-private const val ID_IMAGE_LIBRARY = 9
-private const val ID_VIDEO_LIBRARY = 6
-private const val ID_BOOKMARKS = 7
+
 private const val ID_TEXT_LIBRARY = 8
+private const val ID_STARRED_PROFILE = 9
+private const val ID_PERSONAL_PROFILE = 10
 class UserProfileFragment : Fragment() {
 
 
@@ -46,50 +46,45 @@ class UserProfileFragment : Fragment() {
 
         viewBinding.userProfileNavigation.apply {
 
-        /*    add(
-                BottomNav.Model(
-                    ID_IMAGE_LIBRARY,
-                    R.drawable.picture_icon,
-                    "ImageLibrary"
-                )
-            )
-            add(
-                BottomNav.Model(
-                    ID_VIDEO_LIBRARY,
-                    R.drawable.social_video_icon,
-                    "videoLibrary"
-                )
-            )*/
             add(
                 BottomNav.Model(
                     ID_TEXT_LIBRARY,
                     R.drawable.text_icon,
-                    "datingProfile"
+                    "TEXT"
                 )
             )
-        }?.show(ID_TEXT_LIBRARY)
+            add(
+                BottomNav.Model(
+                    ID_STARRED_PROFILE,
+                    R.drawable.star_favourite_icon,
+                    "STARRED"
+                )
+            )
+            add(
+                BottomNav.Model(
+                    ID_PERSONAL_PROFILE,
+                    R.drawable.love,
+                    "USER"
+                )
+            )
+        }.show(ID_TEXT_LIBRARY)
         loadFragment(TextLibraryFragment())
 
         viewBinding.userProfileNavigation.setOnClickMenuListener {
             when (it.id) {
-                ID_IMAGE_LIBRARY -> {
-                    loadFragment(ImageLibraryFragment())
-                }
-                 ID_VIDEO_LIBRARY -> {
-                    loadFragment(VideoLibraryFragment())
-                }
-                 ID_BOOKMARKS -> {
-                    loadFragment(BookMarksFragment())
-                }
-                 ID_TEXT_LIBRARY -> {
+                ID_TEXT_LIBRARY -> {
                     loadFragment(TextLibraryFragment())
+                }
+                ID_PERSONAL_PROFILE -> {
+                    loadFragment(DatingProfileFragment())
+                }
+                ID_STARRED_PROFILE -> {
+                    loadFragment(DatingProfileFragment())
                 }
             }
         }
 
     }
-
-
 
     private fun loadFragment(fragment: Fragment){
         val transaction = parentFragmentManager.beginTransaction()

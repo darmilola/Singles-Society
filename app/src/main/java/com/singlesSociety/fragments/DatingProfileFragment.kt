@@ -41,7 +41,6 @@ class DatingProfileFragment : Fragment(){
                 previewProfileModel: PreviewProfileModel,
                 likeIds: ArrayList<String>
             ) {
-                viewBinding.loaderView.visibility = View.GONE
                 viewBinding.rootView.visibility = View.VISIBLE
                 val showCaseModelArrayList = ArrayList<ShowCaseModel>()
                 val mainStrings = ArrayList<String>()

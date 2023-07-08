@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_gravity="bottom"
                 app:contentInsetStart="0dp"
-                android:background="@color/white"
+                android:background="@color/special_activity_background"
                 app:contentInsetEnd="0dp"
                 android:elevation="0dp"
                 android:layout_height="50dp"
@@ -55,11 +55,11 @@
                     app:ss_circleColor="#FA4375"
                     app:ss_waveHeight="1"
                     app:ss_countBackgroundColor="#FA4375"
-                    app:ss_countTextColor="#ffffff"
+                    app:ss_countTextColor="@color/special_activity_background"
                     app:ss_defaultIconColor="#838282"
                     app:ss_iconTextColor="#838282"
                     app:ss_rippleColor="#2f424242"
-                    android:background="@color/white"
+                    android:background="@color/special_activity_background"
                     app:ss_iconTextSize="14sp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
@@ -77,8 +77,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
+        android:background="@color/special_activity_background"
+        android:backgroundTint="@color/special_activity_background"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
       <LinearLayout
