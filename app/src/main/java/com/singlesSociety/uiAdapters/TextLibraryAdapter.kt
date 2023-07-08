@@ -17,7 +17,7 @@ class TextLibraryAdapter(private val postList: ArrayList<NonMediaPostModel>,priv
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextPostItemViewHolder {
         val view2: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.community_post_type_text, parent, false)
+            .inflate(R.layout.community_post_type_text_v2, parent, false)
         return TextPostItemViewHolder(view2)
     }
 
@@ -26,16 +26,15 @@ class TextLibraryAdapter(private val postList: ArrayList<NonMediaPostModel>,priv
     }
 
     override fun onBindViewHolder(holder: TextPostItemViewHolder, position: Int) {
-        holder.commentLayout.setOnClickListener { addACommentClickListener?.invoke() }
-        holder.commentCount.setOnClickListener { addACommentClickListener?.invoke() }
+       /* holder.commentLayout.setOnClickListener { addACommentClickListener?.invoke() }
+        holder.commentCount.setOnClickListener { addACommentClickListener?.invoke() }*/
     }
 
 
 
     class TextPostItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         var attachmentView: PlayableItemsRecyclerView
-        var commentLayout: LinearLayout
-        var commentCount: TextView
+
 
         init {
             attachmentView = ItemView.findViewById(R.id.postAttachmentRecyclerView)
@@ -45,8 +44,6 @@ class TextLibraryAdapter(private val postList: ArrayList<NonMediaPostModel>,priv
             val attachmentModels = java.util.ArrayList<CommunityPostTypeTextAttachmentModel>()
             attachmentModels.add(attachmentModel)
 
-            commentCount = ItemView.findViewById(R.id.commentCount)
-            commentLayout = ItemView.findViewById(R.id.commentLayout)
             attachmentView.adapter =
                 CommunityPostTypeTextAttachmentAdapter(attachmentModels, ItemView.context)
         }

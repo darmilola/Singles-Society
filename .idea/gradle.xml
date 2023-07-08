@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/RichText" />
+            <option value="$PROJECT_DIR$/StoriesView" />
             <option value="$PROJECT_DIR$/Widgets" />
             <option value="$PROJECT_DIR$/app" />
           </set>

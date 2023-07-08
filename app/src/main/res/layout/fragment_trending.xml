@@ -36,18 +36,27 @@
                     android:layout_marginRight="7dp"
                     app:cardElevation="0dp"
                     android:layout_marginTop="10dp"
-                    app:cardBackgroundColor="#FA4375">
+                    app:cardBackgroundColor="@color/special_activity_background">
 
-                    <com.mindinventory.AutoScrollCircularPagerView
+               <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/exploreHeader"
-                        android:orientation="horizontal"
-                        app:auto_scroll_delay="5000"
-                        app:dot_margin="20dp"
-                        app:selected_dot_color="#FA4375"
-                        app:unselected_dot_color="@color/light_text_color"
-                        app:dot_gravity="bottom"/>
+                        android:layout_height="match_parent">
+
+                   <jp.shts.android.SSStoriesView.StoriesProgressView
+                       android:id="@+id/stories"
+                       android:layout_width="match_parent"
+                       android:layout_height="3dp"
+                       android:layout_gravity="top"
+                       android:elevation="2dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/exploreHeader"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+                    </FrameLayout>
 
                 </androidx.cardview.widget.CardView>
 

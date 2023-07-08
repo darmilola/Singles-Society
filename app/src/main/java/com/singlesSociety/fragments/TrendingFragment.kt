@@ -1,13 +1,12 @@
 package com.singlesSociety.fragments
 
-import android.app.ActionBar.LayoutParams
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,13 +14,20 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.singlesSociety.R
-import com.singlesSociety.UiModels.*
+import com.singlesSociety.UiModels.CommunityPostModel
+import com.singlesSociety.UiModels.ExploreItem
+import com.singlesSociety.UiModels.PopularHashtagModel
+import com.singlesSociety.UiModels.SocietyModel
 import com.singlesSociety.databinding.FragmentTrendingBinding
-import com.singlesSociety.databinding.TrendingHashtagsBinding
-import com.singlesSociety.uiAdapters.*
+import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
+import com.singlesSociety.uiAdapters.ExploreLiveAdapter
+import com.singlesSociety.uiAdapters.HashtagAdapter
+import com.singlesSociety.uiAdapters.HomeMainAdapter
+import com.singlesSociety.uiAdapters.TrendingHeaderAdapter
+import jp.shts.android.SSStoriesView.StoriesProgressView
 
 
-class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null, private var visitProfileListener: Function0<Unit>? = null, private var visitEventListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener {
+class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null, private var visitProfileListener: Function0<Unit>? = null, private var visitEventListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener, StoriesProgressView.StoriesListener {
 
     private var itemList: ArrayList<ExploreItem>  = arrayListOf()
     private var hashtagList: ArrayList<PopularHashtagModel>  = arrayListOf()
@@ -31,14 +37,20 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     private var snapHelper: SnapHelper? = null
     private var discoverSnapHelper: SnapHelper? = null
     private lateinit var viewBinding: FragmentTrendingBinding
+    private lateinit var manager: LinearLayoutManager
+   /* private val smoothScroller: RecyclerView.SmoothScroller = object : LinearSmoothScroller(context) {
+        override fun getVerticalSnapPreference(): Int {
+            return SNAP_TO_START
+        }
+    }*/
 
     private val images = ArrayList<Int>().apply {
+        add(R.drawable.woman_official)
         add(R.drawable.asian_lady)
-        add(R.drawable.asian_lady)
-        add(R.drawable.asian_lady)
+        add(R.drawable.african_american_woman)
     }
 
-    private val headerAdapter by lazy { TrendingHeaderAdapter() }
+    private val headerAdapter by lazy { TrendingHeaderAdapter(images) }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -85,6 +97,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         hashtagAdapter = HashtagAdapter(hashtagList)
     }*/
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun populateView(){
         var itemList = ArrayList<ExploreItem>()
         populateForYouPosts()
@@ -100,9 +113,42 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         itemAdapter.setSpacesClickedListener {
             enterSpaceListener?.invoke()
         }
+        viewBinding.exploreHeader.adapter = headerAdapter
 
-        viewBinding.exploreHeader.setAdapter(headerAdapter)
-        viewBinding.exploreHeader.setItems(images)
+        PagerSnapHelper().attachToRecyclerView(viewBinding.exploreHeader)
+
+
+        viewBinding.stories.setStoriesCount(images.size)
+        viewBinding.stories.setStoryDuration(6000L)
+        viewBinding.stories.setStoriesListener(this)
+        viewBinding.stories.startStories()
+
+
+        manager =  viewBinding.exploreHeader.layoutManager as LinearLayoutManager
+
+
+        viewBinding.exploreHeader.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    val position = manager.findFirstCompletelyVisibleItemPosition()
+                    if (position >= 0)viewBinding.stories.restartStories(position)
+                }
+                else if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
+                    viewBinding.stories.pause()
+                }
+            }
+        })
+
+        viewBinding.exploreHeader.setOnTouchListener(OnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                viewBinding.stories.resume()
+            } else if (event.action == MotionEvent.ACTION_DOWN) {
+                viewBinding.stories.pause()
+            }
+            false
+        })
 
     }
 
@@ -211,6 +257,22 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
 
     override fun onProfileVisit() {
         visitProfileListener?.invoke()
+    }
+
+    override fun onNext(position: Int) {
+        manager.smoothScrollToPosition(viewBinding.exploreHeader,null,position)
+       // viewBinding.exploreHeader.scrollToPosition(position)
+    }
+
+    override fun onPrev(position: Int) {
+        manager.smoothScrollToPosition(viewBinding.exploreHeader,null,position)
+       // viewBinding.exploreHeader.scrollToPosition(position)
+    }
+
+    override fun onComplete() {
+        viewBinding.stories.restartStories()
+        manager.smoothScrollToPosition(viewBinding.exploreHeader,null,0)
+        //viewBinding.exploreHeader.scrollToPosition(0)
     }
 
 }

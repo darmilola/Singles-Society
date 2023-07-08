@@ -46,7 +46,7 @@ class UserProfileFragment : Fragment() {
 
         viewBinding.userProfileNavigation.apply {
 
-            add(
+        /*    add(
                 BottomNav.Model(
                     ID_IMAGE_LIBRARY,
                     R.drawable.picture_icon,
@@ -59,7 +59,7 @@ class UserProfileFragment : Fragment() {
                     R.drawable.social_video_icon,
                     "videoLibrary"
                 )
-            )
+            )*/
             add(
                 BottomNav.Model(
                     ID_TEXT_LIBRARY,
@@ -67,8 +67,8 @@ class UserProfileFragment : Fragment() {
                     "datingProfile"
                 )
             )
-        }?.show(ID_IMAGE_LIBRARY)
-        loadFragment(ImageLibraryFragment())
+        }?.show(ID_TEXT_LIBRARY)
+        loadFragment(TextLibraryFragment())
 
         viewBinding.userProfileNavigation.setOnClickMenuListener {
             when (it.id) {

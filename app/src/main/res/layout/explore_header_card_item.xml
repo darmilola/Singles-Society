@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:id="@+id/headerView"
-        android:src="@drawable/header"/>
+        android:src="@drawable/african_american_woman"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"

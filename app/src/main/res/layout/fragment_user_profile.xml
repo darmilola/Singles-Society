@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@color/special_activity_background"
     tools:context=".fragments.UserProfileFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,9 +16,9 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/special_activity_background"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="@color/white">
+            app:contentScrim="@color/special_activity_background">
           <androidx.appcompat.widget.Toolbar
               app:layout_collapseMode="pin"
               android:layout_width="match_parent"
