@@ -97,8 +97,6 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Function0<Unit> exitSpaceListener;
     private Function0<Unit> datingProfileListener;
 
-    private Function0<Unit> onReadyToMoveUpListener;
-    private Function0<Unit> onReadyToGoDownListener;
 
     private Function0<Unit> addACommentClickListener;
     private Function0<Unit> postListener;
@@ -124,14 +122,6 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setAddACommentClickListener(Function0<Unit> addACommentClickListener) {
         this.addACommentClickListener = addACommentClickListener;
-    }
-
-    public void setOnReadyToGoDownListener(Function0<Unit> onReadyToGoDownListener) {
-        this.onReadyToGoDownListener = onReadyToGoDownListener;
-    }
-
-    public void setOnReadyToMoveUpListener(Function0<Unit> onReadyToMoveUpListener) {
-        this.onReadyToMoveUpListener = onReadyToMoveUpListener;
     }
 
     public void setProfileEmptyListener(Function0<Unit> profileEmptyListener) {

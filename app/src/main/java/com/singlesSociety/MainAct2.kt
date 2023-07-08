@@ -95,7 +95,7 @@ class MainAct2 : AppCompatActivity() {
 
             }))
         }))
-        viewBinding.bottomNavigation?.setCount(ID_MESSAGE,"25")
+        viewBinding.bottomNavigation.setCount(ID_MESSAGE,"25")
 
         viewBinding.bottomNavigation.setOnClickMenuListener {
             when(it.id){

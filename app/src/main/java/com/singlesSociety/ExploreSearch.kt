@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.singlesSociety.uiAdapters.ExploreSearchAdapter
+import com.singlesSociety.uiAdapters.ExploreSpacesAdapter
 import com.singlesSociety.UiModels.ExploreItem
 import com.singlesSociety.databinding.ActivityExploreSearchBinding
 
@@ -13,7 +13,7 @@ class ExploreSearch : AppCompatActivity() {
 
 
     private var itemList: ArrayList<ExploreItem>  = arrayListOf()
-    private lateinit var itemAdapter: ExploreSearchAdapter
+    private lateinit var itemAdapter: ExploreSpacesAdapter
     private lateinit var viewBinding: ActivityExploreSearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class ExploreSearch : AppCompatActivity() {
         for (i in 0..50) {
             itemList.add(ExploreItem())
         }
-        itemAdapter = ExploreSearchAdapter(itemList,this)
+        itemAdapter = ExploreSpacesAdapter(itemList,this)
         viewBinding.exploreSearchRecyclerView.adapter = itemAdapter
     }
 

@@ -12,7 +12,7 @@ import com.singlesSociety.Spaces
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.ExploreItem
 
-class ExploreSearchAdapter(val exploreItems: ArrayList<ExploreItem>?, val context: Context?): RecyclerView.Adapter<ExploreSearchAdapter.ItemViewholder>() {
+class ExploreSpacesAdapter(val exploreItems: ArrayList<ExploreItem>?, val context: Context?): RecyclerView.Adapter<ExploreSpacesAdapter.ItemViewholder>() {
 
 
     override fun onCreateViewHolder(
