@@ -24,7 +24,7 @@ import com.singlesSociety.uiAdapters.ExploreLiveAdapter
 import com.singlesSociety.uiAdapters.HashtagAdapter
 import com.singlesSociety.uiAdapters.HomeMainAdapter
 import com.singlesSociety.uiAdapters.TrendingHeaderAdapter
-import jp.shts.android.SSStoriesView.StoriesProgressView
+import com.ss.storiesview.StoriesProgressView
 
 
 class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null, private var visitProfileListener: Function0<Unit>? = null, private var visitEventListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener, StoriesProgressView.StoriesListener {
@@ -272,7 +272,6 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     override fun onComplete() {
         viewBinding.stories.restartStories()
         manager.smoothScrollToPosition(viewBinding.exploreHeader,null,0)
-        //viewBinding.exploreHeader.scrollToPosition(0)
     }
 
 }
