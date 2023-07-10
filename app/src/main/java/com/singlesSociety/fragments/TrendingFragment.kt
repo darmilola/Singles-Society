@@ -72,22 +72,22 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
 
 
         viewBinding.exploreDiscoverChipGroup.setOnCheckedChangeListener { group, checkedId ->
-            if (checkedId == R.id.followed){
-
-
-                populateDiscoverPosts()
-            }
-            else if(checkedId == R.id.hashtag){
-                Log.e("mTag", "onViewCreated: 1")
-                populateDiscoverPosts()
-            }
-            else if(checkedId == R.id.spaces){
-                Log.e("mTag", "onViewCreated: 1")
-                populateCommunity()
-            }
-            else{
-                Log.e("mTag", "onViewCreated: 2")
-                populateCommunity()
+            when (checkedId) {
+                R.id.followed -> {
+                    populateDiscoverPosts()
+                }
+                R.id.hashtag -> {
+                    Log.e("mTag", "onViewCreated: 1")
+                    populateDiscoverEvents()
+                }
+                R.id.spaces -> {
+                    Log.e("mTag", "onViewCreated: 1")
+                    populateCommunity()
+                }
+                else -> {
+                    Log.e("mTag", "onViewCreated: 2")
+                    populateCommunity()
+                }
             }
         }
     }
