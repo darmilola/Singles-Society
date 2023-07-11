@@ -125,7 +125,6 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         itemAdapter.setSpacesClickedListener {
             enterSpaceListener?.invoke()
         }
-        viewBinding.exploreDiscoverRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -210,10 +209,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
             itemList.add(ExploreItem())
         }
 
-        viewBinding.exploreDiscoverRecyclerView.adapter = ExploreLiveAdapter(itemList, visitEventListener = {
-            visitEventListener?.invoke()
-        })
-        viewBinding.exploreDiscoverRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
+        viewBinding.exploreDiscoverRecyclerView.adapter = ExploreLiveAdapter(requireContext(),itemList)
     }
 
 

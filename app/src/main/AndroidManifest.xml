@@ -31,6 +31,9 @@
             android:name=".LiveEventActivity"
             android:exported="false" />
         <activity
+            android:name=".EventLandingPage"
+            android:exported="false" />
+        <activity
             android:name=".CreatePostActivity"
             android:exported="false" />
         <activity

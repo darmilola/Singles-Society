@@ -13,9 +13,7 @@ import androidx.fragment.app.Fragment
 import com.singlesSociety.UiModels.BottomNav
 import com.singlesSociety.fragments.*
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.pchmn.materialchips.R2
 import com.singlesSociety.databinding.ActivityMainV2Binding
-import com.ss.widgets.SSProfileBottomSheetDialog
 
 
 private const val ID_HOME = 0
@@ -132,11 +130,7 @@ class MainAct2 : AppCompatActivity() {
                            }))
                        },
                        visitEventListener = {
-                           adjustLayoutParams(true, true, true)
-                           loadFragment(EventLandingPageFragment( eventLandingExitListener = {
-                               adjustLayoutParams(false)
-                               supportFragmentManager.popBackStack()
-                           }))
+
                        }
 
                    ))

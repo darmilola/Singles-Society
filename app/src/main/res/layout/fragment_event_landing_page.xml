@@ -1,348 +1,347 @@
 <?xml version="1.0" encoding="utf-8"?>
- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:tools="http://schemas.android.com/tools"
      android:layout_width="match_parent"
      android:layout_height="match_parent"
+     android:background="@color/special_activity_background"
      xmlns:app="http://schemas.android.com/apk/res-auto"
-     tools:context=".fragments.EventLandingPageFragment">
-    <LinearLayout
+     tools:context=".EventLandingPage">
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        android:weightSum="6">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:elevation="1dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                app:tint="@color/white"
-                android:id="@+id/backButton"
-                android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/pokemon"
-                android:scaleType="centerCrop"/>
-
-        </FrameLayout>
+        android:paddingBottom="20dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:layout_weight="4"
-            android:layout_margin="10dp">
+            android:layout_height="match_parent"
+            android:elevation="2dp"
+            android:background="@drawable/mblack_gradient"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/new_dark_text_color"
-                android:fontFamily="@font/manropeextrabold"
-                android:gravity="left|center"
-                android:text="Sunday service topic, overthinking analogies, I need to know the meaning of that"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/asian_lady"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:weightSum="3">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:weightSum="6">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center|left"
-                    android:layout_weight="0.6">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:tint="@color/lighter_text_color"
-                        android:src="@drawable/calendar_date_event_reminder_icon"/>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="5.4">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/new_dark_text_color"
-                        android:fontFamily="@font/manropesemibold"
-                        android:gravity="left|center"
-                        android:text="Sunday July 31st 2022"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/light_text_color"
-                        android:fontFamily="@font/manropesemibold"
-                        android:gravity="left|center"
-                        android:text="9:00 AM - 10:00 AM"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/light_text_color"
-                        android:fontFamily="@font/manropesemibold"
-                        android:gravity="left|center"
-                        android:text="150 People Attending This Event"/>
-
-
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@drawable/iconfinder_chevron_left_4781844"
+                    android:layout_height="30dp"
+                    android:padding="6dp"
+                    android:id="@+id/eventLandingExit"
+                    app:tint="@color/dark_text_color"
+                    android:background="@drawable/filled_full_circle"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginLeft="10dp" />
 
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#2CB9B9B9"
-                android:background="@drawable/filled_radii_background"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:weightSum="6">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center|left"
-                    android:layout_weight="0.6">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        app:tint="@color/lighter_text_color"
-                        android:src="@drawable/microphone_song_icon"/>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="5.4">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/new_dark_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="Sun Yi"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="@color/light_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="Host"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/new_dark_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="Ji Sung park"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="@color/light_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="Guest"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/new_dark_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="Park Ji Sung"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="@color/light_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="Guest"/>
-                    </LinearLayout>
-
-
-
-                </LinearLayout>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
             </LinearLayout>
-
-
-
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:weightSum="6">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center|left"
-                    android:layout_weight="0.6">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        app:tint="@color/lighter_text_color"
-                        android:src="@drawable/money_icon"/>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="5.4">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="@color/new_dark_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="Paid Event"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:textColor="@color/light_text_color"
-                            android:fontFamily="@font/manropesemibold"
-                            android:gravity="left|center"
-                            android:text="$15"/>
-                    </LinearLayout>
-
-
-
-                </LinearLayout>
-
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@drawable/ic_iconfinder_63_menu"
+                    android:layout_height="30dp"
+                    android:padding="6dp"
+                    android:rotation="90"
+                    app:tint="@color/dark_text_color"
+                    android:background="@drawable/filled_full_circle"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginLeft="10dp" />
             </LinearLayout>
+        </LinearLayout>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:weightSum="6">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center|left"
-                    android:layout_weight="0.6">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        app:tint="@color/lighter_text_color"
-                        android:src="@drawable/external_link_icon"/>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="5.4">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/new_dark_text_color"
-                        android:fontFamily="@font/manropesemibold"
-                        android:gravity="left|center"
-                        android:text="Invite Friends"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@color/special_activity_background"
+            android:layout_marginBottom="-25dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="25dp"
-                android:gravity="center"
-                android:id="@+id/eventGetPass"
-                android:background="@drawable/filled_radii_background">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="15dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="New Arrival Upgrade your setup now, you can put your event title here"
+                    android:gravity="center|left|bottom"
                     android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/manropesemibold"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/eventTitle"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toTopOf="@id/eventCreator"
+                    android:fontFamily="@font/manropeextrabold"
+                    android:maxLines="4"
+                    android:ellipsize="end"
+                    android:textColor="@color/dark_text_color"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            app:tint="@color/light_text_color"
+                            android:layout_marginRight="1dp"
+                            android:src="@drawable/schedule_event_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nov 10 2022"
+                            android:fontFamily="@font/manropesemibold"
+                            android:textColor="@color/light_text_color"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            app:tint="@color/light_text_color"
+                            android:layout_marginRight="1dp"
+                            android:src="@drawable/time_ui_icon"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="08: 00 pm"
+                            android:fontFamily="@font/manropesemibold"
+                            android:textColor="@color/light_text_color"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center|left">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:tint="@color/light_text_color"
+                        android:layout_marginRight="1dp"
+                        android:src="@drawable/location_pointer_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="317 Adelaide St W Unit 800, Toronto, ON M5V 1P9, Canada"
+                        android:fontFamily="@font/manropesemibold"
+                        android:textColor="@color/light_text_color"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center|left"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/white"
+                        android:src="@drawable/enthusiastic"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginLeft="-8dp"
+                        android:layout_gravity="center|left"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/white"
+                        android:src="@drawable/young_man"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="-8dp"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center|left"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/white"
+                        android:src="@drawable/business_woman"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center|left"
+                        app:civ_border_width="2dp"
+                        android:layout_marginLeft="-8dp"
+                        app:civ_border_color="@color/white"
+                        android:src="@drawable/woman_official"/>
+                    <LinearLayout
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:backgroundTint="@color/white"
+                        android:background="@drawable/filled_full_circle"
+                        android:gravity="center"
+                        android:layout_marginLeft="-10dp">
+
+                        <TextView
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="11sp"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/manropesemibold"
+                            android:backgroundTint="@color/new_pink"
+                            android:text="+56"
+                            android:background="@drawable/filled_full_circle"
+                            android:src="@drawable/woman_official"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
                     android:gravity="center"
-                    android:text="Get Pass"/>
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginLeft="-10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="27dp"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="13sp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/new_pink"
+                        android:fontFamily="@font/manropeextrabold"
+                        android:backgroundTint="@color/new_pink"
+                        android:text="Buy Ticket"
+                        android:src="@drawable/woman_official"/>
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:tint="@color/new_pink"
+                        android:src="@drawable/chevron_right_arrow_icon"/>
+
+                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="About Event"
+                    android:gravity="center|left|bottom"
+                    android:textSize="14sp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toTopOf="@id/eventCreator"
+                    android:fontFamily="@font/manropeextrabold"
+                    android:maxLines="4"
+                    android:ellipsize="end"
+                    android:textColor="@color/dark_text_color"/>
+
+
+                <com.SinglesSociety.SocialText.RichTextController.RTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/postTextView"
+                    android:background="@color/transparent"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manropemedium"
+                    android:textColor="#303030"
+                    android:text="The implosionhether the vehicle itself  defended the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="Join Event"
+                    android:gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/joinEvent"
+                    android:textColor="@color/pink"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/manropemedium"
+                    android:textSize="14sp"
+                    android:background="@drawable/pink_outline_circle"/>
             </LinearLayout>
 
 
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-</ScrollView>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</LinearLayout>
