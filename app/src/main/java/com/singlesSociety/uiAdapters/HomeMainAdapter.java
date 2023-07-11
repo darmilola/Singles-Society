@@ -35,6 +35,7 @@ import com.singlesSociety.Arvi.widget.SwipeableMethod;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 
+import com.singlesSociety.EventLandingPage;
 import com.singlesSociety.OnSwipeTouchListener;
 import com.singlesSociety.R;
 import com.singlesSociety.SocietySwipeActivity;
@@ -81,13 +82,14 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Context context;
     private ArrayList<SocietyModel> societyModelArrayList;
     private static int TYPE_MAIN = 0;
-    private static int TYPE_VIDEO = 1;
 
     private static int TYPE_IMAGE = 2;
 
     private static int TYPE_HEADER = 3;
 
     private static int TYPE_TEXT = 4;
+
+    private static int TYPE_EVENT = 5;
 
 
     private Function0<Unit> visitProfileListener;
@@ -144,16 +146,17 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.showcase_stack_layout, parent, false);
             return new ShowcaseItemViewHolder(view);
         }
+       else if(viewType == TYPE_EVENT){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_live, parent, false);
+            return new EventItemViewholder(view);
+        }
 
         else if(viewType == TYPE_TEXT){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_text_v2, parent, false);
             return new TextPostItemViewHolder(view);
         }
 
-        else if(viewType == TYPE_VIDEO){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_video, parent, false);
-            return new CommunityPostItemTypeVideoViewHolder(parent, view);
-        }
+
         else if(viewType == TYPE_IMAGE){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_image, parent, false);
             return new ShowcaseImageItemViewHolder(view);
@@ -298,7 +301,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ((ShowcaseItemViewHolder) holder).showcaseCardStackRecyclerview.requestLayout();
 
         }
-       else if(societyModelArrayList.get(position).getItemViewType() == TYPE_VIDEO){
+     /*  else if(societyModelArrayList.get(position).getItemViewType() == TYPE_VIDEO){
                CommunityPostItemTypeVideoViewHolder communityPostItemTypeVideoViewHolder = (CommunityPostItemTypeVideoViewHolder) holder;
             postListener.invoke();
             communityPostItemTypeVideoViewHolder.setUrl("https://joy1.videvo.net/videvo_files/video/free/2016-12/large_watermarked/Code_flythough_loop_01_Videvo_preview.mp4");
@@ -308,7 +311,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     .setOldController((communityPostItemTypeVideoViewHolder).thumbnail.getController()).build();
             (communityPostItemTypeVideoViewHolder).thumbnail.setController(controller);
             communityPostItemTypeVideoViewHolder.onStoppedState();
-       }
+       }*/
        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
             postListener.invoke();
              ShowcaseImageItemViewHolder showcaseImageItemViewHolder = (ShowcaseImageItemViewHolder) holder;
@@ -341,6 +344,20 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onClick(View view) {
                     exitSpaceListener.invoke();
+                }
+            });
+
+        }
+    }
+
+
+    public class EventItemViewholder extends RecyclerView.ViewHolder{
+        public EventItemViewholder(View ItemView){
+            super(ItemView);
+            ItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    context.startActivity(new Intent(context, EventLandingPage.class));
                 }
             });
 
@@ -540,9 +557,6 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(societyModelArrayList.get(position).getItemViewType() == TYPE_MAIN){
             return TYPE_MAIN;
         }
-        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_VIDEO){
-            return TYPE_VIDEO;
-        }
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_IMAGE){
             return TYPE_IMAGE;
         }
@@ -552,8 +566,11 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_TEXT){
             return TYPE_TEXT;
         }
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_EVENT){
+            return TYPE_EVENT;
+        }
         else{
-            return TYPE_VIDEO;
+            return TYPE_TEXT;
         }
 
 

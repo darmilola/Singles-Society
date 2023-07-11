@@ -110,9 +110,12 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
             val mainActivityModel2 = MainActivityModel(requireContext())
             mainActivityModel2.GetShowUserInfo()
             mainActivityModel2.setShowcaseInfoReadyListener(object : ShowcaseInfoReadyListener {
-                override fun onReady(previewProfileModels: ArrayList<PreviewProfileModel>, likeIds: ArrayList<String>) {
-                    Log.e("onReady: "," Ready" )
-                   /* for (i in 0..2) {
+                override fun onReady(
+                    previewProfileModels: ArrayList<PreviewProfileModel>,
+                    likeIds: ArrayList<String>
+                ) {
+                    Log.e("onReady: ", " Ready")
+                    /* for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
                         val societyModel1 =
                             SocietyModel(communityPostModel, 1)
@@ -123,21 +126,22 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         val societyModel1 =
                             SocietyModel(4)
                         societyModelArrayList.add(societyModel1);
+                        societyModelArrayList.add(SocietyModel(5))
                     }
 
-                  /*  for (i in 0..2) {
+                    /*  for (i in 0..2) {
                         val societyModel1 = SocietyModel(2)
                         societyModelArrayList.add(societyModel1);
                     }*/
                     val moreProfiles: ArrayList<PreviewProfileModel> = ArrayList()
 
-                    for(profile in previewProfileModels){
+                    for (profile in previewProfileModels) {
                         moreProfiles.add(profile)
                         moreProfiles.add(profile)
                         moreProfiles.add(profile)
                         moreProfiles.add(profile)
                     }
-                    val societyModelShowcase =  SocietyModel(moreProfiles,likeIds,0)
+                    val societyModelShowcase = SocietyModel(moreProfiles, likeIds, 0)
 
                     societyModelArrayList.add(societyModelShowcase)
 
@@ -154,13 +158,14 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
 
                     viewBinding.loaderView.setVisibility(View.GONE)
                     viewBinding.societyRecycler.setVisibility(View.VISIBLE)
-                    viewBinding.societyRecycler.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+                    viewBinding.societyRecycler.layoutManager =
+                        LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
                     viewBinding.societyRecycler.adapter = homeMainAdapter
 
 
                     homeMainAdapter!!.setDatingProfileListener {
-                        Toast.makeText(context,"date",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "date", Toast.LENGTH_SHORT).show()
                         //societyRecycler.layoutManager = scrollableLayoutManager
 
                     }
@@ -177,11 +182,11 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     }
 
                     homeMainAdapter!!.setPostListener {
-                        Toast.makeText(context,"post",Toast.LENGTH_SHORT).show()
-                       // societyRecycler.layoutManager = scrollableLayoutManager
+                        Toast.makeText(context, "post", Toast.LENGTH_SHORT).show()
+                        // societyRecycler.layoutManager = scrollableLayoutManager
 
                     }
-                    homeMainAdapter!!.setProfileMatchedListener{
+                    homeMainAdapter!!.setProfileMatchedListener {
                         viewBinding.loaderView.setVisibility(View.GONE)
                         viewBinding.societyRecycler.setVisibility(View.GONE)
                         viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
@@ -189,14 +194,16 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     }
 
 
-                    viewBinding.societyRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    viewBinding.societyRecycler.addOnScrollListener(object :
+                        RecyclerView.OnScrollListener() {
                         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                            lastPosition = (viewBinding.societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                            if (lastPosition != RecyclerView.NO_POSITION){
-                               val viewType =  societyModelArrayList.get(lastPosition).itemViewType
-                                if (viewType == 0){
-                                 //   societyRecycler.layoutManager = unScrollableLayoutManager
-                                   // societyRecycler.scrollToPosition(lastPosition)
+                            lastPosition =
+                                (viewBinding.societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                            if (lastPosition != RecyclerView.NO_POSITION) {
+                                val viewType = societyModelArrayList.get(lastPosition).itemViewType
+                                if (viewType == 0) {
+                                    //   societyRecycler.layoutManager = unScrollableLayoutManager
+                                    // societyRecycler.scrollToPosition(lastPosition)
                                 }
                             }
                         }
@@ -206,28 +213,12 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
 
 
                 override fun onError(message: String) {
-                    Log.e("onError: ",message)
+                    Log.e("onError: ", message)
                     for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
-                        val societyModel1 =
-                            SocietyModel(communityPostModel, 1)
-                        societyModelArrayList.add(societyModel1);
+                        societyModelArrayList.add(SocietyModel(5))
                     }
 
-                    for (i in 0..2) {
-                        val societyModel1 =
-                            SocietyModel(4)
-                        societyModelArrayList.add(societyModel1);
-                    }
-
-                    for (i in 0..2) {
-                        val societyModel1 = SocietyModel(2)
-                        societyModelArrayList.add(societyModel1);
-                    }
-                    for (i in 0..1) {
-                        val societyModel1 = SocietyModel(2)
-                        societyModelArrayList.add(societyModel1);
-                    }
 
                     societyModelArrayList.shuffle(Random(50))
 
@@ -266,51 +257,37 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     homeMainAdapter!!.setDatingProfileListener {
 
                     }
-                    homeMainAdapter!!.setProfileMatchedListener{
+                    homeMainAdapter!!.setProfileMatchedListener {
                         viewBinding.loaderView.setVisibility(View.GONE)
                         viewBinding.societyRecycler.setVisibility(View.GONE)
                         viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
                     }
-                  /*  loaderView.setVisibility(View.GONE)
+                    /*  loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     met_match_root.setVisibility(View.GONE)
                     error_layout_root.setVisibility(View.VISIBLE*/
                 }
 
                 override fun onEmptyResponse() {
-                    Log.e("onEmpty: "," Ready" )
-
-                    for (i in 0..4) {
+                    for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
                         val societyModel1 =
-                            SocietyModel(communityPostModel, 1)
+                            SocietyModel(communityPostModel, 4)
+                        societyModelArrayList.add(SocietyModel(5))
                         societyModelArrayList.add(societyModel1);
                     }
 
-                    for (i in 0..4) {
-                        val societyModel1 = SocietyModel(2)
-                        societyModelArrayList.add(societyModel1);
-                    }
 
-                    // val societyModelShowcase =  SocietyModel(previewProfileModels,likeIds,0)
-
-                    //societyModelArrayList.add(societyModelShowcase)
-                    //societyModelArrayList.shuffle(Random(50))
+                    societyModelArrayList.shuffle(Random(50))
 
                     homeMainAdapter =
                         HomeMainAdapter(
                             requireContext(),
                             societyModelArrayList
                         )
-                    viewBinding.societyRecycler.setVisibility(View.VISIBLE)
-                    viewBinding.societyRecycler.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
-                    viewBinding.societyRecycler.adapter = homeMainAdapter
 
                     homeMainAdapter?.setVisitProfileListener {
                         visitProfileListener?.invoke()
-                    }
-                    homeMainAdapter!!.setDatingProfileListener {
-
                     }
                     homeMainAdapter!!.setPostListener {
 
@@ -322,21 +299,35 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     }
 
                     viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.societyRecycler.setVisibility(View.VISIBLE)
                     viewBinding.konfettiView.metMatchRoot.visibility = View.GONE
+                    viewBinding.societyRecycler.layoutManager = unScrollableLayoutManager
 
+                    viewBinding.societyRecycler.adapter = homeMainAdapter
+
+                    homeMainAdapter!!.setDatingProfileListener {
+                        viewBinding.societyRecycler.isNestedScrollingEnabled = true
+                    }
+                    homeMainAdapter!!.setPostListener {
+                        viewBinding.societyRecycler.isNestedScrollingEnabled = false
+
+                    }
                     homeMainAdapter!!.setDatingProfileListener {
 
                     }
-                    homeMainAdapter!!.setProfileMatchedListener{
+                    homeMainAdapter!!.setProfileMatchedListener {
                         viewBinding.loaderView.setVisibility(View.GONE)
                         viewBinding.societyRecycler.setVisibility(View.GONE)
                         viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
                     }
+                    /*  loaderView.setVisibility(View.GONE)
+                      activity_main_main_view.setVisibility(View.VISIBLE)
+                      met_match_root.setVisibility(View.GONE)
+                      error_layout_root.setVisibility(View.VISIBLE*/
 
                 }
-
-
-            })
+            }
+                )
         }
 
     var unScrollableLayoutManager: LinearLayoutManager = object : LinearLayoutManager(context) {
