@@ -49,6 +49,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         add(R.drawable.woman_official)
         add(R.drawable.asian_lady)
         add(R.drawable.african_american_woman)
+        add(R.drawable.woman_official)
     }
 
     private val headerAdapter by lazy { TrendingHeaderAdapter(images) }
