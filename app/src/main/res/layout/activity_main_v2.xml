@@ -9,24 +9,30 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         app:contentInsetStart="0dp"
         app:contentInsetEnd="0dp"
         android:layout_gravity="top"
         app:contentInsetRight="0dp"
         app:contentInsetLeft="0dp"
-        android:background="@color/special_activity_background"
+        android:background="@color/transparent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/mainActivityToolbar">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:weightSum="4"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal"
                 android:id="@+id/main_info_toggle_layout"
                 android:gravity="center|left">
@@ -44,34 +50,52 @@
 
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:orientation="horizontal"
-                android:gravity="center">
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="40dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
-                    app:tint="#FA4375"
-                    android:src="@drawable/muzmatch"/>
+                    android:layout_marginRight="5dp"
+                    app:tint="@color/new_pink"
+                    android:id="@+id/locationIcon"
+                    android:src="@drawable/location_media_social_icon"/>
 
                  <TextView
                      android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:textSize="20dp"
-                     android:text="Singles Society"
-                     android:textColor="#FA4375"
-                     android:fontFamily="@font/kumelian"
-                     android:layout_marginLeft="5dp"/>
+                     android:layout_height="match_parent"
+                     android:fontFamily="@font/avenirbold"
+                     android:text="Lagos, Nigeria"
+                     android:ellipsize="end"
+                     android:maxLines="1"
+                     android:textColor="@color/dark_text_color"
+                     android:gravity="left|center"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="2dp"
+                    app:tint="@color/new_pink"
+                    android:rotation="90"
+                    android:src="@drawable/chevron_right_arrow_icon"/>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_gravity="right"
                 android:gravity="right">
 
                 <ImageView
@@ -80,12 +104,14 @@
                     android:layout_marginLeft="16dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    app:tint="@color/dark_text_color"
+                    app:tint="@color/new_pink"
                     android:id="@+id/notificationIcon"
                     android:src="@drawable/ring_icon"/>
 
             </LinearLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+            <include layout="@layout/search_layout" android:id="@+id/searchLayout"/>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 

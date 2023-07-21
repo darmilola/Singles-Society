@@ -27,52 +27,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:paddingLeft="7dp"
-                    android:paddingRight="7dp"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="Society Today"
-                        android:id="@+id/societyToday"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:textColor="@color/dark_text_color"
-                        android:layout_gravity="left"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/kumelianbold"/>
-
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@id/societyToday"
-                        android:background="#6AB9B9B9"/>
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="280dp"
-                    app:cardCornerRadius="5dp"
+                    app:cardCornerRadius="10dp"
                     android:layout_marginLeft="7dp"
                     android:layout_marginRight="7dp"
                     app:cardElevation="0dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     app:cardBackgroundColor="@color/special_activity_background">
 
                <FrameLayout
@@ -82,21 +44,11 @@
                    <com.ss.storiesview.StoriesProgressView
                        android:id="@+id/stories"
                        android:layout_width="match_parent"
-                       android:layout_height="3dp"
+                       android:layout_height="2dp"
+                       android:layout_marginTop="10dp"
+                       android:layout_marginLeft="15dp"
+                       android:layout_marginRight="15dp"
                        android:layout_gravity="top"
-                       android:elevation="2dp"/>
-
-                   <ImageView
-                       android:layout_width="40dp"
-                       android:layout_height="40dp"
-                       android:layout_gravity="bottom|right"
-                       android:background="@drawable/filled_full_circle"
-                       app:tint="@color/white"
-                       android:layout_marginRight="7dp"
-                       android:layout_marginBottom="7dp"
-                       android:padding="6dp"
-                       android:backgroundTint="@color/new_pink"
-                       android:src="@drawable/ic_iconfinder_chevron_right_4781843"
                        android:elevation="2dp"/>
 
                         <androidx.recyclerview.widget.RecyclerView
