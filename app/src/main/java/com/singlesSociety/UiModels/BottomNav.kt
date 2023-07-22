@@ -202,7 +202,7 @@ class BottomNav : LinearLayout {
     fun add(model: Model) {
         val cell = BottomNavIcon(context)
         cell.apply {
-            val params = LinearLayout.LayoutParams(0, heightCell, 0.3f)
+            val params = LinearLayout.LayoutParams(0, heightCell, 0.6f)
             params.gravity = Gravity.TOP
             layoutParams = params
             icon = model.icon
@@ -237,7 +237,7 @@ class BottomNav : LinearLayout {
             }
             if(model.id == ID_CREATE){
                 cell.apply {
-                    val params = LinearLayout.LayoutParams(0, dip(context,80), 0.6f)
+                    val params = LinearLayout.LayoutParams(0, dip(context,80), 0.8f)
                     params.gravity = Gravity.CENTER
                     params.topMargin = dip(context,2)
                     layoutParams = params
@@ -250,7 +250,7 @@ class BottomNav : LinearLayout {
             }
             if(model.id == ID_EXPLORE){
                 cell.apply {
-                    val params = LinearLayout.LayoutParams(0, heightCell, 0.4f)
+                    val params = LinearLayout.LayoutParams(0, heightCell, 0.6f)
                     params.gravity = Gravity.TOP
                     params.topMargin = dip(context,-5)
                     layoutParams = params
@@ -259,7 +259,7 @@ class BottomNav : LinearLayout {
             }
             if(model.id == ID_MESSAGE){
                 cell.apply {
-                    val params = LinearLayout.LayoutParams(0, heightCell, 0.4f)
+                    val params = LinearLayout.LayoutParams(0, heightCell, 0.6f)
                     params.gravity = Gravity.TOP
                     params.topMargin = dip(context,5)
                     layoutParams = params
