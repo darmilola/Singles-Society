@@ -86,6 +86,7 @@ class MainAct2 : AppCompatActivity() {
                 )
             )
         }?.show(ID_HOME)
+        displayHeader(0)
         loadFragment(HomeFragment(visitProfileListener = {
             loadFragment(VisitProfileFragment( visitProfileExitListener = {
 
@@ -98,6 +99,7 @@ class MainAct2 : AppCompatActivity() {
         viewBinding.bottomNavigation.setOnClickMenuListener {
             when(it.id){
                 ID_HOME -> {
+                    displayHeader(0)
                     displayTopBarActionButton(true, false)
                     loadFragment(HomeFragment(visitProfileListener = {
                         loadFragment(VisitProfileFragment( visitProfileExitListener = {
@@ -109,6 +111,7 @@ class MainAct2 : AppCompatActivity() {
                 }
                 ID_CREATE -> startActivity(Intent(this,CreatePostActivity::class.java))
                 ID_EXPLORE ->{
+                  displayHeader(1)
                   displayTopBarActionButton(true, false)
                    loadFragment(TrendingFragment(
                        enterSpaceListener = {
@@ -136,11 +139,13 @@ class MainAct2 : AppCompatActivity() {
                    ))
                }
                ID_MESSAGE -> {
+                   displayHeader(3)
                    displayTopBarActionButton(true, false)
                    loadFragment(ChatFragment())
                }
               ID_ACCOUNT -> {
-                  displayTopBarActionButton(true, true)
+                  displayHeader(4)
+                   displayTopBarActionButton(true, true)
                    loadFragment(UserProfileFragment())
               }
             }
@@ -171,9 +176,29 @@ class MainAct2 : AppCompatActivity() {
                }
         }
 
+    }
 
-
-
+    private fun displayHeader(position: Int = 0){
+         if(position == 0 || position == 1 || position == 2){
+             viewBinding.userLocationHeader.visibility = View.VISIBLE
+             viewBinding.userConnectionHeader.visibility = View.GONE
+             viewBinding.userProfileHeader.visibility = View.GONE
+         }
+        else if(position == 3){
+             viewBinding.userLocationHeader.visibility = View.GONE
+             viewBinding.userConnectionHeader.visibility = View.VISIBLE
+             viewBinding.userProfileHeader.visibility = View.GONE
+        }
+        else if(position == 4){
+             viewBinding.userLocationHeader.visibility = View.GONE
+             viewBinding.userConnectionHeader.visibility = View.GONE
+             viewBinding.userProfileHeader.visibility = View.VISIBLE
+        }
+        else {
+             viewBinding.userLocationHeader.visibility = View.VISIBLE
+             viewBinding.userConnectionHeader.visibility = View.GONE
+             viewBinding.userProfileHeader.visibility = View.GONE
+        }
     }
 
 

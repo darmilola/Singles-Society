@@ -44,29 +44,34 @@
                 app:contentInsetEnd="0dp"
                 android:elevation="0dp"
                 android:layout_height="50dp"
-                app:layout_collapseMode="pin" >
+                app:layout_collapseMode="pin">
 
-             <com.singlesSociety.UiModels.BottomNav
-                    android:id="@+id/userProfileNavigation"
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="bottom"
-                    app:ss_backgroundBottomColor="@color/black"
-                    app:ss_circleColor="#FA4375"
-                    app:ss_waveHeight="1"
-                    app:ss_countBackgroundColor="#FA4375"
-                    app:ss_countTextColor="@color/special_activity_background"
-                    app:ss_defaultIconColor="#838282"
-                    app:ss_iconTextColor="#838282"
-                    app:ss_rippleColor="#2f424242"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    app:tabIndicator="@drawable/indicator_layer_list"
+                    app:tabIndicatorColor="@color/new_pink"
                     android:background="@color/special_activity_background"
-                    app:ss_iconTextSize="14sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    app:ss_selectedIconColor="@color/new_pink"
-                    app:ss_selectedIconTextColor="#FA4375"
-                    app:ss_shadowColor="@color/deep_yellow"/>
+                    app:layout_constraintBottom_toTopOf="@+id/viewPager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" >
+                </com.google.android.material.tabs.TabLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_gravity="bottom"
+                        android:background="#EBB9B9B9"/>
+             </FrameLayout>
             </androidx.appcompat.widget.Toolbar>
 
             </LinearLayout>
@@ -74,18 +79,24 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/special_activity_background"
-        android:backgroundTint="@color/special_activity_background"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-      <LinearLayout
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/userProfileLibraryPage"/>
-    </androidx.core.widget.NestedScrollView>
+
+
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

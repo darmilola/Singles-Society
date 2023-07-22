@@ -3,17 +3,16 @@ package com.singlesSociety.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.singlesSociety.CompleteProfile
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.singlesSociety.NewWelcome
 import com.singlesSociety.R
-import com.singlesSociety.UiModels.BottomNav
 import com.singlesSociety.databinding.FragmentUserProfileBinding
-
-
 
 
 private const val ID_TEXT_LIBRARY = 8
@@ -33,14 +32,19 @@ class UserProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initView()
 
     }
 
     private fun initView() {
+        val viewPager = viewBinding.viewPager
+        viewPager.adapter = PageAdapter(parentFragmentManager)
 
-        viewBinding.profileInfoArena.profileInfoImageArena.profileInfoEditProfile.setOnClickListener {
+        val tabLayout = viewBinding.tabLayout
+        tabLayout.setupWithViewPager(viewPager)
+        setupTabIcons()
+
+    /*    viewBinding.profileInfoArena.profileInfoImageArena.profileInfoEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(),CompleteProfile::class.java))
         }
 
@@ -82,15 +86,15 @@ class UserProfileFragment : Fragment() {
                     loadFragment(DatingProfileFragment())
                 }
             }
-        }
+        }*/
 
     }
 
-    private fun loadFragment(fragment: Fragment){
+  /*  private fun loadFragment(fragment: Fragment){
         val transaction = parentFragmentManager.beginTransaction()
         transaction.replace(R.id.userProfileLibraryPage,fragment)
         transaction.commit()
-    }
+    }*/
 
 
 
@@ -100,5 +104,37 @@ class UserProfileFragment : Fragment() {
         preferences.edit().remove("userEmail").apply()
         startActivity(Intent(requireContext(), NewWelcome::class.java))
         activity?.finish()
+    }
+
+    private fun setupTabIcons() {
+        viewBinding.tabLayout.getTabAt(0)?.icon = resources.getDrawable(R.drawable.send_icon)
+        viewBinding.tabLayout.getTabAt(1)?.icon = resources.getDrawable(R.drawable.bookmark_favourite_icon)
+        viewBinding.tabLayout.getTabAt(2)?.icon = resources.getDrawable(R.drawable.datingprofile)
+    }
+
+    class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+        override fun getCount(): Int {
+            return 3;
+        }
+
+        override fun getItem(position: Int): Fragment {
+            return when(position) {
+                0 -> {
+                    TextLibraryFragment()
+                }
+
+                1 -> {
+                    TextLibraryFragment()
+                }
+
+                2 -> {
+                    DatingProfileFragment()
+                }
+
+                else -> {
+                    TextLibraryFragment()
+                }
+            }
+        }
     }
 }

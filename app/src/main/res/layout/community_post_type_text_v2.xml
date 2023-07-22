@@ -59,18 +59,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="myusernamegoeshere"
+                        android:text="Katie Brown"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:textColor="#303030"
                         android:textSize="15sp"
-                        android:fontFamily="@font/manropebold"/>
+                        android:fontFamily="@font/avenirbold"
+                        android:textColor="@color/new_dark_text_color"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@The Space Name Goes here"
+                        android:text="@katieBrown"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:layout_marginTop="3dp"

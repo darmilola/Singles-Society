@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center|top"
     android:paddingBottom="10dp"
@@ -14,13 +13,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="Mario Dedivanovic"
-        android:textSize="18sp"
-        android:fontFamily="@font/manropesemibold"
+        android:textSize="15sp"
+        android:fontFamily="@font/avenirbold"
         android:textColor="@color/new_dark_text_color"
         android:maxLines="1"
         android:ellipsize="end"/>
@@ -31,7 +29,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="\@daemwilolae"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:linksClickable="true"
             android:fontFamily="@font/manropesemibold"
             android:textColor="@color/new_pink"
@@ -43,13 +41,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="50dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:weightSum="4"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="50dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -62,9 +60,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="223k"
-                android:textSize="18sp"
-                android:fontFamily="@font/manropeextrabold"
+                android:text="230"
+                android:textSize="15sp"
+                android:fontFamily="@font/avenirbold"
                 android:textColor="@color/new_dark_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -75,9 +73,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Posts"
-                android:layout_marginTop="5dp"
-                android:textSize="14sp"
-                android:fontFamily="@font/manropesemibold"
+                android:textSize="12sp"
+                android:fontFamily="@font/manropemedium"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -91,7 +88,7 @@
             android:gravity="center">
             <View
                 android:layout_width="1dp"
-                android:layout_height="25dp"
+                android:layout_height="15dp"
                 android:background="@color/light_text_color"/>
         </LinearLayout>
 
@@ -106,9 +103,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="45k"
-                android:textSize="18sp"
-                android:fontFamily="@font/manropeextrabold"
+                android:text="25"
+                android:textSize="15sp"
+                android:fontFamily="@font/avenirbold"
                 android:textColor="@color/new_dark_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -118,10 +115,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="followers"
-                android:layout_marginTop="5dp"
-                android:textSize="14sp"
-                android:fontFamily="@font/manropesemibold"
+                android:text="Followers"
+                android:textSize="12sp"
+                android:fontFamily="@font/manropemedium"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -133,7 +129,7 @@
             android:gravity="center">
             <View
                 android:layout_width="1dp"
-                android:layout_height="25dp"
+                android:layout_height="15dp"
                 android:background="@color/light_text_color"/>
         </LinearLayout>
         <LinearLayout
@@ -147,9 +143,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="23k"
-                android:textSize="18sp"
-                android:fontFamily="@font/manropeextrabold"
+                android:text="67"
+                android:textSize="15sp"
+                android:fontFamily="@font/avenirbold"
                 android:textColor="@color/new_dark_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -159,17 +155,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="following"
-                android:layout_marginTop="5dp"
-                android:textSize="14sp"
-                android:fontFamily="@font/manropesemibold"
+                android:text="Following"
+                android:textSize="12sp"
+                android:fontFamily="@font/manropemedium"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
-
         </LinearLayout>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:weightSum="2">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/manropeextrabold"
+            android:text="Edit Profile"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:background="@drawable/filled_radii_background"
+            android:backgroundTint="#F1EFEF"
+            android:layout_marginRight="5dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/manropeextrabold"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:text="Share Profile"
+            android:background="@drawable/filled_radii_background"
+            android:backgroundTint="#F1EFEF"
+            android:layout_marginLeft="5dp"/>
 
     </LinearLayout>
 
@@ -178,10 +202,10 @@
         android:layout_height="wrap_content"
         android:gravity="center|left"
         android:text="About Me"
-        android:textSize="16sp"
-        android:fontFamily="@font/manropeextrabold"
         android:layout_marginRight="16sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/avenirbold"
         android:textColor="@color/new_dark_text_color"
         android:maxLines="1"
         android:layout_marginLeft="16dp"
@@ -191,16 +215,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center|left"
-        android:text="About.me is a personal web hosting service co-founded by Ryan Freitas, Tony Conrad and Tim Young"
-        android:layout_marginRight="16sp"
-        android:layout_marginTop="10dp"
-        android:paddingRight="30dp"
-        android:maxLines="3"
+        android:text="About.me is a personal web hosting service personal web hosting service personal web hosting service co-founded by Ryan Freitas, Tony Conrad and Tim Young"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:maxLines="34"
         android:layout_marginLeft="16dp"
         android:ellipsize="end"
-        android:textSize="15sp"
+        android:textSize="14sp"
         android:lineSpacingExtra="4dp"
-        android:fontFamily="@font/manropesemibold"
-        android:textColor="@color/dark_text_color"/>
+        android:fontFamily="@font/manropemedium"
+        android:textColor="#303030"/>
 
 </LinearLayout>
