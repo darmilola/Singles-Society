@@ -144,6 +144,7 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     val societyModelShowcase = SocietyModel(moreProfiles, likeIds, 0)
 
                     societyModelArrayList.add(societyModelShowcase)
+                    societyModelArrayList.add(SocietyModel(6))
 
 
                     homeMainAdapter =

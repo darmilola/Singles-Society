@@ -98,7 +98,6 @@ class MainAct2 : AppCompatActivity() {
         viewBinding.bottomNavigation.setOnClickMenuListener {
             when(it.id){
                 ID_HOME -> {
-                    showSearchlayout(true)
                     displayTopBarActionButton(true, false)
                     loadFragment(HomeFragment(visitProfileListener = {
                         loadFragment(VisitProfileFragment( visitProfileExitListener = {
@@ -110,7 +109,6 @@ class MainAct2 : AppCompatActivity() {
                 }
                 ID_CREATE -> startActivity(Intent(this,CreatePostActivity::class.java))
                 ID_EXPLORE ->{
-                    showSearchlayout(false)
                   displayTopBarActionButton(true, false)
                    loadFragment(TrendingFragment(
                        enterSpaceListener = {
@@ -138,12 +136,10 @@ class MainAct2 : AppCompatActivity() {
                    ))
                }
                ID_MESSAGE -> {
-                   showSearchlayout(false)
-                   displayTopBarActionButton(false, false)
+                   displayTopBarActionButton(true, false)
                    loadFragment(ChatFragment())
                }
               ID_ACCOUNT -> {
-                  showSearchlayout(false)
                   displayTopBarActionButton(true, true)
                    loadFragment(UserProfileFragment())
               }
@@ -181,9 +177,6 @@ class MainAct2 : AppCompatActivity() {
     }
 
 
-    private fun showSearchlayout(show:Boolean){
-        viewBinding.searchLayout.searchBar.isVisible = show
-    }
     private fun displayTopBarActionButton(value: Boolean = false, isUserProfileFragment: Boolean = false){
         viewBinding.notificationIcon.isVisible = value
         viewBinding.searchEverywhere.isVisible = value

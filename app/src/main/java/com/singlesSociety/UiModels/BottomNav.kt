@@ -116,7 +116,7 @@ class BottomNav : LinearLayout {
     private lateinit var bezierView: BezierView
 
     init {
-        heightCell = dip(context, 100) // bottom navigation height
+        heightCell = dip(context, 80) // bottom navigation height
     }
 
     constructor(context: Context) : super(context) {
@@ -165,7 +165,7 @@ class BottomNav : LinearLayout {
     private fun initializeViews() {
         ll_cells = LinearLayout(context)
         ll_cells.apply {
-            val params = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dip(context,80))
+            val params = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dip(context,60))
             params.gravity = Gravity.CENTER
             params.leftMargin = dip(context,20)
             params.rightMargin = dip(context,20)
@@ -178,7 +178,7 @@ class BottomNav : LinearLayout {
 
         bezierView = BezierView(context)
         bezierView.apply {
-            layoutParams = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (dip(context,80)))
+            layoutParams = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (dip(context,60)))
             color = backgroundBottomColor
             shadowColor = this@BottomNav.shadowColor
         }
@@ -202,7 +202,7 @@ class BottomNav : LinearLayout {
     fun add(model: Model) {
         val cell = BottomNavIcon(context)
         cell.apply {
-            val params = LinearLayout.LayoutParams(0, heightCell, 0.5f)
+            val params = LinearLayout.LayoutParams(0, heightCell, 0.3f)
             params.gravity = Gravity.TOP
             layoutParams = params
             icon = model.icon
@@ -237,7 +237,7 @@ class BottomNav : LinearLayout {
             }
             if(model.id == ID_CREATE){
                 cell.apply {
-                    val params = LinearLayout.LayoutParams(0, dip(context,80), 0.8f)
+                    val params = LinearLayout.LayoutParams(0, dip(context,80), 0.6f)
                     params.gravity = Gravity.CENTER
                     params.topMargin = dip(context,2)
                     layoutParams = params
@@ -250,7 +250,7 @@ class BottomNav : LinearLayout {
             }
             if(model.id == ID_EXPLORE){
                 cell.apply {
-                    val params = LinearLayout.LayoutParams(0, heightCell, 0.6f)
+                    val params = LinearLayout.LayoutParams(0, heightCell, 0.4f)
                     params.gravity = Gravity.TOP
                     params.topMargin = dip(context,-5)
                     layoutParams = params
@@ -259,7 +259,7 @@ class BottomNav : LinearLayout {
             }
             if(model.id == ID_MESSAGE){
                 cell.apply {
-                    val params = LinearLayout.LayoutParams(0, heightCell, 0.6f)
+                    val params = LinearLayout.LayoutParams(0, heightCell, 0.4f)
                     params.gravity = Gravity.TOP
                     params.topMargin = dip(context,5)
                     layoutParams = params

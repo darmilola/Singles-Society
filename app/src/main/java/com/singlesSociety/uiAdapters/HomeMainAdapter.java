@@ -44,10 +44,7 @@ import com.singlesSociety.UiModels.MainActivityModel;
 import com.singlesSociety.UiModels.PreviewProfileModel;
 import com.singlesSociety.UiModels.SocietyModel;
 import com.bumptech.glide.Glide;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.mackhartley.roundedprogressbar.RoundedProgressBar;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -81,15 +78,17 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private Context context;
     private ArrayList<SocietyModel> societyModelArrayList;
-    private static int TYPE_MAIN = 0;
+    private static final int TYPE_MAIN = 0;
 
-    private static int TYPE_IMAGE = 2;
+    private static final int TYPE_IMAGE = 2;
 
-    private static int TYPE_HEADER = 3;
+    private static final int TYPE_HEADER = 3;
 
-    private static int TYPE_TEXT = 4;
+    private static final int TYPE_TEXT = 4;
 
-    private static int TYPE_EVENT = 5;
+    private static final int TYPE_EVENT = 5;
+
+    private static final int TYPE_LOADING = 6;
 
 
     private Function0<Unit> visitProfileListener;
@@ -164,6 +163,10 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(viewType == TYPE_HEADER){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.spaces_header_layout, parent, false);
             return new SpacesHeaderItemViewholder(view);
+        }
+        else if(viewType == TYPE_LOADING){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_loading_item, parent, false);
+            return new SpacesLoadingItemViewholder(view);
         }
         else {
 
@@ -346,6 +349,13 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     exitSpaceListener.invoke();
                 }
             });
+
+        }
+    }
+
+    public class SpacesLoadingItemViewholder extends RecyclerView.ViewHolder{
+        public SpacesLoadingItemViewholder(View ItemView){
+            super(ItemView);
 
         }
     }
@@ -568,6 +578,9 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_EVENT){
             return TYPE_EVENT;
+        }
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_LOADING) {
+            return TYPE_LOADING;
         }
         else{
             return TYPE_TEXT;
