@@ -93,7 +93,7 @@
                         android:textColor="@color/light_gray"
                         android:textSize="12sp"
                         android:layout_marginTop="15dp"
-                        android:fontFamily="@font/manropemedium"
+                        android:fontFamily="@font/opensansregular"
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:text="About"/>

@@ -26,7 +26,7 @@
             android:gravity="center"
             android:textSize="16sp"
             android:text="Preferences"
-            android:fontFamily="@font/avenirbold"
+            android:fontFamily="@font/opensansbold"
             android:textColor="@color/new_dark_text_color"/>
         <TextView
             android:layout_width="0dp"
@@ -91,7 +91,7 @@
                                 android:text="Show me"
                                 android:gravity="center"
                                 android:textSize="14sp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/dark_text_color"/>
                         </LinearLayout>
@@ -110,7 +110,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -153,7 +153,7 @@
                                 android:layout_height="match_parent"
                                 android:text="Preferred City"
                                 android:gravity="center"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:textSize="14sp"
                                 android:textColor="@color/dark_text_color"
                                 android:layout_marginLeft="10dp"/>
@@ -173,7 +173,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -204,7 +204,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:text="Has a bio"
                             android:textSize="14sp"
-                            android:fontFamily="@font/manropemedium"
+                            android:fontFamily="@font/opensansregular"
                             android:textColor="@color/dark_text_color"/>
 
                         <com.github.angads25.toggle.widget.LabeledSwitch
@@ -250,7 +250,7 @@
                                 android:gravity="center"
                                 app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginLeft="5dp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:textSize="14sp"
                                 android:textColor="@color/dark_text_color"/>
 
@@ -262,7 +262,7 @@
                                 android:text="18 - 35"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 android:layout_marginLeft="10dp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:textSize="14sp"
                                 android:textColor="@color/dark_text_color"/>
 
@@ -301,7 +301,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:text="Has active social presence"
                             android:textSize="14sp"
-                            android:fontFamily="@font/manropemedium"
+                            android:fontFamily="@font/opensansregular"
                             android:textColor="@color/dark_text_color"/>
 
                         <com.github.angads25.toggle.widget.LabeledSwitch
@@ -345,7 +345,7 @@
                                 android:gravity="center"
                                 app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginLeft="5dp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:textSize="14sp"
                                 android:textColor="@color/dark_text_color"/>
 
@@ -357,7 +357,7 @@
                                 android:text="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 android:layout_marginLeft="10dp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:textSize="14sp"
                                 android:textColor="@color/dark_text_color"/>
 
@@ -406,7 +406,7 @@
                                 android:text="Education"
                                 android:gravity="center"
                                 android:textSize="14sp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/dark_text_color"/>
                         </LinearLayout>
@@ -425,7 +425,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -467,7 +467,7 @@
                                 android:text="Marriage Goals"
                                 android:gravity="center"
                                 android:textSize="14sp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/dark_text_color"/>
                         </LinearLayout>
@@ -486,7 +486,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -527,7 +527,7 @@
                                 android:text="Workout"
                                 android:gravity="center"
                                 android:textSize="14sp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/dark_text_color"/>
                         </LinearLayout>
@@ -546,7 +546,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -589,7 +589,7 @@
                                 android:text="Pets"
                                 android:gravity="center"
                                 android:textSize="14sp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/dark_text_color"/>
                         </LinearLayout>
@@ -608,7 +608,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -650,7 +650,7 @@
                                 android:text="Drinking"
                                 android:gravity="center"
                                 android:textSize="14sp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/dark_text_color"/>
                         </LinearLayout>
@@ -669,7 +669,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -711,7 +711,7 @@
                                 android:text="Smoking"
                                 android:gravity="center"
                                 android:textSize="14sp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:layout_marginLeft="10dp"
                                 android:textColor="@color/dark_text_color"/>
                         </LinearLayout>
@@ -730,7 +730,7 @@
                                 android:text="Select"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:fontFamily="@font/avenirbold"
+                                android:fontFamily="@font/opensansbold"
                                 android:textColor="@color/dark_text_color"/>
                             <ImageView
                                 android:layout_width="18dp"
@@ -771,7 +771,7 @@
                                 android:gravity="center"
                                 app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginLeft="5dp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:textSize="14sp"
                                 android:textColor="@color/dark_text_color"/>
 
@@ -783,7 +783,7 @@
                                 android:text="1"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 android:layout_marginLeft="10dp"
-                                android:fontFamily="@font/manropemedium"
+                                android:fontFamily="@font/opensansregular"
                                 android:textSize="14sp"
                                 android:textColor="@color/dark_text_color"/>
 
@@ -820,7 +820,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:text="Only show people in this range"
                             android:textSize="14sp"
-                            android:fontFamily="@font/manropemedium"
+                            android:fontFamily="@font/opensansregular"
                             android:textColor="@color/dark_text_color"/>
 
                         <com.github.angads25.toggle.widget.LabeledSwitch
@@ -853,7 +853,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:text="Global"
                             android:textSize="14sp"
-                            android:fontFamily="@font/manropemedium"
+                            android:fontFamily="@font/opensansregular"
                             android:textColor="@color/dark_text_color"/>
 
                         <com.github.angads25.toggle.widget.LabeledSwitch
@@ -875,7 +875,7 @@
                         android:layout_marginBottom="20dp"
                         android:text="See people nearby and from around the world"
                         android:textSize="13sp"
-                        android:fontFamily="@font/manropemedium"
+                        android:fontFamily="@font/opensansregular"
                         android:textColor="@color/light_text_color"/>
                 </LinearLayout>
 

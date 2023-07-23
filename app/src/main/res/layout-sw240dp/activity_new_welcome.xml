@@ -173,7 +173,7 @@
             android:textSize="30dp"
             android:gravity="left"
             android:textColor="@color/dark_text_color"
-            android:fontFamily="@font/avenirbold"
+            android:fontFamily="@font/opensansbold"
             android:text="The best place to\nmeet your future\nPartner"/>
 
         <LinearLayout

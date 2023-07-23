@@ -60,7 +60,7 @@
                 android:layout_alignParentLeft="true"
                 android:id="@+id/username"
                 android:maxLength="20"
-                android:fontFamily="@font/avenirbold"
+                android:fontFamily="@font/opensansbold"
                 android:text="\@alexaOre0_"/>
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_alignParentRight="true"
                 android:id="@+id/commentTime"
                 android:maxLength="10"
-                android:fontFamily="@font/manropemedium"
+                android:fontFamily="@font/opensansregular"
                 android:text="5 min"/>
 
         </RelativeLayout>

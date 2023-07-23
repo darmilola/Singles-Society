@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:lineSpacingExtra="3dp"
-            android:fontFamily="@font/manropemedium"
+            android:fontFamily="@font/opensansregular"
             android:textColor="@color/dark_text_color"/>
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/manropemedium"
+            android:fontFamily="@font/opensansregular"
             android:textSize="10sp"
             app:layout_alignSelf="center"/>
 

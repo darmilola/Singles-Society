@@ -74,7 +74,7 @@
                             android:ellipsize="end"
                             android:textColor="@color/special_activity_background"
                             android:textSize="13sp"
-                            android:fontFamily="@font/manropebold"/>
+                            android:fontFamily="@font/opensans_bold"/>
 
                     </LinearLayout>
 
@@ -114,10 +114,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         app:layout_constraintBottom_toTopOf="@id/eventCreator"
-        android:fontFamily="@font/manropeextrabold"
+        android:fontFamily="@font/opensans_bold"
         android:maxLines="4"
         android:ellipsize="end"
-        android:textColor="@color/dark_text_color"/>
+        android:textColor="@color/new_dark_text_color"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -144,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nov 10 2022"
-                android:fontFamily="@font/manropesemibold"
+                android:fontFamily="@font/opensans_semi_bold"
                 android:textColor="@color/lighter_text_color"
                 android:layout_marginLeft="5dp"
                 android:textSize="14sp"/>
@@ -170,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="08: 00 pm"
-                android:fontFamily="@font/manropesemibold"
+                android:fontFamily="@font/opensans_semi_bold"
                 android:textColor="@color/lighter_text_color"
                 android:layout_marginLeft="5dp"
                 android:textSize="14sp"/>
@@ -239,7 +239,7 @@
                     android:gravity="center"
                     android:textSize="11sp"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/manropesemibold"
+                    android:fontFamily="@font/opensans_semi_bold"
                     android:backgroundTint="@color/new_pink"
                     android:text="+56"
                     android:background="@drawable/filled_full_circle"
@@ -269,7 +269,7 @@
                 android:textSize="13sp"
                 android:layout_marginRight="10dp"
                 android:textColor="@color/new_pink"
-                android:fontFamily="@font/manropeextrabold"
+                android:fontFamily="@font/opensans_bold"
                 android:backgroundTint="@color/new_pink"
                 android:text="Buy Ticket"
                 android:src="@drawable/woman_official"/>

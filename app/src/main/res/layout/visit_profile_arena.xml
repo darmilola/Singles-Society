@@ -31,7 +31,7 @@
         android:gravity="center"
         android:text="Mario Dedivanovic"
         android:textSize="20sp"
-        android:fontFamily="@font/manropemedium"
+        android:fontFamily="@font/opensansregular"
         android:textColor="@color/dark_text_color"
         android:maxLines="1"
         android:ellipsize="end"/>
@@ -45,7 +45,7 @@
         android:gravity="center"
         android:text="Los Angeles, California"
         android:textSize="15sp"
-        android:fontFamily="@font/manropemedium"
+        android:fontFamily="@font/opensansregular"
         android:textColor="@color/light_text_color"
         android:maxLines="1"
         android:ellipsize="end"/>
@@ -75,7 +75,7 @@
             android:text="link.tree/daemwilolae"
             android:textSize="14sp"
             android:linksClickable="true"
-            android:fontFamily="@font/manropemedium"
+            android:fontFamily="@font/opensansregular"
             android:textColor="#5A70F4"
             android:maxLines="1"
             android:ellipsize="end"/>
@@ -108,7 +108,7 @@
                 android:gravity="center"
                 android:text="223,674"
                 android:textSize="20sp"
-                android:fontFamily="@font/avenirbold"
+                android:fontFamily="@font/opensansbold"
                 android:textColor="@color/dark_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -120,7 +120,7 @@
                 android:gravity="center"
                 android:text="Posts"
                 android:textSize="15sp"
-                android:fontFamily="@font/manropemedium"
+                android:fontFamily="@font/opensansregular"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -151,7 +151,7 @@
                 android:gravity="center"
                 android:text="267k"
                 android:textSize="20sp"
-                android:fontFamily="@font/avenirbold"
+                android:fontFamily="@font/opensansbold"
                 android:textColor="@color/dark_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -163,7 +163,7 @@
                 android:gravity="center"
                 android:text="Followers"
                 android:textSize="15sp"
-                android:fontFamily="@font/manropemedium"
+                android:fontFamily="@font/opensansregular"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -193,7 +193,7 @@
                 android:gravity="center"
                 android:text="500k"
                 android:textSize="20sp"
-                android:fontFamily="@font/avenirbold"
+                android:fontFamily="@font/opensansbold"
                 android:textColor="@color/dark_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -205,7 +205,7 @@
                 android:gravity="center"
                 android:text="Following"
                 android:textSize="15sp"
-                android:fontFamily="@font/manropemedium"
+                android:fontFamily="@font/opensansregular"
                 android:textColor="@color/light_text_color"
                 android:maxLines="1"
                 android:ellipsize="end"/>
@@ -263,7 +263,7 @@
         android:gravity="center|left"
         android:text="About Me"
         android:textSize="17sp"
-        android:fontFamily="@font/avenirbold"
+        android:fontFamily="@font/opensansbold"
         android:layout_marginRight="16sp"
         android:layout_marginTop="30dp"
         android:textColor="@color/dark_text_color"

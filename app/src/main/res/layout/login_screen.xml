@@ -183,7 +183,7 @@
                         android:textSize="30dp"
                         android:gravity="left"
                         android:textColor="@color/dark_text_color"
-                        android:fontFamily="@font/avenirbold"
+                        android:fontFamily="@font/opensansbold"
                         android:text="Welcome Back"/>
 
                     <TextView
@@ -220,7 +220,7 @@
                              android:inputType="text"
                              android:maxLines="1"
                              android:textSize="17sp"
-                             android:fontFamily="@font/manropemedium"
+                             android:fontFamily="@font/opensansregular"
                              android:textColorHint="@color/lighter_text_color"
                              android:textColor="@color/dark_gray" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -250,7 +250,7 @@
                              android:textColorHint="@color/lighter_text_color"
                              android:textColor="@color/dark_gray"
                              android:textSize="17sp"
-                             android:fontFamily="@font/manropemedium"/>
+                             android:fontFamily="@font/opensansregular"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -299,7 +299,7 @@
                         android:textSize="12sp"
                         android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:fontFamily="@font/avenirbold"
+                        android:fontFamily="@font/opensansbold"
                         android:id="@+id/login_dont_have_account"
                         android:textColor="@color/colorPrimary"/>
                </LinearLayout>

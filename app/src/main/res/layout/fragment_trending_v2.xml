@@ -103,7 +103,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:textColor="@color/dark_text_color"
                         android:textSize="10sp"
-                        android:fontFamily="@font/manropemedium"/>
+                        android:fontFamily="@font/opensansregular"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <HorizontalScrollView

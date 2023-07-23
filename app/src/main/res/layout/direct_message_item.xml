@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/avenirbold"
+                android:fontFamily="@font/opensansbold"
                 android:id="@+id/message_connection_sender_name"
                 android:text="Alisha Singh"
                 android:textColor="@color/new_dark_text_color"

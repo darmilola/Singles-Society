@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:lineSpacingExtra="3dp"
-            android:fontFamily="@font/manropemedium"
+            android:fontFamily="@font/opensansregular"
             android:layout_alignWithParentIfMissing="true"/>
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/messageText"
             android:layout_marginLeft="8dp"
-            android:fontFamily="@font/manropemedium"
+            android:fontFamily="@font/opensansregular"
             android:textSize="12sp"
             android:layout_marginTop="10dp"
             android:lineSpacingExtra="3dp"

@@ -191,7 +191,7 @@
                     android:layout_marginBottom="15dp"
                     android:gravity="left"
                     android:textColor="@color/dark_text_color"
-                    android:fontFamily="@font/avenirbold"
+                    android:fontFamily="@font/opensansbold"
                     android:text="Create Account"/>
 
 
@@ -226,7 +226,7 @@
                             android:textColorHint="@color/lighter_text_color"
                             android:textColor="@color/dark_gray"
                             android:textSize="17sp"
-                            android:fontFamily="@font/manropemedium" />
+                            android:fontFamily="@font/opensansregular" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -253,7 +253,7 @@
                             android:textColorHint="@color/lighter_text_color"
                             android:textColor="@color/dark_gray"
                             android:textSize="17sp"
-                            android:fontFamily="@font/manropemedium" />
+                            android:fontFamily="@font/opensansregular" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -279,7 +279,7 @@
                         android:inputType="text"
                         android:maxLines="1"
                         android:textSize="17sp"
-                        android:fontFamily="@font/manropemedium"
+                        android:fontFamily="@font/opensansregular"
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -309,7 +309,7 @@
                         android:textColorHint="@color/lighter_text_color"
                         android:textColor="@color/dark_gray"
                         android:textSize="17sp"
-                        android:fontFamily="@font/manropemedium"/>
+                        android:fontFamily="@font/opensansregular"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -320,7 +320,7 @@
                     android:padding="5dp"
                     android:gravity="left"
                     android:textSize="12sp"
-                    android:fontFamily="@font/manropemedium"
+                    android:fontFamily="@font/opensansregular"
                     android:textColor="#838485"/>
 
 
@@ -342,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        android:fontFamily="@font/manropemedium"
+                        android:fontFamily="@font/opensansregular"
                         android:text="Sign Up"/>
                 </LinearLayout>
 
@@ -357,7 +357,7 @@
                     android:textSize="12sp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:fontFamily="@font/avenirbold"
+                    android:fontFamily="@font/opensansbold"
                     android:id="@+id/sign_up_have_account"
                     android:textColor="@color/colorPrimary"/>
             </LinearLayout>

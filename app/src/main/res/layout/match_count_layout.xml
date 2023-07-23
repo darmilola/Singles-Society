@@ -36,7 +36,7 @@
             android:textSize="15sp"
             android:textColor="#F0FFFFFF"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/avenirbold"
+            android:fontFamily="@font/opensansbold"
             android:text="+50"/>
 
 

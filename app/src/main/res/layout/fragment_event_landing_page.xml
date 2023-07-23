@@ -321,7 +321,7 @@
                     android:textSize="14sp"
                     android:lineSpacingExtra="4dp"
                     android:layout_marginTop="5dp"
-                    android:fontFamily="@font/manropemedium"
+                    android:fontFamily="@font/opensansregular"
                     android:textColor="#303030"
                     android:text="The implosionhether the vehicle itself  defended the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief"/>
 
@@ -336,7 +336,7 @@
                     android:id="@+id/joinEvent"
                     android:textColor="@color/pink"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/manropemedium"
+                    android:fontFamily="@font/opensansregular"
                     android:textSize="14sp"
                     android:background="@drawable/pink_outline_circle"/>
             </LinearLayout>

@@ -24,7 +24,7 @@ class TextLibraryFragment : Fragment(), CommentBottomSheet.CommentActionListener
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewBinding = FragmentTextLibraryBinding.inflate(layoutInflater)
         return viewBinding.root
     }

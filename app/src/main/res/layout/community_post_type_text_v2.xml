@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginRight="15dp"
                 android:id="@+id/profileArea"
                 app:layout_constraintBottom_toTopOf="@id/postContentLayout"
@@ -55,7 +55,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/accountProfilePicture">
 
-                    <TextView
+                    <com.SinglesSociety.SocialText.RichTextController.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -63,10 +63,10 @@
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:textSize="15sp"
-                        android:fontFamily="@font/avenirbold"
+                        android:fontFamily="@font/opensansbold"
                         android:textColor="@color/new_dark_text_color"/>
 
-                    <TextView
+                    <com.SinglesSociety.SocialText.RichTextController.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -76,7 +76,7 @@
                         android:layout_marginTop="3dp"
                         android:textColor="@color/light_text_color"
                         android:textSize="12sp"
-                        android:fontFamily="@font/manropemedium"/>
+                        android:fontFamily="@font/opensansregular"/>
 
                 </LinearLayout>
 
@@ -88,7 +88,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.SinglesSociety.SocialText.RichTextController.FontTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -122,18 +122,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.SinglesSociety.SocialText.RichTextController.RTextView
+                    <com.SinglesSociety.SocialText.RichTextController.FontTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:id="@+id/postTextView"
                         android:background="@color/transparent"
-                        android:textSize="14sp"
+                        android:textSize="15sp"
                         android:lineSpacingExtra="4dp"
-                        android:fontFamily="@font/manropemedium"
-                        android:textColor="#303030"
+                        android:textColor="#1B1616"
                         android:maxLines="5"
-                        android:paddingLeft="15dp"
+                        android:fontFamily="@font/opensansreg"
+                        android:paddingLeft="10dp"
                         android:text="The implosion of a submersible tourin board, has prompted questions about the regulations overseeing such voyages — and whether the vehicle itself was safe.On Friday, the company responsible for the tour, OceanGate Expeditions, defended the decisions of its chief executive Stockton Rush, who died on board the submersible."
                         app:layout_constraintBottom_toTopOf="@id/postAttachmentRecyclerView"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -149,6 +149,7 @@
                         android:clipToPadding="false"
                         tools:itemCount="5"
                         android:paddingRight="80dp"
+                        android:paddingLeft="-10dp"
                         android:nestedScrollingEnabled="false"
                         android:orientation="horizontal"
                         tools:listitem="@layout/post_text_image_attachment_v2"

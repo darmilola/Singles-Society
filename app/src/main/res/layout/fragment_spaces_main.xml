@@ -71,7 +71,7 @@
                 android:ellipsize="end"
                 android:textColor="@color/dark_text_color"
                 android:textSize="15sp"
-                android:fontFamily="@font/avenirbold"
+                android:fontFamily="@font/opensansbold"
                 android:lineSpacingExtra="7dp"
                 android:text="Rarible the Only Space on this Platform"/>
 
