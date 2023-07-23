@@ -176,6 +176,10 @@ class MainAct2 : AppCompatActivity() {
                }
         }
 
+        viewBinding.searchEverywhere.setOnClickListener {
+            startActivity(Intent(this,SearchActivity::class.java))
+        }
+
     }
 
     private fun displayHeader(position: Int = 0){

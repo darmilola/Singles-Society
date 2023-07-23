@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="-10dp"
+            android:layout_marginRight="-15dp"
             android:background="@drawable/community_post_background">
 
 
@@ -26,8 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
                 android:id="@+id/profileArea"
                 app:layout_constraintBottom_toTopOf="@id/postContentLayout"
                 app:layout_constraintTop_toTopOf="parent">
@@ -125,7 +125,7 @@
                     <com.SinglesSociety.SocialText.RichTextController.RTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="20dp"
                         android:id="@+id/postTextView"
                         android:background="@color/transparent"
                         android:textSize="15sp"
@@ -133,7 +133,7 @@
                         android:fontFamily="@font/opensansreg"
                         android:textColor="#303030"
                         android:maxLines="5"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="10dp"
                         android:text="The implosion of a submersible tourin board, has prompted questions about the regulations overseeing such voyages — and whether the vehicle itself was safe.On Friday, the company responsible for the tour, OceanGate Expeditions, defended the decisions of its chief executive Stockton Rush, who died on board the submersible."
                         app:layout_constraintBottom_toTopOf="@id/eventDisplay"
                         app:layout_constraintTop_toTopOf="parent"/>
@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:id="@+id/eventDisplay"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="15dp"
                         app:layout_constraintTop_toBottomOf="@id/postTextView"
                         app:layout_constraintBottom_toTopOf="@id/reactionCtaLayout"/>
 
@@ -155,7 +155,7 @@
                         android:orientation="horizontal"
                         android:weightSum="4"
                         android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
+                        android:paddingRight="25dp"
                         app:layout_constraintTop_toBottomOf="@id/eventDisplay"
                         android:id="@+id/reactionCtaLayout">
 

@@ -5,12 +5,11 @@
     android:layout_marginLeft="7dp"
     android:layout_marginRight="7dp"
     android:id="@+id/searchBar"
-    android:layout_marginTop="10dp"
     android:background="@color/transparent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
         android:backgroundTint="#19535252"
@@ -25,9 +24,9 @@
             android:layout_weight="0.6">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:tint="@color/light_text_color"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:tint="#C43C3A3A"
                 android:id="@+id/exploreSearchBackButton"
                 android:src="@drawable/search_icon"/>
 
@@ -41,13 +40,13 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:hint="Search..."
+                android:layout_height="35dp"
+                android:hint="Search"
                 android:textSize="16sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:fontFamily="@font/opensansbold"
-                android:textColorHint="@color/lighter_text_color"
+                android:fontFamily="@font/opensans_regular"
+                android:textColorHint="#C43C3A3A"
                 android:background="@color/full_transparency"/>
 
         </LinearLayout>

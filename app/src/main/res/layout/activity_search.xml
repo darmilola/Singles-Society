@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    android:background="@color/special_activity_background"
+    tools:context=".SearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+       <ImageView
+           android:layout_width="24dp"
+           android:layout_height="24dp"
+           android:layout_gravity="center"
+           android:layout_marginLeft="5dp"
+           android:rotation="180"
+           android:id="@+id/searchBackBtn"
+           android:src="@drawable/chevron_right_arrow_icon"/>
+
+        <include layout="@layout/search_layout"/>
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:singleLine="true"
+            android:id="@+id/exploreDiscoverChipGroup"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:checkedChip="@id/followed"
+            app:layout_constraintTop_toBottomOf="@id/forYouTitleLayout">
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                app:textStartPadding="10dp"
+                app:textEndPadding="10dp"
+                android:id="@+id/followed"
+                android:background="@color/special_activity_background"
+                android:textColor="@color/chip_text_color"
+                android:text="People"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                app:textStartPadding="10dp"
+                app:textEndPadding="10dp"
+                android:background="@color/special_activity_background"
+                android:textColor="@color/chip_text_color"
+                android:id="@+id/trending"
+                android:text="Popular Posts"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                app:textStartPadding="10dp"
+                app:textEndPadding="10dp"
+                android:background="@color/special_activity_background"
+                android:textColor="@color/chip_text_color"
+                android:id="@+id/hashtag"
+                android:text="Societies"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                app:textStartPadding="10dp"
+                app:textEndPadding="10dp"
+                android:background="@color/special_activity_background"
+                android:textColor="@color/chip_text_color"
+                android:text="Popular Hashtags"/>
+
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                app:textStartPadding="10dp"
+                app:textEndPadding="10dp"
+                android:background="@color/special_activity_background"
+                android:id="@+id/spaces"
+                android:textColor="@color/chip_text_color"
+                android:text="Live Events"/>
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+</LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/searchRecyclerView"
+        tools:listitem="@layout/user_search_item"/>
+
+</LinearLayout>
