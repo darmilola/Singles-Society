@@ -43,7 +43,7 @@
 
         <com.google.android.material.chip.ChipGroup
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             app:singleLine="true"
             android:id="@+id/exploreDiscoverChipGroup"
             app:singleSelection="true"
