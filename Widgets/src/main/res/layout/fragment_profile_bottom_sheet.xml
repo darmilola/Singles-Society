@@ -2,12 +2,19 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:cardCornerRadius="10dp"
+    android:background="@color/special_activity_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
 
 
@@ -17,12 +24,12 @@
             android:orientation="vertical">
 
             <View
-                android:layout_width="30dp"
-                android:layout_height="4dp"
+                android:layout_width="40dp"
+                android:layout_height="3dp"
                 android:layout_marginTop="10dp"
+                android:layout_gravity="center"
                 android:background="@drawable/filled_full_circle"
-                android:backgroundTint="@color/light_text_color"
-                android:layout_gravity="center"/>
+                android:backgroundTint="@color/light_text_color"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -83,7 +90,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="25dp">
+                android:layout_marginTop="15dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -112,9 +119,9 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/petsChipGroup"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -205,9 +212,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
-
-
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
 
 
@@ -217,7 +222,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -246,9 +251,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -312,8 +317,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -321,7 +327,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -350,9 +356,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -415,8 +421,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -424,7 +431,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -453,9 +460,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -519,7 +526,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
 
 
@@ -529,7 +536,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -558,9 +565,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -624,8 +631,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -633,7 +641,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -662,9 +670,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -728,8 +736,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -737,7 +746,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -766,9 +775,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -832,7 +841,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
 
 
@@ -842,7 +851,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -871,9 +880,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -937,7 +946,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#E6E5E5"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
 
 
@@ -947,7 +956,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -976,9 +985,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:singleSelection="true"
-                    android:layout_marginTop="10dp"
-                    app:chipSpacingVertical="-4dp"
-                    app:chipSpacingHorizontal="7dp"
+                    android:layout_marginTop="5dp"
+                    app:chipSpacingVertical="-10dp"
+                    app:chipSpacingHorizontal="6dp"
                     app:selectionRequired="true"
                     app:checkedChip="@id/followed">
 
@@ -1051,5 +1060,5 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
+    </FrameLayout>
 </androidx.cardview.widget.CardView>

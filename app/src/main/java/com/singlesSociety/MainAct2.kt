@@ -167,11 +167,11 @@ class MainAct2 : AppCompatActivity() {
                if(it.id == R.id.fl){
                    startActivity(Intent(this, PreferencesActivity::class.java))
                }
+            else{
+                   startActivity(Intent(this,SearchActivity::class.java))
+            }
         }
 
-        viewBinding.searchEverywhere.setOnClickListener {
-            startActivity(Intent(this,SearchActivity::class.java))
-        }
 
     }
 

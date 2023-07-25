@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.singlesSociety.UiModels.CompleteProfileModel;
+import com.singlesSociety.UiModels.Utils.FragmentTarget;
 import com.singlesSociety.UiModels.Utils.InputDialog;
 import com.singlesSociety.UiModels.Utils.ListDialog;
 import com.bumptech.glide.Glide;
@@ -53,6 +54,28 @@ public class CompleteProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        viewBinding.addCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SocietyInputActivity().start(
+                        CompleteProfile.this,
+                        "select",
+                        null,0,0
+                );
+            }
+        });
+
+        viewBinding.addLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SocietyInputActivity().start(
+                        CompleteProfile.this,
+                        "chip",
+                        null,0,0
+                );
             }
         });
     }

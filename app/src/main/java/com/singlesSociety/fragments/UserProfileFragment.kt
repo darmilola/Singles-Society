@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.singlesSociety.CompleteProfile
 import com.singlesSociety.NewWelcome
 import com.singlesSociety.R
 import com.singlesSociety.databinding.FragmentUserProfileBinding
@@ -43,6 +44,10 @@ class UserProfileFragment : Fragment() {
         val tabLayout = viewBinding.tabLayout
         tabLayout.setupWithViewPager(viewPager)
         setupTabIcons()
+
+        viewBinding.profileInfoArena.profileInfoImageArena.completeProfileBtn.setOnClickListener {
+            startActivity(Intent(requireContext(),CompleteProfile::class.java))
+        }
 
     /*    viewBinding.profileInfoArena.profileInfoImageArena.profileInfoEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(),CompleteProfile::class.java))

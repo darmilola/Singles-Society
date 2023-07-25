@@ -43,6 +43,7 @@
         android:gravity="center"
         android:textColor="@color/special_activity_background"
         android:textSize="13sp"
+        android:id="@+id/completeProfileBtn"
         android:backgroundTint="@color/new_pink"
         android:fontFamily="@font/opensans_semi_bold"
         android:background="@drawable/filled_circle"

@@ -21,6 +21,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:supportsRtl">
         <activity
+            android:name=".SocietyInputActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity

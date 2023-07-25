@@ -163,14 +163,16 @@
     <style name="ChipStyle.Base" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="android:textAppearance">@style/ChipTextAppearance.Base</item>
         <item name="chipBackgroundColor">@color/chip_background_color</item>
-        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipStrokeWidth">0.8dp</item>
+        <item name="chipHeight">@dimen/chip_height</item>
+        <item name="chipMinHeight">@dimen/chip_height</item>
         <item name="chipStrokeColor">@color/chip_stroke_color</item>
     </style>
 
     <style name="ChipTextAppearance.Base" parent="TextAppearance.MaterialComponents.Chip">
-        <item name="fontFamily">@font/opensans_semi_bold</item>
+        <item name="fontFamily">@font/manropesemibold</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">@font/opensans_semi_bold</item>
+        <item name="android:fontFamily">@font/manropesemibold</item>
         <item name="textColor">@color/chip_text_color</item>
         <item name="android:textColor">@color/chip_text_color</item>
     </style>
