@@ -88,11 +88,8 @@ class MainAct2 : AppCompatActivity() {
         }?.show(ID_HOME)
         displayHeader(0)
         loadFragment(HomeFragment(visitProfileListener = {
-            loadFragment(VisitProfileFragment( visitProfileExitListener = {
+            startActivity(Intent(this,VisitProfileActivity::class.java))
 
-                supportFragmentManager.popBackStack()
-
-            }))
         }))
         viewBinding.bottomNavigation.setCount(ID_MESSAGE,"25")
 
@@ -102,11 +99,7 @@ class MainAct2 : AppCompatActivity() {
                     displayHeader(0)
                     displayTopBarActionButton(true, false)
                     loadFragment(HomeFragment(visitProfileListener = {
-                        loadFragment(VisitProfileFragment( visitProfileExitListener = {
-
-                            supportFragmentManager.popBackStack()
-
-                        }))
+                        startActivity(Intent(this,VisitProfileActivity::class.java))
                     }))
                 }
                 ID_CREATE -> startActivity(Intent(this,CreatePostActivity::class.java))
@@ -117,7 +110,7 @@ class MainAct2 : AppCompatActivity() {
                        enterSpaceListener = {
                            adjustLayoutParams(true, true, true)
                            loadFragment(SpacesMainFragment(visitProfileListener = {
-                               loadFragment(VisitProfileFragment(null,true))
+                               startActivity(Intent(this,VisitProfileActivity::class.java))
                            }, exitSpaceListener = {
                                adjustLayoutParams(false)
                                supportFragmentManager.popBackStack()

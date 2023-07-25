@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             app:singleLine="true"
-            android:id="@+id/exploreDiscoverChipGroup"
+            android:id="@+id/searchChipGroup"
             app:singleSelection="true"
             app:selectionRequired="true"
             app:checkedChip="@id/followed"
@@ -56,7 +56,7 @@
                 android:layout_height="45dp"
                 app:textStartPadding="10dp"
                 app:textEndPadding="10dp"
-                android:id="@+id/followed"
+                android:id="@+id/people"
                 android:background="@color/special_activity_background"
                 android:textColor="@color/chip_text_color"
                 android:text="People"/>
@@ -68,7 +68,7 @@
                 app:textEndPadding="10dp"
                 android:background="@color/special_activity_background"
                 android:textColor="@color/chip_text_color"
-                android:id="@+id/trending"
+                android:id="@+id/posts"
                 android:text="Popular Posts"/>
 
             <com.google.android.material.chip.Chip
@@ -78,7 +78,7 @@
                 app:textEndPadding="10dp"
                 android:background="@color/special_activity_background"
                 android:textColor="@color/chip_text_color"
-                android:id="@+id/hashtag"
+                android:id="@+id/societies"
                 android:text="Societies"/>
 
             <com.google.android.material.chip.Chip
@@ -86,9 +86,10 @@
                 android:layout_height="45dp"
                 app:textStartPadding="10dp"
                 app:textEndPadding="10dp"
+                android:id="@+id/events"
                 android:background="@color/special_activity_background"
                 android:textColor="@color/chip_text_color"
-                android:text="Popular Hashtags"/>
+                android:text="Events"/>
 
 
             <com.google.android.material.chip.Chip
@@ -97,9 +98,9 @@
                 app:textStartPadding="10dp"
                 app:textEndPadding="10dp"
                 android:background="@color/special_activity_background"
-                android:id="@+id/spaces"
+                android:id="@+id/hashtags"
                 android:textColor="@color/chip_text_color"
-                android:text="Live Events"/>
+                android:text="Popular Hashtags"/>
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 </LinearLayout>
@@ -108,6 +109,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/searchRecyclerView"
-        tools:listitem="@layout/user_search_item"/>
+        tools:listitem="@layout/hashtag_item"/>
 
 </LinearLayout>

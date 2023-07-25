@@ -107,9 +107,9 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun setupTabIcons() {
-        viewBinding.tabLayout.getTabAt(0)?.icon = resources.getDrawable(R.drawable.send_icon)
-        viewBinding.tabLayout.getTabAt(1)?.icon = resources.getDrawable(R.drawable.bookmark_favourite_icon)
-        viewBinding.tabLayout.getTabAt(2)?.icon = resources.getDrawable(R.drawable.datingprofile)
+        viewBinding.tabLayout.getTabAt(0)?.icon = resources.getDrawable(R.drawable.pen_draw_icon)
+        viewBinding.tabLayout.getTabAt(1)?.icon = resources.getDrawable(R.drawable.star_favourite_icon)
+        viewBinding.tabLayout.getTabAt(2)?.icon = resources.getDrawable(R.drawable.brand_tinder_icon)
     }
 
     class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
@@ -128,7 +128,7 @@ class UserProfileFragment : Fragment() {
                 }
 
                 2 -> {
-                    DatingProfileFragment()
+                    DatingProfileFragment(isFromUser = false)
                 }
 
                 else -> {

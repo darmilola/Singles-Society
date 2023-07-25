@@ -89,10 +89,10 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:layout_width="16dp"
-                            android:layout_height="16dp"
-                            app:tint="@color/new_pink"
-                            android:src="@drawable/iconfinder_heart_favourite_favorite_love"/>
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:tint="#FAA65C"
+                            android:src="@drawable/star_favourite_icon"/>
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:text="New Arrival Upgrade your setup now, you can put your event title here"
         android:gravity="center|left|bottom"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:layout_gravity="bottom"
         android:id="@+id/eventTitle"
         android:layout_marginTop="10dp"

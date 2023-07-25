@@ -13,7 +13,7 @@ import com.singlesSociety.UiModels.*
 import com.singlesSociety.databinding.FragmentDatingProfileBinding
 
 
-class DatingProfileFragment : Fragment(){
+class DatingProfileFragment(private val isFromUser: Boolean = false) : Fragment(){
 
     private var showCaseAdapter: ShowCaseAdapter? = null
     private var mainActivityModel: MainActivityModel? = null
@@ -22,7 +22,7 @@ class DatingProfileFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewBinding = FragmentDatingProfileBinding.inflate(layoutInflater)
         return viewBinding.root
     }
@@ -34,6 +34,14 @@ class DatingProfileFragment : Fragment(){
 
 
     private fun initView(){
+
+        if(isFromUser){
+            viewBinding.swipeLayout.root.visibility = View.VISIBLE
+        }
+        else{
+            viewBinding.swipeLayout.root.visibility = View.GONE
+        }
+
         mainActivityModel = MainActivityModel(requireContext())
         mainActivityModel?.GetUserInfo()
         mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {

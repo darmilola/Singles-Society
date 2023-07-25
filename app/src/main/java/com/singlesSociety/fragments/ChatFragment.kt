@@ -48,7 +48,7 @@ class ChatFragment : Fragment() {
                 matchesAdapter = MatchesAdapter(requireContext(), matchesModelArrayList)
                 viewBinding.messagesRecyclerview.adapter = messagesAdapter
                 viewBinding.matchesRecyclerview.adapter = matchesAdapter
-               viewBinding.matchesProgressbar.visibility = View.GONE
+                viewBinding.matchesProgressbar.visibility = View.GONE
                 viewBinding.matchesListView.visibility = View.VISIBLE
                 viewBinding.matchesRoot.visibility = View.VISIBLE
                 viewBinding.matchesRecyclerview.visibility = View.VISIBLE

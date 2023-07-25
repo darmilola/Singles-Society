@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="bottom"
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:weightSum="4"
+        android:layout_gravity="bottom|center">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1">
+
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/user_swipe_left"
+                app:cardElevation="2dp"
+                android:gravity="center"
+                android:backgroundTint="@color/special_activity_background"
+                android:background="@drawable/filled_circle"
+                app:cardCornerRadius="30dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/undo_back_icon"
+                    app:tint="@color/new_pink"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:backgroundTint="@color/special_activity_background"
+                android:background="@drawable/filled_circle"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    app:tint="@color/materialBlue"
+                    android:src="@drawable/cancel_icon" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
+                android:id="@+id/user_swipe_right"
+                android:gravity="center"
+                android:backgroundTint="@color/special_activity_background"
+                android:background="@drawable/filled_circle"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    app:tint="@color/new_pink"
+                    android:src="@drawable/iconfinder_heart_favourite_favorite_love" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:backgroundTint="@color/special_activity_background"
+                android:background="@drawable/filled_circle"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    app:tint="#F69B1D"
+                    android:src="@drawable/star_favourite_icon" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

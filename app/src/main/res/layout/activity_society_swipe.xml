@@ -51,18 +51,12 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    app:tint="#FA4375"
-                    android:src="@drawable/muzmatch"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="25dp"
-                    android:text="Singles"
+                    android:textSize="20dp"
+                    android:text="Singles Society"
                     android:textColor="#FA4375"
                     android:fontFamily="@font/kumelian"
                     android:layout_marginLeft="5dp"/>

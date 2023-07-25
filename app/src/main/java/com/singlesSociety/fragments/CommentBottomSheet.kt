@@ -1,10 +1,13 @@
 package com.singlesSociety.fragments
 
 
+import android.app.Dialog
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.singlesSociety.R
@@ -12,6 +15,7 @@ import com.singlesSociety.uiAdapters.CommentsAdapter
 import com.singlesSociety.UiModels.CommentModel
 import com.singlesSociety.UiModels.CommentReplyModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.singlesSociety.databinding.FragmentCommentBottomSheetBinding
 
@@ -54,13 +58,42 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
             dismiss()
         }
 
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        bottomSheetDialog.setOnShowListener {
+            val containerLayout = dialog?.findViewById(
+                com.google.android.material.R.id.container
+            ) as? FrameLayout
+
+            val bottomSheetActionLayout = LayoutInflater.from(requireContext())
+                .inflate(
+                    R.layout.comment_bottomsheet_input,
+                    containerLayout,
+                    false
+                )
+
+            val layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                Gravity.BOTTOM
+            )
+
+            containerLayout?.addView(
+                bottomSheetActionLayout,
+                layoutParams
+            )
 
 
+        }
+
+        return bottomSheetDialog
 
     }
 
 
-    interface CommentActionListener{
+       interface CommentActionListener{
          fun onProfileVisit()
     }
 

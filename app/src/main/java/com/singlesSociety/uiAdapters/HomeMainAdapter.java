@@ -383,6 +383,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LinearLayout commentLayout;
         TextView commentCount;
 
+        CircleImageView accountPicture;
+
 
 
         public TextPostItemViewHolder(View ItemView){
@@ -400,6 +402,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             attachmentModels.add(attachmentModel3);
             commentCount = ItemView.findViewById(R.id.commentCount);
             commentLayout = ItemView.findViewById(R.id.commentLayout);
+            accountPicture = ItemView.findViewById(R.id.accountProfilePicture);
 
             commentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -408,6 +411,12 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
 
+            accountPicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    visitProfileListener.invoke();
+                }
+            });
 
 
             attachmentView.setHasFixedSize(true);

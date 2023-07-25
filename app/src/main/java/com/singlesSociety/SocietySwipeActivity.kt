@@ -61,7 +61,7 @@ class SocietySwipeActivity : AppCompatActivity() {
         })
 
 
-        viewBinding.showCaseStackLayout.userSwipeRight.setOnClickListener {
+        viewBinding.showCaseStackLayout.swipeLayout.userSwipeRight.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(com.yuyakaido.android.cardstackview.Direction.Right)
                 .setDuration(Duration.Slow.duration)
@@ -72,7 +72,7 @@ class SocietySwipeActivity : AppCompatActivity() {
         }
 
 
-        viewBinding.showCaseStackLayout.userSwipeLeft.setOnClickListener {
+        viewBinding.showCaseStackLayout.swipeLayout.userSwipeLeft.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(com.yuyakaido.android.cardstackview.Direction.Left)
                 .setDuration(Duration.Slow.duration)

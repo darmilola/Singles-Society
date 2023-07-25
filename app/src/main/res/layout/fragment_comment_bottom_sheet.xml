@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:cardCornerRadius="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.CommentBottomSheet"
@@ -17,16 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/commentLayout"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="50dp"
             android:orientation="vertical">
 
             <View
-                android:layout_width="50dp"
-                android:layout_height="5dp"
+                android:layout_width="40dp"
+                android:layout_height="3dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/dragHandler"
                 android:background="@drawable/filled_full_circle"
-                android:backgroundTint="@color/lighter_text_color"
+                android:backgroundTint="@color/light_text_color"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -35,7 +36,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/dark_text_color"
                 android:layout_marginTop="20dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:gravity="center"
                 android:fontFamily="@font/opensansbold"
                 android:text="Add a comment (3,345)"/>
@@ -48,9 +49,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="2dp"
                 tools:itemCount="20"
                 android:id="@+id/commentRecyclerView"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -58,27 +58,6 @@
                 android:layout_height="match_parent"/>
 
         </LinearLayout>
-        <com.singlesSociety.ChatKit.messages.MessageInput
-            android:id="@+id/input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:inputHint="Type here..."
-            app:attachmentButtonBackground="@color/transparent"
-            app:inputButtonBackground="@color/transparent"
-            android:minHeight="55dp"
-            app:inputTextSize="15sp"
-            android:gravity="center"
-            app:emojiButtonIcon="@drawable/emoji_icon"
-            android:layout_marginTop="12dp"
-            app:attachmentButtonHeight="32dp"
-            android:layout_gravity="bottom"
-            app:attachmentButtonWidth="32dp"
-            app:inputButtonIcon="@drawable/send_filled_icon"
-            app:inputButtonHeight="32dp"
-            app:inputButtonWidth="32dp"
-            app:isInputViewTypeMessage="false"
-            app:attachmentButtonIcon="@drawable/plus_circled_icon"
-            app:showAttachmentButton="true"/>
     </FrameLayout>
 
     </androidx.cardview.widget.CardView>

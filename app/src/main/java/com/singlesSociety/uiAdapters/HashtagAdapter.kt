@@ -11,12 +11,7 @@ import com.singlesSociety.UiModels.PopularHashtagModel
 class HashtagAdapter(private val hashtagList: ArrayList<PopularHashtagModel>) : RecyclerView.Adapter<HashtagAdapter.ItemViewHolder>() {
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-            if(hashtagList[position].isGrowing){
-                holder.itemView.findViewById<ImageView>(R.id.hashtagTrending).setImageResource(R.drawable.trend_up_icon)
-            }
-        else{
-                holder.itemView.findViewById<ImageView>(R.id.hashtagTrending).setImageResource(R.drawable.trend_down_icon)
-        }
+
     }
 
     override fun onCreateViewHolder(
@@ -24,7 +19,7 @@ class HashtagAdapter(private val hashtagList: ArrayList<PopularHashtagModel>) : 
         viewType: Int
     ): ItemViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.trending_hashtags, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.hashtag_item, parent, false)
         return ItemViewHolder(view)
     }
 

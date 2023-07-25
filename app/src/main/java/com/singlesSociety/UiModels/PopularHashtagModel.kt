@@ -1,3 +1,3 @@
 package com.singlesSociety.UiModels
 
-class PopularHashtagModel(val hashtagText: String = "", val isGrowing: Boolean) {}
+class PopularHashtagModel(val hashtagText: String = "", val isGrowing: Boolean = false) {}

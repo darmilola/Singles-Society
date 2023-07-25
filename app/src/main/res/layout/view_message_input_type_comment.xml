@@ -7,12 +7,13 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:paddingLeft="15dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
         android:layout_alignParentStart="true"
-        android:paddingRight="15dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:weightSum="8"
+        android:backgroundTint="#EFEFEF"
         android:background="@drawable/filled_transparent_circle"
         android:layout_weight="7">
 

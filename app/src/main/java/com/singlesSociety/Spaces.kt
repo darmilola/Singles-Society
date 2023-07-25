@@ -1,5 +1,6 @@
 package com.singlesSociety
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +8,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.singlesSociety.fragments.SpacesMainFragment
-import com.singlesSociety.fragments.VisitProfileFragment
+import com.singlesSociety.fragments.VisitProfileActivity
 
 
 class Spaces : AppCompatActivity(){
@@ -15,7 +16,7 @@ class Spaces : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spaces)
         loadFragment(SpacesMainFragment(visitProfileListener = {
-            loadFragment(VisitProfileFragment(null,false))
+            startActivity(Intent(this,VisitProfileActivity::class.java))
         }, exitSpaceListener = {
             if (supportFragmentManager.backStackEntryCount == 1){
                 finish()

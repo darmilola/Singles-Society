@@ -32,8 +32,6 @@ import com.ss.storiesview.StoriesProgressView
 class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, private var createSpaceListener: Function0<Unit>? = null, private var visitProfileListener: Function0<Unit>? = null, private var visitEventListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener, StoriesProgressView.StoriesListener {
 
     private var itemList: ArrayList<ExploreItem>  = arrayListOf()
-    private var hashtagList: ArrayList<PopularHashtagModel>  = arrayListOf()
-    private var hashtagAdapter: HashtagAdapter? = null
     private lateinit var itemView: View
     private var snapHelper: SnapHelper? = null
     private var discoverSnapHelper: SnapHelper? = null
