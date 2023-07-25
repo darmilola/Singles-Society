@@ -84,7 +84,7 @@
                   android:gravity="center"
                   android:layout_gravity="center"
                   android:textSize="15sp"
-                  android:textColor="@color/new_dark_text_color" />
+                  android:textColor="@color/dark_text_color" />
           </LinearLayout>
 
 
@@ -116,7 +116,7 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:textSize="16sp"
-                    android:textColor="@color/new_dark_text_color" />
+                    android:textColor="@color/dark_text_color" />
             </LinearLayout>
 
                 <LinearLayout
@@ -147,7 +147,7 @@
                      android:ellipsize="end"
                      android:maxLines="1"
                      android:textSize="15sp"
-                     android:textColor="@color/new_dark_text_color"
+                     android:textColor="@color/dark_text_color"
                      android:gravity="left|center"/>
 
                 <ImageView
@@ -211,7 +211,7 @@
         app:layout_constraintTop_toBottomOf="@id/fragmentContainer"
         app:ss_countBackgroundColor="#FA4375"
         app:ss_countTextColor="@color/special_activity_background"
-        app:ss_defaultIconColor="#333131"
+        app:ss_defaultIconColor="@color/dark_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:ss_iconTextColor="#7C7B7B"
         app:ss_rippleColor="#2f424242"

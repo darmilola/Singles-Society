@@ -25,7 +25,7 @@ class ChatFragment : Fragment() {
     private lateinit var viewBinding: FragmentChatBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         viewBinding = FragmentChatBinding.inflate(layoutInflater)
         return viewBinding.root

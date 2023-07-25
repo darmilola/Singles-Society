@@ -19,6 +19,7 @@ import com.singlesSociety.R
 import com.singlesSociety.UiModels.CommunityPostModel
 import com.singlesSociety.UiModels.ExploreItem
 import com.singlesSociety.UiModels.PopularHashtagModel
+import com.singlesSociety.UiModels.SocietyHeaderModel
 import com.singlesSociety.UiModels.SocietyModel
 import com.singlesSociety.databinding.FragmentTrendingBinding
 import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
@@ -43,11 +44,11 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         }
     }*/
 
-    private val images = ArrayList<Int>().apply {
-        add(R.drawable.woman_official)
-        add(R.drawable.asian_lady)
-        add(R.drawable.african_american_woman)
-        add(R.drawable.woman_official)
+    private val images = ArrayList<SocietyHeaderModel>().apply {
+        add(SocietyHeaderModel(1,R.drawable.woman_official))
+        add(SocietyHeaderModel(0,R.drawable.asian_lady))
+        add(SocietyHeaderModel(1,R.drawable.african_american_woman))
+        add(SocietyHeaderModel(0,R.drawable.woman_official))
     }
 
     private val headerAdapter by lazy { TrendingHeaderAdapter(images) }

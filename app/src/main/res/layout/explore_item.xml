@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_height="355dp"
     android:background="@drawable/community_post_background"
     android:orientation="vertical"
     android:padding="10dp"
@@ -38,47 +38,6 @@
                 android:paddingRight="10dp"
                 android:background="@drawable/light_black_gradient"
                 android:orientation="vertical">
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="bottom"
-                        android:id="@+id/eventCreator"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal"
-                        android:gravity="left|center">
-
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/filled_circle"
-                        android:backgroundTint="@color/white"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            app:tint="@color/new_pink"
-                            android:src="@drawable/bookmark"/>
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
     </androidx.cardview.widget.CardView>
@@ -89,16 +48,32 @@
         android:layout_height="wrap_content"
         android:text="New Arrival Upgrade your setup now, you can put your event title here"
         android:gravity="center|left|bottom"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:layout_gravity="bottom"
         android:id="@+id/eventTitle"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         app:layout_constraintBottom_toTopOf="@id/eventCreator"
-        android:fontFamily="@font/manropeextrabold"
+        android:fontFamily="@font/opensans_bold"
         android:maxLines="4"
         android:ellipsize="end"
-        android:textColor="@color/dark_text_color"/>
+        android:textColor="@color/new_dark_text_color"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upgrade Upgrade your setup now, you can put your setup now, you can put New Arrival Upgrade your setup now, you can put your event title here"
+        android:gravity="center|left|bottom"
+        android:layout_gravity="bottom"
+        android:id="@+id/eventDescription"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toTopOf="@id/eventCreator"
+        android:textColor="#E2909090"
+        android:textSize="12sp"
+        android:fontFamily="@font/manropemedium"
+        android:maxLines="2"
+        android:ellipsize="end"/>
 
 
 
@@ -197,7 +172,7 @@
                 android:textColor="@color/new_pink"
                 android:fontFamily="@font/manropeextrabold"
                 android:backgroundTint="@color/new_pink"
-                android:text="Join Society"
+                android:text="Join"
                 android:src="@drawable/woman_official"/>
 
             <ImageView
