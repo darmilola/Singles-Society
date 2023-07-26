@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.ChipGroup
 import com.singlesSociety.UiModels.CommunityPostModel
+import com.singlesSociety.UiModels.ExploreEvent
 import com.singlesSociety.UiModels.ExploreItem
 import com.singlesSociety.UiModels.PopularHashtagModel
 import com.singlesSociety.UiModels.SocietyModel
@@ -55,9 +56,9 @@ class SearchActivity : AppCompatActivity(), CommentBottomSheet.CommentActionList
     }
 
     private fun populateEvents(){
-        var itemList = ArrayList<ExploreItem>()
+        var itemList = ArrayList<ExploreEvent>()
         for (i in 0..5) {
-            itemList.add(ExploreItem())
+            itemList.add(ExploreEvent(0))
         }
 
         recylerview.adapter = ExploreLiveAdapter(this,itemList)

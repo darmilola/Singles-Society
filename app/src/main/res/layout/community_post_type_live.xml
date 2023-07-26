@@ -140,7 +140,7 @@
 
 
 
-                    <include layout="@layout/event_layout"
+                    <include layout="@layout/event_layout_v2"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:id="@+id/eventDisplay"

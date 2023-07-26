@@ -115,11 +115,12 @@ class UserProfileFragment : Fragment() {
         viewBinding.tabLayout.getTabAt(0)?.icon = resources.getDrawable(R.drawable.pen_draw_icon)
         viewBinding.tabLayout.getTabAt(1)?.icon = resources.getDrawable(R.drawable.star_favourite_icon)
         viewBinding.tabLayout.getTabAt(2)?.icon = resources.getDrawable(R.drawable.brand_tinder_icon)
+        viewBinding.tabLayout.getTabAt(3)?.icon = resources.getDrawable(R.drawable.event_icon)
     }
 
     class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getCount(): Int {
-            return 3;
+            return 4
         }
 
         override fun getItem(position: Int): Fragment {

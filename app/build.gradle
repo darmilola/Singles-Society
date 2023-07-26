@@ -106,4 +106,5 @@ dependencies {
     implementation 'com.github.Jay-Goo:RangeSeekBar:v3.0.0'
     implementation 'com.jackandphantom.android:circularprogressbar:1.2.0'
     implementation 'com.github.angads25:toggle:1.1.0'
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
 }
