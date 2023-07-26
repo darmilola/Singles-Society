@@ -5,6 +5,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginTop="5dp"
+    app:cardElevation="0dp"
     android:layout_marginBottom="5dp"
     android:layout_height="190dp"
     app:cardBackgroundColor="@color/special_activity_background"
@@ -27,7 +28,7 @@
             app:mwhColorAlpha="0.45"
             android:rotation="180"
             app:mwhStartColor="#0383B1"
-            app:mwhCloseColor="#028ABB"
+            app:mwhCloseColor="#3997F0"
             app:mwhWaves="MultiWave"/>
 
 

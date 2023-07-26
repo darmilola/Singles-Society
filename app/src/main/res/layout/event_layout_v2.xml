@@ -16,7 +16,7 @@
         <com.scwang.wave.MultiWaveHeader
             android:id="@+id/waveHeader"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="270dp"
             android:scaleY="-1"
             app:mwhVelocity="1"
             app:mwhProgress="1"
@@ -26,7 +26,7 @@
             app:mwhColorAlpha="0.45"
             android:rotation="180"
             app:mwhStartColor="#FD3068"
-            app:mwhCloseColor="#F82B62"
+            app:mwhCloseColor="@color/deep_yellow"
             app:mwhWaves="MultiWave"/>
 
 

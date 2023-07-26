@@ -108,14 +108,7 @@ class MainAct2 : AppCompatActivity() {
                   displayTopBarActionButton(true, false)
                    loadFragment(TrendingFragment(
                        enterSpaceListener = {
-                           adjustLayoutParams(true, true, true)
-                           loadFragment(SpacesMainFragment(visitProfileListener = {
-                               startActivity(Intent(this,VisitProfileActivity::class.java))
-                           }, exitSpaceListener = {
-                               adjustLayoutParams(false)
-                               supportFragmentManager.popBackStack()
-
-                           }))
+                           startActivity(Intent(this, SocietyActivity::class.java))
                        },
                        createSpaceListener = {
                          //  adjustLayoutParamsForCreateSpace(true)
