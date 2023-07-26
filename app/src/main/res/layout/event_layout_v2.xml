@@ -1,193 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="165dp"
+    android:layout_height="210dp"
+    app:cardBackgroundColor="@color/white"
     android:orientation="vertical"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="5dp"
-    android:background="@color/special_activity_background"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="0dp"
+    app:strokeColor="#DBDBDB"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <View
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:background="#D5D2D2"/>
+        android:layout_height="match_parent">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/eventHeader"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="250dp"
+            android:scaleY="-1"
+            app:mwhVelocity="1"
+            app:mwhProgress="1"
+            app:mwhIsRunning="false"
+            app:mwhGradientAngle="45"
+            app:mwhWaveHeight="50dp"
+            app:mwhColorAlpha="0.45"
+            android:rotation="180"
+            app:mwhStartColor="#FD3068"
+            app:mwhCloseColor="#F82B62"
+            app:mwhWaves="MultiWave"/>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/dollar_alt_icon"
-                android:padding="7dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:tint="#FAF9F9"
-                android:id="@+id/eventLogo"
-                android:background="@drawable/filled_full_circle"
-                android:backgroundTint="@color/new_pink"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:layout_gravity="center"
-                android:gravity="center|left"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginLeft="5dp"
-                android:maxLines="2"
-                android:ellipsize="end"
-                app:layout_constraintStart_toEndOf="@id/eventLogo"
-                android:textColor="@color/dark_text_color"
-                android:fontFamily="@font/opensans_bold"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/eventHeader">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/event_day_month_icon"
-                android:padding="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:tint="#DA7D7C7C"
-                android:id="@+id/eventDateIcon"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:layout_gravity="center"
-                android:gravity="center|left"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginLeft="5dp"
-                android:maxLines="3"
-                android:ellipsize="end"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/eventDateIcon"
-                android:textColor="#DA7D7C7C"
-                android:fontFamily="@font/opensans_semi_bold"
-                android:text="Wednesday, 26 July 2023"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scaleType="centerCrop"
-                android:layout_gravity="center|left"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/white"
-                android:src="@drawable/enthusiastic"/>
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="-8dp"
-                android:layout_gravity="center|left"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/white"
-                android:src="@drawable/young_man"/>
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="-8dp"
-                android:scaleType="centerCrop"
-                android:layout_gravity="center|left"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/white"
-                android:src="@drawable/business_woman"/>
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scaleType="centerCrop"
-                android:layout_gravity="center|left"
-                app:civ_border_width="2dp"
-                android:layout_marginLeft="-8dp"
-                app:civ_border_color="@color/white"
-                android:src="@drawable/woman_official"/>
-              <TextView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:scaleType="centerCrop"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="13sp"
-                    android:textColor="@color/dark_text_color"
-                    android:fontFamily="@font/opensans_bold"
-                    android:backgroundTint="@color/new_pink"
-                    android:text="+56"
-                    android:src="@drawable/woman_official"/>
-        </LinearLayout>
-
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:textSize="13sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                app:cornerRadius="20dp"
-                android:textColor="@color/new_pink"
-                app:strokeWidth="1.5dp"
-                app:backgroundTint="@color/transparent"
-                app:strokeColor="@color/new_pink"
-                android:fontFamily="@font/opensans_semi_bold"
-                android:text="Add"
-                android:textAllCaps="false"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/eventCreator"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:orientation="horizontal"
+                    android:gravity="left|center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        app:civ_border_width="0.5dp"
+                        android:id="@+id/accountProfilePicture"
+                        app:layout_constraintEnd_toStartOf="@id/accountInfoRoot"
+                        app:civ_border_color="@color/special_activity_background"
+                        android:src="@drawable/woman_official"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Zaynab Sayiddah A."
+                        android:maxLines="1"
+                        android:layout_marginLeft="5dp"
+                        android:ellipsize="end"
+                        android:textColor="#F3F3F3"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/opensans_bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/filled_circle"
+                    android:backgroundTint="#F3F3F3"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:tint="#FAA65C"
+                        android:src="@drawable/star_favourite_icon"/>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="#D5D2D2"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="#F6F6F6"/>
 
 
-</LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/eventHeader"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/dollar_alt_icon"
+                            android:padding="7dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:tint="@color/new_pink"
+                            android:id="@+id/eventLogo"
+                            android:background="@drawable/filled_full_circle"
+                            android:backgroundTint="#F3F3F3"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center"
+                            android:gravity="center|left"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginLeft="5dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            app:layout_constraintStart_toEndOf="@id/eventLogo"
+                            android:textColor="#F3F3F3"
+                            android:fontFamily="@font/opensans_bold"
+                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/eventHeader">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/event_day_month_icon"
+                            android:padding="8dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:tint="#F3F3F3"
+                            android:id="@+id/eventDateIcon"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center"
+                            android:gravity="center|left"
+                            android:textSize="13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginLeft="5dp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/eventDateIcon"
+                            android:textColor="#F3F3F3"
+                            android:fontFamily="@font/opensans_semi_bold"
+                            android:text="Wednesday, 26 July 2023"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center|left"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="#F3F3F3"
+                            android:src="@drawable/enthusiastic"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:scaleType="centerCrop"
+                            android:layout_marginLeft="-8dp"
+                            android:layout_gravity="center|left"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="#F3F3F3"
+                            android:src="@drawable/young_man"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="-8dp"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center|left"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="#F3F3F3"
+                            android:src="@drawable/business_woman"/>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center|left"
+                            app:civ_border_width="2dp"
+                            android:layout_marginLeft="-8dp"
+                            app:civ_border_color="#F3F3F3"
+                            android:src="@drawable/woman_official"/>
+                        <TextView
+                            android:layout_width="27dp"
+                            android:layout_height="27dp"
+                            android:scaleType="centerCrop"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="13sp"
+                            android:textColor="#F3F3F3"
+                            android:fontFamily="@font/opensans_bold"
+                            android:backgroundTint="@color/new_pink"
+                            android:text="+56"
+                            android:src="@drawable/woman_official"/>
+                    </LinearLayout>
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:textSize="13sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginRight="10dp"
+                        app:cornerRadius="20dp"
+                        android:textColor="#F3F3F3"
+                        app:strokeWidth="1.5dp"
+                        app:backgroundTint="@color/transparent"
+                        app:strokeColor="#F3F3F3"
+                        android:fontFamily="@font/opensans_bold"
+                        android:text="Add"
+                        android:textAllCaps="false"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

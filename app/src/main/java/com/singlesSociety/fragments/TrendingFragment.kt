@@ -207,6 +207,8 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
     private fun populateDiscoverEvents(){
         var itemList = ArrayList<ExploreEvent>()
         itemList.add(ExploreEvent(1))
+        itemList.add(ExploreEvent(1))
+        itemList.add(ExploreEvent(1))
         for (i in 0..5) {
             itemList.add(ExploreEvent(0))
         }

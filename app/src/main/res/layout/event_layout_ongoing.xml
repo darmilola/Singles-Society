@@ -2,8 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:layout_height="200dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_height="190dp"
     app:cardBackgroundColor="@color/special_activity_background"
     app:cardCornerRadius="10dp">
 
@@ -14,7 +17,7 @@
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/waveHeader"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="270dp"
         android:scaleY="-1"
         app:mwhVelocity="1"
         app:mwhProgress="1"
@@ -23,8 +26,8 @@
         app:mwhWaveHeight="50dp"
         app:mwhColorAlpha="0.45"
         android:rotation="180"
-        app:mwhStartColor="@color/new_pink"
-        app:mwhCloseColor="@color/deep_yellow"
+        app:mwhStartColor="#FD3068"
+        app:mwhCloseColor="#F82B62"
         app:mwhWaves="MultiWave"/>
 
 
@@ -65,7 +68,7 @@
                 android:tint="@color/deep_yellow"
                 android:id="@+id/eventLogo"
                 android:background="@drawable/filled_full_circle"
-                android:backgroundTint="@color/white"/>
+                android:backgroundTint="#F3F3F3"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -79,7 +82,7 @@
                 android:maxLines="2"
                 android:ellipsize="end"
                 app:layout_constraintStart_toEndOf="@id/eventLogo"
-                android:textColor="@color/white"
+                android:textColor="#F3F3F3"
                 android:fontFamily="@font/opensans_bold"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum" />
 
@@ -91,7 +94,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:tint="@color/white"
+                android:tint="#F3F3F3"
                 android:id="@+id/eventEnter"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -124,8 +127,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/dummyView"
-                android:textColor="@color/white"
-                android:fontFamily="@font/opensans_regular"
+                android:textColor="#F3F3F3"
+                android:fontFamily="@font/opensans_semi_bold"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor iLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,7 +155,7 @@
                 android:scaleType="centerCrop"
                 android:layout_gravity="center|left"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#EDEDED"
+                app:civ_border_color="#F3F3F3"
                 android:src="@drawable/enthusiastic"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
@@ -161,7 +164,7 @@
                 android:layout_marginLeft="-8dp"
                 android:layout_gravity="center|left"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#EDEDED"
+                app:civ_border_color="#F3F3F3"
                 android:src="@drawable/young_man"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
@@ -170,7 +173,7 @@
                 android:scaleType="centerCrop"
                 android:layout_gravity="center|left"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#EDEDED"
+                app:civ_border_color="#F3F3F3"
                 android:src="@drawable/business_woman"/>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
@@ -179,7 +182,7 @@
                 android:layout_gravity="center|left"
                 app:civ_border_width="2dp"
                 android:layout_marginLeft="-8dp"
-                app:civ_border_color="#EDEDED"
+                app:civ_border_color="#F3F3F3"
                 android:src="@drawable/woman_official"/>
             <TextView
                 android:layout_width="27dp"
@@ -188,7 +191,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="13sp"
-                android:textColor="@color/white"
+                android:textColor="#F3F3F3"
                 android:fontFamily="@font/opensans_bold"
                 android:backgroundTint="@color/new_pink"
                 android:text="+56"
@@ -206,10 +209,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginRight="10dp"
             app:cornerRadius="20dp"
-            android:textColor="@color/white"
+            android:textColor="#F3F3F3"
             app:strokeWidth="1.5dp"
             app:backgroundTint="@color/transparent"
-            app:strokeColor="@color/white"
+            app:strokeColor="#F3F3F3"
             android:fontFamily="@font/opensans_bold"
             android:text="Join Now"
             android:textAllCaps="false"/>

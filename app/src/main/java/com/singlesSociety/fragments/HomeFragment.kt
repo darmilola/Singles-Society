@@ -83,10 +83,10 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                 Rotation(),
                 Emitter(5, TimeUnit.MINUTES).perSecond(500))
         viewBinding.konfettiView.konfettiView.start(mParty)
+        parseUserResponse()
 
 
-
-        mainActivityModel = MainActivityModel(requireContext())
+      /*  mainActivityModel = MainActivityModel(requireContext())
         mainActivityModel?.GetUserInfo()
         mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {
             override fun onReady(previewProfileModel: PreviewProfileModel,  likeIds: ArrayList<String>) {
@@ -103,11 +103,11 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                 viewBinding.loaderView.setVisibility(View.GONE)
                 viewBinding.societyRecycler.setVisibility(View.VISIBLE)
             }
-        })
+        })*/
     }
 
     private fun parseUserResponse() {
-            val mainActivityModel2 = MainActivityModel(requireContext())
+         /*   val mainActivityModel2 = MainActivityModel(requireContext())
             mainActivityModel2.GetShowUserInfo()
             mainActivityModel2.setShowcaseInfoReadyListener(object : ShowcaseInfoReadyListener {
                 override fun onReady(
@@ -115,7 +115,7 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     likeIds: ArrayList<String>
                 ) {
                     Log.e("onReady: ", " Ready")
-                    /* for (i in 0..2) {
+                    *//* for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
                         val societyModel1 =
                             SocietyModel(communityPostModel, 1)
@@ -135,15 +135,15 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                     }*/
                     val moreProfiles: ArrayList<PreviewProfileModel> = ArrayList()
 
-                    for (profile in previewProfileModels) {
+                 /*   for (profile in previewProfileModels) {
                         moreProfiles.add(profile)
                         moreProfiles.add(profile)
                         moreProfiles.add(profile)
                         moreProfiles.add(profile)
-                    }
-                    val societyModelShowcase = SocietyModel(moreProfiles, likeIds, 0)
+                    }*/
+                  //  val societyModelShowcase = SocietyModel(moreProfiles, likeIds, 0)
 
-                    societyModelArrayList.add(societyModelShowcase)
+                 //   societyModelArrayList.add(societyModelShowcase)
                     societyModelArrayList.add(SocietyModel(6))
 
 
@@ -213,7 +213,7 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                 }
 
 
-                override fun onError(message: String) {
+           /*     override fun onError(message: String) {
                     Log.e("onError: ", message)
                     for (i in 0..2) {
                         val communityPostModel = CommunityPostModel()
@@ -263,10 +263,10 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         viewBinding.societyRecycler.setVisibility(View.GONE)
                         viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
                     }
-                    /*  loaderView.setVisibility(View.GONE)
+                    *//*  loaderView.setVisibility(View.GONE)
                     activity_main_main_view.setVisibility(View.VISIBLE)
                     met_match_root.setVisibility(View.GONE)
-                    error_layout_root.setVisibility(View.VISIBLE*/
+                    error_layout_root.setVisibility(View.VISIBLE*//*
                 }
 
                 override fun onEmptyResponse() {
@@ -321,15 +321,15 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         viewBinding.societyRecycler.setVisibility(View.GONE)
                         viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
                     }
-                    /*  loaderView.setVisibility(View.GONE)
+                    *//*  loaderView.setVisibility(View.GONE)
                       activity_main_main_view.setVisibility(View.VISIBLE)
                       met_match_root.setVisibility(View.GONE)
-                      error_layout_root.setVisibility(View.VISIBLE*/
+                      error_layout_root.setVisibility(View.VISIBLE*//*
 
                 }
             }
-                )
-        }
+                )*/
+
 
     var unScrollableLayoutManager: LinearLayoutManager = object : LinearLayoutManager(context) {
         override fun canScrollVertically(): Boolean {
