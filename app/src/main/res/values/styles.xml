@@ -79,7 +79,7 @@
         <item name="android:textColor">@android:color/holo_red_light</item>
     </style>
 
-    <style name="ChatMessageInfo">
+    <style name="ChatMessageInfo">o
         <item name="android:textSize">11sp</item>
     </style>
 

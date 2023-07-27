@@ -7,15 +7,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import com.singlesSociety.databinding.ActivitySocietyBinding
-import com.singlesSociety.databinding.ActivitySocietySwipeBinding
-import com.singlesSociety.databinding.FragmentSpacesMainBinding
-import com.singlesSociety.databinding.SettingsActivityBinding
-import com.singlesSociety.fragments.HomeFragment
 import com.singlesSociety.fragments.SpacesMainFragment
-import com.singlesSociety.fragments.TextLibraryFragment
 import com.singlesSociety.fragments.VisitProfileActivity
 
 class SocietyActivity : AppCompatActivity() {
@@ -58,7 +51,7 @@ class SocietyActivity : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.spaceContainer,fragment)
+        transaction.replace(R.id.societyContainer,fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }

@@ -85,7 +85,7 @@ public class SplashScreen extends AppCompatActivity {
 
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.pink));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.deep_yellow));
             getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.new_pink));
         }
     }

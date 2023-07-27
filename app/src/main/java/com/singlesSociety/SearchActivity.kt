@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,7 @@ import com.singlesSociety.UiModels.SocietyModel
 import com.singlesSociety.UiModels.SocietyUserModel
 import com.singlesSociety.fragments.CommentBottomSheet
 import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
-import com.singlesSociety.uiAdapters.ExploreLiveAdapter
+import com.singlesSociety.uiAdapters.SocietyEventsAdapter
 import com.singlesSociety.uiAdapters.HashtagAdapter
 import com.singlesSociety.uiAdapters.HomeMainAdapter
 import com.singlesSociety.uiAdapters.PeopleAdapter
@@ -61,7 +60,7 @@ class SearchActivity : AppCompatActivity(), CommentBottomSheet.CommentActionList
             itemList.add(ExploreEvent(0))
         }
 
-        recylerview.adapter = ExploreLiveAdapter(this,itemList)
+        recylerview.adapter = SocietyEventsAdapter(this,itemList)
     }
 
     private fun initPosts(){
@@ -159,6 +158,6 @@ class SearchActivity : AppCompatActivity(), CommentBottomSheet.CommentActionList
     }
 
     override fun onProfileVisit() {
-        TODO("Not yet implemented")
+
     }
 }

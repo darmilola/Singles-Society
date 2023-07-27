@@ -8,9 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -19,13 +17,11 @@ import com.singlesSociety.R
 import com.singlesSociety.UiModels.CommunityPostModel
 import com.singlesSociety.UiModels.ExploreEvent
 import com.singlesSociety.UiModels.ExploreItem
-import com.singlesSociety.UiModels.PopularHashtagModel
 import com.singlesSociety.UiModels.SocietyHeaderModel
 import com.singlesSociety.UiModels.SocietyModel
 import com.singlesSociety.databinding.FragmentTrendingBinding
 import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
-import com.singlesSociety.uiAdapters.ExploreLiveAdapter
-import com.singlesSociety.uiAdapters.HashtagAdapter
+import com.singlesSociety.uiAdapters.SocietyEventsAdapter
 import com.singlesSociety.uiAdapters.HomeMainAdapter
 import com.singlesSociety.uiAdapters.TrendingHeaderAdapter
 import com.ss.storiesview.StoriesProgressView
@@ -213,7 +209,7 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
             itemList.add(ExploreEvent(0))
         }
 
-        viewBinding.exploreDiscoverRecyclerView.adapter = ExploreLiveAdapter(requireContext(),itemList)
+        viewBinding.exploreDiscoverRecyclerView.adapter = SocietyEventsAdapter(requireContext(),itemList)
     }
 
 

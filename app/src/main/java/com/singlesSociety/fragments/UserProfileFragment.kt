@@ -16,9 +16,6 @@ import com.singlesSociety.R
 import com.singlesSociety.databinding.FragmentUserProfileBinding
 
 
-private const val ID_TEXT_LIBRARY = 8
-private const val ID_STARRED_PROFILE = 9
-private const val ID_PERSONAL_PROFILE = 10
 class UserProfileFragment : Fragment() {
 
 
@@ -135,6 +132,9 @@ class UserProfileFragment : Fragment() {
 
                 2 -> {
                     DatingProfileFragment(isFromUser = false)
+                }
+                3 -> {
+                    UserEventFragment()
                 }
 
                 else -> {

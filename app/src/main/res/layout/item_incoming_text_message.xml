@@ -24,7 +24,7 @@
             android:id="@id/messageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:lineSpacingExtra="3dp"
             android:fontFamily="@font/opensansregular"
             android:textColor="@color/dark_text_color"/>

@@ -19,21 +19,14 @@
             android:background="@color/special_activity_background"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="@color/special_activity_background">
-          <androidx.appcompat.widget.Toolbar
-              app:layout_collapseMode="pin"
-              android:layout_width="match_parent"
-              android:layout_height="50dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+
 
 
            <include layout="@layout/profile_info_arena"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:id="@+id/profileInfoArena"
-               app:layout_collapseMode="pin"/>
+               android:layout_marginBottom="50dp"
+               android:id="@+id/profileInfoArena"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -73,8 +66,6 @@
                         android:background="#8BB9B9B9"/>
              </FrameLayout>
             </androidx.appcompat.widget.Toolbar>
-
-            </LinearLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

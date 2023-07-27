@@ -14,23 +14,8 @@
         android:gravity="center"
         android:id="@+id/logo_root"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:id="@+id/logo_image"
-            android:tint="@color/white"
-            android:src="@drawable/muzmatch"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="40dp"
-            android:maxLines="1"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/logo_text"
-            android:textColor="@color/white"
-            android:text="Singles Society"
-            android:fontFamily="@font/kumelian"/>
+
+
     </LinearLayout>
 
 </LinearLayout>

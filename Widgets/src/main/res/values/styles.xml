@@ -13,11 +13,6 @@
         <item name="chipStyle">@style/ChipStyle.Base</item>
     </style>
 
-
-
-
-    <style name="Widget">
-    </style>
     <style name="Widget.ProgressBar">
         <item name="android:indeterminateOnly">true</item>
         <item name="android:indeterminateBehavior">repeat</item>
@@ -43,7 +38,7 @@
     </style>
 
     <style name="TabTextAppearance" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:fontFamily">@font/clannews</item>
+        <item name="android:fontFamily">@font/opensans_semi_bold</item>
         <item name="android:textSize">16dp</item>
         <item name="android:textColor">@color/grey</item>
         <item name="android:textAllCaps">false</item>
@@ -148,9 +143,5 @@
         <item name="android:fontFamily">@font/manropesemibold</item>
         <item name="android:textColor">@color/chip_text_color</item>
     </style>
-
-
-
-
 
 </resources>

@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.singlesSociety.R
-import com.singlesSociety.UiModels.ExploreItem
 import com.singlesSociety.EventLandingPage
 import com.singlesSociety.UiModels.ExploreEvent
-import kotlinx.coroutines.NonDisposableHandle.parent
 
-class ExploreLiveAdapter(val context: Context, val exploreItemList: ArrayList<ExploreEvent>, private var visitEventListener: Function0<Unit>? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SocietyEventsAdapter(val context: Context, val exploreItemList: ArrayList<ExploreEvent>, private var visitEventListener: Function0<Unit>? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_MAIN = 0
 
