@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/special_activity_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.UserProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@id/detailLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/special_activity_background"
+        android:id="@+id/societyToolbar"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:id="@+id/postDetailExitCta"
+            app:layout_constraintEnd_toStartOf="@id/spaceHeaderTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center|left">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:id="@+id/exitSpaceButton"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="5dp"
+                app:tint="@color/dark_text_color"
+                android:src="@drawable/arrow_arrows_back_direction_left_icon"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            app:layout_constraintStart_toEndOf="@id/postDetailExitCta"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingRight="5dp"
+            app:layout_constraintEnd_toStartOf="@id/spaceHeaderOverFlowMenu"
+            android:id="@+id/spaceHeaderTitle"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center|right">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:textColor="@color/dark_text_color"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:fontFamily="@font/opensansbold"
+                android:lineSpacingExtra="7dp"
+                android:text="Albert Einstein"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/spaceHeaderTitle"
+            android:paddingRight="5dp"
+            android:id="@+id/spaceHeaderOverFlowMenu"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center|right">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:rotation="90"
+                android:layout_marginLeft="5dp"
+                app:tint="@color/dark_text_color"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/overflow_menu_icon"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <include android:layout_width="match_parent" android:layout_height="0dp" android:id="@+id/detailLayout" layout="@layout/society_post_detail_layout" app:layout_constraintTop_toBottomOf="@id/societyToolbar" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/add_comment_input" android:layout_width="match_parent" android:layout_height="80dp" android:layout_gravity="bottom"/>
+</FrameLayout>

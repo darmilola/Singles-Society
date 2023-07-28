@@ -38,6 +38,7 @@ import android.widget.Toast;
 import com.singlesSociety.EventLandingPage;
 import com.singlesSociety.OnSwipeTouchListener;
 import com.singlesSociety.R;
+import com.singlesSociety.SocietyPostDetail;
 import com.singlesSociety.SocietySwipeActivity;
 import com.singlesSociety.UiModels.CommunityPostTypeTextAttachmentModel;
 import com.singlesSociety.UiModels.MainActivityModel;
@@ -47,6 +48,7 @@ import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.mackhartley.roundedprogressbar.RoundedProgressBar;
+import com.singlesSociety.fragments.EventBottomsheet;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -62,9 +64,11 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -367,7 +371,9 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             ItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    context.startActivity(new Intent(context, EventLandingPage.class));
+
+                    FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                    new EventBottomsheet().show(manager,"event");
                 }
             });
 
@@ -415,6 +421,13 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onClick(View v) {
                     visitProfileListener.invoke();
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, SocietyPostDetail.class));
                 }
             });
 

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:layout_gravity="bottom"
+    android:layout_marginBottom="-25dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.CommentBottomSheet"
+    app:cardElevation="3dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/special_activity_background">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/commentLayout"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/dragHandler"
+                android:background="@drawable/filled_full_circle"
+                android:backgroundTint="@color/light_text_color"
+                android:layout_gravity="center"/>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="New Arrival Upgrade your setup now, you can put your event title here"
+                        android:gravity="center|left|bottom"
+                        android:textSize="16sp"
+                        android:layout_gravity="bottom"
+                        android:id="@+id/eventTitle"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintBottom_toTopOf="@id/eventCreator"
+                        android:fontFamily="@font/manropebold"
+                        android:maxLines="4"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="3dp"
+                        android:textColor="@color/new_dark_text_color"/>
+
+                    <com.SinglesSociety.SocialText.RichTextController.RTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/postTextView"
+                        android:background="@color/transparent"
+                        android:textSize="15sp"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingExtra="2dp"
+                        android:textColor="#1B1616"
+                        android:maxLines="5"
+                        android:fontFamily="@font/opensansreg"
+                        android:text="The implosionhether the vehicle itself  defended the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief"/>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2"
+                        android:layout_marginRight="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="left"
+                            android:orientation="horizontal"
+                            android:gravity="left|center">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                app:tint="@color/dark_text_color"
+                                android:layout_marginRight="1dp"
+                                android:src="@drawable/schedule_event_icon"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Date"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/light_text_color"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center|left">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                app:tint="@color/dark_text_color"
+                                android:layout_marginRight="1dp"
+                                android:src="@drawable/time_icon"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Time"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/light_text_color"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:weightSum="2"
+                        android:layout_marginRight="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="left"
+                            android:orientation="horizontal"
+                            android:gravity="left|center|top">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tuesday, 24 Aug"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/dark_text_color"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center|left|top">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="13:00 PM - 15:00 PM"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/dark_text_color"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:weightSum="2"
+                        android:layout_marginRight="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="left"
+                            android:orientation="horizontal"
+                            android:gravity="left|center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                app:tint="@color/dark_text_color"
+                                android:layout_marginRight="1dp"
+                                android:src="@drawable/user_icon_outline"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Host"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/light_text_color"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center|left">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                app:tint="@color/dark_text_color"
+                                android:layout_marginRight="1dp"
+                                android:src="@drawable/blog_logo_medium_icon"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Reputation"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/light_text_color"
+                                android:layout_marginLeft="10dp"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:weightSum="2"
+                        android:layout_marginRight="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="left"
+                            android:orientation="horizontal"
+                            android:gravity="center|left">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:scaleType="centerCrop"
+                                android:layout_gravity="center|left"
+                                app:civ_border_width="1dp"
+                                app:civ_border_color="@color/special_activity_background"
+                                android:src="@drawable/enthusiastic"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cristofer Donin"
+                                android:layout_marginLeft="5dp"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/dark_text_color"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="28dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center|left">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="70.5"
+                                android:fontFamily="@font/manropesemibold"
+                                android:textColor="@color/dark_text_color"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:text="Notify"
+                        android:gravity="center"
+                        android:layout_marginBottom="20dp"
+                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                        android:layout_gravity="center|right"
+                        app:icon="@drawable/ring_icon"
+                        app:iconSize="20dp"
+                        app:iconGravity="textEnd"
+                        app:iconTint="@color/new_pink"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/new_pink"
+                        android:id="@+id/joinEvent"
+                        android:textColor="@color/pink"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/manropesemibold"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

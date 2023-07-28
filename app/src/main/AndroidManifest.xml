@@ -21,6 +21,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:supportsRtl">
         <activity
+            android:name=".SocietyPostDetail"
+            android:exported="false" />
+        <activity
             android:name=".SocietyActivity"
             android:exported="false" />
         <activity

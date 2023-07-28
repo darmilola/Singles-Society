@@ -14,7 +14,6 @@ import com.singlesSociety.R
 import com.singlesSociety.uiAdapters.CommentsAdapter
 import com.singlesSociety.UiModels.CommentModel
 import com.singlesSociety.UiModels.CommentReplyModel
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.singlesSociety.databinding.FragmentCommentBottomSheetBinding
@@ -69,7 +68,7 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
 
             val bottomSheetActionLayout = LayoutInflater.from(requireContext())
                 .inflate(
-                    R.layout.comment_bottomsheet_input,
+                    R.layout.add_comment_input,
                     containerLayout,
                     false
                 )

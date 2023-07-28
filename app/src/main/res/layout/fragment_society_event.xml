@@ -4,15 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingBottom="100dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".fragments.SocietyEventFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
+        android:paddingBottom="70dp"
         android:id="@+id/eventsRecyclerview"/>
 
 </FrameLayout>

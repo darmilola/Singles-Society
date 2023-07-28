@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="100dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.SocietyMembersListFragment">
 
@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
+        android:paddingBottom="70dp"
         android:id="@+id/usersListRecyclerview"/>
 
 </FrameLayout>
