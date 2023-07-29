@@ -32,7 +32,7 @@
         android:textSize="13sp"
         android:linksClickable="true"
         android:fontFamily="@font/opensans_semi_bold"
-        android:textColor="@color/new_pink"
+        android:textColor="@color/society_pink"
         android:maxLines="1"
         android:ellipsize="end"/>
 
@@ -183,7 +183,7 @@
             android:gravity="center"
             android:textSize="14sp"
             android:background="@drawable/filled_transparent_circle"
-            android:backgroundTint="@color/new_pink"
+            android:backgroundTint="@color/society_pink"
             android:layout_marginRight="5dp"/>
         <TextView
             android:layout_width="0dp"

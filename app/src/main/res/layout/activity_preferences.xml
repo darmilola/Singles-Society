@@ -274,7 +274,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:rsb_gravity="center"
                             android:layout_marginTop="15dp"
-                            app:rsb_progress_color="@color/new_pink"
+                            app:rsb_progress_color="@color/society_pink"
                             app:rsb_progress_default_color="#957A7A7A"
                             app:rsb_max="35"
                             app:rsb_min="18"
@@ -369,7 +369,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:rsb_gravity="center"
                             android:layout_marginTop="15dp"
-                            app:rsb_progress_color="@color/new_pink"
+                            app:rsb_progress_color="@color/society_pink"
                             app:rsb_progress_default_color="#957A7A7A"
                             app:rsb_mode="single"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -795,7 +795,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:rsb_gravity="center"
                             android:layout_marginTop="15dp"
-                            app:rsb_progress_color="@color/new_pink"
+                            app:rsb_progress_color="@color/society_pink"
                             app:rsb_progress_default_color="#957A7A7A"
                             app:rsb_mode="single"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -104,7 +104,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/camera_video_icon"
-                    app:tint="@color/new_pink"/>
+                    app:tint="@color/society_pink"/>
 
             </LinearLayout>
 
@@ -126,7 +126,7 @@
                     android:layout_height="20dp"
                     android:gravity="center"
                     android:layout_marginLeft="16dp"
-                    app:tint="@color/new_pink"
+                    app:tint="@color/society_pink"
                     android:layout_marginRight="15dp"
                     android:src="@drawable/thick_phone_icon"/>
 

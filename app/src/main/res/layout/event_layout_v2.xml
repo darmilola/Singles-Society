@@ -131,7 +131,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:tint="@color/new_pink"
+                            android:tint="@color/society_pink"
                             android:id="@+id/eventLogo"
                             android:background="@drawable/filled_full_circle"
                             android:backgroundTint="#F3F3F3"/>
@@ -250,7 +250,7 @@
                             android:textSize="13sp"
                             android:textColor="#F3F3F3"
                             android:fontFamily="@font/opensans_bold"
-                            android:backgroundTint="@color/new_pink"
+                            android:backgroundTint="@color/society_pink"
                             android:text="+56"
                             android:src="@drawable/woman_official"/>
                     </LinearLayout>

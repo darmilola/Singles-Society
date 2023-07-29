@@ -32,7 +32,7 @@
             android:textSize="13sp"
             android:linksClickable="true"
             android:fontFamily="@font/opensans_semi_bold"
-            android:textColor="@color/new_pink"
+            android:textColor="@color/society_pink"
             android:maxLines="1"
             android:ellipsize="end"/>
 

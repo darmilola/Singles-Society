@@ -127,6 +127,7 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                             SocietyModel(4)
                         societyModelArrayList.add(societyModel1);
                         societyModelArrayList.add(SocietyModel(5))
+                        societyModelArrayList.add(SocietyModel(7))
                     }
 
                     /*  for (i in 0..2) {

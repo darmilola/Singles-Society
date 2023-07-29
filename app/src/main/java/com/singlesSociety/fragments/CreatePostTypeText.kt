@@ -16,9 +16,6 @@ import com.singlesSociety.databinding.FragmentCreatePostTypeTextBinding
 
 
 class CreatePostTypeText : Fragment() {
-
-    private var createPostRTManager: RTManager? = null
-    private var rtApi: RTApi? = null
     private lateinit var viewBinding: FragmentCreatePostTypeTextBinding
 
 
@@ -26,7 +23,7 @@ class CreatePostTypeText : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         viewBinding = FragmentCreatePostTypeTextBinding.inflate(layoutInflater)
         return viewBinding.root
@@ -39,17 +36,8 @@ class CreatePostTypeText : Fragment() {
     }
 
     private fun initView(){
-        rtApi = RTApi(context, RTProxyImpl(activity))
-        createPostRTManager = RTManager(rtApi)
-        createPostRTManager!!.registerToolbar(viewBinding.createPostToolbarLayout, viewBinding.createPostToolbar)
-        createPostRTManager!!.registerEditor(viewBinding.editView, true)
-        viewBinding.editView!!.setRichTextEditing(true, true)
-        viewBinding.createPostToolbar.applyDefaultFont()
-        viewBinding.exitButton.setOnClickListener {
-            activity?.finish()
-        }
-
-        viewBinding.editView.setMentionHashTagListener(object : MentionHashTagListener {
+        viewBinding.createPostEditView.setRichTextEditing(true, true)
+        viewBinding.createPostEditView.setMentionHashTagListener(object : MentionHashTagListener {
             override fun onMentioning(sequence: CharSequence) {}
             override fun onHashTagging(sequence: CharSequence) {}
             override fun onStopMentioning() {}
@@ -62,10 +50,8 @@ class CreatePostTypeText : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            activity?.window?.decorView?.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-            activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        }
+        activity?.window?.decorView?.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
 }

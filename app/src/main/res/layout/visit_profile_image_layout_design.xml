@@ -14,7 +14,7 @@
         app:cpb_foregroundProgressWidth="3"
         app:cpb_backgroundProgressColor="#C6C4C4"
         app:cpb_backgroundProgressWidth="3"
-        app:cpb_foregroundProgressColor="@color/new_pink"
+        app:cpb_foregroundProgressColor="@color/society_pink"
         app:cpb_touchEnabled="true"/>
 
     <androidx.cardview.widget.CardView

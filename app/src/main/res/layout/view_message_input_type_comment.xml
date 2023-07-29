@@ -30,7 +30,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                app:tint="@color/new_pink"
+                app:tint="@color/society_pink"
                 android:src="@drawable/select_image"/>
 
         </LinearLayout>
@@ -77,7 +77,7 @@
         <ImageView
             android:id="@id/messageSendButton"
             android:layout_width="28dp"
-            app:tint="@color/new_pink"
+            app:tint="@color/society_pink"
             android:src="@drawable/send_filled_icon"
             android:layout_height="28dp"/>
     </LinearLayout>

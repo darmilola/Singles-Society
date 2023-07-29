@@ -149,7 +149,7 @@
                            app:layout_constraintTop_toBottomOf="@id/ageLayout"
                            app:layout_constraintBottom_toBottomOf="parent"
                            app:rsb_gravity="center"
-                           app:rsb_progress_color="@color/new_pink"
+                           app:rsb_progress_color="@color/society_pink"
                            app:rsb_progress_default_color="#957A7A7A"
                            app:rsb_mode="single" />
                    </androidx.constraintlayout.widget.ConstraintLayout>

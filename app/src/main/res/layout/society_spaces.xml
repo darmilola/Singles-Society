@@ -139,8 +139,8 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginLeft="10dp"
-                        android:background="@color/new_pink"
-                        android:backgroundTint="@color/new_pink"
+                        android:background="@color/society_pink"
+                        android:backgroundTint="@color/society_pink"
                         app:cardCornerRadius="5dp">
                         <ImageView
                             android:layout_width="match_parent"
@@ -167,7 +167,7 @@
                             android:scaleType="centerCrop"
                             android:layout_gravity="center"
                             android:gravity="center|right"
-                            android:textColor="@color/new_pink"
+                            android:textColor="@color/society_pink"
                             android:textSize="15sp"
                             android:fontFamily="@font/opensans_semi_bold"
                             android:maxLines="1"
@@ -178,7 +178,7 @@
                             android:layout_height="35dp"
                             android:src="@drawable/enter_icon"
                             android:padding="4dp"
-                            app:tint="@color/new_pink"/>
+                            app:tint="@color/society_pink"/>
 
                     </LinearLayout>
 
@@ -327,7 +327,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             app:tabIndicator="@drawable/indicator_layer_list"
-                            app:tabIndicatorColor="@color/new_pink"
+                            app:tabIndicatorColor="@color/society_pink"
                             android:background="@color/special_activity_background"
                             app:layout_constraintBottom_toTopOf="@+id/societyViewPager"
                             app:layout_constraintEnd_toEndOf="parent"

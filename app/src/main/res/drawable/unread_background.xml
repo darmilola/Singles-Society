@@ -8,7 +8,7 @@
         android:radius="70dp">
     </corners>
 
-    <solid android:color="@color/new_pink"/>
+    <solid android:color="@color/society_pink"/>
 
 
     <stroke android:color="@color/white" android:width="2dp"/>

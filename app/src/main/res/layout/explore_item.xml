@@ -192,7 +192,7 @@
                         android:textSize="13sp"
                         android:textColor="#F3F3F3"
                         android:fontFamily="@font/opensans_bold"
-                        android:backgroundTint="@color/new_pink"
+                        android:backgroundTint="@color/society_pink"
                         android:text="+56"
                         android:src="@drawable/woman_official"/>
                 </LinearLayout>

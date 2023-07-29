@@ -244,7 +244,7 @@ class BottomNav : LinearLayout {
                     iconSize = dip(context, 70)
                     isEnabledCell = true
                     isCenterButton = true
-                    defaultIconColor = resources.getColor(R.color.new_pink)
+                    defaultIconColor = resources.getColor(R.color.society_pink)
                 }
                 enableCell(true)
             }
@@ -358,7 +358,7 @@ class BottomNav : LinearLayout {
     private fun enableCenterButton(cell: BottomNavIcon?){
         cell?.apply {
             isCenterButton = true
-            iconColor = resources.getColor(R.color.new_pink)
+            iconColor = resources.getColor(R.color.society_pink)
         }
     }
 

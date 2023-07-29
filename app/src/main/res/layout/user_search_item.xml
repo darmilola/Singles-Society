@@ -89,7 +89,7 @@
                android:layout_width="90dp"
                android:gravity="center"
                android:padding="5dp"
-               app:strokeColor="@color/new_pink"
+               app:strokeColor="@color/society_pink"
                app:strokeWidth="1dp"
                app:cornerRadius="6dp"
                style="@style/Widget.Material3.Button.OutlinedButton"

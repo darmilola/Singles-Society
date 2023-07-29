@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/special_activity_background"
+    tools:context=".fragments.CreateEventFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/opensansbold"
+            android:text="Title"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:background="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginRight="70dp">
+
+                    <com.SinglesSociety.SocialText.RichTextController.RTEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:hint="Event Title"
+                        android:gravity="center"
+                        android:textSize="14sp"
+                        android:textColorHint="@color/light_text_color"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/opensansregular"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/dark_text_color"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/opensansbold"
+            android:text="Description"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:background="@color/white">
+
+            <com.SinglesSociety.SocialText.RichTextController.RTEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:hint="Event Description"
+                        android:gravity="left|center"
+                        android:textSize="14sp"
+                        android:layout_marginTop="5dp"
+                        android:textColorHint="@color/light_text_color"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/opensansregular"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/dark_text_color"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/opensansbold"
+            android:text="Date"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:background="@color/white">
+
+            <com.SinglesSociety.SocialText.RichTextController.RTEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:hint="24 August 2023"
+                        android:gravity="left|center"
+                        android:textSize="14sp"
+                        android:textColorHint="@color/light_text_color"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/opensansregular"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/dark_text_color"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/opensansbold"
+            android:text="Start Time"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/opensansbold"
+            android:text="End Time"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <com.SinglesSociety.SocialText.RichTextController.RTEditText
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="13:00 PM"
+            android:gravity="left|center"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:backgroundTint="@color/white"
+            android:layout_marginRight="5dp"
+            android:textColorHint="@color/light_text_color"
+            android:background="@color/white"
+            android:fontFamily="@font/opensansregular"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/dark_text_color"/>
+
+
+        <com.SinglesSociety.SocialText.RichTextController.RTEditText
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="15:00 PM"
+            android:gravity="left|center"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:paddingLeft="15dp"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/light_text_color"
+            android:background="@color/white"
+            android:fontFamily="@font/opensansregular"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/dark_text_color"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/new_dark_text_color"
+            android:fontFamily="@font/opensansbold"
+            android:text="Min Society Reputation To Join"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:background="@color/white">
+
+            <com.SinglesSociety.SocialText.RichTextController.RTEditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:hint="56.90"
+                android:gravity="left|center"
+                android:textSize="14sp"
+                android:textColorHint="@color/light_text_color"
+                android:background="@color/transparent"
+                android:fontFamily="@font/opensansregular"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/dark_text_color"/>
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Create Event"
+        android:layout_gravity="bottom"
+        android:id="@+id/createPostBtn"
+        android:textAllCaps="false"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:elevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/new_pink"
+        android:textSize="14sp"
+        android:fontFamily="@font/opensans_bold"
+        app:cornerRadius="7dp"/>
+</FrameLayout>

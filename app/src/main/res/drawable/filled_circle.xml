@@ -8,7 +8,7 @@
 
     <gradient
         android:startColor="@color/deep_yellow"
-        android:endColor="@color/new_pink"
+        android:endColor="@color/society_pink"
         android:angle="90"/>
 
 

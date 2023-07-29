@@ -37,7 +37,7 @@
                     android:layout_height="16dp"
                     android:layout_gravity="center"
                     android:src="@drawable/undo_back_icon"
-                    app:tint="@color/new_pink"/>
+                    app:tint="@color/society_pink"/>
 
             </LinearLayout>
 
@@ -91,7 +91,7 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    app:tint="@color/new_pink"
+                    app:tint="@color/society_pink"
                     android:src="@drawable/iconfinder_heart_favourite_favorite_love" />
 
             </LinearLayout>

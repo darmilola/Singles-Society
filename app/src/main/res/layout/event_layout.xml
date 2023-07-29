@@ -140,7 +140,7 @@
                     android:textSize="11sp"
                     android:textColor="@color/white"
                     android:fontFamily="@font/manropesemibold"
-                    android:backgroundTint="@color/new_pink"
+                    android:backgroundTint="@color/society_pink"
                     android:text="+56"
                     android:background="@drawable/filled_full_circle"
                     android:src="@drawable/woman_official"/>
@@ -168,16 +168,16 @@
                 android:gravity="center"
                 android:textSize="13sp"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/new_pink"
+                android:textColor="@color/society_pink"
                 android:fontFamily="@font/manropeextrabold"
-                android:backgroundTint="@color/new_pink"
+                android:backgroundTint="@color/society_pink"
                 android:text="Join"
                 android:src="@drawable/woman_official"/>
 
             <ImageView
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                app:tint="@color/new_pink"
+                app:tint="@color/society_pink"
                 android:src="@drawable/chevron_right_arrow_icon"/>
 
         </LinearLayout>

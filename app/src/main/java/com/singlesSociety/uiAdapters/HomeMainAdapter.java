@@ -92,6 +92,10 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private static final int TYPE_EVENT = 5;
 
+    private static final int TYPE_TEXT_SHARED = 7;
+
+    private static final int TYPE_EVENT_SHARED = 8;
+
     private static final int TYPE_LOADING = 6;
 
 
@@ -157,6 +161,11 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(viewType == TYPE_TEXT){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_text_v2, parent, false);
             return new TextPostItemViewHolder(view);
+        }
+
+        else if(viewType == TYPE_TEXT_SHARED){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.community_post_type_text_shared, parent, false);
+            return new TextSharedPostItemViewHolder(view);
         }
 
 
@@ -443,6 +452,69 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
+
+
+    public class TextSharedPostItemViewHolder extends RecyclerView.ViewHolder{
+
+
+        PlayableItemsRecyclerView attachmentView;
+        LinearLayout commentLayout;
+        TextView commentCount;
+
+        CircleImageView accountPicture;
+
+
+
+        public TextSharedPostItemViewHolder(View ItemView){
+            super(ItemView);
+            attachmentView = ItemView.findViewById(R.id.postAttachmentRecyclerView);
+            CommunityPostTypeTextAttachmentModel attachmentModel = new CommunityPostTypeTextAttachmentModel(1);
+            CommunityPostTypeTextAttachmentModel attachmentModel2 = new CommunityPostTypeTextAttachmentModel(2);
+            CommunityPostTypeTextAttachmentModel attachmentModel3 = new CommunityPostTypeTextAttachmentModel(3);
+
+            ArrayList<CommunityPostTypeTextAttachmentModel> attachmentModels = new ArrayList<>();
+            attachmentModels.add(attachmentModel);
+            attachmentModels.add(attachmentModel);
+            attachmentModels.add(attachmentModel);
+            attachmentModels.add(attachmentModel2);
+            attachmentModels.add(attachmentModel3);
+            commentCount = ItemView.findViewById(R.id.commentCount);
+            commentLayout = ItemView.findViewById(R.id.commentLayout);
+            accountPicture = ItemView.findViewById(R.id.accountProfilePicture);
+
+            commentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addACommentClickListener.invoke();
+                }
+            });
+
+            accountPicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    visitProfileListener.invoke();
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, SocietyPostDetail.class));
+                }
+            });
+
+
+            attachmentView.setHasFixedSize(true);
+            attachmentView.setAdapter(new CommunityPostTypeTextAttachmentAdapter(attachmentModels,context));
+
+
+
+
+        }
+
+
+    }
+
     public class ShowcaseItemViewHolder extends RecyclerView.ViewHolder{
 
 
@@ -597,6 +669,9 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_TEXT){
             return TYPE_TEXT;
+        }
+        else if(societyModelArrayList.get(position).getItemViewType() == TYPE_TEXT_SHARED){
+            return TYPE_TEXT_SHARED;
         }
         else if(societyModelArrayList.get(position).getItemViewType() == TYPE_EVENT){
             return TYPE_EVENT;

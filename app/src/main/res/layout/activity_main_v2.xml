@@ -42,7 +42,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    app:tint="@color/new_pink"
+                    app:tint="@color/society_pink"
                     android:id="@+id/searchEverywhere"
                     android:src="@drawable/search_icon"/>
 
@@ -70,7 +70,7 @@
                   android:layout_marginLeft="10dp"
                   android:layout_gravity="center"
                   android:layout_marginRight="7dp"
-                  app:tint="@color/new_pink"
+                  app:tint="@color/society_pink"
                   android:id="@+id/identityIcon"
                   android:src="@drawable/identity_profile_icon"/>
 
@@ -102,7 +102,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
-                    app:tint="@color/new_pink"
+                    app:tint="@color/society_pink"
                     android:id="@+id/connectionIcon"
                     android:src="@drawable/network_icon"/>
 
@@ -135,7 +135,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
-                    app:tint="@color/new_pink"
+                    app:tint="@color/society_pink"
                     android:id="@+id/locationIcon"
                     android:src="@drawable/location_media_social_icon"/>
 
@@ -157,7 +157,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="2dp"
-                    app:tint="@color/new_pink"
+                    app:tint="@color/society_pink"
                     android:rotation="90"
                     android:src="@drawable/chevron_right_arrow_icon"/>
                 </LinearLayout>
@@ -177,7 +177,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    app:tint="@color/new_pink"
+                    app:tint="@color/society_pink"
                     android:id="@+id/notificationIcon"
                     android:src="@drawable/ring_icon"/>
 

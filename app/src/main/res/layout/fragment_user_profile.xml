@@ -51,7 +51,7 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     app:tabIndicator="@drawable/indicator_layer_list"
-                    app:tabIndicatorColor="@color/new_pink"
+                    app:tabIndicatorColor="@color/society_pink"
                     android:background="@color/special_activity_background"
                     app:layout_constraintBottom_toTopOf="@+id/viewPager"
                     app:layout_constraintEnd_toEndOf="parent"

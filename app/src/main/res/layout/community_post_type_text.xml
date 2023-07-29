@@ -188,7 +188,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                app:tint="@color/new_pink"
+                app:tint="@color/society_pink"
                 android:src="@drawable/iconfinder_heart_favourite_favorite_love"/>
 
             <TextView

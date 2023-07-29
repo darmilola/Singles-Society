@@ -14,7 +14,7 @@
         app:cpb_foregroundProgressWidth="3"
         app:cpb_backgroundProgressColor="#C6C4C4"
         app:cpb_backgroundProgressWidth="3"
-        app:cpb_foregroundProgressColor="@color/new_pink"
+        app:cpb_foregroundProgressColor="@color/society_pink"
         app:cpb_touchEnabled="true"/>
 
     <androidx.cardview.widget.CardView
@@ -44,7 +44,7 @@
         android:textColor="@color/special_activity_background"
         android:textSize="13sp"
         android:id="@+id/completeProfileBtn"
-        android:backgroundTint="@color/new_pink"
+        android:backgroundTint="@color/society_pink"
         android:fontFamily="@font/opensans_semi_bold"
         android:background="@drawable/filled_circle"
         android:layout_gravity="bottom"/>
