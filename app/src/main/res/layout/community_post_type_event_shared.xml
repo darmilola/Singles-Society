@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="5dp"
     android:paddingTop="5dp"
     android:background="@color/special_activity_background"
@@ -12,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/special_activity_background"
         android:layout_marginLeft="3dp"
+        app:cardBackgroundColor="@color/special_activity_background"
         app:layout_constraintTop_toTopOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="-15dp"
+            android:layout_marginRight="-10dp"
             android:background="@drawable/community_post_background">
 
 
@@ -46,7 +45,7 @@
 
 
                     <include layout="@layout/society_post_content_area"
-                        app:layout_constraintBottom_toTopOf="@id/postAttachmentRecyclerView"
+                        app:layout_constraintBottom_toTopOf="@id/sharedPostDetails"
                         app:layout_constraintTop_toTopOf="parent"
                         android:paddingLeft="10dp"
                         android:layout_width="match_parent"
@@ -57,21 +56,15 @@
 
 
 
-                    <com.singlesSociety.Arvi.widget.PlayableItemsRecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+
+                    <include layout="@layout/community_post_type_shared_event_details"
+                        android:id="@+id/sharedPostDetails"
                         app:layout_constraintTop_toBottomOf="@id/postTextView"
-                        app:layout_constraintBottom_toTopOf="@id/reactionCtaLayout"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        android:clipToPadding="false"
-                        tools:itemCount="5"
-                        android:paddingRight="80dp"
-                        android:paddingLeft="-10dp"
-                        android:nestedScrollingEnabled="false"
-                        android:orientation="horizontal"
-                        tools:listitem="@layout/post_text_image_attachment_v2"
-                        android:id="@+id/postAttachmentRecyclerView"/>
+                        android:layout_width="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_height="0dp"/>
 
 
                     <include layout="@layout/society_post_reaction_layout"
@@ -79,8 +72,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:layout_marginLeft="10dp"
-                        app:layout_constraintTop_toBottomOf="@id/postAttachmentRecyclerView"
+                        app:layout_constraintTop_toBottomOf="@id/sharedPostDetails"
                         android:id="@+id/reactionCtaLayout"/>
+
+
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>

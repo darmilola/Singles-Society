@@ -45,31 +45,25 @@
                         android:layout_height="wrap_content"
                         android:text="New Arrival Upgrade your setup now, you can put your event title here"
                         android:gravity="center|left|bottom"
-                        android:textSize="16sp"
+                        android:textSize="17sp"
                         android:layout_gravity="bottom"
                         android:id="@+id/eventTitle"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="10dp"
                         app:layout_constraintBottom_toTopOf="@id/eventCreator"
-                        android:fontFamily="@font/manropebold"
+                        android:fontFamily="@font/ggsansbold"
                         android:maxLines="4"
                         android:ellipsize="end"
                         android:lineSpacingExtra="3dp"
                         android:textColor="@color/new_dark_text_color"/>
 
-                    <com.SinglesSociety.SocialText.RichTextController.RTextView
+                    <include layout="@layout/society_post_content_area"
+                        app:layout_constraintBottom_toTopOf="@id/eventDisplay"
+                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/postTextView"
-                        android:background="@color/transparent"
-                        android:textSize="15sp"
                         android:layout_marginTop="10dp"
-                        android:lineSpacingExtra="2dp"
-                        android:textColor="#1B1616"
-                        android:maxLines="5"
-                        android:fontFamily="@font/opensansreg"
-                        android:text="The implosionhether the vehicle itself  defended the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief executive Stockton Rush, who d nsbscdbsuchuhd. the decisions of its chief"/>
-
+                        android:layout_height="wrap_content"
+                        android:id="@+id/postTextView"/>
 
 
                     <LinearLayout
@@ -98,7 +92,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Date"
-                                android:fontFamily="@font/manropesemibold"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/light_text_color"
                                 android:layout_marginLeft="10dp"
                                 android:textSize="13sp"/>
@@ -122,7 +116,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Time"
-                                android:fontFamily="@font/manropesemibold"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/light_text_color"
                                 android:layout_marginLeft="10dp"
                                 android:textSize="13sp"/>
@@ -150,7 +144,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Tuesday, 24 Aug"
-                                android:fontFamily="@font/manropesemibold"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/dark_text_color"
                                 android:textSize="14sp"/>
                         </LinearLayout>
@@ -166,7 +160,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="13:00 PM - 15:00 PM"
-                                android:fontFamily="@font/manropesemibold"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/dark_text_color"
                                 android:textSize="14sp"/>
                         </LinearLayout>
@@ -202,10 +196,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Host"
-                                android:fontFamily="@font/manropesemibold"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/light_text_color"
                                 android:layout_marginLeft="10dp"
-                                android:textSize="13sp"/>
+                                android:textSize="14sp"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -226,10 +220,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Reputation"
-                                android:fontFamily="@font/manropesemibold"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/light_text_color"
                                 android:layout_marginLeft="10dp"
-                                android:textSize="13sp"/>
+                                android:textSize="14sp"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -250,28 +244,30 @@
                             android:orientation="horizontal"
                             android:gravity="center|left">
 
-                            <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:scaleType="centerCrop"
-                                android:layout_gravity="center|left"
-                                app:civ_border_width="1dp"
-                                app:civ_border_color="@color/special_activity_background"
-                                android:src="@drawable/enthusiastic"/>
+                            <include
+                                layout="@layout/society_user_profile_picture"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/accountProfilePictureLayout"
+                                app:layout_constraintEnd_toStartOf="@id/accountInfoRoot"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Cristofer Donin"
                                 android:layout_marginLeft="5dp"
-                                android:fontFamily="@font/manropesemibold"
+                                android:maxLines="2"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/dark_text_color"
-                                android:textSize="14sp"/>
+                                android:textSize="15sp"/>
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="28dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             android:gravity="center|left">
@@ -280,7 +276,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="70.5"
-                                android:fontFamily="@font/manropesemibold"
+                                android:fontFamily="@font/ggsanssemibold"
                                 android:textColor="@color/dark_text_color"
                                 android:textSize="14sp"/>
                         </LinearLayout>
@@ -304,7 +300,7 @@
                         android:id="@+id/joinEvent"
                         android:textColor="@color/pink"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/manropesemibold"
+                        android:fontFamily="@font/ggsansbold"
                         android:textSize="14sp"/>
                 </LinearLayout>
         </LinearLayout>

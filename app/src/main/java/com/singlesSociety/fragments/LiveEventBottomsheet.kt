@@ -16,8 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.singlesSociety.UiModels.*
 import com.singlesSociety.databinding.LiveEventBottomsheetBinding
-import com.singlesSociety.uiAdapters.CommentsAdapter
 import com.singlesSociety.uiAdapters.EventSpeakerAdapter
+import com.singlesSociety.uiAdapters.SocietyCommentsAdapter
 
 
 class LiveEventBottomsheet() : BottomSheetDialogFragment() {
@@ -55,7 +55,7 @@ class LiveEventBottomsheet() : BottomSheetDialogFragment() {
             commentList.add(CommentModel(ArrayList<CommentReplyModel>(),1))
         }
 
-        val adapter = CommentsAdapter(requireContext(),commentList, false)
+        val adapter = SocietyCommentsAdapter(requireContext(),commentList, false)
         viewBinding.commentRecyclerView.adapter = adapter
         val mLayoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         mLayoutManager.reverseLayout = true

@@ -20,7 +20,7 @@ import com.singlesSociety.fragments.CommentBottomSheet
 import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
 import com.singlesSociety.uiAdapters.SocietyEventsAdapter
 import com.singlesSociety.uiAdapters.HashtagAdapter
-import com.singlesSociety.uiAdapters.HomeMainAdapter
+import com.singlesSociety.uiAdapters.SocietyMainAdapter
 import com.singlesSociety.uiAdapters.PeopleAdapter
 
 class SearchActivity : AppCompatActivity(), CommentBottomSheet.CommentActionListener {
@@ -74,23 +74,23 @@ class SearchActivity : AppCompatActivity(), CommentBottomSheet.CommentActionList
         societyModelArrayList.add(SocietyModel(communityPostModel, 4));
 
 
-        val homeMainAdapter =
-            HomeMainAdapter(
+        val societyMainAdapter =
+            SocietyMainAdapter(
                 this,
                 societyModelArrayList
             )
-        recylerview.adapter = homeMainAdapter
+        recylerview.adapter = societyMainAdapter
 
 
-        homeMainAdapter.setVisitProfileListener {
-
-        }
-
-        homeMainAdapter.setPostListener {
+        societyMainAdapter.setVisitProfileListener {
 
         }
 
-        homeMainAdapter.setAddACommentClickListener {
+        societyMainAdapter.setPostListener {
+
+        }
+
+        societyMainAdapter.setAddACommentClickListener {
             val commentingSection = CommentBottomSheet(this)
             commentingSection.show(supportFragmentManager, "commentingSection")
         }

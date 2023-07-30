@@ -53,7 +53,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.singlesSociety.uiAdapters.HomeMainAdapter;
+import com.singlesSociety.uiAdapters.SocietyMainAdapter;
 import com.singlesSociety.UiModels.CommunityPostModel;
 import com.singlesSociety.UiModels.MainActivityModel;
 import com.singlesSociety.UiModels.PaymentModel;
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
     private static int PREFERENCE_INT = 1;
     CardStackView userShowcaseStack;
     CardStackLayoutManager manager;
-    HomeMainAdapter homeMainAdapter;
+    SocietyMainAdapter societyMainAdapter;
     ArrayList<SocietyModel> societyModelArrayList = new ArrayList<>();
 
     LinearLayout rightSwipeCard, leftSwipeCard;
@@ -626,7 +626,7 @@ public class MainActivity extends AppCompatActivity implements CardStackListener
         manager.setCanScrollVertical(false);
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual);
         userShowcaseStack.setLayoutManager(manager);
-        userShowcaseStack.setAdapter(homeMainAdapter);
+        userShowcaseStack.setAdapter(societyMainAdapter);
 
     }
 

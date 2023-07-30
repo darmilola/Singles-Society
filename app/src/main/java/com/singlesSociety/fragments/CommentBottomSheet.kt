@@ -11,12 +11,12 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.singlesSociety.R
-import com.singlesSociety.uiAdapters.CommentsAdapter
 import com.singlesSociety.UiModels.CommentModel
 import com.singlesSociety.UiModels.CommentReplyModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.singlesSociety.databinding.FragmentCommentBottomSheetBinding
+import com.singlesSociety.uiAdapters.SocietyCommentsAdapter
 
 
 class CommentBottomSheet(var commentActionListener: CommentActionListener) : BottomSheetDialogFragment() {
@@ -49,7 +49,7 @@ class CommentBottomSheet(var commentActionListener: CommentActionListener) : Bot
         for (i in 1..10){
             commentList.add(CommentModel(commentReplyModelList,1))
         }
-        val adapter = CommentsAdapter(requireContext(),commentList, true)
+        val adapter = SocietyCommentsAdapter(requireContext(),commentList, true)
         viewBinding.commentRecyclerView.adapter = adapter
 
         adapter.setCommentProfileVisitListener {

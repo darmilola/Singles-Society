@@ -35,7 +35,6 @@ import com.singlesSociety.Arvi.widget.SwipeableMethod;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 
-import com.singlesSociety.EventLandingPage;
 import com.singlesSociety.OnSwipeTouchListener;
 import com.singlesSociety.R;
 import com.singlesSociety.SocietyPostDetail;
@@ -74,10 +73,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.getstream.avatarview.AvatarView;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
-public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SocietyMainAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private Context context;
@@ -112,7 +112,7 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private CardStackAdapter cardStackAdapter;
 
 
-    public HomeMainAdapter(Context context, ArrayList<SocietyModel> societyModelArrayList){
+    public SocietyMainAdapter2(Context context, ArrayList<SocietyModel> societyModelArrayList){
         this.context = context;
         this.societyModelArrayList = societyModelArrayList;
     }
@@ -396,9 +396,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         PlayableItemsRecyclerView attachmentView;
         LinearLayout commentLayout;
-        TextView commentCount;
 
-        CircleImageView accountPicture;
+        AvatarView accountPicture;
 
 
 
@@ -415,9 +414,8 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             attachmentModels.add(attachmentModel);
             attachmentModels.add(attachmentModel2);
             attachmentModels.add(attachmentModel3);
-            commentCount = ItemView.findViewById(R.id.commentCount);
             commentLayout = ItemView.findViewById(R.id.commentLayout);
-            accountPicture = ItemView.findViewById(R.id.accountProfilePicture);
+            accountPicture = ItemView.findViewById(R.id.userProfileImageViewWithIndicator);
 
             commentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -459,8 +457,6 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         PlayableItemsRecyclerView attachmentView;
         LinearLayout commentLayout;
-        TextView commentCount;
-
         CircleImageView accountPicture;
 
 
@@ -478,7 +474,6 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             attachmentModels.add(attachmentModel);
             attachmentModels.add(attachmentModel2);
             attachmentModels.add(attachmentModel3);
-            commentCount = ItemView.findViewById(R.id.commentCount);
             commentLayout = ItemView.findViewById(R.id.commentLayout);
             accountPicture = ItemView.findViewById(R.id.accountProfilePicture);
 
@@ -506,9 +501,6 @@ public class HomeMainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             attachmentView.setHasFixedSize(true);
             attachmentView.setAdapter(new CommunityPostTypeTextAttachmentAdapter(attachmentModels,context));
-
-
-
 
         }
 

@@ -7,8 +7,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.SocietyHeaderModel
-import com.singlesSociety.uiAdapters.HomeMainAdapter.EventItemViewholder
-import com.singlesSociety.uiAdapters.HomeMainAdapter.ShowcaseItemViewHolder
 
 class TrendingHeaderAdapter(private val itemList: ArrayList<SocietyHeaderModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

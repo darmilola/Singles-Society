@@ -38,7 +38,7 @@
                 android:layout_marginTop="20dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:fontFamily="@font/opensansbold"
+                android:fontFamily="@font/ggsansbold"
                 android:text="Add a comment (3,345)"/>
 
             <View

@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.singlesSociety.R
 import com.singlesSociety.UiModels.MainActivityModel
 import com.singlesSociety.UiModels.PreviewProfileModel
 import com.singlesSociety.UiModels.SocietyModel
-import com.singlesSociety.databinding.FragmentHomeBinding
 import com.singlesSociety.databinding.FragmentSocietyHomeBinding
-import com.singlesSociety.databinding.FragmentSpacesMainBinding
-import com.singlesSociety.uiAdapters.HomeMainAdapter
+import com.singlesSociety.uiAdapters.SocietyMainAdapter
 import nl.dionsegijn.konfetti.core.Angle
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -28,7 +25,7 @@ import java.util.concurrent.TimeUnit
 
 class SocietyHomeFragment(private var visitProfileListener: Function0<Unit>? = null) : Fragment(), CommentBottomSheet.CommentActionListener{
 
-    var homeMainAdapter: HomeMainAdapter? = null
+    var societyMainAdapter: SocietyMainAdapter? = null
     var societyModelArrayList = ArrayList<SocietyModel>()
     var mainActivityModel: MainActivityModel? = null
     var lastPosition = RecyclerView.NO_POSITION
@@ -140,13 +137,13 @@ class SocietyHomeFragment(private var visitProfileListener: Function0<Unit>? = n
         societyModelArrayList.add(SocietyModel(6))
 
 
-        homeMainAdapter =
-            HomeMainAdapter(
+        societyMainAdapter =
+            SocietyMainAdapter(
                 requireContext(),
                 societyModelArrayList
             )
 
-        homeMainAdapter?.setVisitProfileListener {
+        societyMainAdapter?.setVisitProfileListener {
             visitProfileListener?.invoke()
         }
 
@@ -155,32 +152,32 @@ class SocietyHomeFragment(private var visitProfileListener: Function0<Unit>? = n
         viewBinding.societyRecycler.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
-        viewBinding.societyRecycler.adapter = homeMainAdapter
+        viewBinding.societyRecycler.adapter = societyMainAdapter
 
 
-        homeMainAdapter!!.setDatingProfileListener {
+        societyMainAdapter!!.setDatingProfileListener {
             Toast.makeText(context, "date", Toast.LENGTH_SHORT).show()
             //societyRecycler.layoutManager = scrollableLayoutManager
 
         }
-        homeMainAdapter!!.setProfileEmptyListener {
+        societyMainAdapter!!.setProfileEmptyListener {
             societyModelArrayList.removeAt(lastPosition)
             viewBinding.societyRecycler.layoutManager = scrollableLayoutManager
             viewBinding.societyRecycler.scrollToPosition(lastPosition)
         }
 
 
-        homeMainAdapter!!.setAddACommentClickListener {
+        societyMainAdapter!!.setAddACommentClickListener {
             val commentingSection = CommentBottomSheet(this@SocietyHomeFragment)
             commentingSection.show(parentFragmentManager, "commentingSection")
         }
 
-        homeMainAdapter!!.setPostListener {
+        societyMainAdapter!!.setPostListener {
             Toast.makeText(context, "post", Toast.LENGTH_SHORT).show()
             // societyRecycler.layoutManager = scrollableLayoutManager
 
         }
-        homeMainAdapter!!.setProfileMatchedListener {
+        societyMainAdapter!!.setProfileMatchedListener {
             viewBinding.loaderView.setVisibility(View.GONE)
             viewBinding.societyRecycler.setVisibility(View.GONE)
             viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)

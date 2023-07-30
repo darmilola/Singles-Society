@@ -9,8 +9,7 @@ import androidx.core.content.ContextCompat
 import com.singlesSociety.UiModels.CommentModel
 import com.singlesSociety.UiModels.CommentReplyModel
 import com.singlesSociety.databinding.ActivitySocietyPostDetailBinding
-import com.singlesSociety.databinding.ActivitySocietySwipeBinding
-import com.singlesSociety.uiAdapters.CommentsAdapter
+import com.singlesSociety.uiAdapters.SocietyCommentsAdapter
 
 class SocietyPostDetail : AppCompatActivity() {
     var commentReplyModelList: ArrayList<CommentReplyModel> = ArrayList()
@@ -33,7 +32,7 @@ class SocietyPostDetail : AppCompatActivity() {
         for (i in 1..10){
             commentList.add(CommentModel(commentReplyModelList,1))
         }
-        val adapter = CommentsAdapter(this,commentList, true)
+        val adapter = SocietyCommentsAdapter(this,commentList, true)
         viewBinding.detailLayout.commentRecyclerView.adapter = adapter
 
         adapter.setCommentProfileVisitListener {

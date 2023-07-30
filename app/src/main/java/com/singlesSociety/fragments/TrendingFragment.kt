@@ -22,7 +22,7 @@ import com.singlesSociety.UiModels.SocietyModel
 import com.singlesSociety.databinding.FragmentTrendingBinding
 import com.singlesSociety.uiAdapters.ExploreCommunityAdapter
 import com.singlesSociety.uiAdapters.SocietyEventsAdapter
-import com.singlesSociety.uiAdapters.HomeMainAdapter
+import com.singlesSociety.uiAdapters.SocietyMainAdapter
 import com.singlesSociety.uiAdapters.TrendingHeaderAdapter
 import com.ss.storiesview.StoriesProgressView
 
@@ -172,26 +172,26 @@ class TrendingFragment(private var enterSpaceListener: Function0<Unit>? = null, 
         societyModelArrayList.add(SocietyModel(communityPostModel, 4));
 
 
-        val homeMainAdapter =
-            HomeMainAdapter(
+        val societyMainAdapter =
+            SocietyMainAdapter(
                 requireContext(),
                 societyModelArrayList
             )
 
         viewBinding.exploreDiscoverRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
             RecyclerView.VERTICAL,false)
-        viewBinding.exploreDiscoverRecyclerView.adapter = homeMainAdapter
+        viewBinding.exploreDiscoverRecyclerView.adapter = societyMainAdapter
 
 
-        homeMainAdapter.setVisitProfileListener {
+        societyMainAdapter.setVisitProfileListener {
             visitProfileListener?.invoke()
         }
 
-        homeMainAdapter.setPostListener {
+        societyMainAdapter.setPostListener {
 
         }
 
-        homeMainAdapter.setAddACommentClickListener {
+        societyMainAdapter.setAddACommentClickListener {
             val commentingSection = CommentBottomSheet(this@TrendingFragment)
             commentingSection.show(parentFragmentManager, "commentingSection")
         }

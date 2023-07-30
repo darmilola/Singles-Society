@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.singlesSociety.Arvi.widget.CardStackLayoutManager
-import com.singlesSociety.uiAdapters.HomeMainAdapter
+import com.singlesSociety.uiAdapters.SocietyMainAdapter
 import com.singlesSociety.uiAdapters.ViewProfileAdapter
 import com.singlesSociety.UiModels.*
 import com.singlesSociety.databinding.ActivityDatingProfileFullViewBinding
@@ -31,7 +31,7 @@ class DatingProfileFullView : AppCompatActivity(){
     var progressBar: ProgressBar? = null
     var search: TextView? = null
     var manager: CardStackLayoutManager? = null
-    var homeMainAdapter: HomeMainAdapter? = null
+    var societyMainAdapter: SocietyMainAdapter? = null
     var societyModelArrayList = ArrayList<SocietyModel>()
     var mainActivityModel: MainActivityModel? = null
     private lateinit var viewBinding: ActivityDatingProfileFullViewBinding
@@ -110,21 +110,21 @@ class DatingProfileFullView : AppCompatActivity(){
                 societyModelArrayList.add(societyModelShowcase)
                 societyModelArrayList.shuffle(Random(50))
 
-                homeMainAdapter =
-                    HomeMainAdapter(
+                societyMainAdapter =
+                    SocietyMainAdapter(
                         this@DatingProfileFullView,
                         societyModelArrayList
                     )
 
                 viewBinding.loaderView.setVisibility(View.GONE)
                 viewBinding.bookmarkedDatingProfiles.layoutManager = LinearLayoutManager(this@DatingProfileFullView,RecyclerView.VERTICAL,false)
-                viewBinding.bookmarkedDatingProfiles.adapter = homeMainAdapter
+                viewBinding.bookmarkedDatingProfiles.adapter = societyMainAdapter
 
-                homeMainAdapter!!.setDatingProfileListener {
+                societyMainAdapter!!.setDatingProfileListener {
 
                 }
 
-                homeMainAdapter!!.setProfileMatchedListener{
+                societyMainAdapter!!.setProfileMatchedListener{
                     viewBinding.loaderView.setVisibility(View.GONE)
 
                 }

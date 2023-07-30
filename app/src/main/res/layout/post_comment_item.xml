@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/special_activity_background"
     android:orientation="horizontal"
     android:paddingBottom="10dp"
     android:paddingTop="5dp"
@@ -14,13 +14,14 @@
         android:layout_height="match_parent"
         android:gravity="center|top"
         android:layout_weight="1">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:id="@+id/userProfileImage"
+        <include
+            layout="@layout/society_user_profile_picture"
+            android:layout_height="45dp"
+            android:layout_width="45dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/woman_official"/>
+            android:id="@+id/accountProfilePictureLayout"
+            app:layout_constraintEnd_toStartOf="@id/accountInfoRoot"/>
     </LinearLayout>
 
     <LinearLayout
@@ -48,7 +49,7 @@
                 android:layout_alignParentLeft="true"
                 android:id="@+id/username"
                 android:maxLength="20"
-                android:fontFamily="@font/opensansbold"
+                android:fontFamily="@font/ggsansbold"
                 android:text="\@alexaOre0_"/>
 
             <TextView
@@ -60,40 +61,59 @@
                 android:textSize="13sp"
                 android:lineSpacingExtra="4dp"
                 android:layout_gravity="right|center"
-                android:textColor="@color/light_text_color"
+                android:textColor="@color/dark_text_color"
                 android:maxLines="5"
                 android:ellipsize="end"
                 android:layout_alignParentRight="true"
                 android:id="@+id/commentTime"
                 android:maxLength="10"
-                android:fontFamily="@font/opensansregular"
+                android:fontFamily="@font/ggsansmedium"
                 android:text="5 min"/>
 
         </RelativeLayout>
 
 
-        <com.SinglesSociety.SocialText.RichTextController.RTextView
+        <include layout="@layout/society_shared_post_content_area"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:id="@+id/postCommentText"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="3dp"
-            android:background="@color/transparent"
-            android:textSize="15sp"
-            android:lineSpacingExtra="2dp"
-            android:textColor="@color/new_dark_text_color"
-            android:fontFamily="@font/opensans_regular"/>
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="7dp">
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                app:tint="@color/pink"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/like"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:textSize="12sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/dark_text_color"
+                android:maxLines="5"
+                android:ellipsize="end"
+                android:layout_marginLeft="3dp"
+                android:maxLength="350"
+                android:fontFamily="@font/ggsansbold"
+                android:text="(250)"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
                 android:id="@+id/commentReplyLayout"
                 android:layout_marginRight="15dp">
 
@@ -115,7 +135,7 @@
                     android:id="@+id/commentReplyCount"
                     android:layout_marginLeft="4dp"
                     android:maxLength="350"
-                    android:fontFamily="@font/opensansbold"
+                    android:fontFamily="@font/ggsansbold"
                     android:text="Reply (3)"/>
 
                 <ImageView
@@ -128,27 +148,6 @@
                     android:src="@drawable/chevron_right_arrow_icon"/>
 
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                app:tint="@color/pink"
-                android:layout_marginTop="3dp"
-                android:src="@drawable/like"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:textSize="12sp"
-                android:lineSpacingExtra="4dp"
-                android:textColor="@color/dark_text_color"
-                android:maxLines="5"
-                android:ellipsize="end"
-                android:layout_marginLeft="3dp"
-                android:maxLength="350"
-                android:fontFamily="@font/opensansbold"
-                android:text="(250)"/>
 
         </LinearLayout>
 

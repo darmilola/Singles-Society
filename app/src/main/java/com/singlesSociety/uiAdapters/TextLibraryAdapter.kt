@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.SinglesSociety.SocialText.RichTextController.FontTextView
 import com.SinglesSociety.SocialText.RichTextController.SocietyTypeface
@@ -37,11 +38,11 @@ class TextLibraryAdapter(private val postList: ArrayList<NonMediaPostModel>,priv
 
     class TextPostItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         var attachmentView: PlayableItemsRecyclerView
-        lateinit var postTextView: FontTextView
+       // private var postTextView: FontTextView
 
 
         init {
-            postTextView = ItemView.findViewById(R.id.postTextView)
+           // postTextView = ItemView.findViewById(R.id.postTextView)
             attachmentView = ItemView.findViewById(R.id.postAttachmentRecyclerView)
             val attachmentModel = CommunityPostTypeTextAttachmentModel(1)
             val attachmentModel2 = CommunityPostTypeTextAttachmentModel(2)
