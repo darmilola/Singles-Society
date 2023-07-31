@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.SocietyUserModel
+import io.getstream.avatarview.AvatarView
+import io.getstream.avatarview.coil.loadImage
 
 class PeopleAdapter(private val usersList: ArrayList<SocietyUserModel>, private val mContext: Context, private var addACommentClickListener: Function0<Unit>? = null ): RecyclerView.Adapter<PeopleAdapter.PeopleItemViewHolder>() {
 
@@ -23,6 +25,11 @@ class PeopleAdapter(private val usersList: ArrayList<SocietyUserModel>, private 
     override fun onBindViewHolder(holder: PeopleItemViewHolder, position: Int) {}
 
     class PeopleItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        private lateinit var accountPicture: AvatarView
+        init {
+            accountPicture = ItemView.findViewById(R.id.userProfileImageViewWithIndicator)
+            accountPicture.loadImage(itemView.context.resources.getDrawable(R.drawable.woman_official))
+        }
 
     }
 

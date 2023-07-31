@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -328,10 +329,15 @@ class SocietyMainAdapter(
             attachmentModels.add(attachmentModel3)
             commentLayout = ItemView.findViewById(R.id.commentLayout)
             accountPicture = ItemView.findViewById(R.id.userProfileImageViewWithIndicator)
-            commentLayout.setOnClickListener { addACommentClickListener!!.invoke() }
-            accountPicture.setOnClickListener { visitProfileListener!!.invoke() }
+            commentLayout.setOnClickListener {
+                addACommentClickListener!!.invoke()
+            }
+            accountPicture.setOnClickListener {
+                visitProfileListener!!.invoke()
+            }
             accountPicture.loadImage(context.resources.getDrawable(R.drawable.woman_official))
-            itemView.setOnClickListener {
+            ItemView.setOnClickListener {
+                Log.e("Clicked ", " i am ", )
                 context.startActivity(
                     Intent(
                         context,

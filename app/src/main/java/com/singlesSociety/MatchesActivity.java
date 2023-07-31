@@ -15,8 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.singlesSociety.uiAdapters.MatchesAdapter;
-import com.singlesSociety.uiAdapters.MessagesAdapter;
+import com.singlesSociety.uiAdapters.ConnectionMatchesAdapter;
+import com.singlesSociety.uiAdapters.ConnectionsAdapter;
 import com.singlesSociety.UiModels.MatchesModel;
 import com.singlesSociety.UiModels.MessageConnectionModel;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -31,8 +31,8 @@ public class MatchesActivity extends AppCompatActivity {
     ImageView backButton;
     ArrayList<MatchesModel> matchesList = new ArrayList<>();
     ArrayList<MessageConnectionModel>messagesList = new ArrayList<>();
-    MessagesAdapter messagesAdapter;
-    MatchesAdapter matchesAdapter;
+    ConnectionsAdapter connectionsAdapter;
+    ConnectionMatchesAdapter connectionMatchesAdapter;
     LinearLayout matchesRoot;
     ProgressBar progressBar;
     TextView noMessages;
@@ -66,10 +66,10 @@ public class MatchesActivity extends AppCompatActivity {
         messageConnectionModel.setConnectionListener(new MessageConnectionModel.ConnectionListener() {
             @Override
             public void onConnectionReady(ArrayList<MessageConnectionModel> messageConnectionModels, ArrayList<MatchesModel> matchesModelArrayList) {
-                messagesAdapter = new MessagesAdapter(MatchesActivity.this,messageConnectionModels);
-                matchesAdapter = new MatchesAdapter(MatchesActivity.this,matchesModelArrayList);
-                messagesRecyclerview.setAdapter(messagesAdapter);
-                matchesRecyclerview.setAdapter(matchesAdapter);
+                connectionsAdapter = new ConnectionsAdapter(MatchesActivity.this,messageConnectionModels);
+                connectionMatchesAdapter = new ConnectionMatchesAdapter(MatchesActivity.this,matchesModelArrayList);
+                messagesRecyclerview.setAdapter(connectionsAdapter);
+                matchesRecyclerview.setAdapter(connectionMatchesAdapter);
                 LinearLayoutManager matchesManager = new LinearLayoutManager(MatchesActivity.this,LinearLayoutManager.HORIZONTAL,false);
                 LinearLayoutManager messagesManger = new LinearLayoutManager(MatchesActivity.this,LinearLayoutManager.VERTICAL,false);
                 messagesRecyclerview.setLayoutManager(messagesManger);

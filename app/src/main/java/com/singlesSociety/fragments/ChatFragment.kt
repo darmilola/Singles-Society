@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.pchmn.materialchips.R2.attr.layoutManager
-import com.singlesSociety.R
-import com.singlesSociety.uiAdapters.MatchesAdapter
-import com.singlesSociety.uiAdapters.MessagesAdapter
+import com.singlesSociety.uiAdapters.ConnectionMatchesAdapter
+import com.singlesSociety.uiAdapters.ConnectionsAdapter
 import com.singlesSociety.UiModels.MatchesModel
 import com.singlesSociety.UiModels.MessageConnectionModel
 import com.singlesSociety.databinding.FragmentChatBinding
@@ -19,8 +16,8 @@ class ChatFragment : Fragment() {
 
     var matchesList = ArrayList<MatchesModel>()
     var messagesList = ArrayList<MessageConnectionModel>()
-    var messagesAdapter: MessagesAdapter? = null
-    var matchesAdapter: MatchesAdapter? = null
+    var connectionsAdapter: ConnectionsAdapter? = null
+    var connectionMatchesAdapter: ConnectionMatchesAdapter? = null
     var messageConnectionModel: MessageConnectionModel? = null
     private lateinit var viewBinding: FragmentChatBinding
 
@@ -44,10 +41,18 @@ class ChatFragment : Fragment() {
         messageConnectionModel?.getConnection()
         messageConnectionModel?.setConnectionListener(object : MessageConnectionModel.ConnectionListener {
             override fun onConnectionReady(messageConnectionModels: java.util.ArrayList<MessageConnectionModel>, matchesModelArrayList: java.util.ArrayList<MatchesModel>) {
-                messagesAdapter = MessagesAdapter(requireContext(), messageConnectionModels)
-                matchesAdapter = MatchesAdapter(requireContext(), matchesModelArrayList)
-                viewBinding.messagesRecyclerview.adapter = messagesAdapter
-                viewBinding.matchesRecyclerview.adapter = matchesAdapter
+                connectionsAdapter =
+                    ConnectionsAdapter(
+                        requireContext(),
+                        messageConnectionModels
+                    )
+                connectionMatchesAdapter =
+                    ConnectionMatchesAdapter(
+                        requireContext(),
+                        matchesModelArrayList
+                    )
+                viewBinding.messagesRecyclerview.adapter = connectionsAdapter
+                viewBinding.matchesRecyclerview.adapter = connectionMatchesAdapter
                 viewBinding.matchesProgressbar.visibility = View.GONE
                 viewBinding.matchesListView.visibility = View.VISIBLE
                 viewBinding.matchesRoot.visibility = View.VISIBLE

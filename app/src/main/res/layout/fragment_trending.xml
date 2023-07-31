@@ -77,13 +77,14 @@
                         android:layout_marginBottom="5dp"
                         android:text="Explore"
                         android:id="@+id/exploreForYouDiscover"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="left"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:textColor="@color/dark_text_color"
-                        android:layout_gravity="left"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/kumelianbold"/>
+                        android:fontFamily="@font/ggsansbold"/>
 
 
                     <View

@@ -1,0 +1,352 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#F4F4F4">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:gravity="center"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:layout_weight="1">
+       <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:textSize="12sp"
+            android:id="@+id/backButton"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/arrow_arrows_back_direction_left_icon"
+            android:fontFamily="@font/manropeextrabold"
+            android:textColor="#09AE59"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="Society Event"
+            android:fontFamily="@font/ggsansbold"
+            android:textColor="@color/new_dark_text_color"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:layout_marginRight="16dp"
+            android:textSize="12sp"
+            android:id="@+id/preferencesDone"
+            android:fontFamily="@font/manropeextrabold"
+            android:textColor="#1F6BDB"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="7dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/special_activity_background">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/commentLayout"
+                    android:orientation="vertical">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_margin="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="New Arrival Upgrade your setup now, you can put your event title here"
+                            android:gravity="center|left|bottom"
+                            android:textSize="17sp"
+                            android:layout_gravity="bottom"
+                            android:id="@+id/eventTitle"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="10dp"
+                            app:layout_constraintBottom_toTopOf="@id/eventCreator"
+                            android:fontFamily="@font/ggsansbold"
+                            android:maxLines="4"
+                            android:ellipsize="end"
+                            android:lineSpacingExtra="3dp"
+                            android:textColor="@color/new_dark_text_color"/>
+
+                        <include layout="@layout/society_post_content_area"
+                            app:layout_constraintBottom_toTopOf="@id/eventDisplay"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/postTextView"/>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:weightSum="2"
+                            android:layout_marginRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_gravity="left"
+                                android:orientation="horizontal"
+                                android:gravity="left|center">
+
+                                <ImageView
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    app:tint="@color/dark_text_color"
+                                    android:layout_marginRight="1dp"
+                                    android:src="@drawable/schedule_event_icon"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Date"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/light_text_color"
+                                    android:layout_marginLeft="10dp"
+                                    android:textSize="13sp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center|left">
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    app:tint="@color/dark_text_color"
+                                    android:layout_marginRight="1dp"
+                                    android:src="@drawable/time_icon"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Time"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/light_text_color"
+                                    android:layout_marginLeft="10dp"
+                                    android:textSize="13sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:weightSum="2"
+                            android:layout_marginRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_gravity="left"
+                                android:orientation="horizontal"
+                                android:gravity="left|center|top">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tuesday, 24 Aug"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/dark_text_color"
+                                    android:textSize="14sp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center|left|top">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="13:00 PM - 15:00 PM"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/dark_text_color"
+                                    android:textSize="14sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:weightSum="2"
+                            android:layout_marginRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_gravity="left"
+                                android:orientation="horizontal"
+                                android:gravity="left|center">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    app:tint="@color/dark_text_color"
+                                    android:layout_marginRight="1dp"
+                                    android:src="@drawable/user_icon_outline"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Host"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/light_text_color"
+                                    android:layout_marginLeft="10dp"
+                                    android:textSize="14sp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center|left">
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    app:tint="@color/dark_text_color"
+                                    android:layout_marginRight="1dp"
+                                    android:src="@drawable/blog_logo_medium_icon"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Reputation"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/light_text_color"
+                                    android:layout_marginLeft="10dp"
+                                    android:textSize="14sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:weightSum="2"
+                            android:layout_marginRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="left"
+                                android:orientation="horizontal"
+                                android:gravity="center|left">
+
+                                <include
+                                    layout="@layout/society_user_profile_picture"
+                                    android:layout_height="35dp"
+                                    android:layout_width="35dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:id="@+id/accountProfilePictureLayout"
+                                    app:layout_constraintEnd_toStartOf="@id/accountInfoRoot"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cristofer Donin"
+                                    android:layout_marginLeft="5dp"
+                                    android:maxLines="2"
+                                    android:ellipsize="end"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/dark_text_color"
+                                    android:textSize="15sp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:gravity="center|left">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="70.5"
+                                    android:fontFamily="@font/ggsanssemibold"
+                                    android:textColor="@color/dark_text_color"
+                                    android:textSize="14sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="Notify"
+                            android:gravity="center"
+                            android:layout_marginBottom="20dp"
+                            style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                            android:layout_gravity="center|right"
+                            app:icon="@drawable/ring_icon"
+                            app:iconSize="20dp"
+                            app:iconGravity="textEnd"
+                            app:iconTint="@color/society_pink"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/society_pink"
+                            android:id="@+id/joinEvent"
+                            android:textColor="@color/pink"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/ggsansbold"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

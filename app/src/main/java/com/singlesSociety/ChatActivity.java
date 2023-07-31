@@ -222,7 +222,7 @@ public class ChatActivity  extends AppCompatActivity  implements MessageInput.In
             public void run() {
                 ArrayList<Message> messages = MessagesFixtures.getMessages(lastLoadedDate);
                 lastLoadedDate = messages.get(messages.size() - 1).getCreatedAt();
-                messagesAdapter.addToEnd(messages, false);
+                connectionsAdapter.addToEnd(messages, false);
             }
         }, 1000);
     }*/

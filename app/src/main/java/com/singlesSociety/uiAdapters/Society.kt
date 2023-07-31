@@ -6,20 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.singlesSociety.EventLandingActivity
 import com.singlesSociety.R
 import com.singlesSociety.EventLandingPage
 import com.singlesSociety.UiModels.ExploreEvent
 
-class SocietyEventsAdapter(val context: Context, val exploreItemList: ArrayList<ExploreEvent>, private var visitEventListener: Function0<Unit>? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SocietyEventsAdapter(private val context: Context, val exploreItemList: ArrayList<ExploreEvent>, private var visitEventListener: Function0<Unit>? = null): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_MAIN = 0
 
     private val TYPE_ONGOING = 1
-    class OngoingItemViewholder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {}
+    class OngoingItemViewholder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        init {
+            ItemView.setOnClickListener {
+
+            }
+        }
+    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
          holder.itemView.setOnClickListener {
-             context.startActivity(Intent(context, EventLandingPage::class.java))
+             context.startActivity(Intent(context, EventLandingActivity::class.java))
          }
     }
 

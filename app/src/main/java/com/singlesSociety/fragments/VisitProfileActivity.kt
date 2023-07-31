@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.singlesSociety.R
 import com.singlesSociety.databinding.FragmentVisitProfileBinding
+import io.getstream.avatarview.coil.loadImage
 
 
 private const val ID_IMAGE_LIBRARY = 9
@@ -32,6 +33,7 @@ class VisitProfileActivity() : AppCompatActivity() {
 
 
     private fun initView(){
+        viewBinding.profileInfoArena.profileInfoImageArena.userProfileImageViewWithIndicator.loadImage(resources.getDrawable(R.drawable.woman_official))
         val viewPager = viewBinding.viewPager
         viewPager.adapter = PageAdapter(supportFragmentManager)
         val tabLayout = viewBinding.tabLayout

@@ -6,16 +6,11 @@
     android:layout_marginLeft="7dp"
     android:layout_marginRight="7dp"
     android:layout_marginTop="5dp"
-    android:background="@drawable/pink_outline_circle_thick"
     android:layout_height="wrap_content"
     android:gravity="center">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:civ_border_width="2dp"
-            android:padding="2dp"
-            app:civ_border_color="@color/white"
-            android:src="@drawable/woman_official"
-            android:id="@+id/matches_imageview"
-            android:scaleType="centerCrop"/>
+        <include
+            layout="@layout/society_user_profile_picture"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:id="@+id/accountProfilePictureLayout"/>
 </LinearLayout>

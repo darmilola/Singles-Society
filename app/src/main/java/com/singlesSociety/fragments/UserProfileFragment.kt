@@ -14,6 +14,7 @@ import com.singlesSociety.CompleteProfile
 import com.singlesSociety.NewWelcome
 import com.singlesSociety.R
 import com.singlesSociety.databinding.FragmentUserProfileBinding
+import io.getstream.avatarview.coil.loadImage
 
 
 class UserProfileFragment : Fragment() {
@@ -37,14 +38,14 @@ class UserProfileFragment : Fragment() {
     private fun initView() {
         val viewPager = viewBinding.viewPager
         viewPager.adapter = PageAdapter(parentFragmentManager)
-
+        viewBinding.profileInfoArena.profileInfoImageArena.profileInfoImageArena.userProfileImageViewWithIndicator.loadImage(resources.getDrawable(R.drawable.woman_official))
         val tabLayout = viewBinding.tabLayout
         tabLayout.setupWithViewPager(viewPager)
         setupTabIcons()
 
-        viewBinding.profileInfoArena.profileInfoImageArena.completeProfileBtn.setOnClickListener {
+      /*  viewBinding.profileInfoArena.profileInfoImageArena.completeProfileBtn.setOnClickListener {
             startActivity(Intent(requireContext(),CompleteProfile::class.java))
-        }
+        }*/
 
     /*    viewBinding.profileInfoArena.profileInfoImageArena.profileInfoEditProfile.setOnClickListener {
             startActivity(Intent(requireContext(),CompleteProfile::class.java))

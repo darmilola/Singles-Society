@@ -73,7 +73,7 @@
         </RelativeLayout>
 
 
-        <include layout="@layout/society_shared_post_content_area"
+        <include layout="@layout/society_post_comment_content_area"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_marginRight="5dp"
