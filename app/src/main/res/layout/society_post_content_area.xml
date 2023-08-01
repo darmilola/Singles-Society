@@ -10,9 +10,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/postTextView"
         android:background="@color/transparent"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:textColor="#000000"
-        android:textScaleX="1.1"
+        android:textScaleX="1.2"
         android:fontFamily="@font/ggsansregular"
         android:text="The implosion of a submersible tourin board, has prompted questions about the regulations overseeing such voyages — and whether the vehicle itself was safe.On Friday, the company responsible for the tour, OceanGate Expeditions, defended the decisions of its chief executive Stockton Rush, who died on board the submersible."
         app:layout_constraintTop_toTopOf="parent"/>

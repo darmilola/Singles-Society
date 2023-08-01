@@ -70,9 +70,9 @@
                             android:layout_gravity="center"
                             android:ellipsize="end"
                             android:textColor="@color/dark_text_color"
-                            android:textSize="15sp"
+                            android:textSize="17sp"
                             android:gravity="center"
-                            android:fontFamily="@font/opensansbold"
+                            android:fontFamily="@font/ggsanssemibold"
                             android:lineSpacingExtra="7dp"
                             android:text="Society Space Number One"/>
 

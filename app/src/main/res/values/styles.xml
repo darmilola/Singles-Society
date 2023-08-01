@@ -159,7 +159,7 @@
     </style>
 
     <style name="TabFont" parent="TextAppearance.Design.Tab">
-       <item name="android:fontFamily">@font/opensans_semi_bold</item>
+       <item name="android:fontFamily">@font/ggsanssemibold</item>
        <item name="textAllCaps">false</item>
        <item name="android:textSize">15sp</item>
         <item name="color">@color/dark_text_color</item>

@@ -41,7 +41,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:hint="Search Connections..."
+                android:hint="Search"
                 android:textSize="16sp"
                 android:maxLines="1"
                 android:ellipsize="end"

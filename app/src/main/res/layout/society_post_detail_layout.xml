@@ -11,9 +11,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <include layout="@layout/community_post_type_text_v2" />
+    <include layout="@layout/community_post_type_text_v2" android:visibility="gone" />
 
-    <include layout="@layout/community_post_type_live" android:visibility="gone" />
+    <include layout="@layout/community_post_type_live"
+        />
 
         <TextView
             android:layout_width="match_parent"

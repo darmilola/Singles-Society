@@ -13,7 +13,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="350dp">
+        android:layout_height="340dp">
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -72,8 +72,8 @@
                             android:layout_gravity="center"
                             android:gravity="center|right"
                             android:textColor="@color/society_pink"
-                            android:textSize="15sp"
-                            android:fontFamily="@font/opensans_semi_bold"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/ggsanssemibold"
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:text="Join Society"/>
@@ -97,10 +97,11 @@
                     android:maxLines="1"
                     android:layout_gravity="center"
                     android:ellipsize="end"
-                    android:textColor="@color/new_dark_text_color"
+                    android:textColor="@color/black"
                     android:textSize="17sp"
+                    android:textScaleX="1.2"
                     android:gravity="center|left"
-                    android:fontFamily="@font/opensansbold"
+                    android:fontFamily="@font/ggsanssemibold"
                     android:lineSpacingExtra="7dp"
                     android:text="Society Space Number One"/>
 
@@ -109,16 +110,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="10dp"
                     android:maxLines="3"
                     android:layout_gravity="center"
                     android:ellipsize="end"
-                    android:textColor="#DA606060"
-                    android:textSize="14sp"
                     android:layout_marginTop="5dp"
                     android:gravity="center|left"
-                    android:fontFamily="@font/opensans_semi_bold"
-                    android:lineSpacingExtra="7dp"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:textScaleX="1.2"
+                    android:fontFamily="@font/ggsansregular"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna Society Space Number One"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -145,7 +146,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:tint="#DA606060"
+                            app:tint="@color/dark_text_color"
                             android:id="@+id/eventDateIcon"/>
 
                         <TextView
@@ -154,11 +155,12 @@
                             android:scaleType="centerCrop"
                             android:layout_gravity="center"
                             android:gravity="center|right"
-                            android:textColor="#DA606060"
                             android:textSize="14sp"
-                            android:fontFamily="@font/opensans_semi_bold"
                             android:maxLines="1"
                             android:ellipsize="end"
+                            android:textScaleX="1.2"
+                            android:textColor="@color/dark_text_color"
+                            android:fontFamily="@font/ggsansmedium"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@id/eventDateIcon"
@@ -184,7 +186,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:tint="#DA606060"
+                            app:tint="@color/dark_text_color"
                             android:id="@+id/peopleIcon"/>
 
                         <TextView
@@ -193,11 +195,12 @@
                             android:scaleType="centerCrop"
                             android:layout_gravity="center"
                             android:gravity="center|right"
-                            android:textColor="#DA606060"
                             android:textSize="14sp"
-                            android:fontFamily="@font/opensans_semi_bold"
                             android:maxLines="1"
                             android:ellipsize="end"
+                            android:textScaleX="1.2"
+                            android:textColor="@color/dark_text_color"
+                            android:fontFamily="@font/ggsansmedium"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@id/peopleIcon"
