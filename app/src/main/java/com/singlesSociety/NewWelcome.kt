@@ -34,7 +34,7 @@ class NewWelcome : AppCompatActivity() {
 
     private fun initView() {
 
-        viewBinding.googleSignIn.setOnClickListener(
+       /* viewBinding.googleSignIn.setOnClickListener(
             View.OnClickListener { startGoogleSignIn() })
         viewBinding.emailSignIn.setOnClickListener(View.OnClickListener {
 
@@ -53,7 +53,7 @@ class NewWelcome : AppCompatActivity() {
             )
             val intent = Intent(this, SignUpWithEmail::class.java)
             startActivity(intent, options.toBundle())
-        })
+        })*/
     }
 
 
