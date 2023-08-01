@@ -35,17 +35,17 @@ class NewWelcome : AppCompatActivity() {
     private fun initView() {
 
        /* viewBinding.googleSignIn.setOnClickListener(
-            View.OnClickListener { startGoogleSignIn() })
+            View.OnClickListener { startGoogleSignIn() })*/
         viewBinding.emailSignIn.setOnClickListener(View.OnClickListener {
 
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+           /* val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this@NewWelcome,
                 (viewBinding.welcomePeople as View?)!!, "welcomePeople"
-            )
+            )*/
             val intent = Intent(this, ConnectWithEmail::class.java)
-            startActivity(intent,options.toBundle())
+            startActivity(intent)
         })
-        viewBinding.getStarted.setOnClickListener(View.OnClickListener {
+       /* viewBinding.getStarted.setOnClickListener(View.OnClickListener {
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this@NewWelcome,

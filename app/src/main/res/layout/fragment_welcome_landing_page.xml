@@ -23,16 +23,6 @@
             android:layout_gravity="top"/>
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loaderView"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:visibility="visible"
-            android:elevation="4dp"
-            android:layout_gravity="left|top"
-            app:lottie_rawRes="@raw/confetti"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>
 
         <View
             android:layout_width="250dp"
@@ -147,7 +137,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:ellipsize="end"
-            android:textScaleX="1.05"
+            android:textScaleX="1.08"
             android:lineSpacingExtra="3dp"
             app:layout_constraintStart_toEndOf="@id/eventLogo"
             android:textColor="@color/new_dark_text_color"
