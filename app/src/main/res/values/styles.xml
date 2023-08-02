@@ -34,8 +34,9 @@
         <item name="boxCornerRadiusTopEnd">30dp</item>
         <item name="boxCornerRadiusBottomStart">30dp</item>
         <item name="boxCornerRadiusBottomEnd">30dp</item>
-        <item name="hintColor">@color/society_pink</item>
-        <item name="android:textColorHint">@color/dark_text_color</item>
+        <item name="hintColor">@color/light_text_color</item>
+        <item name="fontFamily">@font/manropemedium</item>
+        <item name="android:textColorHint">@color/light_text_color</item>
     </style>
 
     <style name="Widget">

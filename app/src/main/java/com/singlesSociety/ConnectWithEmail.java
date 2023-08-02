@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.singlesSociety.UiModels.LoginModel;
 import com.singlesSociety.UiModels.Utils.NetworkUtils;
 import com.google.android.material.textfield.TextInputEditText;
@@ -25,7 +26,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class ConnectWithEmail extends AppCompatActivity {
 
     TextView dontHaveAccount,forgotPassword;
-    LinearLayout loginButton;
+    MaterialButton loginButton;
 
     ImageView backButton;
     TextInputLayout emailLayout,passwordLayout;
@@ -40,7 +41,7 @@ public class ConnectWithEmail extends AppCompatActivity {
 
     private void initView(){
         dontHaveAccount = findViewById(R.id.login_dont_have_account);
-        loginButton = findViewById(R.id.login_with_email_button);
+        loginButton = findViewById(R.id.loginWithEmailButton);
         emailEdit = findViewById(R.id.login_email);
         passwordEdit = findViewById(R.id.login_password);
         forgotPassword = findViewById(R.id.login_forgot_password);
