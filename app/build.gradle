@@ -109,5 +109,6 @@ dependencies {
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation "io.getstream:avatarview-coil:1.0.4"
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 
 }

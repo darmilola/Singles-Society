@@ -2,8 +2,10 @@ package com.singlesSociety.UiModels.Utils
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Handler
 import android.util.DisplayMetrics
 import android.widget.ImageView
+import androidx.viewpager.widget.ViewPager
 
 
 class LayoutUtils {
@@ -31,5 +33,6 @@ class LayoutUtils {
         return px / (context.getResources()
             .getDisplayMetrics().densityDpi as Float / DisplayMetrics.DENSITY_DEFAULT)
     }
+
 
 }

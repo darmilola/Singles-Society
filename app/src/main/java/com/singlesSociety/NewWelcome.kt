@@ -3,11 +3,16 @@ package com.singlesSociety
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.singlesSociety.UiModels.SignupModel
 import com.singlesSociety.UiModels.SignupModel.SignupListener
 import com.singlesSociety.UiModels.Utils.NetworkUtils
@@ -16,6 +21,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.singlesSociety.databinding.ActivityNewWelcomeBinding
+import com.singlesSociety.fragments.DatingProfileFragment
+import com.singlesSociety.fragments.TextLibraryFragment
+import com.singlesSociety.fragments.UserEventFragment
+import com.singlesSociety.fragments.UserProfileFragment
+import com.singlesSociety.fragments.WelcomeFragmentLandingPage
+import com.singlesSociety.fragments.WelcomeLandingSecondPage
+import com.singlesSociety.fragments.WelcomeLandingThirdPage
 
 
 class NewWelcome : AppCompatActivity() {
@@ -33,6 +45,10 @@ class NewWelcome : AppCompatActivity() {
     }
 
     private fun initView() {
+        val viewPager = viewBinding.viewPager
+        viewPager.adapter = PageAdapter(supportFragmentManager)
+        viewPager.autoScroll(3000)
+        viewBinding.dotsIndicator.setViewPager(viewPager)
 
        /* viewBinding.googleSignIn.setOnClickListener(
             View.OnClickListener { startGoogleSignIn() })*/
@@ -61,7 +77,7 @@ class NewWelcome : AppCompatActivity() {
         super.onResume()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.transparent)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             // getWindow().setFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS,WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         }
@@ -123,5 +139,75 @@ class NewWelcome : AppCompatActivity() {
             })
         }
     }
+
+
+    class PageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+        override fun getCount(): Int {
+            return 3
+        }
+
+        override fun getItem(position: Int): Fragment {
+            return when(position) {
+                0 -> {
+                    WelcomeFragmentLandingPage()
+                }
+
+                1 -> {
+                    WelcomeLandingSecondPage()
+                }
+
+                2 -> {
+                    WelcomeLandingThirdPage()
+                }
+
+                else -> {
+                    WelcomeFragmentLandingPage()
+                }
+            }
+        }
+    }
+    private fun ViewPager.autoScroll(interval: Long) {
+
+        val handler = Handler()
+        var scrollPosition = 0
+
+        val runnable = object : Runnable {
+
+            override fun run() {
+
+                /**
+                 * Calculate "scroll position" with
+                 * adapter pages count and current
+                 * value of scrollPosition.
+                 */
+                val count = adapter?.count ?: 0
+                setCurrentItem(scrollPosition++ % count, true)
+
+                handler.postDelayed(this, interval)
+            }
+        }
+
+        addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageSelected(position: Int) {
+                // Updating "scroll position" when user scrolls manually
+                scrollPosition = position + 1
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                // Not necessary
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                // Not necessary
+            }
+        })
+
+        handler.post(runnable)
+    }
+
 
 }

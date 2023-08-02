@@ -5,14 +5,19 @@
     android:background="@color/special_activity_background"
     android:weightSum="6"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4">
-        <include layout="@layout/fragment_welcome_landing_page" android:layout_width="match_parent" android:layout_height="match_parent"/>
+        android:layout_weight="4.2"
+        android:layout_marginBottom="10dp">
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </FrameLayout>
 
 
@@ -22,10 +27,10 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_gravity="bottom"
-            android:gravity="top"
+            android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_weight="2"
+            android:layout_weight="1.8"
             android:layout_marginTop="5dp">
 
             <com.google.android.material.button.MaterialButton
@@ -33,13 +38,18 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:textSize="18sp"
-                android:text="Get started"
-                app:strokeColor="@color/society_pink"
-                app:strokeWidth="1.5dp"
-                android:fontFamily="@font/ggsanssemibold"
+                android:text="Create New Account"
+                app:iconGravity="textStart"
+                app:iconPadding="10dp"
+                app:iconTint="@color/special_activity_background"
+                android:paddingLeft="20dp"
+                app:strokeColor="@color/transparent"
+                app:strokeWidth="0.5dp"
+                app:icon="@drawable/hot_trending_icon"
+                android:fontFamily="@font/ggsansmedium"
                 app:backgroundTint="@color/society_pink"
                 style="@style/Widget.Material3.Button.OutlinedButton"
-                android:textColor="@color/white"/>
+                android:textColor="@color/special_activity_background"/>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
@@ -48,9 +58,9 @@
                 android:textSize="18sp"
                 android:text="Continue With Email"
                 app:strokeColor="@color/society_pink"
-                app:strokeWidth="1.5dp"
+                app:strokeWidth="1dp"
                 android:id="@+id/emailSignIn"
-                android:fontFamily="@font/ggsanssemibold"
+                android:fontFamily="@font/ggsansmedium"
                 app:iconGravity="textStart"
                 app:icon="@drawable/mail_2x"
                 app:iconPadding="8dp"
@@ -65,8 +75,8 @@
                 android:textSize="18sp"
                 android:text="Continue With Google"
                 app:strokeColor="@color/materialBlue"
-                app:strokeWidth="1.5dp"
-                android:fontFamily="@font/ggsanssemibold"
+                app:strokeWidth="1dp"
+                android:fontFamily="@font/ggsansmedium"
                 app:iconGravity="textStart"
                 app:iconPadding="8dp"
                 app:icon="@drawable/google_icon"
@@ -74,6 +84,21 @@
                 app:backgroundTint="@color/white"
                 style="@style/Widget.Material3.Button.OutlinedButton.Icon"
                 android:textColor="@color/materialBlue"/>
+
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dotsIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                app:dotsColor="@color/society_pink"
+                app:dotsCornerRadius="5dp"
+                app:dotsSize="10dp"
+                app:dotsSpacing="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                app:dotsWidthFactor="2.5"
+                app:selectedDotColor="@color/society_pink"
+                app:progressMode="true" />
 
 
         </LinearLayout>
