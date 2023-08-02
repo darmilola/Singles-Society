@@ -1,10 +1,8 @@
 package com.singlesSociety.UiModels.Utils
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.os.Handler
 import android.util.DisplayMetrics
-import android.widget.ImageView
+import android.view.View
 import androidx.viewpager.widget.ViewPager
 
 
@@ -32,6 +30,22 @@ class LayoutUtils {
     fun convertPixelsToDp(px: Float, context: Context): Float {
         return px / (context.getResources()
             .getDisplayMetrics().densityDpi as Float / DisplayMetrics.DENSITY_DEFAULT)
+    }
+
+
+    class FadePageTransformer : ViewPager.PageTransformer {
+        override fun transformPage(view: View, position: Float) {
+            view.setTranslationX(view.getWidth() * -position);
+
+            if(position <= -1.0F || position >= 1.0F) {
+                view.setAlpha(0.0F);
+            } else if( position == 0.0F ) {
+                view.setAlpha(1.0F);
+            } else {
+                // position is between -1.0F & 0.0F OR 0.0F & 1.0F
+                view.setAlpha(1.0F - Math.abs(position));
+            }
+        }
     }
 
 

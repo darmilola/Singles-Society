@@ -12,7 +12,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4.2"
+        android:layout_weight="4.3"
         android:layout_marginBottom="10dp">
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_weight="1.8"
+            android:layout_weight="1.7"
             android:layout_marginTop="5dp">
 
             <com.google.android.material.button.MaterialButton

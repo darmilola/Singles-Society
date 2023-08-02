@@ -29,9 +29,13 @@
     <style name="NewRegisterTextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@android:color/transparent</item>
         <item name="boxStrokeColor">@color/pink</item>
-        <item name="boxStrokeWidth">1dp</item>
-        <item name="hintColor">@color/lighter_text_color</item>
-        <item name="android:textColorHint">@color/lighter_text_color</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxCornerRadiusTopStart">30dp</item>
+        <item name="boxCornerRadiusTopEnd">30dp</item>
+        <item name="boxCornerRadiusBottomStart">30dp</item>
+        <item name="boxCornerRadiusBottomEnd">30dp</item>
+        <item name="hintColor">@color/society_pink</item>
+        <item name="android:textColorHint">@color/dark_text_color</item>
     </style>
 
     <style name="Widget">

@@ -5,26 +5,23 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.singlesSociety.UiModels.SignupModel
-import com.singlesSociety.UiModels.SignupModel.SignupListener
-import com.singlesSociety.UiModels.Utils.NetworkUtils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.singlesSociety.UiModels.SignupModel
+import com.singlesSociety.UiModels.SignupModel.SignupListener
+import com.singlesSociety.UiModels.Utils.NetworkUtils
 import com.singlesSociety.databinding.ActivityNewWelcomeBinding
-import com.singlesSociety.fragments.DatingProfileFragment
-import com.singlesSociety.fragments.TextLibraryFragment
-import com.singlesSociety.fragments.UserEventFragment
-import com.singlesSociety.fragments.UserProfileFragment
 import com.singlesSociety.fragments.WelcomeFragmentLandingPage
 import com.singlesSociety.fragments.WelcomeLandingSecondPage
 import com.singlesSociety.fragments.WelcomeLandingThirdPage
@@ -49,6 +46,7 @@ class NewWelcome : AppCompatActivity() {
         viewPager.adapter = PageAdapter(supportFragmentManager)
         viewPager.autoScroll(3000)
         viewBinding.dotsIndicator.setViewPager(viewPager)
+        //viewPager.setPageTransformer(false, LayoutUtils.FadePageTransformer());
 
        /* viewBinding.googleSignIn.setOnClickListener(
             View.OnClickListener { startGoogleSignIn() })*/
@@ -75,6 +73,11 @@ class NewWelcome : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val w: Window = window
+        w.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.navigationBarColor = ContextCompat.getColor(this, R.color.special_activity_background)
             window.statusBarColor = ContextCompat.getColor(this, R.color.transparent)
