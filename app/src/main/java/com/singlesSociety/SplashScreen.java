@@ -12,6 +12,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
+import com.ss.cloudinary.CloudinaryConfig;
+
 public class SplashScreen extends AppCompatActivity {
 
     CountDownTimer countDownTimer;
@@ -59,6 +61,8 @@ public class SplashScreen extends AppCompatActivity {
 
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SplashScreen.this);
                     String userEmail = preferences.getString("userEmail","");
+                    CloudinaryConfig config = new CloudinaryConfig(SplashScreen.this);
+                    config.initManager();
                     if(userEmail.equalsIgnoreCase("")){
                         intent = new Intent(SplashScreen.this,NewWelcome.class);
                     }

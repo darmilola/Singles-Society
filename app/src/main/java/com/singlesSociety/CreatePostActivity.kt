@@ -1,13 +1,13 @@
 package com.singlesSociety
 
+import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.singlesSociety.databinding.ActivityCreatePostBinding
-import com.singlesSociety.databinding.FragmentEventLandingPageBinding
 import com.singlesSociety.fragments.CreateEventFragment
 import com.singlesSociety.fragments.CreatePostTypeText
 
@@ -40,6 +40,12 @@ class CreatePostActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        for (fragment in supportFragmentManager.fragments) {
+            fragment.onActivityResult(requestCode, resultCode, data)
+        }
+    }
     private fun loadFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainer,fragment)
