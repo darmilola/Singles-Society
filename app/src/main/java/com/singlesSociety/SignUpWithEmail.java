@@ -14,11 +14,13 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.singlesSociety.UiModels.SignupModel;
 import com.singlesSociety.UiModels.Utils.LoadingDialogUtils;
 import com.singlesSociety.UiModels.Utils.NetworkUtils;
@@ -30,7 +32,7 @@ import java.io.ByteArrayOutputStream;
 
 public class SignUpWithEmail extends AppCompatActivity {
 
-    LinearLayout signupWithEmail;
+    MaterialButton signupWithEmail;
     static int PICK_IMAGE = 3;
     static int CROP_IMAGE = 4;
     LoadingDialogUtils loadingDialogUtils;
@@ -49,7 +51,7 @@ public class SignUpWithEmail extends AppCompatActivity {
 
     private void initView(){
         alreadyHaveAccount = findViewById(R.id.sign_up_have_account);
-        signupWithEmail = findViewById(R.id.signup_with_email_button);
+        signupWithEmail = findViewById(R.id.signUpWithEmailButton);
         loadingDialogUtils = new LoadingDialogUtils(SignUpWithEmail.this);
         firstnameLayout = findViewById(R.id.sign_up_firstname_layout);
         lastnameLayout = findViewById(R.id.sign_up_lastname_layout);
@@ -74,7 +76,7 @@ public class SignUpWithEmail extends AppCompatActivity {
             }
         });
 
-        signupWithEmail.setOnClickListener(new View.OnClickListener() {
+     /*   signupWithEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -106,7 +108,7 @@ public class SignUpWithEmail extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
     }
 
 
@@ -114,10 +116,14 @@ public class SignUpWithEmail extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.transparent));
+            getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.special_activity_background));
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
 

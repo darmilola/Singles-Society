@@ -59,6 +59,11 @@ class NewWelcome : AppCompatActivity() {
             val intent = Intent(this, ConnectWithEmail::class.java)
             startActivity(intent)
         })
+
+        viewBinding.createNewAccount.setOnClickListener {
+            val intent = Intent(this, SignUpWithEmail::class.java)
+            startActivity(intent)
+        }
        /* viewBinding.getStarted.setOnClickListener(View.OnClickListener {
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
