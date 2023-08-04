@@ -1,0 +1,19 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.ss.cloudinary" >
+5
+6    <uses-sdk android:minSdkVersion="23" />
+6-->/Users/damilola/StudioProjects/Singles-Society/Cloudinary/src/main/AndroidManifest.xml
+7
+8    <application>
+8-->/Users/damilola/StudioProjects/Singles-Society/Cloudinary/src/main/AndroidManifest.xml:5:5-9:19
+9        <meta-data
+9-->/Users/damilola/StudioProjects/Singles-Society/Cloudinary/src/main/AndroidManifest.xml:6:9-8:97
+10            android:name="CLOUDINARY_URL"
+10-->/Users/damilola/StudioProjects/Singles-Society/Cloudinary/src/main/AndroidManifest.xml:7:13-42
+11            android:value="cloudinary://314935139767787:j5PZXhd8VdgBPmCqsHBlFlqBKB8@ductsqu0p" />
+11-->/Users/damilola/StudioProjects/Singles-Society/Cloudinary/src/main/AndroidManifest.xml:8:13-95
+12    </application>
+13
+14</manifest>
