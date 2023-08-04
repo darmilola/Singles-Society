@@ -11,6 +11,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Ably" />
+            <option value="$PROJECT_DIR$/Agora" />
             <option value="$PROJECT_DIR$/Cloudinary" />
             <option value="$PROJECT_DIR$/RichText" />
             <option value="$PROJECT_DIR$/SStoriesView" />

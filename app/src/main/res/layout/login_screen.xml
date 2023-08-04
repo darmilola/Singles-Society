@@ -258,12 +258,12 @@
                               <com.google.android.material.textfield.TextInputEditText
                                   android:id="@+id/login_email"
                                   android:layout_width="match_parent"
-                                  android:layout_height="50dp"
+                                  android:layout_height="match_parent"
                                   android:hint="Email"
                                   android:maxLength="160"
                                   android:inputType="text"
                                   android:maxLines="1"
-                                  android:textSize="16sp"
+                                  android:textSize="18sp"
                                   android:fontFamily="@font/ggsanssemibold"
                                   android:textColorHint="@color/light_text_color"
                                   android:textColor="@color/dark_text_color" />
@@ -285,11 +285,12 @@
                               <com.google.android.material.textfield.TextInputEditText
                                   android:id="@+id/login_password"
                                   android:layout_width="match_parent"
-                                  android:layout_height="50dp"
+                                  android:layout_height="match_parent"
                                   android:hint="Password"
                                   android:maxLength="160"
                                   android:inputType="textPassword"
                                   android:maxLines="1"
+                                  android:textSize="18sp"
                                   android:textColor="@color/dark_text_color"
                                   android:fontFamily="@font/ggsanssemibold"
                                   android:textColorHint="@color/light_text_color"/>

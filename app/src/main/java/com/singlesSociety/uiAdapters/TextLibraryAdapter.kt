@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.SinglesSociety.SocialText.RichTextController.FontTextView
 import com.SinglesSociety.SocialText.RichTextController.SocietyTypeface
 import com.singlesSociety.Arvi.widget.PlayableItemsRecyclerView
 import com.singlesSociety.R
