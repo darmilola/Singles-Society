@@ -6,17 +6,18 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.View
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
+import java.io.File
 
 
-class LayoutUtils {
+class LayoutUtils() {
 
      val PERMISSION_CODE = 1
      val PICK_IMAGE = 1
@@ -73,6 +74,32 @@ class LayoutUtils {
             cursor.getString(idx)
         }
     }
+
+
+     fun getImgSize(context: Context,uri: Uri): HashMap<String,Int> {
+         val imgMap = HashMap<String, Int>()
+         val options = BitmapFactory.Options()
+         options.inJustDecodeBounds = true // w  w  w. j av  a2 s.  c  o  m
+         val imagePath = getMediaAbsolutePath(context, uri)
+         val bitmap = BitmapFactory.decodeFile(imagePath, options)
+         val height = options.outHeight
+         val width = options.outWidth
+         imgMap["height"] = height
+         imgMap["width"] = width
+         return imgMap
+    }
+
+    private fun getMediaAbsolutePath(ctx: Context, uri: Uri?): String? {
+        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = ctx.contentResolver.query(uri!!, filePathColumn, null, null, null)
+        if (cursor == null || cursor.count == 0) return null
+        cursor.moveToFirst()
+        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+        val picturePath = cursor.getString(columnIndex)
+        cursor.close()
+        return picturePath
+    }
+
 
     fun requestPermission(activity: Activity) {
         if (ContextCompat.checkSelfPermission(

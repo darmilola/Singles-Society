@@ -11,7 +11,9 @@ class SocietyMediaManager {
 
     fun uploadToCloudinary(filePath: String?, context: Context) {
         Log.d("A", "sign up uploadToCloudinary- ")
-        MediaManager.get().upload(filePath).callback(object : UploadCallback {
+        MediaManager.get()
+            .upload(filePath)
+            .callback(object : UploadCallback {
             override fun onStart(requestId: String) {
                 Log.e("starting ","onStart: ")
             }

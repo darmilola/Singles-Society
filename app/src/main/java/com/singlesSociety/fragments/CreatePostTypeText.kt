@@ -14,8 +14,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.SinglesSociety.SocialText.RichTextController.MentionHashTagListener
 import com.facebook.common.util.UriUtil.getRealPathFromUri
+import com.singlesSociety.UiModels.MediaUploadAttachmentModel
 import com.singlesSociety.UiModels.Utils.LayoutUtils
 import com.singlesSociety.databinding.FragmentCreatePostTypeTextBinding
+import com.singlesSociety.uiAdapters.CreatePostAttachmentsAdapter
 import com.ss.agora.EventsUI
 import com.ss.cloudinary.SocietyMediaManager
 import java.io.IOException
@@ -23,6 +25,8 @@ import java.io.IOException
 
 class CreatePostTypeText : Fragment() {
     private lateinit var viewBinding: FragmentCreatePostTypeTextBinding
+    private lateinit var attachmentAdapter: CreatePostAttachmentsAdapter
+    private lateinit var attachmentList: ArrayList<MediaUploadAttachmentModel>
 
 
 
@@ -42,11 +46,10 @@ class CreatePostTypeText : Fragment() {
     }
 
     private fun initView(){
-        viewBinding.addMediaAttachment.setOnClickListener {
-            Log.e("initView: ", "am click")
-            LayoutUtils().requestPermission(requireActivity())
-        }
-
+        attachmentList = ArrayList()
+        attachmentList.add(MediaUploadAttachmentModel(null, 0))
+        attachmentAdapter = CreatePostAttachmentsAdapter(attachmentList,requireContext())
+        viewBinding.createPostAttachmentRecyclerView.adapter = attachmentAdapter
         viewBinding.createPostEditView.setRichTextEditing(true, true)
         viewBinding.createPostEditView.setMentionHashTagListener(object : MentionHashTagListener {
             override fun onMentioning(sequence: CharSequence) {}
@@ -58,7 +61,7 @@ class CreatePostTypeText : Fragment() {
         })
 
         viewBinding.createPostBtn.setOnClickListener {
-            startActivity(Intent(activity,EventsUI::class.java))
+            LayoutUtils().requestPermission(requireActivity())
         }
 
     }
@@ -87,12 +90,13 @@ class CreatePostTypeText : Fragment() {
     @Deprecated("Deprecated in Java")
    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         //get the image's file location
         val filePath = data?.data?.let { LayoutUtils().getRealPathFromUri(it, requireActivity()) }
         if (requestCode == LayoutUtils().PICK_IMAGE) {
             try {
-                SocietyMediaManager().uploadToCloudinary(filePath,requireContext())
+                val imgMap: HashMap<String, Int>? = data?.data?.let { LayoutUtils().getImgSize(requireContext(),it) }
+                attachmentAdapter.addToStart(MediaUploadAttachmentModel(uri = data?.data,  1, imgMap?.get("width"), imgMap?.get("height")))
+                  //SocietyMediaManager().uploadToCloudinary(filePath,requireContext())
             } catch (e: IOException) {
                 e.printStackTrace()
             }

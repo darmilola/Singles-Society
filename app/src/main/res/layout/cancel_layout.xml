@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="28dp"
+    android:layout_height="28dp"
+    android:src="@drawable/cancel_icon"
+    android:padding="7dp"
+    android:tint="#EBEBEB"
+    android:background="@drawable/transparent_radius">
+
+</ImageView>

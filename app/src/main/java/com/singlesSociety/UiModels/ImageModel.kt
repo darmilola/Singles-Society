@@ -1,4 +1,5 @@
 package com.singlesSociety.UiModels
 
-class ImageModel {
+class ImageModel constructor() {
+
 }

@@ -1,5 +1,6 @@
 package com.singlesSociety.uiAdapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -74,6 +75,7 @@ class ConnectionsAdapter(
         return messagesList.size
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     inner class MessagesViewholder(ItemView: View) : RecyclerView.ViewHolder(ItemView),
         View.OnClickListener {
         var profilePicture: AvatarView
@@ -87,7 +89,7 @@ class ConnectionsAdapter(
             lastMessage = ItemView.findViewById(R.id.message_connection_last_message)
             timestamp = ItemView.findViewById(R.id.message_connection_timestamp)
             ItemView.setOnClickListener(this)
-            profilePicture.loadImage(itemView.context.resources.getDrawable(R.drawable.woman_official))
+            profilePicture.loadImage(itemView.context.resources.getDrawable(R.drawable.woman_official,null,))
         }
 
         override fun onClick(view: View) {

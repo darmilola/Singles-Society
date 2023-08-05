@@ -1,42 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="7"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="1700dp"
-            android:layout_gravity="top
-"
-            android:id="@+id/uploadMediaLayout">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="160dp"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:id="@+id/addMediaAttachment"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:orientation="horizontal"
-                android:background="@drawable/dotted_line_background">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/plus_circle_fill_icon"/>
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="180dp"
         android:orientation="vertical">
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
+            tools:itemCount="1"
+            android:id="@+id/createPostAttachmentRecyclerView"
+            tools:listitem="@layout/post_upload_attachment_image_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
 
         <com.SinglesSociety.SocialText.RichTextController.RTEditText
             android:layout_width="match_parent"
@@ -46,6 +32,7 @@
             android:textColorHint="@color/light_text_color"
             android:gravity="top|left"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/transparent_background"
             android:textSize="15sp"
@@ -54,6 +41,7 @@
             android:textColor="@color/new_dark_text_color"
             android:fontFamily="@font/opensansregular"/>
     </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
