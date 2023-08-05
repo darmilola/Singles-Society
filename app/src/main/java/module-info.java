@@ -1,0 +1,2 @@
+module SinglesSociety.app.main {
+}
