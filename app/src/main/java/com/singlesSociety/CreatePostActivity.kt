@@ -38,6 +38,7 @@ class CreatePostActivity : AppCompatActivity() {
         viewBinding.cancelCreatePost.setOnClickListener {
             finish()
         }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

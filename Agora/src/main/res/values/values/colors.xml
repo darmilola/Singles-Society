@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="progress_primary">#fff</color>-->
+    <color name="progress_primary">#F82B63</color>
+    <color name="progress_secondary">#ABF891AD</color>
+    <color name="progress_max_active">#F82B63</color>
+</resources>

@@ -16,6 +16,7 @@ import com.SinglesSociety.SocialText.RichTextController.MentionHashTagListener
 import com.facebook.common.util.UriUtil.getRealPathFromUri
 import com.singlesSociety.UiModels.Utils.LayoutUtils
 import com.singlesSociety.databinding.FragmentCreatePostTypeTextBinding
+import com.ss.agora.EventsUI
 import com.ss.cloudinary.SocietyMediaManager
 import java.io.IOException
 
@@ -55,6 +56,10 @@ class CreatePostTypeText : Fragment() {
             override fun onMentionStarted() {}
             override fun onHashTagsStarted() {}
         })
+
+        viewBinding.createPostBtn.setOnClickListener {
+            startActivity(Intent(activity,EventsUI::class.java))
+        }
 
     }
 

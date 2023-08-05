@@ -1,5 +1,6 @@
 package com.singlesSociety
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,10 @@ class EventLandingActivity : AppCompatActivity() {
 
         viewBinding.backButton.setOnClickListener {
             finish()
+        }
+
+        viewBinding.joinEvent.setOnClickListener {
+            startActivity(Intent(this,LiveEventActivity::class.java))
         }
     }
 
