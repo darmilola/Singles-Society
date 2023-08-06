@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.DisplayMetrics
@@ -14,13 +15,12 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
-import java.io.File
 
 
 class LayoutUtils() {
 
      val PERMISSION_CODE = 1
-     val PICK_IMAGE = 1
+     val SELECT_ATTACHMENTS = 1
 
     /**
      * This method converts dp unit to equivalent pixels, depending on device density.
@@ -76,17 +76,33 @@ class LayoutUtils() {
     }
 
 
-     fun getImgSize(context: Context,uri: Uri): HashMap<String,Int> {
-         val imgMap = HashMap<String, Int>()
+     fun getAttachmentSize(context: Context, uri: Uri): HashMap<String,Int> {
+         val attachmentSizeMap = HashMap<String, Int>()
          val options = BitmapFactory.Options()
-         options.inJustDecodeBounds = true // w  w  w. j av  a2 s.  c  o  m
-         val imagePath = getMediaAbsolutePath(context, uri)
-         val bitmap = BitmapFactory.decodeFile(imagePath, options)
+         options.inJustDecodeBounds = true
+         val attachmentPath = getMediaAbsolutePath(context, uri)
+         BitmapFactory.decodeFile(attachmentPath, options)
          val height = options.outHeight
          val width = options.outWidth
-         imgMap["height"] = height
-         imgMap["width"] = width
-         return imgMap
+         attachmentSizeMap["height"] = height
+         attachmentSizeMap["width"] = width
+         return attachmentSizeMap
+    }
+
+    fun getVideoAttachmentSize(context: Context, uri: Uri): HashMap<String,Int?> {
+        val retriever = MediaMetadataRetriever()
+        val attachmentSizeMap = HashMap<String, Int?>()
+        retriever.setDataSource(getMediaAbsolutePath(context,uri))
+        val width =
+            retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)
+                ?.let { Integer.valueOf(it) }
+        val height =
+            retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)
+                ?.let { Integer.valueOf(it) }
+        retriever.release()
+        attachmentSizeMap["height"] = height
+        attachmentSizeMap["width"] = width
+        return attachmentSizeMap
     }
 
     private fun getMediaAbsolutePath(ctx: Context, uri: Uri?): String? {
@@ -122,8 +138,8 @@ class LayoutUtils() {
             Intent.ACTION_PICK,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
-        i.type = "image/*"
-       activity.startActivityForResult(i, PICK_IMAGE)
+        i.type = "image/* video/*"
+       activity.startActivityForResult(i, SELECT_ATTACHMENTS)
     }
 
 

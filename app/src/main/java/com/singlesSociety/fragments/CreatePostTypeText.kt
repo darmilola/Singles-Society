@@ -1,25 +1,22 @@
 package com.singlesSociety.fragments
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.SinglesSociety.SocialText.RichTextController.MentionHashTagListener
-import com.facebook.common.util.UriUtil.getRealPathFromUri
 import com.singlesSociety.UiModels.MediaUploadAttachmentModel
 import com.singlesSociety.UiModels.Utils.LayoutUtils
 import com.singlesSociety.databinding.FragmentCreatePostTypeTextBinding
 import com.singlesSociety.uiAdapters.CreatePostAttachmentsAdapter
-import com.ss.agora.EventsUI
-import com.ss.cloudinary.SocietyMediaManager
 import java.io.IOException
 
 
@@ -91,11 +88,23 @@ class CreatePostTypeText : Fragment() {
    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //get the image's file location
-        val filePath = data?.data?.let { LayoutUtils().getRealPathFromUri(it, requireActivity()) }
-        if (requestCode == LayoutUtils().PICK_IMAGE) {
+        if (requestCode == LayoutUtils().SELECT_ATTACHMENTS) {
             try {
-                val imgMap: HashMap<String, Int>? = data?.data?.let { LayoutUtils().getImgSize(requireContext(),it) }
-                attachmentAdapter.addToStart(MediaUploadAttachmentModel(uri = data?.data,  1, imgMap?.get("width"), imgMap?.get("height")))
+
+                Log.e("MimeType ", data?.data?.let { getMimeType(uri = it) }!!)
+                if(data.data?.let { getMimeType(it).equals("png",true) || getMimeType(it).equals("jpg",true) } == true){
+                    val attachmentSizeMap: HashMap<String, Int>? = data.data?.let {
+                        LayoutUtils().getAttachmentSize(requireContext(),it)
+                    }
+                    attachmentAdapter.addToStart(MediaUploadAttachmentModel(uri = data.data,  1, attachmentSizeMap?.get("width"), attachmentSizeMap?.get("height")))
+                }
+                else{
+                    val attachmentSizeMap: HashMap<String, Int?>? = data.data?.let {
+                        LayoutUtils().getVideoAttachmentSize(requireContext(),it)
+                    }
+                    attachmentAdapter.addToStart(MediaUploadAttachmentModel(uri = data.data,  2, attachmentSizeMap?.get("width"), attachmentSizeMap?.get("height")))
+                }
+
                   //SocietyMediaManager().uploadToCloudinary(filePath,requireContext())
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -103,5 +112,10 @@ class CreatePostTypeText : Fragment() {
         }
     }
 
+    private fun getMimeType(uri: Uri): String? {
+        val cR = requireContext().contentResolver
+        val mime = MimeTypeMap.getSingleton()
+        return mime.getExtensionFromMimeType(cR.getType(uri))
+    }
 
 }

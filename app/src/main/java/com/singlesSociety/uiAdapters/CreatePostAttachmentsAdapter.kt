@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.ui.PlayerView
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.MediaUploadAttachmentModel
 import com.singlesSociety.UiModels.Utils.LayoutUtils
@@ -73,44 +74,66 @@ class CreatePostAttachmentsAdapter(private val itemList: ArrayList<MediaUploadAt
 
    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
        val attachmentObject: MediaUploadAttachmentModel = itemList[position]
-       if (itemList[position].viewType == TYPE_IMAGE) {
-           itemList[position].viewType?.let { computeDimensions(it,holder,attachmentObject) }
-           val mHolder =  holder as ImageItemViewHolder
-           mHolder.imgView.setImageURI(attachmentObject.uri)
+       when (itemList[position].viewType) {
+           TYPE_IMAGE -> {
+               itemList[position].viewType?.let { computeDimensions(it,holder,attachmentObject) }
+               val mHolder =  holder as ImageItemViewHolder
+               mHolder.imgView.setImageURI(attachmentObject.uri)
+               mHolder.removeAction.setOnClickListener {
+                   if(position == itemList.size-1){
+                       itemList.removeAt(position-1)
+                       notifyItemRemoved(position-1)
+                   }
+                   else if(position == 0){
+                       itemList.removeAt(0)
+                       notifyItemRemoved(0)
+                   }
+                   else{
+                       itemList.removeAt(position)
+                       notifyItemRemoved(position)
+                   }
 
-        }
-       else if(itemList[position].viewType == TYPE_VIDEO){
-           itemList[position].viewType?.let { computeDimensions(it,holder,attachmentObject) }
-           val mHolder =  holder as VideoItemViewHolder
-       }
-       else if(itemList[position].viewType == TYPE_UPLOAD){
-           val mHolder =  holder as UploadItemViewHolder
-           mHolder.itemView.setOnClickListener {
-               LayoutUtils().requestPermission(context as Activity)
+               }
+
+           }
+           TYPE_VIDEO -> {
+               itemList[position].viewType?.let { computeDimensions(it,holder,attachmentObject) }
+               val mHolder =  holder as VideoItemViewHolder
+               mHolder.removeAction.setOnClickListener {
+                   itemList.removeAt(position)
+                   notifyItemRemoved(position)
+               }
+           }
+           TYPE_UPLOAD -> {
+               val mHolder =  holder as UploadItemViewHolder
+               mHolder.itemView.setOnClickListener {
+                   LayoutUtils().requestPermission(context as Activity)
+               }
            }
        }
     }
 
     private fun computeDimensions(viewType: Int, holder: RecyclerView.ViewHolder, attachmentObject: MediaUploadAttachmentModel){
         var mHolder: RecyclerView.ViewHolder? = null
-        mHolder = if(viewType == TYPE_IMAGE){
-            holder as ImageItemViewHolder
-        } else if(viewType == TYPE_VIDEO){
-            holder as VideoItemViewHolder
-        }else if(viewType == TYPE_UPLOAD){
-            holder as UploadItemViewHolder
-        }
-        else{
-            holder as VideoItemViewHolder
+        mHolder = when (viewType) {
+            TYPE_IMAGE -> {
+                holder as ImageItemViewHolder
+            }
+            TYPE_VIDEO -> {
+                holder as VideoItemViewHolder
+            }
+            TYPE_UPLOAD -> {
+                holder as UploadItemViewHolder
+            }
+            else -> {
+                holder as VideoItemViewHolder
+            }
         }
         val height: Int? = attachmentObject.height
         val width: Int? = attachmentObject.width
 
-        Log.e("computeDimensions: ", height.toString() )
-        Log.e("computeDimensions width: ", width.toString() )
-
         if (height != null && width != null){
-            val attachmentView = mHolder.itemView.findViewById<ImageView>(R.id.attachmentView)
+            val attachmentView = mHolder.itemView.findViewById<View>(R.id.attachmentView)
             if(height > width){
                 attachmentView.layoutParams.height = dip(context,250)
                 attachmentView.layoutParams.width = dip(context,180)
@@ -131,10 +154,12 @@ class CreatePostAttachmentsAdapter(private val itemList: ArrayList<MediaUploadAt
 
    inner class ImageItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
        val imgView: ImageView = ItemView.findViewById(R.id.attachmentView)
+       val removeAction: ImageView = ItemView.findViewById(R.id.removeAttachmentAction)
    }
 
    inner class VideoItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-       val videoView: ImageView = ItemView.findViewById(R.id.attachmentView)
+       val videoView: PlayerView = ItemView.findViewById(R.id.attachmentView)
+       val removeAction: ImageView = ItemView.findViewById(R.id.removeAttachmentAction)
    }
 
     inner class UploadItemViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {

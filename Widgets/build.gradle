@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
-    compileSdkVersion 34
-    buildToolsVersion "34.0.0"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
 
     buildFeatures {
         viewBinding true
@@ -12,8 +12,8 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 34
+        minSdkVersion 24
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 

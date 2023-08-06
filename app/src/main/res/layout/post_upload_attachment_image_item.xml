@@ -19,6 +19,7 @@
         <include layout="@layout/cancel_layout"
             android:layout_height="24dp"
             android:layout_gravity="right"
+            android:id="@+id/removeAttachmentAction"
             android:layout_margin="5dp"
             android:layout_width="24dp"/>
 

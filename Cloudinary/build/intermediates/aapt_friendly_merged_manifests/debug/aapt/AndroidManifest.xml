@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ss.cloudinary" >
 
-    <uses-sdk android:minSdkVersion="23" />
+    <uses-sdk android:minSdkVersion="24" />
 
     <application>
         <meta-data
