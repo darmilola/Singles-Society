@@ -2,18 +2,23 @@ package com.singlesSociety.uiAdapters
 
 import android.app.Activity
 import android.content.Context
-import android.media.tv.TvTrackInfo.TYPE_VIDEO
-import android.util.Log
+import android.content.Intent
+import android.graphics.Matrix
+import android.graphics.Point
+import android.graphics.RectF
+import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.ui.PlayerView
+import com.singlesSociety.MediaFullViewActivity
 import com.singlesSociety.R
 import com.singlesSociety.UiModels.MediaUploadAttachmentModel
 import com.singlesSociety.UiModels.Utils.LayoutUtils
 import com.singlesSociety.UiModels.dip
+
 
 class CreatePostAttachmentsAdapter(private val itemList: ArrayList<MediaUploadAttachmentModel>, val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -94,6 +99,12 @@ class CreatePostAttachmentsAdapter(private val itemList: ArrayList<MediaUploadAt
                    }
 
                }
+               mHolder.imgView.setOnClickListener {
+                  val intent = Intent((context as Activity), MediaFullViewActivity::class.java)
+                  intent.putExtra("info",attachmentObject)
+                  intent.putExtra("type", TYPE_IMAGE)
+                  context.startActivity(intent)
+               }
 
            }
            TYPE_VIDEO -> {
@@ -102,6 +113,12 @@ class CreatePostAttachmentsAdapter(private val itemList: ArrayList<MediaUploadAt
                mHolder.removeAction.setOnClickListener {
                    itemList.removeAt(position)
                    notifyItemRemoved(position)
+               }
+               mHolder.videoView.setOnClickListener {
+                   val intent = Intent((context as Activity), MediaFullViewActivity::class.java)
+                   intent.putExtra("info",attachmentObject)
+                   intent.putExtra("type", TYPE_VIDEO)
+                   context.startActivity(intent)
                }
            }
            TYPE_UPLOAD -> {
@@ -132,8 +149,30 @@ class CreatePostAttachmentsAdapter(private val itemList: ArrayList<MediaUploadAt
         val height: Int? = attachmentObject.height
         val width: Int? = attachmentObject.width
 
+        val display: Display = (context as Activity).windowManager.defaultDisplay   //context as ac .getWindowManager().getDefaultDisplay()
+        val size = Point()
+        display.getSize(size)
+        val  screenWidthInPixel = size.x
+        val screenHeightInPixel = size.y
+
+        val factorX = screenWidthInPixel/width!!
+        val factorY = screenHeightInPixel/height!!
+
+         val factor: Float = if(factorX < factorY){
+             factorX.toFloat()
+         }
+        else{
+             factorY.toFloat()
+        }
+
+        val matrix = Matrix()
+        matrix.postScale(factor, factor)
+
+        val attachmentView = mHolder.itemView.findViewById<View>(R.id.attachmentView)
+        val drawableRect = RectF(0f, 0f,width.toFloat(), height.toFloat())
+        val viewRect = RectF(0f, 0f, attachmentView.width.toFloat(), attachmentView.height.toFloat())
+        matrix.setRectToRect(drawableRect, viewRect, Matrix.ScaleToFit.CENTER)
         if (height != null && width != null){
-            val attachmentView = mHolder.itemView.findViewById<View>(R.id.attachmentView)
             if(height > width){
                 attachmentView.layoutParams.height = dip(context,250)
                 attachmentView.layoutParams.width = dip(context,180)

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Singles Society</string>
+    <string name="app_name">SS</string>
     <string name="already_have_account">Already have account? <b><u>Log in</u></b></string>
     <string name="dont_have_account"><u>Do not have account?</u></string>
     <string name="forgot_password"><u>Forgot Password</u></string>
