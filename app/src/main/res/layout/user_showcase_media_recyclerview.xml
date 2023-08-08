@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainViewRoot"
+    android:background="@color/special_activity_background">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="10dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.ss.storiesview.StoriesProgressView
+                android:id="@+id/storiesView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_gravity="top"
+                android:elevation="2dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/showcaseMediaRecyclerview"/>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

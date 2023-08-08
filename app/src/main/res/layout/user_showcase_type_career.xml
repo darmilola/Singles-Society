@@ -43,9 +43,10 @@
                     android:id="@+id/user_name_age"
                     android:textColor="#DDFFFFFF"
                     android:textSize="26sp"
-                    android:fontFamily="@font/nunitoreg"
+                    android:fontFamily="@font/ggsanssemibold"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:scaleX="1.04"
                     android:layout_marginBottom="10dp"
                     android:text="Career"/>
 
@@ -55,6 +56,7 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:flexWrap="wrap"
+                    android:layout_marginBottom="40dp"
                     app:justifyContent="center">
 
                     <com.google.android.material.chip.Chip
@@ -73,9 +75,10 @@
                         app:chipStrokeColor="#DDFFFFFF"
                         app:chipStrokeWidth="0.5dp"
                         app:chipIconVisible="true"
+                        android:textScaleX="1.04"
                         app:chipSurfaceColor="@color/full_transparency"
                         app:chipBackgroundColor="@color/full_transparency"
-                        android:fontFamily="@font/nunitoreg"/>
+                        android:fontFamily="@font/ggsansmedium"/>
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
@@ -94,9 +97,10 @@
                         app:chipStrokeColor="#DDFFFFFF"
                         app:chipStrokeWidth="0.5dp"
                         app:chipIconVisible="true"
+                        android:textScaleX="1.04"
                         app:chipSurfaceColor="@color/full_transparency"
                         app:chipBackgroundColor="@color/full_transparency"
-                        android:fontFamily="@font/nunitoreg"/>
+                        android:fontFamily="@font/ggsansmedium"/>
 
                     <com.google.android.material.chip.Chip
                         android:layout_width="wrap_content"
@@ -117,9 +121,10 @@
                         app:chipStrokeColor="#DDFFFFFF"
                         app:chipStrokeWidth="0.5dp"
                         app:chipIconVisible="true"
+                        android:textScaleX="1.04"
                         app:chipSurfaceColor="@color/full_transparency"
                         app:chipBackgroundColor="@color/full_transparency"
-                        android:fontFamily="@font/nunitoreg"/>
+                        android:fontFamily="@font/ggsansmedium"/>
                 </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
         </FrameLayout>

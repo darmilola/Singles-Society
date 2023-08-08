@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/special_activity_background"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:minHeight="70dp">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|left"
+        android:ellipsize="end"
+        android:id="@+id/type_quote_text"
+        android:textSize="17sp"
+        android:text="About"
+        android:fontFamily="@font/ggsansbold"
+        android:textColor="@color/new_dark_text_color"/>
+
+    <com.SinglesSociety.SocialText.RichTextController.RTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/postTextView"
+        android:background="@color/transparent"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/new_dark_text_color"
+        android:textScaleX="1.05"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+        android:fontFamily="@font/ggsansregular"/>
+
+</LinearLayout>

@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -25,15 +26,14 @@ import com.singlesSociety.Arvi.widget.PlayableItemViewHolder;
 import com.singlesSociety.Arvi.widget.PlaybackState;
 import com.singlesSociety.OnSwipeTouchListener;
 import com.singlesSociety.R;
+import com.singlesSociety.UiModels.ImageModel;
 import com.singlesSociety.UiModels.ShowCaseModel;
 import com.bumptech.glide.Glide;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.material.chip.Chip;
 import com.mackhartley.roundedprogressbar.RoundedProgressBar;
+import com.ss.storiesview.StoriesProgressView;
 
 
 import java.util.ArrayList;
@@ -42,6 +42,8 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -49,13 +51,12 @@ import org.jetbrains.annotations.NotNull;
 public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static int SHOWCASE_TYPE_MAIN = 1;
-    private static int SHOWCASE_TYPE_QUOTE = 2;
+    private static int SHOWCASE_TYPE_ABOUT_TEXT = 2;
     private static int SHOWCASE_TYPE_ABOUT_ME = 3;
     private static int SHOWCASE_TYPE_CAREER = 4;
-    private static int SHOWCASE_TYPE_PICTURE = 6;
+    private static int SHOWCASE_TYPE_MEDIA = 6;
     private static int SHOWCASE_TYPE_TAKE_ACTION = 8;
 
-    private static int SHOWCASE_TYPE_VIDEO = 9;
     Context context;
 
     private Boolean uiNeedsAdjustment = false;
@@ -74,20 +75,20 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_main, parent, false);
             return new ShowcaseMainItemViewHolder(view);
         }
-        if (viewType == SHOWCASE_TYPE_QUOTE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_quote, parent, false);
-            return new ShowcaseQuoteItemViewHolder(view);
+        if (viewType == SHOWCASE_TYPE_ABOUT_TEXT) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_text, parent, false);
+            return new ShowcaseAboutTextItemViewHolder(view);
         }
         if (viewType == SHOWCASE_TYPE_CAREER) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_career, parent, false);
             return new ShowcaseCareerItemViewHolder(view);
         }
-        if (viewType == SHOWCASE_TYPE_PICTURE) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_picture, parent, false);
-            return new ShowcasePictureItemViewHolder(view);
+        if (viewType == SHOWCASE_TYPE_MEDIA) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_media_recyclerview, parent, false);
+            return new ShowcaseMediaItemViewHolder(view);
         }
         if (viewType == SHOWCASE_TYPE_ABOUT_ME) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_me, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_me_chip, parent, false);
             return new ShowcaseAboutMeItemViewHolder(view);
         }
 
@@ -97,10 +98,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
 
-        if (viewType == SHOWCASE_TYPE_VIDEO) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_video, parent, false);
-            return new ShowcaseVideoItemViewHolder(parent, view);
-        }
 
         return null;
     }
@@ -109,6 +106,7 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.uiNeedsAdjustment = uiNeedsAdjustment;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
@@ -116,14 +114,14 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if(showCaseModel.getShowcaseType() == 1){
             ShowcaseMainItemViewHolder showcaseMainItemViewHolder = (ShowcaseMainItemViewHolder) holder;
             //showcaseMainItemViewHolder.nameAge.setText(showCaseModel.getModelInfoList().get(0)+", "+showCaseModel.getModelInfoList().get(1));
-            showcaseMainItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(3));
+//            showcaseMainItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(3));
             for(String id: showCaseModel.getLikeList()){
                 if(id.equalsIgnoreCase(showCaseModel.getModelInfoList().get(5))){
                     showcaseMainItemViewHolder.potentialMatch.setVisibility(View.VISIBLE);
                 }
             }
             Glide.with(context)
-                    .load("https://cdn.pixabay.com/photo/2023/05/30/10/18/wedding-8028163_1280.jpg")
+                    .load("https://cdn.pixabay.com/photo/2022/02/27/13/43/protest-7037332_1280.jpg")
                     .placeholder(R.drawable.profileplaceholder)
                     .error(R.drawable.profileplaceholder)
                     .into(showcaseMainItemViewHolder.imageView);
@@ -132,18 +130,18 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         if(showCaseModel.getShowcaseType() == 3){
             ShowcaseAboutMeItemViewHolder showcaseAboutMeItemViewHolder = (ShowcaseAboutMeItemViewHolder) holder;
-            showcaseAboutMeItemViewHolder.status.setText(showCaseModel.getModelInfoList().get(0));
+      /*      showcaseAboutMeItemViewHolder.status.setText(showCaseModel.getModelInfoList().get(0));
             showcaseAboutMeItemViewHolder.smoking.setText(showCaseModel.getModelInfoList().get(1));
             showcaseAboutMeItemViewHolder.drinking.setText(showCaseModel.getModelInfoList().get(2));
             showcaseAboutMeItemViewHolder.language.setText(showCaseModel.getModelInfoList().get(3));
             showcaseAboutMeItemViewHolder.religion.setText(showCaseModel.getModelInfoList().get(4));
-            showcaseAboutMeItemViewHolder.marriageGoals.setText(showCaseModel.getModelInfoList().get(5));
+            showcaseAboutMeItemViewHolder.marriageGoals.setText(showCaseModel.getModelInfoList().get(5));*/
 
         }
 
         if(showCaseModel.getShowcaseType() == 4){
             ShowcaseCareerItemViewHolder showcaseCareerItemViewHolder  = (ShowcaseCareerItemViewHolder) holder;
-            showcaseCareerItemViewHolder.degree.setText(showCaseModel.getModelInfoList().get(0));
+           // showcaseCareerItemViewHolder.degree.setText(showCaseModel.getModelInfoList().get(0));
             showcaseCareerItemViewHolder.occupation.setText(showCaseModel.getModelInfoList().get(1));
             showcaseCareerItemViewHolder.workplace.setText(showCaseModel.getModelInfoList().get(2));
             Glide.with(context)
@@ -151,29 +149,60 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     .placeholder(R.drawable.profileplaceholder)
                     .error(R.drawable.profileplaceholder)
                     .into(showcaseCareerItemViewHolder.imageView);
+
+
         }
 
         if(showCaseModel.getShowcaseType() == 6){
-            ShowcasePictureItemViewHolder showcasePictureItemViewHolder = (ShowcasePictureItemViewHolder) holder;
-            Glide.with(context)
-                    .load(showCaseModel.getModelInfoList().get(0))
-                    .placeholder(R.drawable.profileplaceholder)
-                    .error(R.drawable.profileplaceholder)
-                    .into(showcasePictureItemViewHolder.imageView);
-        }
+            ShowcaseMediaItemViewHolder showcaseMediaItemViewHolder = (ShowcaseMediaItemViewHolder) holder;
+            ImageModel img = new ImageModel("https://cdn.pixabay.com/photo/2022/02/27/13/43/protest-7037332_1280.jpg");
+            ImageModel img2 = new ImageModel("https://cdn.pixabay.com/photo/2022/07/12/18/04/child-7317938_1280.jpg");
+            ImageModel img3 = new ImageModel("https://cdn.pixabay.com/photo/2022/02/27/13/43/protest-7037332_1280.jpg");
+            ImageModel img4 = new ImageModel("https://cdn.pixabay.com/photo/2022/07/12/18/04/child-7317938_1280.jpg");
+            ArrayList<ImageModel> imageList = new ArrayList<>();
+                imageList.add(img);
+                imageList.add(img2);
+                imageList.add(img3);
+                imageList.add(img4);
+
+            ShowcaseMediaAdapter adapter = new ShowcaseMediaAdapter(imageList, context);
+            showcaseMediaItemViewHolder.mediaView.setAdapter(adapter);
+            new PagerSnapHelper().attachToRecyclerView(showcaseMediaItemViewHolder.mediaView);
+            ((ShowcaseMediaItemViewHolder) holder).storiesProgressView.setStoriesCount(imageList.size());
+            ((ShowcaseMediaItemViewHolder) holder).storiesProgressView.setStoryDuration(6000L);
+            ((ShowcaseMediaItemViewHolder) holder).storiesProgressView.startStories();
+            ((ShowcaseMediaItemViewHolder) holder).mediaView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                        LinearLayoutManager manager = (LinearLayoutManager)showcaseMediaItemViewHolder.mediaView.getLayoutManager();
+                        assert manager != null;
+                        int position = manager.findFirstCompletelyVisibleItemPosition();
+                        if(position >= 0){
+                            ((ShowcaseMediaItemViewHolder) holder).storiesProgressView.restartStories(position);
+                        }
+                    }
+                    else if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
+                        ((ShowcaseMediaItemViewHolder) holder).storiesProgressView.pause();
+                    }
+                }
+            });
+
+            ((ShowcaseMediaItemViewHolder) holder).mediaView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_UP){
+                        ((ShowcaseMediaItemViewHolder) holder).storiesProgressView.resume();
+                    }
+                    else if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        ((ShowcaseMediaItemViewHolder) holder).storiesProgressView.pause();
+                    }
+                    return false;
+                }
+            });
 
 
-
-        if(showCaseModel.getShowcaseType() == 9){
-            ShowcaseVideoItemViewHolder vi = (ShowcaseVideoItemViewHolder) holder;
-
-            vi.setUrl("https://joy1.videvo.net/videvo_files/video/free/2016-12/large_watermarked/Code_flythough_loop_01_Videvo_preview.mp4");
-            ImageRequest request = ImageRequest.fromUri("https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-            DraweeController controller = Fresco.newDraweeControllerBuilder()
-                    .setImageRequest(request)
-                    .setOldController((vi).thumbnail.getController()).build();
-            (vi).thumbnail.setController(controller);
-            vi.onStoppedState();
 
         }
     }
@@ -192,11 +221,11 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_CAREER){
             return SHOWCASE_TYPE_CAREER;
         }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_QUOTE){
-            return SHOWCASE_TYPE_QUOTE;
+        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ABOUT_TEXT){
+            return SHOWCASE_TYPE_ABOUT_TEXT;
         }
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_PICTURE){
-            return SHOWCASE_TYPE_PICTURE;
+        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_MEDIA){
+            return SHOWCASE_TYPE_MEDIA;
         }
         else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_ABOUT_ME){
             return SHOWCASE_TYPE_ABOUT_ME;
@@ -205,9 +234,6 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return SHOWCASE_TYPE_TAKE_ACTION;
         }
 
-        else if(showcaseList.get(position).getShowcaseType() == SHOWCASE_TYPE_VIDEO){
-            return SHOWCASE_TYPE_VIDEO;
-        }
         else{
             return SHOWCASE_TYPE_MAIN;
         }
@@ -282,34 +308,37 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder{
 
-        Chip status,smoking,drinking,language,religion,marriageGoals;
+      //  Chip status,smoking,drinking,language,religion,marriageGoals;
 
         public ShowcaseAboutMeItemViewHolder(View ItemView){
             super(ItemView);
-            status = ItemView.findViewById(R.id.type_about_status);
+           /* status = ItemView.findViewById(R.id.type_about_status);
             smoking = ItemView.findViewById(R.id.type_about_smoking);
             drinking = ItemView.findViewById(R.id.type_about_drinking);
             language = ItemView.findViewById(R.id.type_about_language);
             religion = ItemView.findViewById(R.id.type_about_religion);
-            marriageGoals = ItemView.findViewById(R.id.marriage_goals);
+            marriageGoals = ItemView.findViewById(R.id.marriage_goals);*/
         }
 
     }
 
-    public class ShowcasePictureItemViewHolder extends RecyclerView.ViewHolder {
+    public class ShowcaseMediaItemViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
+        RecyclerView mediaView;
         LinearLayout viewRoot;
 
-        public ShowcasePictureItemViewHolder(View ItemView) {
+        StoriesProgressView storiesProgressView;
+
+        public ShowcaseMediaItemViewHolder(View ItemView) {
             super(ItemView);
-            imageView = ItemView.findViewById(R.id.type_picture_image);
+            mediaView = ItemView.findViewById(R.id.showcaseMediaRecyclerview);
             viewRoot = ItemView.findViewById(R.id.mainViewRoot);
-            if(uiNeedsAdjustment) {
+            storiesProgressView = ItemView.findViewById(R.id.storiesView);
+           /*if(uiNeedsAdjustment) {
                 final int heightDp = context.getResources().getSystem().getDisplayMetrics().heightPixels - convertDpToPixel(70, context);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightDp);
                 viewRoot.setLayoutParams(layoutParams);
-            }
+            }*/
 
         }
 
@@ -317,12 +346,10 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-    public class ShowcaseQuoteItemViewHolder extends RecyclerView.ViewHolder{
+    public class ShowcaseAboutTextItemViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textView;
-        public ShowcaseQuoteItemViewHolder(View ItemView){
+        public ShowcaseAboutTextItemViewHolder(View ItemView){
             super(ItemView);
-            textView = ItemView.findViewById(R.id.type_quote_text);
 
         }
 
@@ -343,11 +370,11 @@ public class ShowCaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             workplace = ItemView.findViewById(R.id.type_career_workplace);
             imageView = ItemView.findViewById(R.id.type_career_image);
             viewRoot = ItemView.findViewById(R.id.mainViewRoot);
-            if(uiNeedsAdjustment) {
+          /*  if(uiNeedsAdjustment) {
                 final int heightDp = context.getResources().getSystem().getDisplayMetrics().heightPixels - convertDpToPixel(70, context);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightDp);
                 viewRoot.setLayoutParams(layoutParams);
-            }
+            }*/
         }
 
     }

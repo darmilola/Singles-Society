@@ -55,7 +55,7 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             return new ShowcasePictureItemViewHolder(view);
         }
         if (viewType == SHOWCASE_TYPE_ABOUT_ME) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_me, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_showcase_type_about_me_chip, parent, false);
             return new ShowcaseAboutMeItemViewHolder(view);
         }
 
@@ -96,11 +96,11 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         if(showCaseModel.getShowcaseType() == 3){
             ShowcaseAboutMeItemViewHolder showcaseAboutMeItemViewHolder = (ShowcaseAboutMeItemViewHolder) holder;
-            showcaseAboutMeItemViewHolder.status.setText(showCaseModel.getModelInfoList().get(0));
+           /* showcaseAboutMeItemViewHolder.status.setText(showCaseModel.getModelInfoList().get(0));
             showcaseAboutMeItemViewHolder.smoking.setText(showCaseModel.getModelInfoList().get(1));
             showcaseAboutMeItemViewHolder.drinking.setText(showCaseModel.getModelInfoList().get(2));
             showcaseAboutMeItemViewHolder.language.setText(showCaseModel.getModelInfoList().get(3));
-            showcaseAboutMeItemViewHolder.religion.setText(showCaseModel.getModelInfoList().get(4));
+            showcaseAboutMeItemViewHolder.religion.setText(showCaseModel.getModelInfoList().get(4));*/
         }
 
         if(showCaseModel.getShowcaseType() == 4){
@@ -117,7 +117,7 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         if(showCaseModel.getShowcaseType() == 5){
             ShowcaseAboutTextViewholder showcaseAboutTextViewholder = (ShowcaseAboutTextViewholder) holder;
-            showcaseAboutTextViewholder.textView.setText(showCaseModel.getModelInfoList().get(0));
+           // showcaseAboutTextViewholder.textView.setText(showCaseModel.getModelInfoList().get(0));
         }
 
         if(showCaseModel.getShowcaseType() == 6){
@@ -187,10 +187,8 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class ShowcaseAboutTextViewholder extends RecyclerView.ViewHolder{
 
-        TextView textView;
         public ShowcaseAboutTextViewholder(View ItemView){
             super(ItemView);
-            textView = ItemView.findViewById(R.id.type_about_text_text);
         }
 
     }
@@ -229,15 +227,13 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public class ShowcaseAboutMeItemViewHolder extends RecyclerView.ViewHolder{
 
-        Chip status,smoking,drinking,language,religion;
+      //  Chip status,smoking,drinking,language,religion;
 
         public ShowcaseAboutMeItemViewHolder(View ItemView){
             super(ItemView);
-            status = ItemView.findViewById(R.id.type_about_status);
-            smoking = ItemView.findViewById(R.id.type_about_smoking);
-            drinking = ItemView.findViewById(R.id.type_about_drinking);
+           /* drinking = ItemView.findViewById(R.id.type_about_drinking);
             language = ItemView.findViewById(R.id.type_about_language);
-            religion = ItemView.findViewById(R.id.type_about_religion);
+            religion = ItemView.findViewById(R.id.type_about_religion);*/
         }
 
     }
@@ -247,7 +243,7 @@ public class ViewProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         ImageView imageView;
         public ShowcasePictureItemViewHolder(View ItemView){
             super(ItemView);
-            imageView = ItemView.findViewById(R.id.type_picture_image);
+
         }
     }
 

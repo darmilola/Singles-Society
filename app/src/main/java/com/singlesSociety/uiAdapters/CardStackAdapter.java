@@ -141,7 +141,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.Item
         return showCaseModelMainArrayList;
     }
 
-    public class ItemViewholder extends RecyclerView.ViewHolder{
+    public static class ItemViewholder extends RecyclerView.ViewHolder{
 
         PlayableItemsRecyclerView showcaseRecyclerview;
         public ItemViewholder(View ItemView){

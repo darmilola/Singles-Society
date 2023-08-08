@@ -61,7 +61,7 @@ class DatingProfileFragment(private val isFromUser: Boolean = false) : Fragment(
                 mainStrings.add(previewProfileModel.age.toString())
                 mainStrings.add(previewProfileModel.city)
                 mainStrings.add(previewProfileModel.occupation)
-                mainStrings.add(previewProfileModel.image1Url)
+                mainStrings.add("https://cdn.pixabay.com/photo/2020/03/11/17/32/engineer-4922781_1280.jpg")
                 mainStrings.add(previewProfileModel.userId)
                 val showCaseModel =
                     ShowCaseModel(mainStrings, 1, likeIds, previewProfileModel.userId)
@@ -70,9 +70,12 @@ class DatingProfileFragment(private val isFromUser: Boolean = false) : Fragment(
                 val showCaseModel1 =
                     ShowCaseModel(quoteStrings, 2, likeIds, previewProfileModel.userId)
                 showCaseModelArrayList.add(showCaseModel1)
-                val showCaseModel9 =
-                    ShowCaseModel(goalStrings, 9, likeIds, previewProfileModel.userId)
-                showCaseModelArrayList.add(showCaseModel9)
+
+                imageStrings.add(previewProfileModel.image3Url)
+                val showCaseModel5 =
+                    ShowCaseModel(imageStrings, 6, likeIds, previewProfileModel.userId)
+                showCaseModelArrayList.add(showCaseModel5)
+
                 aboutStrings.add(previewProfileModel.status)
                 aboutStrings.add(previewProfileModel.smoking)
                 aboutStrings.add(previewProfileModel.drinking)
@@ -85,15 +88,12 @@ class DatingProfileFragment(private val isFromUser: Boolean = false) : Fragment(
                 careerStrings.add(previewProfileModel.educationLevel)
                 careerStrings.add(previewProfileModel.occupation)
                 careerStrings.add(previewProfileModel.workplace)
-                careerStrings.add(previewProfileModel.image2Url)
+                careerStrings.add("https://cdn.pixabay.com/photo/2020/03/11/17/32/engineer-4922781_1280.jpg")
                 val showCaseModel3 =
                     ShowCaseModel(careerStrings, 4, likeIds, previewProfileModel.userId)
                 showCaseModelArrayList.add(showCaseModel3)
 
-                imageStrings.add(previewProfileModel.image3Url)
-                val showCaseModel5 =
-                    ShowCaseModel(imageStrings, 6, likeIds, previewProfileModel.userId)
-                showCaseModelArrayList.add(showCaseModel5)
+
 
                 showCaseAdapter = ShowCaseAdapter(requireContext(), showCaseModelArrayList)
                 showCaseAdapter!!.setUiNeedsAdjustment(true)

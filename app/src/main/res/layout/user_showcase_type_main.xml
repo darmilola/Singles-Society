@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:id="@+id/mainViewRoot"
-    android:layout_height="match_parent"
-    android:background="@color/full_transparency">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,7 +23,10 @@
                 android:id="@+id/type_main_image"/>
 
 
-            <include android:id="@+id/potential_match" layout="@layout/potential_match" android:layout_height="wrap_content" android:layout_width="wrap_content"/>
+            <include android:id="@+id/potential_match"
+                layout="@layout/potential_match"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -32,88 +34,94 @@
                     android:elevation="2dp"
                     android:orientation="vertical"
                     android:gravity="center|bottom"
-                    android:paddingBottom="80dp"
+                    android:paddingBottom="20dp"
                     android:background="@drawable/mblack_gradient"
                     android:layout_gravity="bottom">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:layout_gravity="left"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="20dp"
-                        android:id="@+id/type_main_name_age"
-                        android:textColor="#DDFFFFFF"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/manropesemibold"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:text="Alisha, 25"/>
+                        android:padding="15dp"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/showcase_header_background">
 
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        app:flexWrap="wrap"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        app:justifyContent="flex_start">
-
-                        <com.google.android.material.chip.Chip
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:text="Physiotherapist Engineer"
-                            android:padding="10dp"
-                            app:iconStartPadding="10dp"
-                            android:textSize="14sp"
-                            android:id="@+id/type_main_occupation"
-                            app:closeIconEnabled="false"
-                            android:textColor="#DDFFFFFF"
-                            app:chipIconSize="14dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="10dp"
-                            app:chipIcon="@drawable/ic_iconfinder_business"
-                            app:chipIconTint="#DDFFFFFF"
-                            app:chipStrokeColor="#DDFFFFFF"
-                            app:chipStrokeWidth="0.5dp"
-                            app:chipIconVisible="true"
-                            app:chipSurfaceColor="@color/full_transparency"
-                            app:chipBackgroundColor="@color/full_transparency"
-                            android:fontFamily="@font/manropesemibold"/>
-                    </com.google.android.flexbox.FlexboxLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="20dp"
-                        android:textColor="@color/light_gray"
-                        android:textSize="12sp"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/opensansregular"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:text="About"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="40dp"
-                        android:textSize="15sp"
-                        android:lineSpacingExtra="5dp"
-                        android:justificationMode="none"
-                        android:layout_marginTop="5dp"
-                        android:textColor="#C4FFFFFF"
-                        android:ellipsize="end"
-                        android:layout_marginBottom="15dp"
-                        android:maxLines="3"
-                        android:fontFamily="@font/manropesemibold"
-                        android:text="Am going to write a little about myself here just incase you care to know a little about me Am going to write a little about myself here just incase you care to know a little about me"/>
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:layout_gravity="left"
+                            android:id="@+id/type_main_name_age"
+                            android:textColor="@color/new_dark_text_color"
+                            android:textSize="23sp"
+                            android:fontFamily="@font/ggsansbold"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:text="Chloe, 25"/>
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:minHeight="40dp"
+                             android:layout_marginTop="5dp"
+                             android:gravity="center|left"
+                             android:orientation="horizontal">
+
+                             <ImageView
+                                 android:layout_width="16dp"
+                                 android:layout_height="16dp"
+                                 app:tint="@color/light_text_color"
+                                 android:src="@drawable/ic_iconfinder_business"/>
+
+
+                             <com.SinglesSociety.SocialText.RichTextController.RTextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:id="@+id/postTextView"
+                                 android:background="@color/transparent"
+                                 android:textSize="15sp"
+                                 android:textColor="@color/dark_text_color"
+                                 android:layout_marginLeft="10dp"
+                                 android:textScaleX="1.05"
+                                 android:text="Neuroscience Therapist at Intra-Cellular Therapeutic"
+                                 android:fontFamily="@font/ggsansmedium"/>
+
+                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="30dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center|left"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                app:tint="@color/light_text_color"
+                                android:src="@drawable/home_work_real_icon"/>
+
+
+                            <com.SinglesSociety.SocialText.RichTextController.RTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:textSize="15sp"
+                                android:textColor="@color/dark_text_color"
+                                android:layout_marginLeft="10dp"
+                                android:textScaleX="1.05"
+                                android:text="Lagos, Nigeria"
+                                android:fontFamily="@font/ggsansmedium"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+
+
                 </LinearLayout>
         </FrameLayout>
     </androidx.cardview.widget.CardView>

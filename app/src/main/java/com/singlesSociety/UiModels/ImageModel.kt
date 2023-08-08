@@ -1,5 +1,5 @@
 package com.singlesSociety.UiModels
 
-class ImageModel constructor() {
+class ImageModel constructor(val url: String? = null) {
 
 }
