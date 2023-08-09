@@ -72,7 +72,7 @@ class SocietySwipeActivity : AppCompatActivity() {
         }
 
 
-        viewBinding.showCaseStackLayout.swipeLayout.userSwipeLeft.setOnClickListener {
+        viewBinding.showCaseStackLayout.swipeLayout.userSwipeleft.setOnClickListener {
             val setting = SwipeAnimationSetting.Builder()
                 .setDirection(com.yuyakaido.android.cardstackview.Direction.Left)
                 .setDuration(Duration.Slow.duration)
@@ -91,7 +91,7 @@ class SocietySwipeActivity : AppCompatActivity() {
             override fun onCardSwiped(direction: Direction) {
                 if (direction == Direction.Right) {
                     val mainActivityModel = MainActivityModel(userProfileInPreview.get(0), this@SocietySwipeActivity)
-                    mainActivityModel.setLiked()
+                   // mainActivityModel.setLiked()
                   //  profileMatchedListener.invoke()
                 }
             /*    if (cardPosition.get(0) == societyModelArrayList.get(position).getUserProfileToPreview().size - 1

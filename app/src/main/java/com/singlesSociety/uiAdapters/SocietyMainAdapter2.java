@@ -217,7 +217,7 @@ public class SocietyMainAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewH
             cardStackAdapter.setScrollStateListener(new CardStackAdapter.ScrollStateListener() {
                 @Override
                 public void onReadyToMoveUp() {
-                 //   onReadyToMoveUpListener.invoke();
+                    //onReadyToMoveUpListener.invoke();
                     Toast.makeText(context, "Top Reached", Toast.LENGTH_SHORT).show();
                 }
 

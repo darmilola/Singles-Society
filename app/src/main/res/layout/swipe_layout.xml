@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/user_swipe_left"
+                android:id="@+id/userRewound"
                 app:cardElevation="2dp"
                 android:gravity="center"
                 android:backgroundTint="@color/special_activity_background"
@@ -49,6 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:id="@+id/userSwipeleft"
             android:layout_gravity="center"
             android:layout_weight="1">
 
@@ -74,6 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:id="@+id/userSwipeRight"
             android:layout_gravity="center"
             android:layout_weight="1">
 
@@ -101,6 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:id="@+id/userStarred"
             android:layout_gravity="center"
             android:layout_weight="1">
 

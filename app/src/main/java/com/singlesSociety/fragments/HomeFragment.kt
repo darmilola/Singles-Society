@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.singlesSociety.UiModels.CommunityPostModel
 import com.singlesSociety.uiAdapters.SocietyMainAdapter
 import com.singlesSociety.UiModels.MainActivityModel
 import com.singlesSociety.UiModels.PreviewProfileModel
@@ -114,20 +115,112 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                         societyModelArrayList.add(societyModel1);
                     }*/
 
-                    for (i in 0..2) {
-                        val societyModel1 =
-                            SocietyModel(4)
-                        societyModelArrayList.add(societyModel1);
-                        societyModelArrayList.add(SocietyModel(5))
-                        societyModelArrayList.add(SocietyModel(7))
-                        societyModelArrayList.add(SocietyModel(8))
+        val moreProfiles: ArrayList<PreviewProfileModel> = ArrayList()
+
+        mainActivityModel = MainActivityModel(requireContext())
+        mainActivityModel?.GetUserInfo()
+        mainActivityModel?.setInfoReadyListener(object : MainActivityModel.InfoReadyListener {
+            override fun onReady(
+                previewProfileModel: PreviewProfileModel,
+                likeIds: ArrayList<String>
+            ) {
+                for (i in 0..2) {
+                    val societyModel1 =
+                        SocietyModel(4)
+                    societyModelArrayList.add(societyModel1);
+                    societyModelArrayList.add(SocietyModel(5))
+                    societyModelArrayList.add(SocietyModel(7))
+                    societyModelArrayList.add(SocietyModel(8))
+                }
+
+                moreProfiles.add(previewProfileModel)
+                moreProfiles.add(previewProfileModel)
+                moreProfiles.add(previewProfileModel)
+                moreProfiles.add(previewProfileModel)
+                moreProfiles.add(previewProfileModel)
+                moreProfiles.add(previewProfileModel)
+
+                val societyModelShowcase = SocietyModel(moreProfiles, arrayListOf(), 0)
+                societyModelArrayList.add(societyModelShowcase)
+                societyModelArrayList.add(SocietyModel(6))
+
+
+                societyMainAdapter =
+                    SocietyMainAdapter(
+                        requireContext(),
+                        societyModelArrayList
+                    )
+
+                societyMainAdapter?.setVisitProfileListener {
+                    visitProfileListener?.invoke()
+                }
+
+                viewBinding.loaderView.setVisibility(View.GONE)
+                viewBinding.societyRecycler.setVisibility(View.VISIBLE)
+                viewBinding.societyRecycler.layoutManager =
+                    LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+                viewBinding.societyRecycler.adapter = societyMainAdapter
+
+
+                societyMainAdapter!!.setDatingProfileListener {
+                    Toast.makeText(context, "date", Toast.LENGTH_SHORT).show()
+                    //societyRecycler.layoutManager = scrollableLayoutManager
+
+                }
+                societyMainAdapter!!.setProfileEmptyListener {
+                    societyModelArrayList.removeAt(lastPosition)
+                    viewBinding.societyRecycler.layoutManager = scrollableLayoutManager
+                    viewBinding.societyRecycler.scrollToPosition(lastPosition)
+                }
+
+
+                societyMainAdapter!!.setAddACommentClickListener {
+                    val commentingSection = CommentBottomSheet(this@HomeFragment)
+                    commentingSection.show(parentFragmentManager, "commentingSection")
+                }
+
+                societyMainAdapter!!.setPostListener {
+                    Toast.makeText(context, "post", Toast.LENGTH_SHORT).show()
+                    // societyRecycler.layoutManager = scrollableLayoutManager
+
+                }
+                societyMainAdapter!!.setProfileMatchedListener {
+                    viewBinding.loaderView.setVisibility(View.GONE)
+                    viewBinding.societyRecycler.setVisibility(View.GONE)
+                    viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
+
+                }
+
+
+                viewBinding.societyRecycler.addOnScrollListener(object :
+                    RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        lastPosition =
+                            (viewBinding.societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                        if (lastPosition != RecyclerView.NO_POSITION) {
+                            val viewType = societyModelArrayList.get(lastPosition).itemViewType
+                            if (viewType == 0) {
+                                //   societyRecycler.layoutManager = unScrollableLayoutManager
+                                // societyRecycler.scrollToPosition(lastPosition)
+                            }
+                        }
                     }
+                })
+
+            }
+
+            override fun onError(message: String?) {}
+
+        })
+
+
 
                     /*  for (i in 0..2) {
                         val societyModel1 = SocietyModel(2)
                         societyModelArrayList.add(societyModel1);
                     }*/
-                    val moreProfiles: ArrayList<PreviewProfileModel> = ArrayList()
+                 //   val moreProfiles: ArrayList<PreviewProfileModel> = ArrayList()
 
                  /*   for (profile in previewProfileModels) {
                         moreProfiles.add(profile)
@@ -138,71 +231,7 @@ class HomeFragment(private var visitProfileListener: Function0<Unit>? = null) : 
                   //  val societyModelShowcase = SocietyModel(moreProfiles, likeIds, 0)
 
                  //   societyModelArrayList.add(societyModelShowcase)
-                    societyModelArrayList.add(SocietyModel(6))
 
-
-                    societyMainAdapter =
-                        SocietyMainAdapter(
-                            requireContext(),
-                            societyModelArrayList
-                        )
-
-                    societyMainAdapter?.setVisitProfileListener {
-                        visitProfileListener?.invoke()
-                    }
-
-                    viewBinding.loaderView.setVisibility(View.GONE)
-                    viewBinding.societyRecycler.setVisibility(View.VISIBLE)
-                    viewBinding.societyRecycler.layoutManager =
-                        LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
-                    viewBinding.societyRecycler.adapter = societyMainAdapter
-
-
-                    societyMainAdapter!!.setDatingProfileListener {
-                        Toast.makeText(context, "date", Toast.LENGTH_SHORT).show()
-                        //societyRecycler.layoutManager = scrollableLayoutManager
-
-                    }
-                    societyMainAdapter!!.setProfileEmptyListener {
-                        societyModelArrayList.removeAt(lastPosition)
-                        viewBinding.societyRecycler.layoutManager = scrollableLayoutManager
-                        viewBinding.societyRecycler.scrollToPosition(lastPosition)
-                    }
-
-
-                    societyMainAdapter!!.setAddACommentClickListener {
-                        val commentingSection = CommentBottomSheet(this@HomeFragment)
-                        commentingSection.show(parentFragmentManager, "commentingSection")
-                    }
-
-                    societyMainAdapter!!.setPostListener {
-                        Toast.makeText(context, "post", Toast.LENGTH_SHORT).show()
-                        // societyRecycler.layoutManager = scrollableLayoutManager
-
-                    }
-                    societyMainAdapter!!.setProfileMatchedListener {
-                        viewBinding.loaderView.setVisibility(View.GONE)
-                        viewBinding.societyRecycler.setVisibility(View.GONE)
-                        viewBinding.konfettiView.metMatchRoot.setVisibility(View.VISIBLE)
-
-                    }
-
-
-                    viewBinding.societyRecycler.addOnScrollListener(object :
-                        RecyclerView.OnScrollListener() {
-                        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                            lastPosition =
-                                (viewBinding.societyRecycler.layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                            if (lastPosition != RecyclerView.NO_POSITION) {
-                                val viewType = societyModelArrayList.get(lastPosition).itemViewType
-                                if (viewType == 0) {
-                                    //   societyRecycler.layoutManager = unScrollableLayoutManager
-                                    // societyRecycler.scrollToPosition(lastPosition)
-                                }
-                            }
-                        }
-                    })
 
                 }
 

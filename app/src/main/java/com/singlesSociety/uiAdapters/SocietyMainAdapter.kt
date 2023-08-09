@@ -403,10 +403,10 @@ class SocietyMainAdapter(
 
         init {
             showcaseCardStackRecyclerview = ItemView.findViewById(R.id.showcaseCardStackView)
-            swipeLayout = ItemView.findViewById(R.id.showcase_swipe_layout)
-            swipeLeft = ItemView.findViewById(R.id.user_swipe_left)
-            rewound = ItemView.findViewById(R.id.user_rewind)
-            swipeRight = ItemView.findViewById(R.id.user_swipe_right)
+            swipeLayout = ItemView.findViewById(R.id.swipeLayout)
+            swipeLeft = swipeLayout.findViewById(R.id.userSwipeleft)
+            rewound = swipeLayout.findViewById(R.id.userRewound)
+            swipeRight = swipeLayout.findViewById(R.id.userSwipeRight)
             goFullView = ItemView.findViewById(R.id.cardStackGoFullView)
             manager = CardStackLayoutManager(context)
             manager.setVisibleCount(2)

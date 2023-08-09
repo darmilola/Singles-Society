@@ -43,7 +43,10 @@
                         android:layout_height="wrap_content"
                         android:padding="15dp"
                         android:orientation="vertical"
-                        android:layout_margin="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="50dp"
                         android:background="@drawable/showcase_header_background">
 
                         <TextView
