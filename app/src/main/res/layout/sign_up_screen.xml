@@ -310,7 +310,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/already_have_account"
-                        android:layout_alignParentLeft="true"
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
@@ -319,7 +318,6 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:fontFamily="@font/opensansbold"
-                        android:id="@+id/sign_up_have_account"
                         android:textColor="@color/colorPrimary"/>
                 </LinearLayout>
 

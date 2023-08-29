@@ -50,7 +50,7 @@ public class SignUpWithEmail extends AppCompatActivity {
     }
 
     private void initView(){
-        alreadyHaveAccount = findViewById(R.id.sign_up_have_account);
+       // alreadyHaveAccount = findViewById(R.id.sign_up_have_account);
         signupWithEmail = findViewById(R.id.signUpWithEmailButton);
         loadingDialogUtils = new LoadingDialogUtils(SignUpWithEmail.this);
         firstnameLayout = findViewById(R.id.sign_up_firstname_layout);
